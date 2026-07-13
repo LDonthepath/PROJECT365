@@ -17,9 +17,9 @@ Build an explainable, regime-first crypto market intelligence platform.
 ## Development Method
 Specification Driven Development
 
-BRD
+[BRD](./BRD.md)
 ↓
-PRD
+[PRD](./PRD.md)
 ↓
 Technical Design
 ↓

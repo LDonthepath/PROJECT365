@@ -450,7 +450,7 @@ Single-user personal deployment.
 
 15. Development Methodology
 
-BRD
+[BRD](./BRD.md)
 ↓
 PRD
 ↓
