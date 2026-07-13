@@ -28,10 +28,27 @@ Deliverables:
 - HealthLayer
 - HealthState contract
 - HealthStatus enum (FRESH, STALE, INVALID)
-- Configurable TTL (default: 300,000 ms)
+- Configurable TTL (300,000 ms)
 - validate()
 - getStatus()
 - Immutable health output
+- Unit tests
+- Public exports
+
+---
+
+## ISSUE-003 — Snapshot Foundation
+Status: COMPLETED
+
+Deliverables:
+- Snapshot contract
+- SnapshotQualityState
+- SnapshotFactory
+- SnapshotValidator
+- Immutable snapshot object
+- Deep freeze support
+- JSON-serializable data-only payloads
+- Snapshot metadata and identity
 - Unit tests
 - Public exports
 
@@ -43,7 +60,7 @@ Deliverables:
 
 ✅ Health Layer
 
-⬜ Snapshot Foundation
+✅ Snapshot Foundation
 
 ⬜ Snapshot Storage
 
@@ -67,14 +84,14 @@ Deliverables:
 
 # Next Priority
 
-## ISSUE-003 — Snapshot Foundation
+## ISSUE-004 — Snapshot Storage Foundation
 
 Scope:
-- Snapshot contract
-- Snapshot identity
-- Snapshot metadata
-- Snapshot lifecycle
-- Immutable snapshot object
+- SnapshotRepository
+- Active Snapshot management
+- Historical Snapshot management
+- Archive and replacement lifecycle
+- Snapshot retrieval APIs
 - Unit tests
 
 ---
@@ -82,23 +99,22 @@ Scope:
 # Foundation Progress
 
 ```text
-[████░░░░░░] 20%
+[██████░░░░] 30%
 
 Completed:
 1. MarketData Contract
-2. Health Layer
+2. Health Layer Foundation
+3. Snapshot Foundation
 
 Next:
-3. Snapshot Foundation
-4. Snapshot Storage
+4. Snapshot Storage Foundation
 5. Delta Engine Foundation
-
-
-
+6. Anchor Lifecycle
 
 Notes
 Architecture First approach.
-Single Source of Truth principle.
+Single Source of Truth principle preserved.
 Hard Gate Principle preserved.
-Health Layer is the current system state owner.
+Health Layer remains the current state owner.
+Snapshot is immutable and data-only.
 Intelligence engines are not implemented yet.
