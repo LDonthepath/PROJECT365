@@ -1,351 +1,227 @@
 # PROJECT365 Glossary
-Version: 1.0
-Status: Active
 
----
-
-# Purpose
-
-This document defines official terminology used throughout PROJECT365.
-
-The goal is to:
-
-- maintain naming consistency,
-- reduce ambiguity,
-- improve AI collaboration,
-- preserve long-term project context.
-
----
-
-# Core Concepts
-
-## Market Intelligence
-
-Definition:
-The process of transforming raw market data into explainable insights.
-
-Purpose:
-Understand what is happening in the market.
-
-Examples:
-- Regime analysis
-- Liquidity analysis
-- Market state analysis
-
----
-
-## Portfolio Intelligence
-
-Definition:
-The process of transforming market intelligence into portfolio actions.
-
-Purpose:
-Determine exposure and allocation decisions.
-
-Examples:
-- Exposure recommendation
-- Risk budgeting
-- Cluster rotation
-
----
-
-# Architecture Terms
-
-## Domain
-
-Definition:
-A high-level business area that groups related capabilities.
-
-Purpose:
-Organize the system by business responsibility.
-
-Examples:
-- Foundation Domain
-- Market Intelligence Domain
-- Portfolio Intelligence Domain
-
----
-
-## Module
-
-Definition:
-A self-contained functional component inside a domain.
-
-Purpose:
-Break large domains into manageable pieces.
-
-Examples:
-- Health Layer
-- Delta Engine
-- Dashboard
-
----
-
-## Engine
-
-Definition:
-A module that performs calculations, analysis, or decision making.
-
-Purpose:
-Produce intelligence or recommendations.
-
-Examples:
-- Delta Engine
-- Regime Engine
-- Portfolio Engine
-- Risk Engine
-
----
-
-## Layer
-
-Definition:
-An architectural abstraction that provides infrastructure capabilities.
-
-Purpose:
-Separate responsibilities between system components.
-
-Examples:
-- Health Layer
-- Storage Layer
-- Presentation Layer
-
----
-
-## Service
-
-Definition:
-A component responsible for operational processes.
-
-Purpose:
-Perform actions or coordinate workflows.
-
-Examples:
-- Data Service
-- Snapshot Service
-- Validation Service
-
----
-
-## Contract
-
-Definition:
-A formal definition of data structure and rules.
-
-Purpose:
-Guarantee consistency between producers and consumers.
-
-Examples:
-- MarketData Contract
-- Snapshot Contract
-
----
-
-## Framework
-
-Definition:
-A collection of multiple components that work together under one methodology.
-
-Purpose:
-Implement a larger analytical approach.
-
-Examples:
-- Triad Liquidity Framework
-- Validation Framework
-
----
-
-# Data Terms
-
-## MarketData
-
-Definition:
-Immutable representation of market data from a single fetch.
-
-Purpose:
-Become the Single Source of Truth for downstream systems.
-
----
-
-## Snapshot
-
-Definition:
-Immutable representation of market state at a specific reference time.
-
-Purpose:
-Provide reproducible historical analysis.
-
----
-
-## Anchor
-
-Definition:
-A special snapshot representing an important market boundary.
-
-Examples:
-- Daily Anchor
-- Weekly Anchor
-- Monthly Anchor
-- M5 Anchor
-- H1 Anchor
-
----
-
-## Delta
-
-Definition:
-The difference between two snapshots.
-
-Purpose:
-Measure market changes.
-
-Examples:
-- Closed Snapshot → Closed Snapshot
-- Closed Snapshot → Live Market
-
----
-
-# Intelligence Terms
-
-## Regime
-
-Definition:
-The dominant market environment.
-
-Examples:
-- Risk On
-- Neutral
-- Risk Off
-
----
-
-## LDS
-
-Definition:
-Liquidity Divergence System.
-
-Purpose:
-Detect divergence between liquidity and market behaviour.
-
----
-
-## OMS
-
-Definition:
-Overall Market Score.
-
-Purpose:
-Aggregate multiple intelligence engines into one market assessment.
-
----
-
-## Confidence
-
-Definition:
-The degree of certainty in the current market assessment.
-
-Purpose:
-Communicate reliability of recommendations.
-
----
-
-# Governance Terms
-
-## Explainability
-
-Definition:
-The ability to explain why a decision was made.
-
----
-
-## Auditability
-
-Definition:
-The ability to reproduce and inspect historical decisions.
-
----
-
-## Single Source of Truth
-
-Definition:
-A principle where only one component owns a particular state.
-
-Examples:
-- Health Layer owns snapshots.
-- Delta Engine consumes snapshots.
-
----
-
-## Hard Gate Principle
-
-Definition:
-A higher-level decision can restrict lower-level decisions.
-
-Example:
-Regime can limit exposure recommendations.
-
----
-
-## Separation of Concerns
-
-Definition:
-Each component has one clear responsibility.
-
-Example:
-Delta Engine calculates deltas only.
-It does not determine market regime.
-
----
-
-# Development Terms
-
-## BRD
-
-Business Requirements Document.
-
-Defines:
-Why the product exists.
-
----
-
-## PRD
-
-Product Requirements Document.
-
-Defines:
-What the product should do.
-
----
-
-## Technical Design (TD)
-
-Defines:
-How a component should be implemented.
-
----
-
-## Issue
-
-Defines:
-A small, implementable unit of work.
-
----
-
-## Freeze
-
-Definition:
-A document or design is considered stable and should not change without formal review.
-
----
-
-# Official Naming Convention
-
-Foundation Domain
-
-Market Intelligence Domain
-
-Portfolio Intelligence Domain
-
-Governance Domain
-
-Presentation Domain
+## 1. Document Information
+
+- **Status:** Active
+- **Version:** 1.1
+- **Owner:** PROJECT365 Product
+- **Last Updated:** 2026-07-13
+- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md)
+- **Referenced By:** BRD, PRD, Architecture, Product Map, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
+
+## 2. Purpose
+
+This glossary is the authoritative terminology reference for PROJECT365.
+
+It defines one preferred name and one meaning for each approved term used across the BRD, PRD, Architecture, and Product Map. It normalizes terminology, lists deprecated synonyms, and prevents ambiguous or conflicting definitions without introducing new concepts or changing the approved architecture.
+
+## 3. Naming Rules
+
+- Use exactly one preferred name for each concept.
+- Use each preferred name with exactly one meaning.
+- Use domain names with the `Domain` suffix when referring to product domains.
+- Use module names exactly as listed in the Product Map and Architecture.
+- Use `Engine` only for modules that calculate, analyze, assess, or produce intelligence or recommendations.
+- Use `Service` only for operational process coordination.
+- Use `Layer` only for architecture abstractions or approved module names that include `Layer`.
+- Use `Framework` only for collections of components that operate under an approved methodology.
+- Use `Contract` only for formal data structure and rule definitions.
+- Use `MarketData` as a single compound term for the immutable market data representation.
+- Use `Snapshot` for immutable market state at a specific reference time.
+- Use `Delta` for the difference between two snapshots or between a closed snapshot and live market state.
+- Use `Exposure Engine` for the module and `exposure recommendation` for its output.
+- Do not use deprecated synonyms except when explicitly documenting deprecated terminology.
+- Do not use abbreviations unless they are listed in Section 9.
+
+## 4. Core Terms
+
+| Preferred Term | Definition | Deprecated Synonyms |
+| --- | --- | --- |
+| PROJECT365 | The approved product name for the Adaptive Crypto Market Intelligence Platform. | Project 365, Project365 |
+| Adaptive Crypto Market Intelligence Platform | The approved product positioning for PROJECT365 as a platform that transforms raw crypto market data into explainable market intelligence and portfolio exposure recommendations. | Crypto intelligence app, trading platform |
+| Market Intelligence Platform | A product positioning that describes PROJECT365 as a system for understanding market conditions. | Signal tool, indicator dashboard |
+| Decision Support System | A product positioning that describes PROJECT365 as a system that supports user decisions without executing trades or providing financial advice. | Trading bot, auto trading platform, financial advisor |
+| Explainable Analytics Platform | A product positioning that describes PROJECT365 as a system that explains why conclusions and recommendations exist. | Black-box signal platform |
+| Raw Crypto Market Data | Unprocessed crypto market data before Foundation validation and structuring. | Raw data, market feed |
+| Market Intelligence | Explainable understanding of global market conditions derived from trusted market data. | Market analysis, market signal |
+| Portfolio Intelligence | Explainable portfolio-level decision intelligence derived from Market Intelligence. | Portfolio signal, allocation signal |
+| Market Condition | The current or historical state of the market as understood through approved intelligence outputs. | Market situation |
+| Market State | An assessed representation of market conditions. | State, condition score |
+| User Decision Support | Information presented to users to support decisions without executing trades, guaranteeing profits, predicting prices, or providing financial advice. | Trade instruction, financial advice |
+| Exposure Recommendation | An explainable recommendation about portfolio exposure produced by Portfolio Intelligence and governed for explainability and auditability. | Exposure Management, allocation signal |
+| Current Release Scope | The approved current scope: Foundation v0.1, limited to MarketData Contract, Health Layer, and Snapshot Engine. | Current focus, current implementation scope |
+| Foundation v0.1 | The current Foundation release scope containing MarketData Contract, Health Layer, and Snapshot Engine. | Foundation Edition when referring to current scope |
+
+## 5. Architecture Terms
+
+| Preferred Term | Definition | Deprecated Synonyms |
+| --- | --- | --- |
+| Domain | A high-level business or product area that groups related capabilities and modules. | Area, layer when used as a domain substitute |
+| Foundation Domain | The domain that provides trusted, immutable, and validated market data. | Foundation Layer when referring to the domain |
+| Market Intelligence Domain | The domain that understands global market conditions. | Intelligence Layer when referring to the domain |
+| Portfolio Intelligence Domain | The domain that transforms market intelligence into actionable exposure decisions. | Portfolio Layer when referring to the domain |
+| Governance Domain | The domain that ensures explainability and auditability. | Governance Layer when referring to the domain |
+| Presentation Domain | The domain that presents intelligence to users. | UI Layer, frontend layer when referring to the domain |
+| Module | A self-contained functional component inside a domain. | Component when referring to Product Map module names |
+| Layer | An architectural abstraction in the approved architecture sequence. | Tier |
+| Engine | A module that performs approved calculations, analysis, assessment, or recommendation generation. | Calculator, scorer |
+| Service | A component responsible for operational process coordination. | Manager, worker |
+| Contract | A formal definition of data structure and rules. | Schema when used as the full concept |
+| Framework | A collection of approved components that work together under one methodology. | System when used as the full concept |
+| Modular Architecture | The approved architecture principle that components remain separated by clear responsibilities and dependency rules. | Modular Design |
+| Regime First | The principle that market regime is a primary upstream constraint for downstream decisions. | Regime-led |
+| Hard Gate Principle | The principle that a higher-level decision can restrict lower-level decisions. | Gate, hard stop |
+| Single Source of Truth | The principle that one approved owner controls a particular state or data responsibility. | SSOT when not defined |
+| Separation of Concerns | The principle that each domain, module, and layer has one clear responsibility. | Responsibility split |
+| Lower Layers | Earlier layers in the approved dependency sequence: Foundation, then Market Intelligence, then Portfolio Intelligence, then Governance, then Presentation. | Upstream layers when ambiguous |
+| Higher Layers | Later layers in the approved dependency sequence. | Downstream layers when ambiguous |
+
+## 6. Business Terms
+
+| Preferred Term | Definition | Deprecated Synonyms |
+| --- | --- | --- |
+| Business Requirement | A BRD-defined statement of why the product exists or what business outcome it must support. | Business need when used as a formal requirement |
+| Business Capability | A BRD-approved capability PROJECT365 must support. | Capability when ambiguous |
+| Business Constraint | A BRD-approved limit or rule that constrains product and architecture decisions. | Constraint when ambiguous |
+| Business Acceptance Criteria | BRD-defined acceptance criteria for business-level validation. | BAC when not defined |
+| Target User | A BRD-defined user type for PROJECT365. | Persona when ambiguous |
+| Crypto Investor | A target user who uses PROJECT365 to understand market conditions and reduce emotional decisions. | Investor |
+| Active Trader | A target user who uses PROJECT365 to understand regime shifts and improve risk management. | Trader |
+| Portfolio Manager | A target user who uses PROJECT365 to manage exposure and allocate capital effectively. | Manager |
+| Researcher | A target user who uses PROJECT365 to study market behavior and analyze historical patterns. | Analyst |
+| Explainability | The ability to explain why a conclusion, recommendation, or decision-support output exists. | Explanation, rationale when ambiguous |
+| Auditability | The ability to reproduce and inspect historical decisions, outputs, and market states. | Audit trail when used as full concept |
+| Historical Reproducibility | The ability to reproduce historical analysis from immutable snapshots, records, and versions. | Reproducibility when ambiguous |
+| User Trust | User confidence that outputs are stable, explainable, auditable, and correctly positioned as decision support. | Trust |
+| Financial Advice | Personalized advice about financial decisions; PROJECT365 must not provide this. | Investment advice |
+| Trade Execution | Automated or manual execution of market orders; PROJECT365 must not perform this. | Trading, auto trading |
+| Price Prediction | Predicting future asset prices; PROJECT365 must not position itself as doing this. | Forecasting prices |
+| Profit Guarantee | Any promise of profits; PROJECT365 must not provide this. | Guaranteed return |
+
+## 7. Technical Terms
+
+| Preferred Term | Definition | Deprecated Synonyms |
+| --- | --- | --- |
+| MarketData | Immutable representation of market data from a single fetch and the Single Source of Truth for downstream systems. | Market Data when referring to the contract object |
+| MarketData Contract | The formal structure and rules for MarketData. | Market Data Contract |
+| Snapshot | Immutable representation of market state at a specific reference time. | Market snapshot when ambiguous |
+| Snapshot Engine | The Foundation module that creates immutable snapshots for reproducible historical analysis. | Snapshot Service |
+| Anchor | A special snapshot representing an important market boundary. | Boundary snapshot |
+| Daily Anchor | An Anchor for a daily market boundary. | D1 Anchor |
+| Weekly Anchor | An Anchor for a weekly market boundary. | W1 Anchor |
+| Monthly Anchor | An Anchor for a monthly market boundary. | M1 Anchor when ambiguous with minute notation |
+| M5 Anchor | An Anchor for a five-minute market boundary. | Five-minute anchor |
+| H1 Anchor | An Anchor for an hourly market boundary. | One-hour anchor |
+| Delta | The difference between two snapshots or between a closed snapshot and live market state. | Change, difference when ambiguous |
+| Delta Engine | The Market Intelligence module that calculates market deltas from snapshots. | Delta Layer |
+| Data Service | The Foundation module that coordinates ingestion of global market data. | Ingestion service |
+| Health Layer | The Foundation module that validates market data health and supports snapshot readiness. | Health Engine |
+| Event Bus | The Foundation module that publishes approved domain events between components. | Event system |
+| Storage Layer | The Foundation module that persists trusted market data and immutable snapshots. | Storage |
+| Triad Liquidity Framework | The Market Intelligence framework that supports liquidity analysis as part of global market condition assessment. | Triad, Liquidity Framework |
+| Regime | The dominant market environment. | Market regime when not used consistently |
+| Regime Engine | The Market Intelligence module that determines market regime. | Regime classifier |
+| LDS Engine | The Market Intelligence module that detects liquidity divergence. | Liquidity Divergence System when referring to the module |
+| Capital Flow Engine | The Market Intelligence module that assesses capital flow conditions. | Flow Engine |
+| Market State Engine | The Market Intelligence module that assesses overall market state. | State Engine |
+| Confidence Engine | The Market Intelligence module that communicates reliability of market assessments. | Confidence score engine |
+| OMS Engine | The Market Intelligence module that aggregates approved market intelligence into an overall market assessment. | Overall Market Score when referring to the module |
+| Exposure Engine | The Portfolio Intelligence module that generates explainable exposure recommendations. | Exposure Management |
+| Portfolio Engine | The Portfolio Intelligence module that supports portfolio-level decision intelligence. | Portfolio Layer |
+| Risk Engine | The Portfolio Intelligence module that supports risk management and risk budgeting decisions. | Risk module |
+| Cluster Rotation Engine | The Portfolio Intelligence module that supports cluster rotation analysis and recommendations. | Cluster Rotation |
+| Decision Log | The Governance module that records decision-support outputs for auditability. | Decision record |
+| Validation Framework | The Governance module that validates outputs against approved rules and acceptance criteria. | Validation system |
+| Champion-Challenger | The Governance module that supports comparison of approved model versions. | Champion Challenger |
+| Model Versioning | The Governance module that tracks model and rule versions for reproducibility. | Versioning |
+| Rollback Framework | The Governance module that supports rollback to approved model or rule versions. | Rollback system |
+| Dashboard | The Presentation module that displays decision-focused market intelligence. | Home screen |
+| Inspector | The Presentation module that allows users to inspect market conclusions. | Inspection view |
+| Historical Explorer | The Presentation module that provides historical exploration of market states. | History explorer |
+| Settings | The Presentation module that provides user-facing configuration controls. | Configuration |
+| Domain Event | An approved event published between components while preserving dependency direction. | Event when ambiguous |
+| Decision-Support Output | An output used to support user decisions without providing financial advice or executing trades. | Recommendation when ambiguous |
+| Specification Driven Development | The delivery approach in which implementation remains traceable to approved specifications. | Spec-driven development, SDD when not defined |
+| Documentation-First Workflow | The delivery approach in which approved documentation context is preserved before implementation. | Docs-first workflow |
+| Technical Design | A document that defines how an approved component should be implemented. | TD when not defined |
+| Issue Specification | A small, implementable unit of work derived from approved requirements and technical design. | Issue when ambiguous |
+| Acceptance Criteria | Conditions used to validate whether an implementation or document satisfies approved requirements. | AC when not defined |
+| Implementation Prompt | A prompt used to guide implementation from approved specifications. | Prompt when ambiguous |
+| Freeze | A stable document or design state that should not change without formal review. | Frozen state |
+
+## 8. Forbidden / Deprecated Terms
+
+| Term | Status | Use Instead | Reason |
+| --- | --- | --- | --- |
+| Trading bot | Forbidden | Decision Support System | PROJECT365 does not execute trades. |
+| Auto trading platform | Forbidden | Decision Support System | PROJECT365 does not execute trades. |
+| Price prediction system | Forbidden | Market Intelligence Platform | PROJECT365 does not predict prices. |
+| Financial advisor | Forbidden | Decision Support System | PROJECT365 does not provide financial advice. |
+| Profit guarantee | Forbidden | User Decision Support | PROJECT365 does not guarantee profits. |
+| Modular Design | Deprecated | Modular Architecture | BRD, PRD, Architecture, and Product Map use Modular Architecture as the preferred principle. |
+| Storage | Deprecated | Storage Layer | Product Map and Architecture use Storage Layer as the approved Foundation module name. |
+| Market Data Contract | Deprecated | MarketData Contract | MarketData is the approved compound term for the immutable representation and contract name. |
+| Snapshot Service | Deprecated | Snapshot Engine | Snapshot Engine is the approved Foundation module name. |
+| Anchor Service | Deprecated | Anchor or approved future anchor lifecycle terminology in downstream delivery docs | Anchor is a glossary term; no approved Product Map module named Anchor Service exists. |
+| Exposure Management | Deprecated | Exposure Engine or exposure recommendation | Exposure Engine is the approved module; exposure recommendation is the approved output. |
+| Intelligence Layer | Deprecated when referring to a domain | Market Intelligence Domain | Product domains must use approved domain names. |
+| Portfolio Layer | Deprecated when referring to a domain | Portfolio Intelligence Domain | Product domains must use approved domain names. |
+| UI Layer | Deprecated when referring to a domain | Presentation Domain | Product domains must use approved domain names. |
+| CoinGecko Adapter | Delivery-only term | Data Service if referring to approved product scope | Not approved as a BRD, PRD, Architecture, or Product Map product module. |
+| Snapshot Cache | Delivery-only term | Snapshot Engine or Storage Layer if referring to approved product scope | Not approved as a BRD, PRD, Architecture, or Product Map product module. |
+| API Layer | Delivery-only term | Presentation Domain or approved future technical design terminology | Not approved as a BRD, PRD, Architecture, or Product Map product module. |
+| Authentication | Delivery-only term | Settings only when referring to approved Presentation module scope | Not approved as a BRD, PRD, Architecture, or Product Map product module. |
+| AI Meta | Deprecated roadmap term | Approved Governance modules or future approved documentation update | Not listed as an approved Product Map module. |
+
+## 9. Abbreviations
+
+| Abbreviation | Meaning | Usage Rule |
+| --- | --- | --- |
+| ADR | Architecture Decision Record | Use only for approved Architecture Decision Records. |
+| API | Application Programming Interface | Use only as a technical interface term, not as an approved product module unless a future approved document defines it. |
+| BAC | Business Acceptance Criteria | Define on first use outside the BRD. |
+| BRD | Business Requirements Document | Refers only to `docs/BRD.md`. |
+| FR | Functional Requirement | Use only for PRD functional requirement identifiers. |
+| H1 | One-hour timeframe | Use only in approved anchor terminology such as H1 Anchor. |
+| LDS | Liquidity Divergence System | Use as LDS Engine for the approved module. |
+| M5 | Five-minute timeframe | Use only in approved anchor terminology such as M5 Anchor. |
+| NFR | Non-Functional Requirement | Use only for PRD non-functional requirement identifiers. |
+| OMS | Overall Market Score | Use as OMS Engine for the approved module. |
+| PRD | Product Requirements Document | Refers only to `docs/PRD.md`. |
+| SaaS | Software as a Service | Use only for architecture deployment readiness context. |
+| TD | Technical Design | Define on first use outside formal TD identifiers. |
+
+## 10. Traceability
+
+| Glossary Area | Source of Truth | Normalization Result |
+| --- | --- | --- |
+| Product positioning | BRD §2; PRD Purpose; Architecture §2; Product Map §2 | Uses Adaptive Crypto Market Intelligence Platform, Market Intelligence Platform, Decision Support System, and Explainable Analytics Platform. |
+| Product domains | BRD §10; PRD Scope; Architecture §6; Product Map §4 | Uses Foundation Domain, Market Intelligence Domain, Portfolio Intelligence Domain, Governance Domain, and Presentation Domain. |
+| Approved architecture sequence | BRD §14 and §19; PRD Constraints; Architecture §5; Product Map §8 | Preserves Foundation → Market Intelligence → Portfolio Intelligence → Governance → Presentation. |
+| Architecture principles | BRD §13; PRD Business Rules; Architecture §4 | Uses Regime First, Hard Gate Principle, Single Source of Truth, Separation of Concerns, Explainability, Auditability, and Modular Architecture. |
+| Foundation modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Data Service, MarketData Contract, Health Layer, Snapshot Engine, Event Bus, and Storage Layer. |
+| Market Intelligence modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Delta Engine, Triad Liquidity Framework, Regime Engine, LDS Engine, Capital Flow Engine, Market State Engine, Confidence Engine, and OMS Engine. |
+| Portfolio Intelligence modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Exposure Engine, Portfolio Engine, Risk Engine, and Cluster Rotation Engine. |
+| Governance modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Decision Log, Validation Framework, Champion-Challenger, Model Versioning, and Rollback Framework. |
+| Presentation modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Dashboard, Inspector, Explainability, Historical Explorer, and Settings. |
+| Current release scope | BRD §10; PRD Scope; Architecture §3; Product Map §10 | Uses Foundation v0.1 limited to MarketData Contract, Health Layer, and Snapshot Engine. |
+| Out of scope terms | BRD §11; PRD Out of Scope; Architecture §16; Product Map §12 | Forbids trading bot, auto trading platform, price prediction system, financial advisor, trade execution, profit guarantee, and financial advice positioning. |
+| Delivery terminology boundaries | PRD Product Roadmap; Product Map module list | Marks delivery-only terms as non-authoritative for product module naming. |
+
+## 11. References
+
+- [BRD](./BRD.md)
+- [PRD](./PRD.md)
+- [Architecture](./Architecture.md)
+- [Product Map](./ProductMap.md)
+- [Architecture Decision Records](./Decisions.md)
+- [Backlog](./Backlog.md)
+- [Roadmap](./Roadmap.md)
+- [Current Status](./CurrentStatus.md)
+
+## 12. Change History
+
+| Version | Date | Summary |
+| --- | --- | --- |
+| 1.0 | 2026-07-13 | Initial glossary draft. |
+| 1.1 | 2026-07-13 | Normalized glossary to the required template; established one preferred term and one meaning per concept; added deprecated synonyms, forbidden terms, abbreviations, traceability, and references derived from the BRD, PRD, Architecture, and Product Map without introducing new concepts or changing approved architecture. |
