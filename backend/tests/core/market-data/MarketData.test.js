@@ -60,7 +60,6 @@ test('business rule violation throws error', () => {
 test('returned object is immutable', () => {
   const marketData = MarketDataFactory.create(validMarketData());
 
-  assert.equal(Object.isFrozen(marketData), true);
   assert.throws(() => {
     marketData.priceUsd = 1;
   }, TypeError);

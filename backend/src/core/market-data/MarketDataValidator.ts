@@ -1,4 +1,4 @@
-import type { MarketData } from './types.js';
+import type { MarketDataInput } from './types.js';
 
 export class MissingRequiredFieldError extends Error {
   constructor(field: string) {
@@ -22,7 +22,7 @@ export class InvalidBusinessRuleError extends Error {
 }
 
 type FieldType = 'string' | 'number';
-type MarketDataField = keyof MarketData & string;
+type MarketDataField = keyof MarketDataInput & string;
 
 const REQUIRED_FIELDS: ReadonlyArray<MarketDataField> = [
   'id',
@@ -78,7 +78,7 @@ const NON_NEGATIVE_FIELDS: ReadonlyArray<MarketDataField> = [
 ];
 
 export class MarketDataValidator {
-  static validate(input: unknown): asserts input is MarketData {
+  static validate(input: unknown): asserts input is MarketDataInput {
     if (input === null || typeof input !== 'object') {
       throw new MissingRequiredFieldError('MarketData');
     }
@@ -104,7 +104,7 @@ export class MarketDataValidator {
       }
     }
 
-    const marketData = input as MarketData;
+    const marketData = input as MarketDataInput;
 
     for (const field of NON_NEGATIVE_FIELDS) {
       if ((marketData[field] as number) < 0) {
