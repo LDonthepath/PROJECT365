@@ -89,7 +89,7 @@ The Roadmap identifies milestone sequencing. The Backlog tracks delivery work ag
 | Milestone | Name | Planning Scope | Source |
 | --- | --- | --- | --- |
 | M0 | Product Blueprint | BRD; PRD; Architecture; Product Map; Feature Map; Roadmap; Glossary | PRD Product Roadmap |
-| M1 | Foundation Specification | TD-001 MarketData Contract; TD-002 Health Layer; TD-003 Snapshot Engine | PRD Product Roadmap |
+| M1 | Foundation Specification | TD-000 Data Provider Framework; TD-001 MarketData Contract; TD-002 Health Layer; TD-003 Snapshot Engine | PRD Product Roadmap |
 | M2 | Foundation Implementation | ISSUE-001 MarketData Implementation; ISSUE-002 Health Layer Implementation; ISSUE-003 Snapshot Engine Implementation | PRD Product Roadmap |
 | M3 | Data Pipeline | TD-004 Data Service; TD-005 CoinGecko Adapter; TD-006 Event Bus; ISSUE-004 Data Service; ISSUE-005 CoinGecko Adapter; ISSUE-006 Event Bus | PRD Product Roadmap |
 | M4 | Delta Layer | TD-007 Delta Engine; TD-008 Anchor Lifecycle; TD-009 Snapshot Cache; ISSUE-007 Delta Engine; ISSUE-008 Anchor Lifecycle; ISSUE-009 Snapshot Cache | PRD Product Roadmap |
