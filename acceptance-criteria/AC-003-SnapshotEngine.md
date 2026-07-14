@@ -5,7 +5,7 @@
 | Field | Value |
 |------|------|
 | Status | Draft |
-| Version | 1.0 |
+| Version | 1.1 |
 | Owner | PROJECT365 Delivery |
 | Last Updated | 2026-07-14 |
 | Depends On | BRD, PRD, Architecture, Product Map, ADR, TD-003, ISSUE-003 |
@@ -15,147 +15,77 @@
 
 ## 2. Purpose
 
-Define measurable acceptance criteria for AC-003, validating ISSUE-003 Snapshot Engine Implementation against TD-003 Snapshot Engine.
+Define binary PASS/FAIL acceptance criteria for ISSUE-003 Snapshot Engine Implementation against TD-003 Snapshot Engine.
 
-This document translates approved Technical Design and Issue Specification requirements into measurable acceptance criteria.
-
-Do not redefine business requirements, product requirements, architecture, technical design, or implementation scope.
+Every criterion has an expected result, verification method, pass condition, and fail condition.
 
 ---
 
-## 3. Scope
-
-This Acceptance Criteria document validates:
-
-- The related module or issue: ISSUE-003 Snapshot Engine Implementation.
-- Functional acceptance boundaries approved by TD-003 and ISSUE-003.
-- Non-functional acceptance boundaries approved by TD-003 and ISSUE-003.
-- Validation expectations for approved inputs, outputs, rejection behavior, boundary conditions, dependencies, and traceability.
-- Test expectations needed to verify conformance without prescribing implementation internals.
-
-Exclude anything not approved by the related Technical Design and Issue Specification.
-
----
-
-## 4. Dependencies
-
-Authoritative inputs:
-
-- BRD.
-- PRD.
-- Architecture.
-- Product Map.
-- Glossary.
-- ADR.
-- TD-003 Snapshot Engine Technical Design.
-- ISSUE-003 Snapshot Engine Implementation Issue Specification.
-
-No acceptance criterion may introduce unapproved product scope, architecture, module ownership, or implementation behavior.
-
----
-
-## 5. Related Technical Design
-
-Identify the related Technical Design.
+## 3. Related Documents
 
 | Field | Value |
 |------|------|
 | Technical Design ID | TD-003 |
 | Technical Design Name | Snapshot Engine |
-| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-003-SnapshotEngine.md` |
-
-Acceptance criteria must remain fully traceable to this Technical Design.
-
----
-
-## 6. Related Issue Specification
-
-Identify the related Issue Specification.
-
-| Field | Value |
-|------|------|
 | Issue ID | ISSUE-003 |
 | Issue Name | Snapshot Engine Implementation |
-| Issue Status | Planned |
 | Issue Specification Path | `../issues/ISSUE-003-SnapshotEngine.md` |
 
-Acceptance criteria must remain fully traceable to this Issue Specification.
+---
+
+## 4. Binary Acceptance Criteria
+
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-F-001 | Snapshot Engine exposes or validates required contract field `id` exactly as specified by TD-003. | Inspect implementation and run contract test for `id`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-002 | Snapshot Engine exposes or validates required contract field `timestamp` exactly as specified by TD-003. | Inspect implementation and run contract test for `timestamp`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-003 | Snapshot Engine exposes or validates required contract field `type` exactly as specified by TD-003. | Inspect implementation and run contract test for `type`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-004 | Snapshot Engine exposes or validates required contract field `marketData` exactly as specified by TD-003. | Inspect implementation and run contract test for `marketData`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-005 | Snapshot Engine exposes or validates required contract field `healthStatus` exactly as specified by TD-003. | Inspect implementation and run contract test for `healthStatus`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-006 | Snapshot Engine exposes or validates required contract field `contractVersion` exactly as specified by TD-003. | Inspect implementation and run contract test for `contractVersion`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-007 | Public interface `createSnapshot(marketData, healthStatus)` is available and returns only approved success or failure outputs. | Run unit test invoking `createSnapshot(marketData, healthStatus)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-008 | Public interface `getCurrentSnapshot()` is available and returns only approved success or failure outputs. | Run unit test invoking `getCurrentSnapshot()`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-009 | Public interface `getPreviousSnapshot()` is available and returns only approved success or failure outputs. | Run unit test invoking `getPreviousSnapshot()`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-010 | Public interface `getHistoricalSnapshots()` is available and returns only approved success or failure outputs. | Run unit test invoking `getHistoricalSnapshots()`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-011 | Public interface `getAnchorSnapshot(anchorType)` is available and returns only approved success or failure outputs. | Run unit test invoking `getAnchorSnapshot(anchorType)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-V-012 | MarketData input is required | Run validation test for: MarketData input is required | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-013 | HealthStatus input is required | Run validation test for: HealthStatus input is required | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-014 | HealthStatus must not be INVALID | Run validation test for: HealthStatus must not be INVALID | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-015 | snapshot id is unique | Run validation test for: snapshot id is unique | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-016 | snapshot timestamp is positive | Run validation test for: snapshot timestamp is positive | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-017 | snapshot is frozen | Run validation test for: snapshot is frozen | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-018 | snapshot state transitions update current and previous references deterministically | Run validation test for: snapshot state transitions update current and previous references deterministically | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-E-019 | Error condition `missing MarketData rejected` is handled with the approved rejection behavior. | Run negative test for `missing MarketData rejected`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-020 | Error condition `missing HealthStatus rejected` is handled with the approved rejection behavior. | Run negative test for `missing HealthStatus rejected`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-021 | Error condition `INVALID HealthStatus rejected` is handled with the approved rejection behavior. | Run negative test for `INVALID HealthStatus rejected`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-022 | Error condition `duplicate snapshot identity rejected` is handled with the approved rejection behavior. | Run negative test for `duplicate snapshot identity rejected`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-023 | Error condition `mutation attempt rejected` is handled with the approved rejection behavior. | Run negative test for `mutation attempt rejected`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-B-024 | first snapshot has no previous snapshot | Run boundary/edge test for: first snapshot has no previous snapshot | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-025 | second snapshot moves first current to previous | Run boundary/edge test for: second snapshot moves first current to previous | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-026 | unsupported anchor rejected | Run boundary/edge test for: unsupported anchor rejected | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-027 | expired snapshot marked Expired without mutating payload | Run boundary/edge test for: expired snapshot marked Expired without mutating payload | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
 
 ---
 
-## 7. Functional Acceptance Criteria
+## 5. Architecture Preservation Criteria
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-F-001 | The delivered work implements only the approved Snapshot Engine scope defined by TD-003. | Related Technical Design; Related Issue Specification |
-| AC-F-002 | All approved public contracts, interfaces, lifecycle behavior, and component responsibilities from TD-003 are satisfied or explicitly marked not applicable by governance review. | Related Technical Design; Related Issue Specification |
-| AC-F-003 | Inputs, outputs, validation behavior, rejection behavior, and boundary conditions conform to TD-003 without adding unapproved fields, APIs, modules, or responsibilities. | Related Technical Design; Related Issue Specification |
-| AC-F-004 | The implementation preserves approved dependency direction and does not create direct dependencies forbidden by Architecture or TD-003. | Related Technical Design; Related Issue Specification |
-| AC-F-005 | The implementation does not duplicate ownership assigned to another PROJECT365 module or Technical Design. | Related Technical Design; Related Issue Specification |
-
-Functional acceptance criteria must not expand approved scope.
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-AP-001 | No architecture document is modified by implementation. | Review changed files. | No architecture/governance change appears in implementation PR. | Architecture or governance is changed without approval. |
+| AC-AP-002 | No dependency direction changes are introduced. | Review imports, module references, and tests. | Dependencies match TD-003 and Architecture. | Any reverse or unapproved dependency exists. |
+| AC-AP-003 | No responsibility from another module is implemented here. | Review implementation ownership. | Code remains limited to Snapshot Engine. | Code duplicates another module responsibility. |
+| AC-AP-004 | Runtime flow remains the flow approved by TD-003. | Review call sequence tests. | Flow matches TD-003. | Flow adds unapproved step or bypass. |
 
 ---
 
-## 8. Non-Functional Acceptance Criteria
+## 6. Overall Acceptance Rule
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-NF-001 | The delivered work preserves the approved Single Source of Truth, Separation of Concerns, explainability, auditability, immutability, and hard-gate rules applicable to Snapshot Engine. | Related Technical Design; Related Issue Specification |
-| AC-NF-002 | The delivered work is testable through deterministic checks that do not depend on unapproved implementation behavior. | Related Technical Design; Related Issue Specification |
-| AC-NF-003 | Error handling and invalid or boundary-condition behavior are verifiable against TD-003. | Related Technical Design; Related Issue Specification |
-| AC-NF-004 | The implementation remains maintainable by keeping Snapshot Engine responsibilities isolated from unrelated modules. | Related Technical Design; Related Issue Specification |
-| AC-NF-005 | Review evidence demonstrates traceability from BRD, PRD, Architecture, Product Map, ADR, TD-003, ISSUE-003, and this document. | Related Technical Design; Related Issue Specification |
-
-Non-functional acceptance criteria must preserve approved performance, reliability, maintainability, testability, security, explainability, and auditability requirements where applicable.
+AC-003 passes only when every criterion in Sections 4 and 5 passes. Any single failed criterion makes AC-003 fail.
 
 ---
 
-## 9. Validation Rules
-
-Validation rules required for acceptance:
-
-- Required inputs must match the approved input boundaries in TD-003.
-- Required outputs must match the approved output boundaries in TD-003.
-- Rejection behavior must match the approved validation and error-handling rules in TD-003.
-- Boundary conditions must be verified without adding new requirements outside TD-003 and ISSUE-003.
-- Dependency direction checks must confirm compliance with Architecture and TD-003.
-- Traceability checks must confirm that all delivered behavior maps to TD-003, ISSUE-003, and this Acceptance Criteria document.
-
-Validation rules must be deterministic and auditable.
-
----
-
-## 10. Test Requirements
-
-Required test coverage for acceptance:
-
-- Unit test requirements: verify approved Snapshot Engine behavior, boundaries, validation, and error handling from TD-003 where applicable.
-- Integration test requirements: verify only approved interactions and dependency direction described by TD-003 and ISSUE-003.
-- Negative test requirements: verify rejection or non-acceptance of invalid inputs, forbidden dependency paths, duplicate ownership, and scope expansion.
-- Regression test requirements: verify that approved behavior remains stable across changes.
-- Documentation verification requirements: verify that TD-003, ISSUE-003, and AC-003 references remain present and consistent.
-
-Tests must validate approved behavior without introducing implementation details outside the related Issue Specification.
-
----
-
-## 11. Out of Scope
-
-This Acceptance Criteria document must not include:
-
-- New business requirements.
-- New product requirements.
-- New architecture decisions.
-- New modules.
-- New technical design responsibilities.
-- Implementation behavior not approved by the related Issue Specification.
-- Acceptance requirements for TD-000 as a standalone implementation issue.
-
----
-
-## 12. Traceability
+## 7. Traceability
 
 | Acceptance Area | Source |
 |-----------------|--------|
@@ -166,25 +96,22 @@ This Acceptance Criteria document must not include:
 | Technical design | TD-003 Snapshot Engine |
 | Implementation scope | ISSUE-003 Snapshot Engine Implementation |
 
-Every acceptance criterion must trace to an approved source.
+---
+
+## 8. Out of Scope
+
+- New business requirements.
+- New product requirements.
+- New architecture decisions.
+- New modules.
+- New technical design responsibilities.
+- Acceptance requirements not derived from TD-003 and ISSUE-003.
 
 ---
 
-## 13. References
-
-- BRD
-- PRD
-- Architecture
-- Product Map
-- Glossary
-- ADR
-- TD-003 Snapshot Engine Technical Design: `../specs/TD-003-SnapshotEngine.md`
-- ISSUE-003 Snapshot Engine Implementation Issue Specification: `../issues/ISSUE-003-SnapshotEngine.md`
-
----
-
-## 14. Change History
+## 9. Change History
 
 | Version | Date | Description |
 |---------|------|-------------|
-| 1.0 | 2026-07-14 | Initial Acceptance Criteria document for AC-003 mapped to ISSUE-003 and TD-003. |
+| 1.0 | 2026-07-14 | Initial Acceptance Criteria document. |
+| 1.1 | 2026-07-14 | Rewritten as binary measurable implementation acceptance criteria. |

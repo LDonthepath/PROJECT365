@@ -6,26 +6,22 @@
 |------|------|
 | Issue ID | ISSUE-005 |
 | Title | Event Bus Implementation |
-| Status | Not Started |
+| Status | Planned |
 | Priority | High |
 | Owner | PROJECT365 Delivery |
-| Milestone | M3 Data Pipeline |
-| Sprint | Not scheduled |
+| Milestone | Foundation Implementation |
+| Sprint | TBD |
 | Last Updated | 2026-07-14 |
-| Depends On | TD-005 Event Bus Technical Design |
-| Primary Technical Design | TD-005 |
-| Architectural Prerequisite | TD-000 (Provider Framework) |
+| Depends On | TD-005 |
 | Referenced By | AC-005, Implementation Prompt, Pull Request |
 
 ---
 
 ## 2. Purpose
 
-Define the implementation governance scope for ISSUE-005 Event Bus Implementation.
+Define the concrete implementation work for Event Bus derived from exactly one Technical Design: TD-005.
 
-This document defines one implementation unit derived from TD-005 Event Bus.
-
-It must not redefine business requirements, product requirements, architecture, or technical design.
+This issue does not change architecture, ownership, dependency direction, runtime flow, or module responsibility.
 
 ---
 
@@ -33,159 +29,157 @@ It must not redefine business requirements, product requirements, architecture, 
 
 Included:
 
-- Implement only the approved Event Bus responsibilities described in TD-005.
-- Preserve the approved domain ownership, dependency direction, Single Source of Truth, Separation of Concerns, explainability, and auditability rules.
-- Implement only contracts, validation behavior, lifecycle behavior, error handling, and interfaces explicitly approved by TD-005.
-- Provide verification evidence required by AC-005.
+- Implement Event Bus responsibility: publish approved domain events to permitted subscribers.
+- Implement only the public interfaces listed in this issue.
+- Implement only the data contracts, validation rules, errors, and edge cases enumerated below.
+- Add deterministic tests that prove AC-005 pass/fail criteria.
 
 Excluded:
 
-- Changes to BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, Current Status, or Technical Designs.
-- New modules, new architecture decisions, new product requirements, or unapproved implementation scope.
-- Direct dependencies or ownership changes forbidden by the approved Architecture and TD-005.
+- Architecture changes.
+- New module responsibilities.
+- New dependency direction.
+- Source behavior outside TD-005.
+- Business logic not owned by Event Bus.
 
 ---
 
-## 4. Background
+## 4. Traceability
 
-ISSUE-005 is part of the PROJECT365 Specification Driven Development workflow. It follows the approved governance chain from BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, Current Status, and TD-005.
+| Implementation Area | TD Requirement |
+|---|---|
+| Module responsibility | TD-005 Design Overview |
+| Public interfaces | TD-005 Public Interfaces |
+| Data contract | TD-005 Data Model |
+| Validation and rejection | TD-005 Error Handling |
+| Lifecycle | TD-005 Internal Flow and Implementation Specification where present |
+| Dependencies | TD-005 Dependencies |
 
-TD-005 defines the technical design for Event Bus. This Issue Specification converts that approved design into one implementation-governance unit without duplicating or changing the Technical Design.
-
-Reference:
-
-- BRD
-- PRD
-- Architecture
-- Product Map
-- ADR
-- TD-005 Event Bus
-
-Do not duplicate those documents.
+Every item below maps to TD-005 only.
 
 ---
 
-## 5. Traceability
+## 5. Implementation Breakdown
 
-| Source | Reference |
-|---------|-----------|
-| BRD | Business scope, constraints, and business acceptance expectations |
-| PRD | Functional requirements, non-functional requirements, business rules, and constraints |
-| Architecture | Domain boundaries, dependency rules, data flow, event flow, public contracts, and ownership model |
-| Product Map | Approved product domain, module hierarchy, capability mapping, and terminology |
-| ADR | Specification Driven Development, Single Source of Truth, Separation of Concerns, dependency rules, immutability, event-driven architecture, hard gates, and explainability decisions |
-| Technical Design | TD-005 Event Bus: `../specs/TD-005-EventBus.md` |
+### Step-by-Step Tasks
 
-Every implementation task must be traceable.
+| ID | Task | TD Mapping | Status |
+|----|------|------------|--------|
+| TASK-001 | Build `publish(event)` exactly as the public interface for Event Bus. | TD-005 public interface | Planned |
+| TASK-002 | Build `subscribe(request)` exactly as the public interface for Event Bus. | TD-005 public interface | Planned |
+| TASK-003 | Build `unsubscribe(request)` exactly as the public interface for Event Bus. | TD-005 public interface | Planned |
+| TASK-004 | Build `getSubscribers(eventType)` exactly as the public interface for Event Bus. | TD-005 public interface | Planned |
+| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-005 Data Model | Planned |
+| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-005 Error Handling | Planned |
+| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-005 Error Handling | Planned |
+| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-005 boundaries and constraints | Planned |
+| TASK-014 | Add tests or checks for every AC-005 criterion. | AC-005 | Planned |
 
----
+### Public Interface Checklist
 
-## 6. Objective
+- [ ] `publish(event)` exists and returns only approved outputs.
+- [ ] `subscribe(request)` exists and returns only approved outputs.
+- [ ] `unsubscribe(request)` exists and returns only approved outputs.
+- [ ] `getSubscribers(eventType)` exists and returns only approved outputs.
 
-Deliver an implementation of Event Bus that conforms to TD-005, preserves approved architecture boundaries, and satisfies AC-005 without introducing unapproved APIs, data fields, responsibilities, or dependencies.
+### Data Contract Checklist
 
----
+- `eventId`
+- `eventType`
+- `timestamp`
+- `version`
+- `publisher`
+- `payload`
+- `correlationId`
+- `metadata`
+- `subscriberId`
+- `active`
 
-## 7. Functional Tasks
+### Validation Checklist
 
-| ID | Task | Status |
-|----|------|--------|
-| TASK-001 | Implement the approved Event Bus responsibility exactly as defined in TD-005. | Planned |
-| TASK-002 | Preserve all Event Bus boundaries, ownership rules, and dependency direction from TD-005. | Planned |
-| TASK-003 | Implement approved validation, error handling, lifecycle, and traceability behavior from TD-005. | Planned |
-| TASK-004 | Add tests or verification that demonstrate conformance to TD-005 and AC-005 without expanding scope. | Planned |
+- event schema contains all required fields.
+- eventType is in registry.
+- publisher owns eventType.
+- metadata sourceModule equals publisher.
+- subscriber is permitted for eventType.
+- duplicate eventId rejected.
+- major version compatibility enforced.
+- payload contract redefinition rejected.
 
----
+### Error Handling Checklist
 
-## 8. Technical Requirements
+- UNAPPROVED_EVENT_TYPE.
+- INVALID_EVENT_SCHEMA.
+- INVALID_METADATA.
+- UNAUTHORIZED_PUBLISHER.
+- UNAUTHORIZED_SUBSCRIBER.
+- REVERSE_DEPENDENCY_SUBSCRIPTION.
+- DUPLICATE_EVENT.
+- INCOMPATIBLE_EVENT_VERSION.
+- PAYLOAD_CONTRACT_REDEFINITION.
 
-The implementation must conform to TD-005 and must not extend it.
+### Edge Cases
 
-Required governance constraints:
-
-- Contracts must match the public interfaces and data model approved in TD-005.
-- Validation behavior must match the validation, rejection, and boundary rules approved in TD-005.
-- Interfaces must preserve approved consumers, producers, and dependency direction from TD-005.
-- Lifecycle behavior must follow the approved internal flow and error handling from TD-005.
-- Performance, reliability, maintainability, testability, explainability, and auditability considerations must remain within the non-functional considerations approved in TD-005.
-
-Approved dependency references from the Technical Design include:
-
-- BRD.
-- PRD.
-- Architecture.
-- Product Map.
-- ADR.
-
-
-Do not include implementation code in this Issue Specification.
-
----
-
-## 9. Dependencies
-
-- TD-005 Event Bus Technical Design.
-- BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status.
-- AC-005 acceptance criteria for this Issue Specification.
-- TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
-
----
-
-## 10. Risks
-
-| Risk | Mitigation |
-|------|------------|
-| Scope expansion beyond TD-005. | Reject work that is not traceable to TD-005 and AC-005. |
-| Dependency direction violation. | Verify dependency rules from Architecture and TD-005 before completion. |
-| Duplicate ownership with another module. | Keep responsibility limited to Event Bus and defer other module behavior to its owning Technical Design. |
-| Acceptance ambiguity. | Use AC-005 as the measurable pass/fail authority for completion. |
+- duplicate subscription is idempotently accepted.
+- duplicate event is rejected.
+- same timestamp events ordered by eventId.
+- cross-event-type ordering not guaranteed.
+- rejected event not delivered.
 
 ---
 
-## 11. Out of Scope
+## 6. Dependencies
 
-- Modifying authoritative governance documents or Technical Designs.
-- Implementing behavior owned by another TD or issue.
-- Creating new architecture, product requirements, modules, data fields, public APIs, or dependency paths.
-- Treating TD-000 as an implementation Issue or Acceptance Criteria artifact.
-- Bypassing the official governance chain.
+- TD-005 Technical Design: `../specs/TD-005-EventBus.md`.
+- AC-005 Acceptance Criteria.
+- BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status as upstream governance references.
 
 ---
 
-## 12. Deliverables
+## 7. Completion Evidence
 
-- Implementation artifact for the approved Event Bus scope.
-- Tests or verification evidence required by AC-005.
-- Review evidence showing conformance to TD-005, this Issue Specification, and AC-005.
+Implementation review must provide:
 
----
-
-## 13. Completion Criteria
-
-ISSUE-005 is complete only when the implementation scope has been delivered, reviewed against TD-005, and accepted by AC-005.
-
-Do not duplicate Acceptance Criteria.
+- A checklist showing every public interface implemented.
+- A checklist showing every data contract field implemented or rejected as required.
+- Test evidence for every validation rule.
+- Test evidence for every error outcome.
+- Test evidence for every edge case.
+- Traceability evidence from TD-005 to ISSUE-005 to AC-005.
 
 ---
 
-## 14. References
+## 8. Definition of Done
+
+ISSUE-005 is done only when:
+
+- Every task in this issue is complete.
+- Every public interface checklist item is satisfied.
+- Every data contract checklist item is satisfied.
+- Every validation checklist item has a passing test or deterministic verification.
+- Every error handling checklist item has a passing negative test.
+- Every edge case has a passing test.
+- AC-005 reports PASS for every criterion.
+- No architecture, responsibility, dependency direction, or runtime flow change is introduced.
+
+---
+
+## 9. References
 
 - BRD
 - PRD
 - Architecture
 - Product Map
 - Glossary
-- Architecture Decision Records
-- TD-005 Event Bus Technical Design: `../specs/TD-005-EventBus.md`
-- Roadmap
-- Backlog
-- Current Status
+- ADR
+- TD-005 Technical Design: `../specs/TD-005-EventBus.md`
 - AC-005: `../acceptance-criteria/AC-005-EventBus.md`
 
 ---
 
-## 15. Change History
+## 10. Change History
 
 | Version | Date | Description |
 |---------|------|-------------|
-| 1.0 | 2026-07-14 | Initial Issue Specification for ISSUE-005 derived from TD-005. |
+| 1.0 | 2026-07-14 | Initial Issue Specification. |
+| 1.1 | 2026-07-14 | Refined into implementation-ready specification with concrete tasks, checklists, edge cases, and Definition of Done. |

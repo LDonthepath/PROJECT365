@@ -5,7 +5,7 @@
 | Field | Value |
 |------|------|
 | Status | Draft |
-| Version | 1.0 |
+| Version | 1.1 |
 | Owner | PROJECT365 Delivery |
 | Last Updated | 2026-07-14 |
 | Depends On | BRD, PRD, Architecture, Product Map, ADR, TD-004, ISSUE-004 |
@@ -15,147 +15,85 @@
 
 ## 2. Purpose
 
-Define measurable acceptance criteria for AC-004, validating ISSUE-004 Data Service Implementation against TD-004 Data Service.
+Define binary PASS/FAIL acceptance criteria for ISSUE-004 Data Service Implementation against TD-004 Data Service.
 
-This document translates approved Technical Design and Issue Specification requirements into measurable acceptance criteria.
-
-Do not redefine business requirements, product requirements, architecture, technical design, or implementation scope.
+Every criterion has an expected result, verification method, pass condition, and fail condition.
 
 ---
 
-## 3. Scope
-
-This Acceptance Criteria document validates:
-
-- The related module or issue: ISSUE-004 Data Service Implementation.
-- Functional acceptance boundaries approved by TD-004 and ISSUE-004.
-- Non-functional acceptance boundaries approved by TD-004 and ISSUE-004.
-- Validation expectations for approved inputs, outputs, rejection behavior, boundary conditions, dependencies, and traceability.
-- Test expectations needed to verify conformance without prescribing implementation internals.
-
-Exclude anything not approved by the related Technical Design and Issue Specification.
-
----
-
-## 4. Dependencies
-
-Authoritative inputs:
-
-- BRD.
-- PRD.
-- Architecture.
-- Product Map.
-- Glossary.
-- ADR.
-- TD-004 Data Service Technical Design.
-- ISSUE-004 Data Service Implementation Issue Specification.
-
-No acceptance criterion may introduce unapproved product scope, architecture, module ownership, or implementation behavior.
-
----
-
-## 5. Related Technical Design
-
-Identify the related Technical Design.
+## 3. Related Documents
 
 | Field | Value |
 |------|------|
 | Technical Design ID | TD-004 |
 | Technical Design Name | Data Service |
-| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-004-DataService.md` |
-
-Acceptance criteria must remain fully traceable to this Technical Design.
-
----
-
-## 6. Related Issue Specification
-
-Identify the related Issue Specification.
-
-| Field | Value |
-|------|------|
 | Issue ID | ISSUE-004 |
 | Issue Name | Data Service Implementation |
-| Issue Status | Planned |
 | Issue Specification Path | `../issues/ISSUE-004-DataService.md` |
 
-Acceptance criteria must remain fully traceable to this Issue Specification.
+---
+
+## 4. Binary Acceptance Criteria
+
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-F-001 | Data Service exposes or validates required contract field `requestId` exactly as specified by TD-004. | Inspect implementation and run contract test for `requestId`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-002 | Data Service exposes or validates required contract field `providerId` exactly as specified by TD-004. | Inspect implementation and run contract test for `providerId`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-003 | Data Service exposes or validates required contract field `assetId` exactly as specified by TD-004. | Inspect implementation and run contract test for `assetId`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-004 | Data Service exposes or validates required contract field `requestedAt` exactly as specified by TD-004. | Inspect implementation and run contract test for `requestedAt`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-005 | Data Service exposes or validates required contract field `timeoutMs` exactly as specified by TD-004. | Inspect implementation and run contract test for `timeoutMs`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-006 | Data Service exposes or validates required contract field `maxRetries` exactly as specified by TD-004. | Inspect implementation and run contract test for `maxRetries`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-007 | Data Service exposes or validates required contract field `ok` exactly as specified by TD-004. | Inspect implementation and run contract test for `ok`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-008 | Data Service exposes or validates required contract field `marketData` exactly as specified by TD-004. | Inspect implementation and run contract test for `marketData`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-009 | Data Service exposes or validates required contract field `errorCode` exactly as specified by TD-004. | Inspect implementation and run contract test for `errorCode`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-010 | Data Service exposes or validates required contract field `attempts` exactly as specified by TD-004. | Inspect implementation and run contract test for `attempts`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-011 | Public interface `produceMarketData(request)` is available and returns only approved success or failure outputs. | Run unit test invoking `produceMarketData(request)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-012 | Public interface `normalizeProviderResult(providerResult)` is available and returns only approved success or failure outputs. | Run unit test invoking `normalizeProviderResult(providerResult)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-013 | Public interface `mapToMarketData(normalizedValues)` is available and returns only approved success or failure outputs. | Run unit test invoking `mapToMarketData(normalizedValues)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-V-014 | DataServiceRequest required fields are present | Run validation test for: DataServiceRequest required fields are present | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-015 | unsupported provider rejected before provider access | Run validation test for: unsupported provider rejected before provider access | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-016 | ProviderResult source attribution is present | Run validation test for: ProviderResult source attribution is present | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-017 | ProviderResult maps to all 19 TD-001 fields | Run validation test for: ProviderResult maps to all 19 TD-001 fields | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-018 | numeric strings are rejected | Run validation test for: numeric strings are rejected | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-019 | partial MarketData is never created | Run validation test for: partial MarketData is never created | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-020 | timeout uses 10000ms default | Run validation test for: timeout uses 10000ms default | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-021 | default retry count is 1 | Run validation test for: default retry count is 1 | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-E-022 | Error condition `INVALID_REQUEST` is handled with the approved rejection behavior. | Run negative test for `INVALID_REQUEST`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-023 | Error condition `UNSUPPORTED_PROVIDER` is handled with the approved rejection behavior. | Run negative test for `UNSUPPORTED_PROVIDER`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-024 | Error condition `PROVIDER_UNAVAILABLE` is handled with the approved rejection behavior. | Run negative test for `PROVIDER_UNAVAILABLE`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-025 | Error condition `PROVIDER_TIMEOUT` is handled with the approved rejection behavior. | Run negative test for `PROVIDER_TIMEOUT`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-026 | Error condition `PROVIDER_RATE_LIMITED` is handled with the approved rejection behavior. | Run negative test for `PROVIDER_RATE_LIMITED`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-027 | Error condition `PROVIDER_MALFORMED_RESPONSE` is handled with the approved rejection behavior. | Run negative test for `PROVIDER_MALFORMED_RESPONSE`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-028 | Error condition `MISSING_MARKETDATA_FIELD` is handled with the approved rejection behavior. | Run negative test for `MISSING_MARKETDATA_FIELD`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-029 | Error condition `INVALID_MARKETDATA_FIELD` is handled with the approved rejection behavior. | Run negative test for `INVALID_MARKETDATA_FIELD`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-030 | Error condition `NORMALIZATION_FAILED` is handled with the approved rejection behavior. | Run negative test for `NORMALIZATION_FAILED`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-B-031 | unsupported provider attempts equals 0 | Run boundary/edge test for: unsupported provider attempts equals 0 | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-032 | timeout retried until budget exhausted | Run boundary/edge test for: timeout retried until budget exhausted | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-033 | rate limit retried only within budget | Run boundary/edge test for: rate limit retried only within budget | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-034 | malformed response not retried | Run boundary/edge test for: malformed response not retried | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-035 | missing required field returns missingFields | Run boundary/edge test for: missing required field returns missingFields | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
 
 ---
 
-## 7. Functional Acceptance Criteria
+## 5. Architecture Preservation Criteria
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-F-001 | The delivered work implements only the approved Data Service scope defined by TD-004. | Related Technical Design; Related Issue Specification |
-| AC-F-002 | All approved public contracts, interfaces, lifecycle behavior, and component responsibilities from TD-004 are satisfied or explicitly marked not applicable by governance review. | Related Technical Design; Related Issue Specification |
-| AC-F-003 | Inputs, outputs, validation behavior, rejection behavior, and boundary conditions conform to TD-004 without adding unapproved fields, APIs, modules, or responsibilities. | Related Technical Design; Related Issue Specification |
-| AC-F-004 | The implementation preserves approved dependency direction and does not create direct dependencies forbidden by Architecture or TD-004. | Related Technical Design; Related Issue Specification |
-| AC-F-005 | The implementation does not duplicate ownership assigned to another PROJECT365 module or Technical Design. | Related Technical Design; Related Issue Specification |
-
-Functional acceptance criteria must not expand approved scope.
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-AP-001 | No architecture document is modified by implementation. | Review changed files. | No architecture/governance change appears in implementation PR. | Architecture or governance is changed without approval. |
+| AC-AP-002 | No dependency direction changes are introduced. | Review imports, module references, and tests. | Dependencies match TD-004 and Architecture. | Any reverse or unapproved dependency exists. |
+| AC-AP-003 | No responsibility from another module is implemented here. | Review implementation ownership. | Code remains limited to Data Service. | Code duplicates another module responsibility. |
+| AC-AP-004 | Runtime flow remains the flow approved by TD-004. | Review call sequence tests. | Flow matches TD-004. | Flow adds unapproved step or bypass. |
 
 ---
 
-## 8. Non-Functional Acceptance Criteria
+## 6. Overall Acceptance Rule
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-NF-001 | The delivered work preserves the approved Single Source of Truth, Separation of Concerns, explainability, auditability, immutability, and hard-gate rules applicable to Data Service. | Related Technical Design; Related Issue Specification |
-| AC-NF-002 | The delivered work is testable through deterministic checks that do not depend on unapproved implementation behavior. | Related Technical Design; Related Issue Specification |
-| AC-NF-003 | Error handling and invalid or boundary-condition behavior are verifiable against TD-004. | Related Technical Design; Related Issue Specification |
-| AC-NF-004 | The implementation remains maintainable by keeping Data Service responsibilities isolated from unrelated modules. | Related Technical Design; Related Issue Specification |
-| AC-NF-005 | Review evidence demonstrates traceability from BRD, PRD, Architecture, Product Map, ADR, TD-004, ISSUE-004, and this document. | Related Technical Design; Related Issue Specification |
-
-Non-functional acceptance criteria must preserve approved performance, reliability, maintainability, testability, security, explainability, and auditability requirements where applicable.
+AC-004 passes only when every criterion in Sections 4 and 5 passes. Any single failed criterion makes AC-004 fail.
 
 ---
 
-## 9. Validation Rules
-
-Validation rules required for acceptance:
-
-- Required inputs must match the approved input boundaries in TD-004.
-- Required outputs must match the approved output boundaries in TD-004.
-- Rejection behavior must match the approved validation and error-handling rules in TD-004.
-- Boundary conditions must be verified without adding new requirements outside TD-004 and ISSUE-004.
-- Dependency direction checks must confirm compliance with Architecture and TD-004.
-- Traceability checks must confirm that all delivered behavior maps to TD-004, ISSUE-004, and this Acceptance Criteria document.
-
-Validation rules must be deterministic and auditable.
-
----
-
-## 10. Test Requirements
-
-Required test coverage for acceptance:
-
-- Unit test requirements: verify approved Data Service behavior, boundaries, validation, and error handling from TD-004 where applicable.
-- Integration test requirements: verify only approved interactions and dependency direction described by TD-004 and ISSUE-004.
-- Negative test requirements: verify rejection or non-acceptance of invalid inputs, forbidden dependency paths, duplicate ownership, and scope expansion.
-- Regression test requirements: verify that approved behavior remains stable across changes.
-- Documentation verification requirements: verify that TD-004, ISSUE-004, and AC-004 references remain present and consistent.
-
-Tests must validate approved behavior without introducing implementation details outside the related Issue Specification.
-
----
-
-## 11. Out of Scope
-
-This Acceptance Criteria document must not include:
-
-- New business requirements.
-- New product requirements.
-- New architecture decisions.
-- New modules.
-- New technical design responsibilities.
-- Implementation behavior not approved by the related Issue Specification.
-- Acceptance requirements for TD-000 as a standalone implementation issue.
-
----
-
-## 12. Traceability
+## 7. Traceability
 
 | Acceptance Area | Source |
 |-----------------|--------|
@@ -166,25 +104,22 @@ This Acceptance Criteria document must not include:
 | Technical design | TD-004 Data Service |
 | Implementation scope | ISSUE-004 Data Service Implementation |
 
-Every acceptance criterion must trace to an approved source.
+---
+
+## 8. Out of Scope
+
+- New business requirements.
+- New product requirements.
+- New architecture decisions.
+- New modules.
+- New technical design responsibilities.
+- Acceptance requirements not derived from TD-004 and ISSUE-004.
 
 ---
 
-## 13. References
-
-- BRD
-- PRD
-- Architecture
-- Product Map
-- Glossary
-- ADR
-- TD-004 Data Service Technical Design: `../specs/TD-004-DataService.md`
-- ISSUE-004 Data Service Implementation Issue Specification: `../issues/ISSUE-004-DataService.md`
-
----
-
-## 14. Change History
+## 9. Change History
 
 | Version | Date | Description |
 |---------|------|-------------|
-| 1.0 | 2026-07-14 | Initial Acceptance Criteria document for AC-004 mapped to ISSUE-004 and TD-004. |
+| 1.0 | 2026-07-14 | Initial Acceptance Criteria document. |
+| 1.1 | 2026-07-14 | Rewritten as binary measurable implementation acceptance criteria. |

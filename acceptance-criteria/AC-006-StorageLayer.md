@@ -5,7 +5,7 @@
 | Field | Value |
 |------|------|
 | Status | Draft |
-| Version | 1.0 |
+| Version | 1.1 |
 | Owner | PROJECT365 Delivery |
 | Last Updated | 2026-07-14 |
 | Depends On | BRD, PRD, Architecture, Product Map, ADR, TD-006, ISSUE-006 |
@@ -15,147 +15,89 @@
 
 ## 2. Purpose
 
-Define measurable acceptance criteria for AC-006, validating ISSUE-006 Storage Layer Implementation against TD-006 Storage Layer.
+Define binary PASS/FAIL acceptance criteria for ISSUE-006 Storage Layer Implementation against TD-006 Storage Layer.
 
-This document translates approved Technical Design and Issue Specification requirements into measurable acceptance criteria.
-
-Do not redefine business requirements, product requirements, architecture, technical design, or implementation scope.
+Every criterion has an expected result, verification method, pass condition, and fail condition.
 
 ---
 
-## 3. Scope
-
-This Acceptance Criteria document validates:
-
-- The related module or issue: ISSUE-006 Storage Layer Implementation.
-- Functional acceptance boundaries approved by TD-006 and ISSUE-006.
-- Non-functional acceptance boundaries approved by TD-006 and ISSUE-006.
-- Validation expectations for approved inputs, outputs, rejection behavior, boundary conditions, dependencies, and traceability.
-- Test expectations needed to verify conformance without prescribing implementation internals.
-
-Exclude anything not approved by the related Technical Design and Issue Specification.
-
----
-
-## 4. Dependencies
-
-Authoritative inputs:
-
-- BRD.
-- PRD.
-- Architecture.
-- Product Map.
-- Glossary.
-- ADR.
-- TD-006 Storage Layer Technical Design.
-- ISSUE-006 Storage Layer Implementation Issue Specification.
-
-No acceptance criterion may introduce unapproved product scope, architecture, module ownership, or implementation behavior.
-
----
-
-## 5. Related Technical Design
-
-Identify the related Technical Design.
+## 3. Related Documents
 
 | Field | Value |
 |------|------|
 | Technical Design ID | TD-006 |
 | Technical Design Name | Storage Layer |
-| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-006-StorageLayer.md` |
-
-Acceptance criteria must remain fully traceable to this Technical Design.
-
----
-
-## 6. Related Issue Specification
-
-Identify the related Issue Specification.
-
-| Field | Value |
-|------|------|
 | Issue ID | ISSUE-006 |
 | Issue Name | Storage Layer Implementation |
-| Issue Status | Planned |
 | Issue Specification Path | `../issues/ISSUE-006-StorageLayer.md` |
 
-Acceptance criteria must remain fully traceable to this Issue Specification.
+---
+
+## 4. Binary Acceptance Criteria
+
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-F-001 | Storage Layer exposes or validates required contract field `id` exactly as specified by TD-006. | Inspect implementation and run contract test for `id`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-002 | Storage Layer exposes or validates required contract field `objectType` exactly as specified by TD-006. | Inspect implementation and run contract test for `objectType`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-003 | Storage Layer exposes or validates required contract field `timestamp` exactly as specified by TD-006. | Inspect implementation and run contract test for `timestamp`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-004 | Storage Layer exposes or validates required contract field `payload` exactly as specified by TD-006. | Inspect implementation and run contract test for `payload`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-005 | Storage Layer exposes or validates required contract field `storedAt` exactly as specified by TD-006. | Inspect implementation and run contract test for `storedAt`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-006 | Storage Layer exposes or validates required contract field `archived` exactly as specified by TD-006. | Inspect implementation and run contract test for `archived`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-007 | Storage Layer exposes or validates required contract field `contractVersion` exactly as specified by TD-006. | Inspect implementation and run contract test for `contractVersion`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-008 | Storage Layer exposes or validates required contract field `metadata` exactly as specified by TD-006. | Inspect implementation and run contract test for `metadata`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-009 | Public interface `save(request)` is available and returns only approved success or failure outputs. | Run unit test invoking `save(request)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-010 | Public interface `load(request)` is available and returns only approved success or failure outputs. | Run unit test invoking `load(request)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-011 | Public interface `exists(request)` is available and returns only approved success or failure outputs. | Run unit test invoking `exists(request)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-012 | Public interface `delete(request)` is available and returns only approved success or failure outputs. | Run unit test invoking `delete(request)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-013 | Public interface `find(request)` is available and returns only approved success or failure outputs. | Run unit test invoking `find(request)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-014 | Public interface `findRange(request)` is available and returns only approved success or failure outputs. | Run unit test invoking `findRange(request)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-V-015 | objectType is MarketData or Snapshot | Run validation test for: objectType is MarketData or Snapshot | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-016 | payload contract matches objectType | Run validation test for: payload contract matches objectType | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-017 | object identity is present | Run validation test for: object identity is present | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-018 | timestamp is positive | Run validation test for: timestamp is positive | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-019 | range toTimestamp is greater than or equal to fromTimestamp | Run validation test for: range toTimestamp is greater than or equal to fromTimestamp | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-020 | page is greater than 0 | Run validation test for: page is greater than 0 | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-021 | pageSize is between 1 and 500 | Run validation test for: pageSize is between 1 and 500 | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-022 | delete archives metadata without mutating payload | Run validation test for: delete archives metadata without mutating payload | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-E-023 | Error condition `INVALID_REQUEST` is handled with the approved rejection behavior. | Run negative test for `INVALID_REQUEST`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-024 | Error condition `UNSUPPORTED_OBJECT_TYPE` is handled with the approved rejection behavior. | Run negative test for `UNSUPPORTED_OBJECT_TYPE`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-025 | Error condition `INVALID_OBJECT_CONTRACT` is handled with the approved rejection behavior. | Run negative test for `INVALID_OBJECT_CONTRACT`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-026 | Error condition `MISSING_OBJECT_IDENTITY` is handled with the approved rejection behavior. | Run negative test for `MISSING_OBJECT_IDENTITY`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-027 | Error condition `DUPLICATE_IDENTITY` is handled with the approved rejection behavior. | Run negative test for `DUPLICATE_IDENTITY`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-028 | Error condition `IDENTITY_CONFLICT` is handled with the approved rejection behavior. | Run negative test for `IDENTITY_CONFLICT`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-029 | Error condition `NOT_FOUND` is handled with the approved rejection behavior. | Run negative test for `NOT_FOUND`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-030 | Error condition `IMMUTABILITY_VIOLATION` is handled with the approved rejection behavior. | Run negative test for `IMMUTABILITY_VIOLATION`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-031 | Error condition `INVALID_RANGE` is handled with the approved rejection behavior. | Run negative test for `INVALID_RANGE`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-032 | Error condition `INVALID_PAGINATION` is handled with the approved rejection behavior. | Run negative test for `INVALID_PAGINATION`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-033 | Error condition `RETRIEVAL_UNAVAILABLE` is handled with the approved rejection behavior. | Run negative test for `RETRIEVAL_UNAVAILABLE`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-B-034 | idempotent save of identical payload succeeds | Run boundary/edge test for: idempotent save of identical payload succeeds | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-035 | same id with different payload conflicts | Run boundary/edge test for: same id with different payload conflicts | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-036 | load missing id returns NotFound | Run boundary/edge test for: load missing id returns NotFound | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-037 | empty range returns empty records | Run boundary/edge test for: empty range returns empty records | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-038 | archived records excluded by default | Run boundary/edge test for: archived records excluded by default | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-039 | equal timestamps ordered by id | Run boundary/edge test for: equal timestamps ordered by id | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
 
 ---
 
-## 7. Functional Acceptance Criteria
+## 5. Architecture Preservation Criteria
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-F-001 | The delivered work implements only the approved Storage Layer scope defined by TD-006. | Related Technical Design; Related Issue Specification |
-| AC-F-002 | All approved public contracts, interfaces, lifecycle behavior, and component responsibilities from TD-006 are satisfied or explicitly marked not applicable by governance review. | Related Technical Design; Related Issue Specification |
-| AC-F-003 | Inputs, outputs, validation behavior, rejection behavior, and boundary conditions conform to TD-006 without adding unapproved fields, APIs, modules, or responsibilities. | Related Technical Design; Related Issue Specification |
-| AC-F-004 | The implementation preserves approved dependency direction and does not create direct dependencies forbidden by Architecture or TD-006. | Related Technical Design; Related Issue Specification |
-| AC-F-005 | The implementation does not duplicate ownership assigned to another PROJECT365 module or Technical Design. | Related Technical Design; Related Issue Specification |
-
-Functional acceptance criteria must not expand approved scope.
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-AP-001 | No architecture document is modified by implementation. | Review changed files. | No architecture/governance change appears in implementation PR. | Architecture or governance is changed without approval. |
+| AC-AP-002 | No dependency direction changes are introduced. | Review imports, module references, and tests. | Dependencies match TD-006 and Architecture. | Any reverse or unapproved dependency exists. |
+| AC-AP-003 | No responsibility from another module is implemented here. | Review implementation ownership. | Code remains limited to Storage Layer. | Code duplicates another module responsibility. |
+| AC-AP-004 | Runtime flow remains the flow approved by TD-006. | Review call sequence tests. | Flow matches TD-006. | Flow adds unapproved step or bypass. |
 
 ---
 
-## 8. Non-Functional Acceptance Criteria
+## 6. Overall Acceptance Rule
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-NF-001 | The delivered work preserves the approved Single Source of Truth, Separation of Concerns, explainability, auditability, immutability, and hard-gate rules applicable to Storage Layer. | Related Technical Design; Related Issue Specification |
-| AC-NF-002 | The delivered work is testable through deterministic checks that do not depend on unapproved implementation behavior. | Related Technical Design; Related Issue Specification |
-| AC-NF-003 | Error handling and invalid or boundary-condition behavior are verifiable against TD-006. | Related Technical Design; Related Issue Specification |
-| AC-NF-004 | The implementation remains maintainable by keeping Storage Layer responsibilities isolated from unrelated modules. | Related Technical Design; Related Issue Specification |
-| AC-NF-005 | Review evidence demonstrates traceability from BRD, PRD, Architecture, Product Map, ADR, TD-006, ISSUE-006, and this document. | Related Technical Design; Related Issue Specification |
-
-Non-functional acceptance criteria must preserve approved performance, reliability, maintainability, testability, security, explainability, and auditability requirements where applicable.
+AC-006 passes only when every criterion in Sections 4 and 5 passes. Any single failed criterion makes AC-006 fail.
 
 ---
 
-## 9. Validation Rules
-
-Validation rules required for acceptance:
-
-- Required inputs must match the approved input boundaries in TD-006.
-- Required outputs must match the approved output boundaries in TD-006.
-- Rejection behavior must match the approved validation and error-handling rules in TD-006.
-- Boundary conditions must be verified without adding new requirements outside TD-006 and ISSUE-006.
-- Dependency direction checks must confirm compliance with Architecture and TD-006.
-- Traceability checks must confirm that all delivered behavior maps to TD-006, ISSUE-006, and this Acceptance Criteria document.
-
-Validation rules must be deterministic and auditable.
-
----
-
-## 10. Test Requirements
-
-Required test coverage for acceptance:
-
-- Unit test requirements: verify approved Storage Layer behavior, boundaries, validation, and error handling from TD-006 where applicable.
-- Integration test requirements: verify only approved interactions and dependency direction described by TD-006 and ISSUE-006.
-- Negative test requirements: verify rejection or non-acceptance of invalid inputs, forbidden dependency paths, duplicate ownership, and scope expansion.
-- Regression test requirements: verify that approved behavior remains stable across changes.
-- Documentation verification requirements: verify that TD-006, ISSUE-006, and AC-006 references remain present and consistent.
-
-Tests must validate approved behavior without introducing implementation details outside the related Issue Specification.
-
----
-
-## 11. Out of Scope
-
-This Acceptance Criteria document must not include:
-
-- New business requirements.
-- New product requirements.
-- New architecture decisions.
-- New modules.
-- New technical design responsibilities.
-- Implementation behavior not approved by the related Issue Specification.
-- Acceptance requirements for TD-000 as a standalone implementation issue.
-
----
-
-## 12. Traceability
+## 7. Traceability
 
 | Acceptance Area | Source |
 |-----------------|--------|
@@ -166,25 +108,22 @@ This Acceptance Criteria document must not include:
 | Technical design | TD-006 Storage Layer |
 | Implementation scope | ISSUE-006 Storage Layer Implementation |
 
-Every acceptance criterion must trace to an approved source.
+---
+
+## 8. Out of Scope
+
+- New business requirements.
+- New product requirements.
+- New architecture decisions.
+- New modules.
+- New technical design responsibilities.
+- Acceptance requirements not derived from TD-006 and ISSUE-006.
 
 ---
 
-## 13. References
-
-- BRD
-- PRD
-- Architecture
-- Product Map
-- Glossary
-- ADR
-- TD-006 Storage Layer Technical Design: `../specs/TD-006-StorageLayer.md`
-- ISSUE-006 Storage Layer Implementation Issue Specification: `../issues/ISSUE-006-StorageLayer.md`
-
----
-
-## 14. Change History
+## 9. Change History
 
 | Version | Date | Description |
 |---------|------|-------------|
-| 1.0 | 2026-07-14 | Initial Acceptance Criteria document for AC-006 mapped to ISSUE-006 and TD-006. |
+| 1.0 | 2026-07-14 | Initial Acceptance Criteria document. |
+| 1.1 | 2026-07-14 | Rewritten as binary measurable implementation acceptance criteria. |

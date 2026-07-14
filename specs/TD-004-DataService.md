@@ -302,6 +302,173 @@ This Technical Design does not cover:
 
 ---
 
+## 17A. Implementation Specification
+
+This section increases implementation precision for the existing Data Service design without changing responsibilities, dependency direction, runtime flow, or ownership.
+
+### Exported Contracts
+
+#### DataServiceRequest
+
+| Field | Type | Required | Rule | TD Trace |
+|---|---|---:|---|---|
+| requestId | string | Yes | Non-empty caller-provided correlation value. | TD-004 Public Interfaces |
+| providerId | string | Yes | Must identify an approved Provider Framework provider. | TD-004 Provider Orchestration |
+| assetId | string | Yes | Non-empty provider-agnostic asset identifier. | TD-004 MarketData Production Interface |
+| requestedAt | number | Yes | Unix epoch milliseconds; must be greater than 0. | TD-004 Lifecycle |
+| timeoutMs | number | No | If omitted, use default timeout of 10000 milliseconds. | TD-004 Timeout Behavior |
+| maxRetries | number | No | If omitted, use default retry count of 1. | TD-004 Retry Policy |
+
+#### ProviderResult
+
+ProviderResult is supplied by TD-000 and consumed by TD-004 only through Provider Framework access.
+
+| Field | Type | Required | Mapping Target | Rule |
+|---|---|---:|---|---|
+| providerId | string | Yes | fetchSource | Must match the provider used by Provider Framework. |
+| providerTimestamp | number | Yes | fetchedAt candidate | Unix epoch milliseconds; must be greater than 0. |
+| asset.id | string | Yes | id | Must normalize to non-empty string. |
+| asset.symbol | string | Yes | symbol | Must normalize to uppercase non-empty string. |
+| asset.name | string | Yes | name | Must normalize to non-empty string. |
+| market.priceUsd | number | Yes | priceUsd | Must be finite and greater than or equal to 0. |
+| market.change1h | number | Yes | change1h | Must be finite. |
+| market.change24h | number | Yes | change24h | Must be finite. |
+| market.volume24hUsd | number | Yes | volume24hUsd | Must be finite and greater than or equal to 0. |
+| market.marketCapUsd | number | Yes | marketCapUsd | Must be finite and greater than or equal to 0. |
+| market.totalMarketCapUsd | number | Yes | totalMarketCapUsd | Must be finite and greater than or equal to 0. |
+| market.total3MarketCap | number | Yes | total3MarketCap | Must be finite and greater than or equal to 0. |
+| market.btcDominance | number | Yes | btcDominance | Must be finite and between 0 and 100 inclusive. |
+| market.usdtDominance | number | Yes | usdtDominance | Must be finite and between 0 and 100 inclusive. |
+| market.usdcDominance | number | Yes | usdcDominance | Must be finite and between 0 and 100 inclusive. |
+| supply.circulatingSupply | number | Yes | circulatingSupply | Must be finite and greater than or equal to 0. |
+| market.ath | number | Yes | ath | Must be finite and greater than or equal to 0. |
+| market.atl | number | Yes | atl | Must be finite and greater than or equal to 0. |
+
+#### DataServiceSuccess
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| ok | boolean | Yes | Must be true. |
+| requestId | string | Yes | Echoes DataServiceRequest.requestId. |
+| providerId | string | Yes | Approved provider used for production. |
+| marketData | MarketData | Yes | Complete TD-001 MarketData object. |
+| attempts | number | Yes | Total provider attempts, including initial attempt. |
+| completedAt | number | Yes | Unix epoch milliseconds. |
+
+#### DataServiceFailure
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| ok | boolean | Yes | Must be false. |
+| requestId | string | Yes | Echoes DataServiceRequest.requestId when available. |
+| providerId | string | No | Present when provider was resolved. |
+| errorCode | string | Yes | One of the failure codes listed below. |
+| errorMessage | string | Yes | Non-empty human-readable explanation. |
+| retryable | boolean | Yes | True only for timeout, unavailable, or rate-limit failures before retry budget is exhausted. |
+| attempts | number | Yes | Total provider attempts performed. |
+| failedAt | number | Yes | Unix epoch milliseconds. |
+| missingFields | string[] | No | Present for missing required MarketData fields. |
+
+Allowed `errorCode` values:
+
+- `INVALID_REQUEST`
+- `UNSUPPORTED_PROVIDER`
+- `PROVIDER_UNAVAILABLE`
+- `PROVIDER_TIMEOUT`
+- `PROVIDER_RATE_LIMITED`
+- `PROVIDER_MALFORMED_RESPONSE`
+- `MISSING_MARKETDATA_FIELD`
+- `INVALID_MARKETDATA_FIELD`
+- `NORMALIZATION_FAILED`
+
+### Callable Methods
+
+| Method | Input | Output | Responsibility Boundary |
+|---|---|---|---|
+| produceMarketData(request) | DataServiceRequest | DataServiceSuccess or DataServiceFailure | Orchestrate Provider Framework, normalize provider output, build MarketData, and expose it to Health Layer. |
+| normalizeProviderResult(providerResult) | ProviderResult | MarketData creation values or DataServiceFailure | Map acceptable provider output to TD-001 MarketData-ready values. |
+| mapToMarketData(normalizedValues) | MarketData creation values | MarketData or DataServiceFailure | Produce MarketData according to TD-001 only. |
+
+These method names are the approved public callable names for implementation. They do not introduce additional module responsibilities.
+
+### Provider Normalization and Mapping Rules
+
+1. Provider output must be accepted only when it comes through Provider Framework.
+2. Provider output must not be accepted from direct provider access.
+3. `providerId` must map to `fetchSource`.
+4. `providerTimestamp` must map to `fetchedAt` when present and valid; otherwise `requestedAt` may be used only if provider output is otherwise complete.
+5. All 19 TD-001 MarketData fields must be present after normalization.
+6. String fields must be trimmed; `symbol` must be uppercase.
+7. Numeric fields must remain numeric and finite; numeric strings must be rejected rather than coerced.
+8. Dominance fields must be between 0 and 100 inclusive.
+9. No optional provider-only fields may be added to MarketData.
+10. Partial MarketData must never be created.
+
+### Validation Sequence
+
+1. Validate DataServiceRequest required fields.
+2. Reject unsupported provider before any provider call.
+3. Request provider data only through Provider Framework.
+4. Apply timeout behavior to each provider attempt.
+5. Apply retry policy only for retryable provider failures.
+6. Validate ProviderResult source attribution.
+7. Normalize ProviderResult to TD-001 field names.
+8. Validate all TD-001 required fields before MarketData creation.
+9. Build MarketData using TD-001 contract rules.
+10. Return DataServiceSuccess or DataServiceFailure.
+
+### Timeout Behavior
+
+- Default timeout is 10000 milliseconds per provider attempt.
+- A request-specific `timeoutMs` may override the default only when greater than 0.
+- A timed-out attempt must return or record `PROVIDER_TIMEOUT`.
+- A timeout must not produce partial MarketData.
+- Timeout failures are retryable until retry budget is exhausted.
+
+### Retry Policy
+
+- Default max retry count is 1 retry after the initial attempt.
+- Retries are permitted only for `PROVIDER_TIMEOUT`, `PROVIDER_UNAVAILABLE`, and `PROVIDER_RATE_LIMITED`.
+- Retries are not permitted for malformed responses, unsupported providers, invalid requests, or missing/invalid MarketData fields.
+- Total attempts must equal initial attempt plus retries performed.
+- Failure after exhausted retry budget must return `retryable: false`.
+
+### Rate Limit Behavior
+
+- Provider rate-limit responses must map to `PROVIDER_RATE_LIMITED`.
+- Rate-limit failures may be retried only within the approved retry policy.
+- Data Service must not bypass Provider Framework to avoid rate limits.
+- Data Service must not switch to an unrequested provider unless Provider Framework owns that decision and returns an approved ProviderResult.
+
+### Unsupported Provider Behavior
+
+- Unsupported provider IDs must be rejected before provider access.
+- Rejection must use `UNSUPPORTED_PROVIDER`.
+- Attempts must be 0 for unsupported provider rejection.
+- No MarketData may be created.
+
+### Lifecycle and State Transitions
+
+| State | Entry Condition | Exit Condition | Output |
+|---|---|---|---|
+| REQUEST_RECEIVED | produceMarketData receives DataServiceRequest | Request valid or invalid | Continue or DataServiceFailure |
+| PROVIDER_RESOLVED | providerId is approved | Provider call starts | Continue |
+| PROVIDER_REQUESTED | Provider Framework request in progress | ProviderResult or ProviderError received | Continue or retry/failure |
+| NORMALIZING | ProviderResult received | Field mapping succeeds or fails | Continue or DataServiceFailure |
+| MARKETDATA_BUILDING | Normalized fields complete | MarketData created or rejected | DataServiceSuccess or DataServiceFailure |
+| FAILED | Any terminal failure occurs | None | DataServiceFailure |
+| COMPLETED | MarketData created | None | DataServiceSuccess |
+
+### Implementation Readiness Checklist
+
+- Public methods are named.
+- Request, success, and failure schemas are defined.
+- ProviderResult to MarketData mapping is defined.
+- Timeout, retry, rate-limit, and unsupported provider behavior are defined.
+- Validation sequence is ordered and deterministic.
+
+---
+
 ## 17. Implementation Notes
 
 Implementation guidance:

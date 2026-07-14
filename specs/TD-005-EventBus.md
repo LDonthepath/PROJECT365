@@ -314,6 +314,181 @@ This Technical Design does not cover:
 
 ---
 
+## 17A. Implementation Specification
+
+This section increases implementation precision for the existing Event Bus design without changing responsibilities, dependency direction, runtime flow, or ownership.
+
+### Complete Event Schema
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| eventId | string | Yes | Globally unique event identity. |
+| eventType | string | Yes | Must be listed in the approved Event Registry. |
+| timestamp | number | Yes | Unix epoch milliseconds greater than 0. |
+| version | string | Yes | Semantic contract version for the event schema. |
+| publisher | string | Yes | Owning source component from Publisher Ownership table. |
+| payload | object | Yes | Reference or copy of an approved immutable Foundation contract. |
+| correlationId | string | Yes | Non-empty trace value shared across related events. |
+| causationId | string | No | Prior eventId that caused this event, when applicable. |
+| metadata | EventMetadata | Yes | Required metadata contract below. |
+
+### Required Metadata Schema
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| sourceModule | string | Yes | Must equal publisher. |
+| contractVersion | string | Yes | Must match event version. |
+| publishedAt | number | Yes | Unix epoch milliseconds greater than 0. |
+| payloadContract | string | Yes | Name of approved payload contract, such as MarketData, HealthStatus, or Snapshot. |
+| payloadId | string | Yes | Identity of payload object or immutable reference. |
+| traceable | boolean | Yes | Must be true for accepted events. |
+
+### Subscriber Schema
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| subscriberId | string | Yes | Must identify an approved subscriber. |
+| eventType | string | Yes | Must be permitted for the subscriber. |
+| subscribedAt | number | Yes | Unix epoch milliseconds greater than 0. |
+| active | boolean | Yes | True when subscription may receive events. |
+
+### Event Registry
+
+| Event Type | Publisher Owner | Payload Contract | Allowed Subscribers |
+|---|---|---|---|
+| MARKETDATA_PRODUCED | Data Service | MarketData | Health Layer, Storage Layer |
+| MARKETDATA_HEALTH_EVALUATED | Health Layer | HealthStatus | Snapshot Engine |
+| SNAPSHOT_CREATED | Snapshot Engine | Snapshot | Storage Layer, Market Intelligence consumers |
+| FOUNDATION_OBJECT_STORED | Storage Layer | Storage metadata | Governance auditability consumers |
+
+No other event type is approved by TD-005.
+
+### Publisher Ownership
+
+- Data Service may publish only `MARKETDATA_PRODUCED`.
+- Health Layer may publish only `MARKETDATA_HEALTH_EVALUATED`.
+- Snapshot Engine may publish only `SNAPSHOT_CREATED`.
+- Storage Layer may publish only `FOUNDATION_OBJECT_STORED`.
+- Event Bus must not create events on behalf of non-owning publishers.
+
+### Subscriber Permissions
+
+- Health Layer may subscribe to `MARKETDATA_PRODUCED`.
+- Snapshot Engine may subscribe to `MARKETDATA_HEALTH_EVALUATED`.
+- Storage Layer may subscribe to `MARKETDATA_PRODUCED` and `SNAPSHOT_CREATED`.
+- Market Intelligence consumers may subscribe to `SNAPSHOT_CREATED` only through approved downstream paths.
+- Governance auditability consumers may subscribe to `FOUNDATION_OBJECT_STORED`.
+- Reverse dependency subscriptions must be rejected.
+
+### Callable Methods
+
+| Method | Input | Output | Responsibility Boundary |
+|---|---|---|---|
+| publish(event) | DomainEvent | PublishAccepted or RejectedEvent | Accept approved events and deliver to permitted subscribers. |
+| subscribe(request) | SubscriptionRequest | SubscriptionAccepted or RejectedSubscriber | Register permitted subscriptions. |
+| unsubscribe(request) | SubscriptionRequest | SubscriptionRemoved or RejectedSubscriber | Deactivate an existing permitted subscription. |
+| getSubscribers(eventType) | eventType string | Subscriber[] or RejectedEvent | Return active permitted subscribers for approved event type. |
+
+### Publish Accepted Schema
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| ok | boolean | Yes | Must be true. |
+| eventId | string | Yes | Accepted event identity. |
+| eventType | string | Yes | Accepted event type. |
+| deliveredSubscriberIds | string[] | Yes | Subscribers eligible for delivery. |
+| acceptedAt | number | Yes | Unix epoch milliseconds. |
+
+### Error Schema
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| ok | boolean | Yes | Must be false. |
+| errorCode | string | Yes | One of the approved error codes. |
+| errorMessage | string | Yes | Non-empty explanation. |
+| rejectedAt | number | Yes | Unix epoch milliseconds. |
+| eventId | string | No | Present when available. |
+| subscriberId | string | No | Present for subscriber rejection. |
+
+Approved error codes:
+
+- `UNAPPROVED_EVENT_TYPE`
+- `INVALID_EVENT_SCHEMA`
+- `INVALID_METADATA`
+- `UNAUTHORIZED_PUBLISHER`
+- `UNAUTHORIZED_SUBSCRIBER`
+- `REVERSE_DEPENDENCY_SUBSCRIPTION`
+- `DUPLICATE_EVENT`
+- `INCOMPATIBLE_EVENT_VERSION`
+- `PAYLOAD_CONTRACT_REDEFINITION`
+
+### Rejected Event Schema
+
+RejectedEvent uses the Error Schema and must include `eventId` when the rejected event includes one.
+
+### Rejected Subscriber Schema
+
+RejectedSubscriber uses the Error Schema and must include `subscriberId` when the rejected request includes one.
+
+### Subscription Lifecycle
+
+| State | Entry Condition | Exit Condition |
+|---|---|---|
+| REQUESTED | subscribe() receives request | Validation passes or fails |
+| ACTIVE | Subscriber and event type are permitted | unsubscribe() succeeds |
+| REJECTED | Subscriber, event type, or dependency direction is invalid | Terminal |
+| REMOVED | unsubscribe() deactivates subscription | Terminal for that subscription record |
+
+### Publish Lifecycle
+
+1. Receive event through publish().
+2. Validate event schema.
+3. Validate event type against Event Registry.
+4. Validate publisher ownership.
+5. Validate metadata and version compatibility.
+6. Reject duplicate eventId if already accepted.
+7. Resolve active permitted subscribers.
+8. Deliver event notification to permitted subscribers.
+9. Return PublishAccepted or RejectedEvent.
+
+### Delivery Lifecycle
+
+- Delivery order must follow accepted event timestamp order within the same eventType.
+- Events with identical timestamps must be ordered by eventId lexicographically for deterministic delivery.
+- Delivery must not mutate payload.
+- Delivery must not infer business behavior.
+
+### Failure Lifecycle
+
+- Invalid events are rejected before delivery.
+- Invalid subscriptions are rejected before activation.
+- Rejection reason must be preserved in Error Schema.
+- Rejected events must not be delivered.
+- Rejected subscribers must not be activated.
+
+### Duplicate Handling
+
+- Duplicate `eventId` after prior acceptance must be rejected with `DUPLICATE_EVENT`.
+- Duplicate subscription request for an already active subscriber/eventType pair must return the existing active subscription as accepted and must not create a second active subscription.
+
+### Ordering
+
+- Event Bus preserves deterministic delivery ordering per event type.
+- Event Bus does not guarantee cross-event-type ordering.
+- Event Bus does not reorder events to create business meaning.
+
+### Version Compatibility
+
+- Event version must match the major version supported by the Event Registry entry.
+- Same major version with newer minor or patch version is compatible.
+- Different major version must be rejected with `INCOMPATIBLE_EVENT_VERSION`.
+
+### Implementation Readiness Checklist
+
+- Event schema, metadata schema, subscriber schema, registry, ownership, permissions, lifecycles, duplicate handling, ordering, version compatibility, and rejection contracts are defined.
+
+---
+
 ## 17. Implementation Notes
 
 Implementation guidance:

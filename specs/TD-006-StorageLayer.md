@@ -313,6 +313,173 @@ This Technical Design does not cover:
 
 ---
 
+## 17A. Implementation Specification
+
+This section increases implementation precision for the existing Storage Layer design without changing responsibilities, dependency direction, runtime flow, or ownership.
+
+### Stored Object Contract
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| id | string | Yes | Immutable object identity. |
+| objectType | string | Yes | `MarketData` or `Snapshot`. |
+| timestamp | number | Yes | Object timestamp in Unix epoch milliseconds. |
+| payload | object | Yes | Immutable MarketData or Snapshot. |
+| storedAt | number | Yes | Unix epoch milliseconds when persisted. |
+| archived | boolean | Yes | True only after archive transition. |
+| contractVersion | string | Yes | Payload contract version. |
+
+### Return Metadata
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| requestId | string | Yes | Caller correlation value. |
+| objectType | string | No | Present when request targets a type. |
+| count | number | Yes | Number of records returned or affected. |
+| page | number | No | Present for paginated find results. |
+| pageSize | number | No | Present for paginated find results. |
+| hasNextPage | boolean | No | Present for paginated find results. |
+| orderedBy | string | No | Field used for ordering. |
+| orderDirection | string | No | `asc` or `desc`. |
+
+### Callable Public Interface
+
+| Method | Input | Output | Responsibility Boundary |
+|---|---|---|---|
+| save(request) | SaveRequest | SaveResult or StorageError | Persist immutable MarketData or Snapshot. |
+| load(request) | LoadRequest | LoadResult or NotFound or StorageError | Retrieve by identity. |
+| exists(request) | ExistsRequest | ExistsResult or StorageError | Determine whether identity exists. |
+| delete(request) | DeleteRequest | DeleteResult or NotFound or StorageError | Archive, not physically mutate historical payload. |
+| find(request) | FindRequest | FindResult or StorageError | Retrieve by criteria. |
+| findRange(request) | FindRangeRequest | FindResult or StorageError | Retrieve objects in timestamp range. |
+
+### Input Schemas
+
+#### SaveRequest
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| requestId | string | Yes | Non-empty correlation value. |
+| objectType | string | Yes | `MarketData` or `Snapshot`. |
+| payload | object | Yes | Complete TD-001 MarketData or TD-003 Snapshot. |
+| timestamp | number | Yes | Payload timestamp. |
+
+#### LoadRequest / ExistsRequest / DeleteRequest
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| requestId | string | Yes | Non-empty correlation value. |
+| objectType | string | Yes | `MarketData` or `Snapshot`. |
+| id | string | Yes | Object identity. |
+
+#### FindRequest
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| requestId | string | Yes | Non-empty correlation value. |
+| objectType | string | Yes | `MarketData` or `Snapshot`. |
+| id | string | No | Optional identity lookup. |
+| timestamp | number | No | Optional exact timestamp lookup. |
+| page | number | No | Defaults to 1; must be greater than 0. |
+| pageSize | number | No | Defaults to 50; must be between 1 and 500. |
+| orderBy | string | No | Defaults to `timestamp`. |
+| orderDirection | string | No | Defaults to `asc`; must be `asc` or `desc`. |
+| includeArchived | boolean | No | Defaults to false. |
+
+#### FindRangeRequest
+
+| Field | Type | Required | Rule |
+|---|---|---:|---|
+| requestId | string | Yes | Non-empty correlation value. |
+| objectType | string | Yes | `MarketData` or `Snapshot`. |
+| fromTimestamp | number | Yes | Inclusive range start. |
+| toTimestamp | number | Yes | Inclusive range end; must be >= fromTimestamp. |
+| page | number | No | Defaults to 1; must be greater than 0. |
+| pageSize | number | No | Defaults to 50; must be between 1 and 500. |
+| orderDirection | string | No | Defaults to `asc`; must be `asc` or `desc`. |
+| includeArchived | boolean | No | Defaults to false. |
+
+### Output Schemas
+
+| Result | Fields |
+|---|---|
+| SaveResult | `ok: true`, `id`, `objectType`, `storedAt`, `metadata` |
+| LoadResult | `ok: true`, `record`, `metadata` |
+| ExistsResult | `ok: true`, `exists`, `metadata` |
+| DeleteResult | `ok: true`, `id`, `archived: true`, `metadata` |
+| FindResult | `ok: true`, `records`, `metadata` |
+| NotFound | `ok: false`, `errorCode: NOT_FOUND`, `requestId`, `objectType`, `id` or lookup criteria, `metadata` |
+| StorageError | `ok: false`, `errorCode`, `errorMessage`, `requestId`, `metadata` |
+
+### Error Schema
+
+Approved error codes:
+
+- `INVALID_REQUEST`
+- `UNSUPPORTED_OBJECT_TYPE`
+- `INVALID_OBJECT_CONTRACT`
+- `MISSING_OBJECT_IDENTITY`
+- `DUPLICATE_IDENTITY`
+- `IDENTITY_CONFLICT`
+- `NOT_FOUND`
+- `IMMUTABILITY_VIOLATION`
+- `INVALID_RANGE`
+- `INVALID_PAGINATION`
+- `RETRIEVAL_UNAVAILABLE`
+
+### Retrieval Contract
+
+- Identity lookup uses `objectType` plus `id`.
+- Timestamp lookup uses `objectType` plus exact `timestamp`.
+- Range lookup uses `objectType`, `fromTimestamp`, and `toTimestamp` inclusively.
+- Archived records are excluded unless `includeArchived` is true.
+- Returned records must include return metadata.
+- Retrieval miss must return NotFound for identity lookup and empty `records` for range/find queries with no matches.
+
+### Ordering and Pagination
+
+- Default ordering is ascending by timestamp.
+- Descending ordering must be explicitly requested with `orderDirection: desc`.
+- For equal timestamps, records must be ordered by id lexicographically.
+- Default page is 1.
+- Default pageSize is 50.
+- Maximum pageSize is 500.
+- Pagination metadata must include count, page, pageSize, and hasNextPage.
+
+### Retention and Archive Behavior
+
+- Storage Layer preserves historical records unchanged.
+- delete() archives records instead of mutating or physically deleting payload content.
+- Archived records must not appear in default retrieval results.
+- Archive state is represented by `archived: true` on storage metadata, not by modifying payload.
+
+### Duplicate and Conflict Behavior
+
+- Saving a record with a new id succeeds.
+- Saving the same id with identical objectType and identical payload returns the existing stored identity as a successful idempotent save.
+- Saving the same id with different payload fails with `IDENTITY_CONFLICT`.
+- Saving unsupported object type fails with `UNSUPPORTED_OBJECT_TYPE`.
+
+### Persistence Lifecycle and State Transitions
+
+| State | Entry Condition | Exit Condition | Output |
+|---|---|---|---|
+| RECEIVED | Public method receives request | Request valid or invalid | Continue or StorageError |
+| VALIDATED | Request schema and object contract are valid | Operation selected | Continue |
+| PERSISTED | save() stores object | Terminal | SaveResult |
+| RETRIEVED | load/find/findRange returns records | Terminal | LoadResult or FindResult |
+| ARCHIVED | delete() marks storage metadata archived | Terminal | DeleteResult |
+| NOT_FOUND | Lookup misses | Terminal | NotFound or empty FindResult |
+| REJECTED | Validation/conflict failure occurs | Terminal | StorageError |
+
+### Implementation Readiness Checklist
+
+- Public methods are named.
+- Input, output, metadata, NotFound, and error contracts are defined.
+- Identity, timestamp, range, ordering, pagination, retention, archive, duplicate, and conflict behavior are deterministic.
+
+---
+
 ## 17. Implementation Notes
 
 Implementation guidance:
