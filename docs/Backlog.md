@@ -5,9 +5,9 @@
 - **Project:** PROJECT365
 - **Document Type:** Backlog
 - **Status:** Active
-- **Version:** 1.1
+- **Version:** 1.2
 - **Owner:** PROJECT365 Delivery
-- **Last Updated:** 2026-07-13
+- **Last Updated:** 2026-07-14
 - **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md)
 - **Referenced By:** Current Status, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -29,7 +29,7 @@ Current Release Scope is Foundation v0.1 only:
 - Health Layer
 - Snapshot Engine
 
-Current implementation tracking is limited to the approved work items listed in Section 6. No additional milestones, issues, product requirements, or architecture decisions are introduced by this document.
+Current implementation tracking remains limited to approved Foundation v0.1 issue work. The full TD-000 through TD-028 sequence is tracked as documentation status and future implementation source material only.
 
 ## 4. Backlog Principles
 
@@ -37,7 +37,7 @@ Current implementation tracking is limited to the approved work items listed in 
 - Preserve the approved M0 through M7 milestone sequence from the Roadmap.
 - Preserve approved work item identifiers from the Roadmap.
 - Use Glossary terminology.
-- Distinguish Planned, In Progress, Completed, and Blocked status clearly.
+- Distinguish Frozen, Ready to Freeze, Planned, In Progress, Completed, and Blocked status clearly.
 - Do not define business requirements.
 - Do not define product requirements.
 - Do not redefine architecture.
@@ -50,8 +50,8 @@ Current implementation tracking is limited to the approved work items listed in 
 
 | Milestone | Name | Backlog Status | Notes |
 | --- | --- | --- | --- |
-| M0 | Product Blueprint | Completed | Authoritative governance documents are normalized and available for delivery reference. |
-| M1 | Foundation Specification | Completed | Foundation v0.1 Technical Design documents TD-001 through TD-003 are available. |
+| M0 | Product Blueprint | Completed | Authoritative governance documents and templates are normalized and available for delivery reference. |
+| M1 | Foundation Specification | Completed | Foundation Technical Design documents TD-000 through TD-003 are available. |
 | M2 | Foundation Implementation | In Progress | Current milestone for Foundation v0.1 implementation tracking. |
 | M3 | Data Pipeline | Planned | Future milestone from the Roadmap. |
 | M4 | Delta Layer | Planned | Future milestone from the Roadmap. |
@@ -63,64 +63,83 @@ Current implementation tracking is limited to the approved work items listed in 
 
 Status values used in this Backlog:
 
+- **Frozen:** Documentation is frozen for downstream use.
+- **Ready to Freeze:** Documentation is ready for architecture freeze review.
 - **Planned:** Approved for backlog tracking but not started.
 - **In Progress:** Active implementation or delivery work is underway.
 - **Completed:** Delivery work is complete for the tracked item.
 - **Blocked:** Delivery work cannot proceed because a dependency is unresolved.
 
-| Milestone | Work Item | Name | Status | Source |
+| Type | Work Item | Name | Status | Source |
 | --- | --- | --- | --- | --- |
-| M0 | BRD | Business Requirements Document | Completed | Roadmap M0; BRD |
-| M0 | PRD | Product Requirements Document | Completed | Roadmap M0; PRD |
-| M0 | Architecture | Architecture | Completed | Roadmap M0; Architecture |
-| M0 | Product Map | Product Map | Completed | Roadmap M0; Product Map |
-| M0 | Feature Map | Feature Map | Completed | Roadmap M0; Feature Map |
-| M0 | Roadmap | Roadmap | Completed | Roadmap M0; Roadmap |
-| M0 | Glossary | Glossary | Completed | Roadmap M0; Glossary |
-| M1 | TD-001 | MarketData Contract | Completed | Roadmap M1; TD-001 |
-| M1 | TD-002 | Health Layer | Completed | Roadmap M1; TD-002 |
-| M1 | TD-003 | Snapshot Engine | Completed | Roadmap M1; TD-003 |
-| M2 | ISSUE-001 | MarketData Implementation | In Progress | Roadmap M2; ISSUE-001 |
-| M2 | ISSUE-002 | Health Layer Implementation | Planned | Roadmap M2 |
-| M2 | ISSUE-003 | Snapshot Engine Implementation | Planned | Roadmap M2 |
-| M3 | TD-004 | Data Service | Planned | Roadmap M3 |
-| M3 | TD-005 | CoinGecko Adapter | Planned | Roadmap M3 |
-| M3 | TD-006 | Event Bus | Planned | Roadmap M3 |
-| M3 | ISSUE-004 | Data Service | Planned | Roadmap M3 |
-| M3 | ISSUE-005 | CoinGecko Adapter | Planned | Roadmap M3 |
-| M3 | ISSUE-006 | Event Bus | Planned | Roadmap M3 |
-| M4 | TD-007 | Delta Engine | Planned | Roadmap M4 |
-| M4 | TD-008 | Anchor Lifecycle | Planned | Roadmap M4 |
-| M4 | TD-009 | Snapshot Cache | Planned | Roadmap M4 |
-| M4 | ISSUE-007 | Delta Engine | Planned | Roadmap M4 |
-| M4 | ISSUE-008 | Anchor Lifecycle | Planned | Roadmap M4 |
-| M4 | ISSUE-009 | Snapshot Cache | Planned | Roadmap M4 |
-| M5 | TD-010 | Regime Engine | Planned | Roadmap M5 |
-| M5 | TD-011 | LDS Engine | Planned | Roadmap M5 |
-| M5 | TD-012 | Capital Flow Engine | Planned | Roadmap M5 |
-| M5 | TD-013 | Market State Engine | Planned | Roadmap M5 |
-| M5 | TD-014 | Confidence Engine | Planned | Roadmap M5 |
-| M5 | TD-015 | OMS Engine | Planned | Roadmap M5 |
-| M5 | ISSUE-010 | Regime Engine | Planned | Roadmap M5 |
-| M5 | ISSUE-011 | LDS Engine | Planned | Roadmap M5 |
-| M5 | ISSUE-012 | Capital Flow Engine | Planned | Roadmap M5 |
-| M5 | ISSUE-013 | Market State Engine | Planned | Roadmap M5 |
-| M5 | ISSUE-014 | Confidence Engine | Planned | Roadmap M5 |
-| M5 | ISSUE-015 | OMS Engine | Planned | Roadmap M5 |
-| M6 | TD-016 | API Layer | Planned | Roadmap M6 |
-| M6 | TD-017 | Dashboard Backend | Planned | Roadmap M6 |
-| M6 | TD-018 | Dashboard Frontend | Planned | Roadmap M6 |
-| M6 | TD-019 | Authentication | Planned | Roadmap M6 |
-| M6 | ISSUE-016 | API Layer | Planned | Roadmap M6 |
-| M6 | ISSUE-017 | Dashboard Backend | Planned | Roadmap M6 |
-| M6 | ISSUE-018 | Dashboard Frontend | Planned | Roadmap M6 |
-| M6 | ISSUE-019 | Authentication | Planned | Roadmap M6 |
-| M7 | TD-020 | Cluster Rotation Engine | Planned | Roadmap M7 |
-| M7 | TD-021 | Portfolio Engine | Planned | Roadmap M7 |
-| M7 | TD-022 | Risk Engine | Planned | Roadmap M7 |
-| M7 | ISSUE-020 | Cluster Rotation Engine | Planned | Roadmap M7 |
-| M7 | ISSUE-021 | Portfolio Engine | Planned | Roadmap M7 |
-| M7 | ISSUE-022 | Risk Engine | Planned | Roadmap M7 |
+| Governance | BRD | Business Requirements Document | Completed | Roadmap M0; BRD |
+| Governance | PRD | Product Requirements Document | Completed | Roadmap M0; PRD |
+| Governance | Architecture | Architecture | Completed | Roadmap M0; Architecture |
+| Governance | Product Map | Product Map | Completed | Roadmap M0; Product Map |
+| Governance | Feature Map | Feature Map | Completed | Roadmap M0; Feature Map |
+| Governance | Roadmap | Roadmap | Completed | Roadmap M0; Roadmap |
+| Governance | Glossary | Glossary | Completed | Roadmap M0; Glossary |
+| Governance | ADR | Architecture Decision Records | Completed | Roadmap M0; ADR |
+| Template | TechnicalDesignTemplate | Technical Design Template | Completed | Roadmap M0; Templates |
+| Template | IssueSpecificationTemplate | Issue Specification Template | Completed | Roadmap M0; Templates |
+| Template | AcceptanceCriteriaTemplate | Acceptance Criteria Template | Completed | Roadmap M0; Templates |
+| Documentation | TD-000 | Provider Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-001 | MarketData Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-002 | Health Layer Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-003 | Snapshot Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-004 | Data Service Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-005 | Event Bus Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-006 | Storage Layer Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-007 | Delta Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-008 | Triad Liquidity Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-009 | Regime Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-010 | LDS Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-011 | Capital Flow Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-012 | Market State Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-013 | Confidence Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-014 | OMS Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-015 | Exposure Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-016 | Portfolio Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-017 | Risk Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-018 | Cluster Rotation Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-019 | Decision Log Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-020 | Validation Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-021 | Champion-Challenger Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-022 | Model Versioning Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-023 | Rollback Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-024 | Dashboard Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-025 | Inspector Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-026 | Explainability Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-027 | Historical Explorer Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | TD-028 | Settings Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Implementation | ISSUE-001 | MarketData Implementation | In Progress | Roadmap M2; TD-001 |
+| Implementation | ISSUE-002 | Health Layer Implementation | Planned | Roadmap M2; TD-002 |
+| Implementation | ISSUE-003 | Snapshot Engine Implementation | Planned | Roadmap M2; TD-003 |
+| Planned | ISSUE-004 | Data Service Implementation | Planned | Derived from TD-004 |
+| Planned | ISSUE-005 | Event Bus Implementation | Planned | Derived from TD-005 |
+| Planned | ISSUE-006 | Storage Layer Implementation | Planned | Derived from TD-006 |
+| Planned | ISSUE-007 | Delta Engine Implementation | Planned | Derived from TD-007 |
+| Planned | ISSUE-008 | Triad Liquidity Framework Implementation | Planned | Derived from TD-008 |
+| Planned | ISSUE-009 | Regime Engine Implementation | Planned | Derived from TD-009 |
+| Planned | ISSUE-010 | LDS Engine Implementation | Planned | Derived from TD-010 |
+| Planned | ISSUE-011 | Capital Flow Engine Implementation | Planned | Derived from TD-011 |
+| Planned | ISSUE-012 | Market State Engine Implementation | Planned | Derived from TD-012 |
+| Planned | ISSUE-013 | Confidence Engine Implementation | Planned | Derived from TD-013 |
+| Planned | ISSUE-014 | OMS Engine Implementation | Planned | Derived from TD-014 |
+| Planned | ISSUE-015 | Exposure Engine Implementation | Planned | Derived from TD-015 |
+| Planned | ISSUE-016 | Portfolio Engine Implementation | Planned | Derived from TD-016 |
+| Planned | ISSUE-017 | Risk Engine Implementation | Planned | Derived from TD-017 |
+| Planned | ISSUE-018 | Cluster Rotation Engine Implementation | Planned | Derived from TD-018 |
+| Planned | ISSUE-019 | Decision Log Implementation | Planned | Derived from TD-019 |
+| Planned | ISSUE-020 | Validation Framework Implementation | Planned | Derived from TD-020 |
+| Planned | ISSUE-021 | Champion-Challenger Framework Implementation | Planned | Derived from TD-021 |
+| Planned | ISSUE-022 | Model Versioning Implementation | Planned | Derived from TD-022 |
+| Planned | ISSUE-023 | Rollback Framework Implementation | Planned | Derived from TD-023 |
+| Planned | ISSUE-024 | Dashboard Implementation | Planned | Derived from TD-024 |
+| Planned | ISSUE-025 | Inspector Implementation | Planned | Derived from TD-025 |
+| Planned | ISSUE-026 | Explainability Implementation | Planned | Derived from TD-026 |
+| Planned | ISSUE-027 | Historical Explorer Implementation | Planned | Derived from TD-027 |
+| Planned | ISSUE-028 | Settings Implementation | Planned | Derived from TD-028 |
 
 ## 7. Current Progress
 
@@ -129,6 +148,7 @@ Status values used in this Backlog:
 - **Current issue:** ISSUE-001 MarketData Implementation.
 - **Current issue status:** In Progress.
 - **Foundation implementation progress:** ISSUE-001 is In Progress; ISSUE-002 and ISSUE-003 are Planned.
+- **Technical Design documentation progress:** TD-001 is Frozen; TD-000 and TD-002 through TD-028 are Ready to Freeze.
 - **Blocked items:** None.
 
 M0 Product Blueprint and M1 Foundation Specification are Completed. M3 through M7 remain Planned future milestones from the Roadmap.
@@ -146,6 +166,7 @@ M0 Product Blueprint and M1 Foundation Specification are Completed. M3 through M
 | Roadmap | Source for release planning, milestone sequence, and approved milestone work item references. |
 | Technical Design documents | Source for implementation design details after approval. |
 | Issue Specifications | Source for issue-level implementation instructions after approval. |
+| Acceptance Criteria | Source for measurable implementation acceptance after approval. |
 
 ## 9. Current Sprint
 
@@ -159,57 +180,36 @@ Sprint 1 is aligned to Foundation v0.1 and does not expand beyond MarketData Con
 
 ## 10. Future Work
 
-Future work is limited to the approved Roadmap milestones after M2:
+Future work is limited to the approved Roadmap milestones after M2 and the approved TD-000 through TD-028 sequence.
 
-- M3 Data Pipeline
-- M4 Delta Layer
-- M5 Intelligence Layer
-- M6 Dashboard & API
-- M7 Portfolio Layer
-
-Future work remains Planned until its approved milestone becomes active. This Backlog does not introduce future releases beyond the Roadmap.
+Future implementation issue specifications must derive from the corresponding Technical Design and must not introduce new product scope, architecture decisions, modules, or responsibilities.
 
 ## 11. Out of Scope
 
-The Backlog must not:
+This Backlog does not define:
 
-- define business requirements;
-- define product requirements;
-- define architecture decisions;
-- redefine architecture;
-- redefine release planning;
-- add unapproved milestones;
-- add unapproved issues;
-- add unapproved domains or modules;
-- expand Foundation v0.1 scope;
-- replace the BRD, PRD, Architecture, Product Map, Glossary, Architecture Decision Records, or Roadmap.
-
-PROJECT365 remains outside the following product boundaries:
-
-- Price Prediction
-- Profit Guarantee
-- Trade Execution
-- Financial Advice
+- Business requirements.
+- Product requirements.
+- Architecture decisions.
+- Technical Design content.
+- Issue Specification content.
+- Acceptance Criteria content.
+- Implementation details.
+- New modules.
+- New releases.
+- New milestones.
 
 ## 12. Traceability
 
 | Backlog Area | Source of Truth | Traceability Notes |
 | --- | --- | --- |
-| Delivery tracking authority | Backlog | This document is the single authoritative implementation tracker. |
-| Product requirements | BRD; PRD | Backlog tracks implementation only and does not define requirements. |
-| Architecture decisions | Architecture Decision Records | Backlog does not define or override architecture decisions. |
-| Architecture structure | Architecture; Product Map | Backlog uses approved module names without redefining responsibilities. |
-| Release planning | Roadmap | Backlog preserves the Roadmap milestone sequence M0 through M7. |
-| Current Release Scope | BRD; PRD; Product Map; Roadmap; Glossary | Foundation v0.1 remains limited to MarketData Contract, Health Layer, and Snapshot Engine. |
-| Current phase | Roadmap; Glossary | Current phase is Foundation v0.1 delivery. |
-| Current milestone | Roadmap M2 | Current milestone is M2 Foundation Implementation. |
-| Current implementation status | Backlog Section 6; Backlog Section 7 | ISSUE-001 is In Progress; ISSUE-002 and ISSUE-003 are Planned; no items are Blocked. |
-| Terminology | Glossary | Uses Current Release Scope, Foundation v0.1, MarketData Contract, Health Layer, Snapshot Engine, Planned, In Progress, Completed, and Blocked consistently. |
-| M0 work items | Roadmap M0 | BRD, PRD, Architecture, Product Map, Feature Map, Roadmap, and Glossary are tracked as Completed. |
-| M1 work items | Roadmap M1 | TD-001, TD-002, and TD-003 are tracked as Completed. |
-| M2 work items | Roadmap M2 | ISSUE-001, ISSUE-002, and ISSUE-003 are tracked without adding new Foundation v0.1 issues. |
-| M3 through M7 work items | Roadmap M3-M7 | Future milestone work remains Planned and traceable to the Roadmap. |
-| Out of scope boundaries | BRD; PRD; Architecture; Product Map; Roadmap | Backlog preserves product and architecture boundaries without restating them as new requirements. |
+| Business intent | BRD | Backlog tracks work supporting approved business goals. |
+| Product requirements | PRD | Backlog does not redefine requirements. |
+| Architecture | Architecture; ADR | Backlog references approved module sequence only. |
+| Product structure | Product Map | Work item names use approved module names. |
+| Terminology | Glossary | Backlog uses approved terms. |
+| Milestone sequence | Roadmap | Backlog preserves Roadmap milestones. |
+| Current status | Current Status | Current Status reports Backlog state. |
 
 ## 13. References
 
@@ -221,14 +221,15 @@ PROJECT365 remains outside the following product boundaries:
 - [Glossary](./Glossary.md)
 - [Architecture Decision Records](./Decisions.md)
 - [Roadmap](./Roadmap.md)
-- [TD-001 MarketData](../specs/TD-001-MarketData.md)
-- [TD-002 Health Layer](../specs/TD-002-HealthLayer.md)
-- [TD-003 Snapshot Engine](../specs/TD-003-SnapshotEngine.md)
-- [ISSUE-001 MarketData](../issues/ISSUE-001-MarketData.md)
+- [Current Status](./CurrentStatus.md)
+- [Technical Design Template](../templates/TechnicalDesignTemplate.md)
+- [Issue Specification Template](../templates/IssueSpecificationTemplate.md)
+- [Acceptance Criteria Template](../templates/AcceptanceCriteriaTemplate.md)
 
 ## 14. Change History
 
-| Version | Date | Summary |
+| Version | Date | Description |
 | --- | --- | --- |
-| 1.0 | 2026-07-13 | Initial backlog draft. |
-| 1.1 | 2026-07-13 | Normalized Backlog to the approved structure; aligned milestones with the Roadmap; clarified current phase, current milestone, current implementation status, ISSUE-001 through ISSUE-003 status, Foundation implementation progress, Roadmap relationship, dependencies, references, and traceability. |
+| 1.0 | 2026-07-13 | Initial Backlog created from Roadmap. |
+| 1.1 | 2026-07-13 | Normalized Backlog governance structure and traceability. |
+| 1.2 | 2026-07-14 | Synchronized Backlog to approved TD-000 through TD-028 sequence while preserving Foundation v0.1 scope. |

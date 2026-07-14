@@ -34,6 +34,7 @@ Included responsibilities:
 - Public interface boundary.
 - Internal workflow.
 - Data contract ownership for Historical View.
+- Read-only historical data access through approved Storage read interfaces.
 - Error handling boundary.
 - Acceptance criteria.
 - Traceability.
@@ -89,7 +90,7 @@ Every technical decision in this document is traceable to approved Presentation 
 
 ## 6. Design Overview
 
-Historical Explorer consumes Snapshots and Decision Records and produces Historical View for approved downstream consumers.
+Historical Explorer consumes approved read-only historical records through Storage read interfaces and approved Governance Decision Records, then produces Historical View for approved downstream consumers.
 
 Purpose:
 
@@ -107,9 +108,10 @@ Responsibilities:
 
 Boundaries:
 
-- Historical Explorer does not own upstream contract creation.
+- Historical Explorer does not own Snapshot creation, Snapshot storage, or upstream contract creation.
 - Historical Explorer does not bypass downstream module ownership.
-- Historical Explorer does not access Foundation directly except through approved downstream paths and approved consumed outputs.
+- Historical Explorer obtains historical data only through approved read-only Storage interfaces and approved Governance records.
+- Historical Explorer does not mutate, recalculate, or claim ownership of Snapshots.
 - Historical Explorer does not modify immutable upstream outputs or governance records.
 - Presentation never performs business logic.
 - Presentation never calculates market intelligence.
@@ -124,7 +126,7 @@ Boundaries:
 
 | Component | Responsibility | Inputs | Outputs | Owner |
 |-----------|----------------|--------|---------|-------|
-| Input Boundary | Accept and validate declared upstream contracts. | Snapshots and Decision Records. | Accepted input set or rejection reason | Historical Explorer |
+| Input Boundary | Accept and validate declared upstream contracts. | Approved read-only historical records from Storage read interfaces and Governance Decision Records. | Accepted input set or rejection reason | Historical Explorer |
 | Presentation Boundary | Apply the approved module responsibility without expanding product scope. | Accepted input set | Presentation context | Historical Explorer |
 | Read-Only Boundary | Preserve upstream records and prevent mutation or recalculation. | Presentation context | Read-only display context | Historical Explorer |
 | Explainability Boundary | Preserve reasons, source references, and dependency context. | Read-only display context | Explainability metadata | Historical Explorer |
@@ -139,7 +141,8 @@ Historical Explorer defines or owns the Historical View contract and consumes up
 
 Consumed contracts:
 
-- Snapshots and Decision Records.
+- Approved read-only historical records obtained through Storage read interfaces.
+- Governance Decision Records.
 
 Produced contract:
 
@@ -179,7 +182,8 @@ Publish Historical View to approved downstream consumers
 
 Inputs:
 
-- Snapshots and Decision Records.
+- Approved read-only historical records obtained through Storage read interfaces.
+- Governance Decision Records.
 
 Outputs:
 
@@ -331,7 +335,8 @@ Upstream dependencies:
 - Glossary.
 - ADR.
 - TD-026 Explainability.
-- Snapshots and Decision Records.
+- Approved read-only historical records obtained through Storage read interfaces.
+- Governance Decision Records.
 
 Downstream consumers:
 
@@ -391,6 +396,8 @@ Implementation work must be defined by future Issue Specifications and must conf
 Implementation guidance:
 
 - Use approved upstream contracts only.
+- Treat historical records and Snapshots as read-only upstream data.
+- Access historical data only through approved Storage read interfaces.
 - Preserve module boundaries.
 - Preserve output immutability after publication.
 - Preserve explainability and auditability metadata.
