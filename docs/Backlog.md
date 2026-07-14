@@ -54,7 +54,7 @@ TD-000 is an architectural prerequisite and intentionally does not generate Issu
 | --- | --- | --- | --- |
 | M0 | Product Blueprint | Completed | Authoritative governance documents and templates are normalized and available for delivery reference. |
 | M1 | Foundation Specification | Completed | Foundation Technical Design documents TD-000 through TD-003 are available. |
-| M2 | Foundation Implementation | Not Started | Next milestone for Foundation v0.1 implementation tracking. |
+| M2 | Foundation Implementation | In Progress | Foundation v0.1 implementation has started with ISSUE-001 completed. |
 | M3 | Data Pipeline | Planned | Future milestone from the Roadmap. |
 | M4 | Delta Layer | Planned | Future milestone from the Roadmap. |
 | M5 | Intelligence Layer | Planned | Future milestone from the Roadmap. |
@@ -116,7 +116,7 @@ Status values used in this Backlog:
 | Documentation | TD-026 | Explainability Technical Design | Frozen | Roadmap approved TD sequence |
 | Documentation | TD-027 | Historical Explorer Technical Design | Frozen | Roadmap approved TD sequence |
 | Documentation | TD-028 | Settings Technical Design | Frozen | Roadmap approved TD sequence |
-| Implementation | ISSUE-001 | MarketData Implementation | Not Started | Roadmap M2; TD-001 |
+| Implementation | ISSUE-001 | MarketData Implementation | Completed | Roadmap M2; TD-001 |
 | Implementation | ISSUE-002 | Health Layer Implementation | Not Started | Roadmap M2; TD-002 |
 | Implementation | ISSUE-003 | Snapshot Engine Implementation | Not Started | Roadmap M2; TD-003 |
 | Implementation | ISSUE-004 | Data Service Implementation | Not Started | Derived from TD-004 |
@@ -147,17 +147,17 @@ Status values used in this Backlog:
 
 ## 7. Current Progress
 
-- **Current phase:** Architecture Freeze.
-- **Next phase:** Foundation Implementation.
+- **Current phase:** Foundation Implementation.
+- **Next phase:** Continue Foundation Implementation.
 - **Architecture Documentation:** Completed.
 - **Technical Designs:** Frozen.
 - **Issue Specifications:** Completed.
 - **Acceptance Criteria:** Completed.
-- **Implementation:** Not Started.
+- **Implementation:** In Progress; ISSUE-001 completed.
 - **Freeze:** Architecture Frozen.
 - **Blocked items:** None.
 
-Current implementation status: Documentation Complete; Implementation Pending. Architecture Freeze may complete before implementation.
+Current implementation status: Foundation Implementation in progress; ISSUE-001 completed. Architecture Freeze remains frozen.
 
 M0 Product Blueprint, M1 Foundation Specification, Issue Specifications, and Acceptance Criteria are Completed. M2 through M7 remain implementation milestones that have not started.
 

@@ -6,7 +6,7 @@
 |------|------|
 | Issue ID | ISSUE-001 |
 | Title | MarketData Contract Implementation |
-| Status | Planned |
+| Status | Completed |
 | Priority | High |
 | Owner | PROJECT365 Delivery |
 | Milestone | Foundation Implementation |
@@ -65,20 +65,20 @@ Every item below maps to TD-001 only.
 
 | ID | Task | TD Mapping | Status |
 |----|------|------------|--------|
-| TASK-001 | Build `createMarketData(candidateFields)` exactly as the public interface for MarketData. | TD-001 public interface | Planned |
-| TASK-002 | Build `serializeMarketData(marketData)` exactly as the public interface for MarketData. | TD-001 public interface | Planned |
-| TASK-003 | Build `deserializeMarketData(serializedMarketData)` exactly as the public interface for MarketData. | TD-001 public interface | Planned |
-| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-001 Data Model | Planned |
-| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-001 Error Handling | Planned |
-| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-001 Error Handling | Planned |
-| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-001 boundaries and constraints | Planned |
-| TASK-014 | Add tests or checks for every AC-001 criterion. | AC-001 | Planned |
+| TASK-001 | Build `createMarketData(candidateFields)` exactly as the public interface for MarketData. | TD-001 public interface | Completed |
+| TASK-002 | Build `serializeMarketData(marketData)` exactly as the public interface for MarketData. | TD-001 public interface | Completed |
+| TASK-003 | Build `deserializeMarketData(serializedMarketData)` exactly as the public interface for MarketData. | TD-001 public interface | Completed |
+| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-001 Data Model | Completed |
+| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-001 Error Handling | Completed |
+| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-001 Error Handling | Completed |
+| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-001 boundaries and constraints | Completed |
+| TASK-014 | Add tests or checks for every AC-001 criterion. | AC-001 | Completed |
 
 ### Public Interface Checklist
 
-- [ ] `createMarketData(candidateFields)` exists and returns only approved outputs.
-- [ ] `serializeMarketData(marketData)` exists and returns only approved outputs.
-- [ ] `deserializeMarketData(serializedMarketData)` exists and returns only approved outputs.
+- [x] `createMarketData(candidateFields)` exists and returns only approved outputs.
+- [x] `serializeMarketData(marketData)` exists and returns only approved outputs.
+- [x] `deserializeMarketData(serializedMarketData)` exists and returns only approved outputs.
 
 ### Data Contract Checklist
 
@@ -189,3 +189,4 @@ ISSUE-001 is done only when:
 |---------|------|-------------|
 | 1.0 | 2026-07-14 | Initial Issue Specification. |
 | 1.1 | 2026-07-14 | Refined into implementation-ready specification with concrete tasks, checklists, edge cases, and Definition of Done. |
+| 1.2 | 2026-07-14 | Completed ISSUE-001 implementation and validation evidence. |
