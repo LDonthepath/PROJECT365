@@ -46,19 +46,25 @@ PRD
 ↓
 Architecture
 ↓
-ProductMap
+Product Map
 ↓
-ADR
+Architecture Decision Records
+↓
+Roadmap
+↓
+Backlog
 ↓
 Technical Design
 ↓
-Issue
+Issue Specification
 ↓
 Acceptance Criteria
 ↓
 Implementation
 ↓
 Review
+↓
+Current Status
 ↓
 Freeze
 ```
