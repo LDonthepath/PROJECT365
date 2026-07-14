@@ -3,9 +3,9 @@
 ## 1. Document Information
 
 - **Status:** Active
-- **Version:** 1.1
+- **Version:** 1.2
 - **Owner:** PROJECT365 Product
-- **Last Updated:** 2026-07-13
+- **Last Updated:** 2026-07-14
 - **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md)
 - **Referenced By:** BRD, PRD, Architecture, Product Map, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -68,6 +68,7 @@ It defines one preferred name and one meaning for each approved term used across
 | Service | A component responsible for operational process coordination. | Manager, worker |
 | Contract | A formal definition of data structure and rules. | Schema when used as the full concept |
 | Framework | A collection of approved components that work together under one methodology. | System when used as the full concept |
+| Provider Framework | The Foundation architecture framework for coordinating external data providers through approved provider contracts, registry behavior, adapters, normalization, attribution, metadata, and error handling. | Provider system, external data framework |
 | Modular Architecture | The approved architecture principle that components remain separated by clear responsibilities and dependency rules. | Modular Design |
 | Regime First | The principle that market regime is a primary upstream constraint for downstream decisions. | Regime-led |
 | Hard Gate Principle | The principle that a higher-level decision can restrict lower-level decisions. | Gate, hard stop |
@@ -104,6 +105,15 @@ It defines one preferred name and one meaning for each approved term used across
 | --- | --- | --- |
 | MarketData | Immutable representation of market data from a single fetch and the Single Source of Truth for downstream systems. | Market Data when referring to the contract object |
 | MarketData Contract | The formal structure and rules for MarketData. | Market Data Contract |
+| External Data Source | A third-party or external system that supplies raw crypto market data before PROJECT365 validation, normalization, and MarketData creation. | External feed, third-party feed when ambiguous |
+| Provider | An approved representation of an external data source inside the Provider Framework. | Data provider when ambiguous, source when ambiguous |
+| Provider Result | The structured output returned by a Provider Adapter before it is normalized into approved Foundation data structures. | Adapter result, provider response when ambiguous |
+| Provider Error | A structured error produced by a Provider Adapter or Provider Framework component when an external data source cannot be fetched, interpreted, validated, or normalized. | Adapter error, fetch error when ambiguous |
+| Provider Metadata | Structured context about a provider fetch, including provider identity, timing, source details, and other approved traceability fields needed for auditability. | Fetch metadata, source metadata when ambiguous |
+| Normalization | The process of converting provider-specific data into approved PROJECT365 structures and terminology without changing the meaning of the source data. | Mapping when used as the full concept, transformation when ambiguous |
+| Source Attribution | Traceable identification of the external data source and provider context used to create or support a data object, snapshot, or downstream output. | Attribution when ambiguous, data provenance when used inconsistently |
+| Provider Registry | The Provider Framework component or pattern that records approved providers and controls how they are discovered or selected by Foundation ingestion processes. | Registry when ambiguous, provider list when used as the full concept |
+| Provider Adapter | An implementation component that translates between a specific external data source and the approved Provider Framework contracts. | Adapter when ambiguous, data adapter when ambiguous |
 | Snapshot | Immutable representation of market state at a specific reference time. | Market snapshot when ambiguous |
 | Snapshot Engine | The Foundation module that creates immutable snapshots for reproducible historical analysis. | Snapshot Service |
 | Anchor | A special snapshot representing an important market boundary. | Boundary snapshot |
@@ -167,7 +177,7 @@ It defines one preferred name and one meaning for each approved term used across
 | Intelligence Layer | Deprecated when referring to a domain | Market Intelligence Domain | Product domains must use approved domain names. |
 | Portfolio Layer | Deprecated when referring to a domain | Portfolio Intelligence Domain | Product domains must use approved domain names. |
 | UI Layer | Deprecated when referring to a domain | Presentation Domain | Product domains must use approved domain names. |
-| CoinGecko Adapter | Delivery-only term | Data Service if referring to approved product scope | Not approved as a BRD, PRD, Architecture, or Product Map product module. |
+| CoinGecko Adapter | Implementation terminology | Provider Adapter when referring to the implementation component; Data Service if referring to approved product scope | CoinGecko Adapter is implementation terminology, not an approved BRD, PRD, Architecture, or Product Map product module. |
 | Snapshot Cache | Delivery-only term | Snapshot Engine or Storage Layer if referring to approved product scope | Not approved as a BRD, PRD, Architecture, or Product Map product module. |
 | API Layer | Delivery-only term | Presentation Domain or approved future technical design terminology | Not approved as a BRD, PRD, Architecture, or Product Map product module. |
 | Authentication | Delivery-only term | Settings only when referring to approved Presentation module scope | Not approved as a BRD, PRD, Architecture, or Product Map product module. |
@@ -225,3 +235,4 @@ It defines one preferred name and one meaning for each approved term used across
 | --- | --- | --- |
 | 1.0 | 2026-07-13 | Initial glossary draft. |
 | 1.1 | 2026-07-13 | Normalized glossary to the required template; established one preferred term and one meaning per concept; added deprecated synonyms, forbidden terms, abbreviations, traceability, and references derived from the BRD, PRD, Architecture, and Product Map without introducing new concepts or changing approved architecture. |
+| 1.2 | 2026-07-14 | Added Provider Framework terminology, external provider data definitions, and clarified that CoinGecko Adapter is implementation terminology while Provider Framework is architecture terminology. |
