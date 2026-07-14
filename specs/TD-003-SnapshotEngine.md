@@ -174,7 +174,7 @@ Snapshot Contract:
 {
   id: string,
   timestamp: number,
-  marketData: MarketData,
+  validatedMarketData: MarketData,
   healthStatus: HealthStatus,
   metadata: SnapshotMetadata
 }
@@ -448,10 +448,10 @@ Upstream dependencies:
 
 Depends on:
 
-- MarketData Contract.
-- Health Layer.
+- Health Layer validation output.
+- Validated MarketData reference carried by Health Layer validation output.
 
-No additional dependencies allowed.
+Snapshot Engine must not consume unvalidated MarketData directly. No additional dependencies allowed.
 
 Downstream consumers:
 

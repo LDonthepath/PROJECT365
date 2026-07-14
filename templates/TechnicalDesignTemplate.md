@@ -60,6 +60,7 @@ Do not duplicate those documents.
 | BRD | |
 | PRD | |
 | Architecture | |
+| Product Map | |
 | ADR | |
 
 Every technical decision must be traceable.
@@ -197,6 +198,13 @@ Implementation guidance.
 Do not include source code.
 
 Do not duplicate Issue Specifications.
+
+Acceptance Criteria:
+
+- Criteria must be measurable and verifiable.
+- Criteria must name the accepted input, output, dependency, rejection behavior, or invariant.
+- Criteria must avoid ambiguous wording such as "appropriate", "robust", or "user-friendly" unless a measurable standard is defined.
+- Criteria must not introduce implementation tasks that belong in Issue Specifications.
 
 ---
 

@@ -311,7 +311,7 @@ Implementation guidance:
 - Keep all health evaluation in Health Layer.
 - Keep all persistence in Storage Layer or Snapshot Engine ownership as approved.
 
-Acceptance criteria:
+Acceptance Criteria:
 
 - Data Service defines upstream Provider Framework dependency.
 - Data Service defines downstream MarketData and Health Layer consumers.

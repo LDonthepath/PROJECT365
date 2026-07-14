@@ -93,7 +93,7 @@ Current Status does not define product requirements, architecture decisions, imp
 | M3 | ISSUE-004 through ISSUE-006 | Data Pipeline Implementation | Planned | Backlog Section 6; Roadmap M3 |
 | M4 | ISSUE-007 through ISSUE-009 | Delta Layer Implementation | Planned | Backlog Section 6; Roadmap M4 |
 | M5 | ISSUE-010 through ISSUE-014 | Intelligence Layer Implementation | Planned | Backlog Section 6; Roadmap M5 |
-| M7 | ISSUE-015 through ISSUE-028 | Portfolio Layer Implementation | Planned | Backlog Section 6; Roadmap M7 |
+| M7 | ISSUE-015 through ISSUE-028 | Portfolio, Governance, and Presentation Implementation | Planned | Backlog Section 6; Roadmap M7 |
 
 ## 10. Blockers
 

@@ -56,8 +56,8 @@ Current implementation tracking remains limited to approved Foundation v0.1 issu
 | M3 | Data Pipeline | Planned | Future milestone from the Roadmap. |
 | M4 | Delta Layer | Planned | Future milestone from the Roadmap. |
 | M5 | Intelligence Layer | Planned | Future milestone from the Roadmap. |
-| M6 | Dashboard & API | Planned | Future milestone from the Roadmap. |
-| M7 | Portfolio Layer | Planned | Future milestone from the Roadmap. |
+| M6 | Portfolio, Governance, and Presentation | Planned | Future milestone from the Roadmap. |
+| M7 | Portfolio, Governance, and Presentation Implementation | Planned | Future milestone from the Roadmap. |
 
 ## 6. Work Items
 

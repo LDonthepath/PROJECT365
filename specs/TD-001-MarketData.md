@@ -434,11 +434,11 @@ Upstream dependencies:
 - Architecture.
 - Product Map.
 - ADR.
-- Data Service.
+- Data Service, as the approved producer of MarketData records.
 
 Contract dependencies:
 
-None.
+None. The MarketData Contract definition has no runtime dependency on Data Service; Data Service depends on this contract definition when producing MarketData records.
 
 The MarketData contract must remain independent from:
 
