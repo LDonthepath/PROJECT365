@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-018 |
 | Technical Design Name | Cluster Rotation Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-018-ClusterRotationEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

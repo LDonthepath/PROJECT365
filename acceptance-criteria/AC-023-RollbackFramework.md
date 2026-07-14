@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-023 |
 | Technical Design Name | Rollback Framework |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-023-RollbackFramework.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

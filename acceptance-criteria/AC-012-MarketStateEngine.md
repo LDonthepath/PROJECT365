@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-012 |
 | Technical Design Name | Market State Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-012-MarketStateEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

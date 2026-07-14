@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-013 |
 | Technical Design Name | Confidence Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-013-ConfidenceEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

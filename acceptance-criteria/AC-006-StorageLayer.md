@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-006 |
 | Technical Design Name | Storage Layer |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-006-StorageLayer.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

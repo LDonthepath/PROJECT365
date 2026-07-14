@@ -29,7 +29,9 @@ Current Release Scope is Foundation v0.1 only:
 - Health Layer
 - Snapshot Engine
 
-Current implementation tracking remains limited to approved Foundation v0.1 issue work. The full TD-000 through TD-028 sequence is tracked as documentation status and future implementation source material only.
+Current implementation tracking is pending and belongs to later milestones. The full TD-000 through TD-028 sequence is tracked as Frozen documentation and future implementation source material only.
+
+TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
 
 ## 4. Backlog Principles
 
@@ -37,7 +39,7 @@ Current implementation tracking remains limited to approved Foundation v0.1 issu
 - Preserve the approved M0 through M7 milestone sequence from the Roadmap.
 - Preserve approved work item identifiers from the Roadmap.
 - Use Glossary terminology.
-- Distinguish Frozen, Ready to Freeze, Planned, In Progress, Completed, and Blocked status clearly.
+- Distinguish Documentation, Implementation, and Freeze tracking clearly.
 - Do not define business requirements.
 - Do not define product requirements.
 - Do not redefine architecture.
@@ -52,7 +54,7 @@ Current implementation tracking remains limited to approved Foundation v0.1 issu
 | --- | --- | --- | --- |
 | M0 | Product Blueprint | Completed | Authoritative governance documents and templates are normalized and available for delivery reference. |
 | M1 | Foundation Specification | Completed | Foundation Technical Design documents TD-000 through TD-003 are available. |
-| M2 | Foundation Implementation | In Progress | Current milestone for Foundation v0.1 implementation tracking. |
+| M2 | Foundation Implementation | Not Started | Next milestone for Foundation v0.1 implementation tracking. |
 | M3 | Data Pipeline | Planned | Future milestone from the Roadmap. |
 | M4 | Delta Layer | Planned | Future milestone from the Roadmap. |
 | M5 | Intelligence Layer | Planned | Future milestone from the Roadmap. |
@@ -64,8 +66,8 @@ Current implementation tracking remains limited to approved Foundation v0.1 issu
 Status values used in this Backlog:
 
 - **Frozen:** Documentation is frozen for downstream use.
-- **Ready to Freeze:** Documentation is ready for architecture freeze review.
-- **Planned:** Approved for backlog tracking but not started.
+- **Planned:** Approved for future backlog tracking but not started.
+- **Not Started:** Approved implementation work has not begun.
 - **In Progress:** Active implementation or delivery work is underway.
 - **Completed:** Delivery work is complete for the tracked item.
 - **Blocked:** Delivery work cannot proceed because a dependency is unresolved.
@@ -83,75 +85,81 @@ Status values used in this Backlog:
 | Template | TechnicalDesignTemplate | Technical Design Template | Completed | Roadmap M0; Templates |
 | Template | IssueSpecificationTemplate | Issue Specification Template | Completed | Roadmap M0; Templates |
 | Template | AcceptanceCriteriaTemplate | Acceptance Criteria Template | Completed | Roadmap M0; Templates |
-| Documentation | TD-000 | Provider Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
+| Documentation | ISSUE-001 through ISSUE-028 | Issue Specifications | Completed | Derived from TD-001 through TD-028 |
+| Documentation | AC-001 through AC-028 | Acceptance Criteria | Completed | Derived from ISSUE-001 through ISSUE-028 |
+| Documentation | TD-000 | Provider Framework Technical Design | Frozen | Roadmap approved TD sequence |
 | Documentation | TD-001 | MarketData Technical Design | Frozen | Roadmap approved TD sequence |
-| Documentation | TD-002 | Health Layer Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-003 | Snapshot Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-004 | Data Service Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-005 | Event Bus Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-006 | Storage Layer Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-007 | Delta Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-008 | Triad Liquidity Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-009 | Regime Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-010 | LDS Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-011 | Capital Flow Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-012 | Market State Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-013 | Confidence Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-014 | OMS Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-015 | Exposure Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-016 | Portfolio Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-017 | Risk Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-018 | Cluster Rotation Engine Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-019 | Decision Log Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-020 | Validation Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-021 | Champion-Challenger Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-022 | Model Versioning Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-023 | Rollback Framework Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-024 | Dashboard Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-025 | Inspector Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-026 | Explainability Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-027 | Historical Explorer Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Documentation | TD-028 | Settings Technical Design | Ready to Freeze | Roadmap approved TD sequence |
-| Implementation | ISSUE-001 | MarketData Implementation | In Progress | Roadmap M2; TD-001 |
-| Implementation | ISSUE-002 | Health Layer Implementation | Planned | Roadmap M2; TD-002 |
-| Implementation | ISSUE-003 | Snapshot Engine Implementation | Planned | Roadmap M2; TD-003 |
-| Planned | ISSUE-004 | Data Service Implementation | Planned | Derived from TD-004 |
-| Planned | ISSUE-005 | Event Bus Implementation | Planned | Derived from TD-005 |
-| Planned | ISSUE-006 | Storage Layer Implementation | Planned | Derived from TD-006 |
-| Planned | ISSUE-007 | Delta Engine Implementation | Planned | Derived from TD-007 |
-| Planned | ISSUE-008 | Triad Liquidity Framework Implementation | Planned | Derived from TD-008 |
-| Planned | ISSUE-009 | Regime Engine Implementation | Planned | Derived from TD-009 |
-| Planned | ISSUE-010 | LDS Engine Implementation | Planned | Derived from TD-010 |
-| Planned | ISSUE-011 | Capital Flow Engine Implementation | Planned | Derived from TD-011 |
-| Planned | ISSUE-012 | Market State Engine Implementation | Planned | Derived from TD-012 |
-| Planned | ISSUE-013 | Confidence Engine Implementation | Planned | Derived from TD-013 |
-| Planned | ISSUE-014 | OMS Engine Implementation | Planned | Derived from TD-014 |
-| Planned | ISSUE-015 | Exposure Engine Implementation | Planned | Derived from TD-015 |
-| Planned | ISSUE-016 | Portfolio Engine Implementation | Planned | Derived from TD-016 |
-| Planned | ISSUE-017 | Risk Engine Implementation | Planned | Derived from TD-017 |
-| Planned | ISSUE-018 | Cluster Rotation Engine Implementation | Planned | Derived from TD-018 |
-| Planned | ISSUE-019 | Decision Log Implementation | Planned | Derived from TD-019 |
-| Planned | ISSUE-020 | Validation Framework Implementation | Planned | Derived from TD-020 |
-| Planned | ISSUE-021 | Champion-Challenger Framework Implementation | Planned | Derived from TD-021 |
-| Planned | ISSUE-022 | Model Versioning Implementation | Planned | Derived from TD-022 |
-| Planned | ISSUE-023 | Rollback Framework Implementation | Planned | Derived from TD-023 |
-| Planned | ISSUE-024 | Dashboard Implementation | Planned | Derived from TD-024 |
-| Planned | ISSUE-025 | Inspector Implementation | Planned | Derived from TD-025 |
-| Planned | ISSUE-026 | Explainability Implementation | Planned | Derived from TD-026 |
-| Planned | ISSUE-027 | Historical Explorer Implementation | Planned | Derived from TD-027 |
-| Planned | ISSUE-028 | Settings Implementation | Planned | Derived from TD-028 |
+| Documentation | TD-002 | Health Layer Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-003 | Snapshot Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-004 | Data Service Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-005 | Event Bus Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-006 | Storage Layer Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-007 | Delta Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-008 | Triad Liquidity Framework Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-009 | Regime Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-010 | LDS Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-011 | Capital Flow Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-012 | Market State Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-013 | Confidence Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-014 | OMS Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-015 | Exposure Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-016 | Portfolio Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-017 | Risk Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-018 | Cluster Rotation Engine Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-019 | Decision Log Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-020 | Validation Framework Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-021 | Champion-Challenger Framework Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-022 | Model Versioning Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-023 | Rollback Framework Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-024 | Dashboard Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-025 | Inspector Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-026 | Explainability Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-027 | Historical Explorer Technical Design | Frozen | Roadmap approved TD sequence |
+| Documentation | TD-028 | Settings Technical Design | Frozen | Roadmap approved TD sequence |
+| Implementation | ISSUE-001 | MarketData Implementation | Not Started | Roadmap M2; TD-001 |
+| Implementation | ISSUE-002 | Health Layer Implementation | Not Started | Roadmap M2; TD-002 |
+| Implementation | ISSUE-003 | Snapshot Engine Implementation | Not Started | Roadmap M2; TD-003 |
+| Implementation | ISSUE-004 | Data Service Implementation | Not Started | Derived from TD-004 |
+| Implementation | ISSUE-005 | Event Bus Implementation | Not Started | Derived from TD-005 |
+| Implementation | ISSUE-006 | Storage Layer Implementation | Not Started | Derived from TD-006 |
+| Implementation | ISSUE-007 | Delta Engine Implementation | Not Started | Derived from TD-007 |
+| Implementation | ISSUE-008 | Triad Liquidity Framework Implementation | Not Started | Derived from TD-008 |
+| Implementation | ISSUE-009 | Regime Engine Implementation | Not Started | Derived from TD-009 |
+| Implementation | ISSUE-010 | LDS Engine Implementation | Not Started | Derived from TD-010 |
+| Implementation | ISSUE-011 | Capital Flow Engine Implementation | Not Started | Derived from TD-011 |
+| Implementation | ISSUE-012 | Market State Engine Implementation | Not Started | Derived from TD-012 |
+| Implementation | ISSUE-013 | Confidence Engine Implementation | Not Started | Derived from TD-013 |
+| Implementation | ISSUE-014 | OMS Engine Implementation | Not Started | Derived from TD-014 |
+| Implementation | ISSUE-015 | Exposure Engine Implementation | Not Started | Derived from TD-015 |
+| Implementation | ISSUE-016 | Portfolio Engine Implementation | Not Started | Derived from TD-016 |
+| Implementation | ISSUE-017 | Risk Engine Implementation | Not Started | Derived from TD-017 |
+| Implementation | ISSUE-018 | Cluster Rotation Engine Implementation | Not Started | Derived from TD-018 |
+| Implementation | ISSUE-019 | Decision Log Implementation | Not Started | Derived from TD-019 |
+| Implementation | ISSUE-020 | Validation Framework Implementation | Not Started | Derived from TD-020 |
+| Implementation | ISSUE-021 | Champion-Challenger Framework Implementation | Not Started | Derived from TD-021 |
+| Implementation | ISSUE-022 | Model Versioning Implementation | Not Started | Derived from TD-022 |
+| Implementation | ISSUE-023 | Rollback Framework Implementation | Not Started | Derived from TD-023 |
+| Implementation | ISSUE-024 | Dashboard Implementation | Not Started | Derived from TD-024 |
+| Implementation | ISSUE-025 | Inspector Implementation | Not Started | Derived from TD-025 |
+| Implementation | ISSUE-026 | Explainability Implementation | Not Started | Derived from TD-026 |
+| Implementation | ISSUE-027 | Historical Explorer Implementation | Not Started | Derived from TD-027 |
+| Implementation | ISSUE-028 | Settings Implementation | Not Started | Derived from TD-028 |
 
 ## 7. Current Progress
 
-- **Current phase:** Foundation v0.1 delivery.
-- **Current milestone:** M2 Foundation Implementation.
-- **Current issue:** ISSUE-001 MarketData Implementation.
-- **Current issue status:** In Progress.
-- **Foundation implementation progress:** ISSUE-001 is In Progress; ISSUE-002 and ISSUE-003 are Planned.
-- **Technical Design documentation progress:** TD-001 is Frozen; TD-000 and TD-002 through TD-028 are Ready to Freeze.
+- **Current phase:** Architecture Freeze.
+- **Next phase:** Foundation Implementation.
+- **Architecture Documentation:** Completed.
+- **Technical Designs:** Frozen.
+- **Issue Specifications:** Completed.
+- **Acceptance Criteria:** Completed.
+- **Implementation:** Not Started.
+- **Freeze:** Architecture Frozen.
 - **Blocked items:** None.
 
-M0 Product Blueprint and M1 Foundation Specification are Completed. M3 through M7 remain Planned future milestones from the Roadmap.
+Current implementation status: Documentation Complete; Implementation Pending. Architecture Freeze may complete before implementation.
+
+M0 Product Blueprint, M1 Foundation Specification, Issue Specifications, and Acceptance Criteria are Completed. M2 through M7 remain implementation milestones that have not started.
 
 ## 8. Dependencies
 
@@ -172,11 +180,11 @@ M0 Product Blueprint and M1 Foundation Specification are Completed. M3 through M
 
 | Sprint | Milestone | Work Item | Name | Status |
 | --- | --- | --- | --- | --- |
-| Sprint 1 | M2 | ISSUE-001 | MarketData Implementation | In Progress |
-| Sprint 1 | M2 | ISSUE-002 | Health Layer Implementation | Planned |
-| Sprint 1 | M2 | ISSUE-003 | Snapshot Engine Implementation | Planned |
+| Sprint 1 | M2 | ISSUE-001 | MarketData Implementation | Not Started |
+| Sprint 1 | M2 | ISSUE-002 | Health Layer Implementation | Not Started |
+| Sprint 1 | M2 | ISSUE-003 | Snapshot Engine Implementation | Not Started |
 
-Sprint 1 is aligned to Foundation v0.1 and does not expand beyond MarketData Contract, Health Layer, and Snapshot Engine implementation tracking.
+Sprint 1 remains the next Foundation Implementation phase and does not expand beyond MarketData Contract, Health Layer, and Snapshot Engine implementation tracking.
 
 ## 10. Future Work
 
@@ -233,3 +241,4 @@ This Backlog does not define:
 | 1.0 | 2026-07-13 | Initial Backlog created from Roadmap. |
 | 1.1 | 2026-07-13 | Normalized Backlog governance structure and traceability. |
 | 1.2 | 2026-07-14 | Synchronized Backlog to approved TD-000 through TD-028 sequence while preserving Foundation v0.1 scope. |
+| 1.3 | 2026-07-14 | Finalized Architecture Freeze governance status, TD-000 prerequisite clarification, and implementation-pending tracking without changing delivery scope. |

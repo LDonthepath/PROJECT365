@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-024 |
 | Technical Design Name | Dashboard |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-024-Dashboard.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

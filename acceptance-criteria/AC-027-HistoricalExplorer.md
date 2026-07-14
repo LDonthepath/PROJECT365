@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-027 |
 | Technical Design Name | Historical Explorer |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-027-HistoricalExplorer.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

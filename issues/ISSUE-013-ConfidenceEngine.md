@@ -6,13 +6,15 @@
 |------|------|
 | Issue ID | ISSUE-013 |
 | Title | Confidence Engine Implementation |
-| Status | Planned |
+| Status | Not Started |
 | Priority | High |
 | Owner | PROJECT365 Delivery |
 | Milestone | M5 Intelligence Layer |
 | Sprint | Not scheduled |
 | Last Updated | 2026-07-14 |
 | Depends On | TD-013 Confidence Engine Technical Design |
+| Primary Technical Design | TD-013 |
+| Architectural Prerequisite | TD-000 (Provider Framework) |
 | Referenced By | AC-013, Implementation Prompt, Pull Request |
 
 ---
@@ -125,7 +127,7 @@ Do not include implementation code in this Issue Specification.
 - TD-013 Confidence Engine Technical Design.
 - BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status.
 - AC-013 acceptance criteria for this Issue Specification.
-- TD-000 Data Provider Framework only where referenced by TD-013 as an architectural prerequisite; TD-000 does not generate an Issue Specification or Acceptance Criteria document.
+- TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
 
 ---
 

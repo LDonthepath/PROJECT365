@@ -434,7 +434,71 @@ Foundation v0.1 excludes:
 | Out of scope | BRD §11; PRD §16 | Preserves product positioning boundaries and Foundation v0.1 exclusions. |
 | Terminology | Glossary; Product Map; PRD | Uses official domain, module, layer, engine, service, contract, and framework terminology. |
 
-## 18. References
+## 18. Authoritative Dependency Chain Appendix
+
+This is the authoritative dependency chain.
+
+```text
+External Providers
+↓
+Provider Framework
+↓
+Data Service
+↓
+MarketData
+↓
+Health Layer
+↓
+Snapshot Engine
+↓
+Delta Engine
+↓
+Triad Liquidity Framework
+↓
+Regime Engine
+↓
+LDS Engine
+↓
+Capital Flow Engine
+↓
+Market State Engine
+↓
+Confidence Engine
+↓
+OMS Engine
+↓
+Exposure Engine
+↓
+Portfolio Engine
+↓
+Risk Engine
+↓
+Cluster Rotation Engine
+↓
+Decision Log
+↓
+Validation Framework
+↓
+Champion-Challenger Framework
+↓
+Model Versioning
+↓
+Rollback Framework
+↓
+Dashboard
+↓
+Inspector
+↓
+Explainability
+↓
+Historical Explorer
+↓
+Settings
+```
+
+This appendix documents dependency order only and does not change architecture responsibilities, Technical Design responsibilities, Issue Specifications, Acceptance Criteria, or dependency directions.
+
+## 19. References
 
 - [BRD](./BRD.md)
 - [PRD](./PRD.md)
@@ -445,7 +509,7 @@ Foundation v0.1 excludes:
 - [Roadmap](./Roadmap.md)
 - [Current Status](./CurrentStatus.md)
 
-## 19. Change History
+## 20. Change History
 
 | Version | Date | Summary |
 | --- | --- | --- |
@@ -453,3 +517,4 @@ Foundation v0.1 excludes:
 | 1.1 | 2026-07-13 | Normalized architecture to the approved template; derived content from the PRD and BRD; preserved approved architecture sequence and dependency rules; normalized terminology without introducing new design. |
 | 1.1 | 2026-07-14 | Formalized Provider Framework documentation, Foundation module listing, provider/data service responsibilities, dependency rules, data flow, and extension point without introducing implementation. |
 | 1.2 | 2026-07-14 | Clarified Foundation runtime dependency chain, MarketData contract semantics, sidecar Foundation modules, and Presentation sibling boundaries. |
+| 1.3 | 2026-07-14 | Added authoritative full dependency chain appendix for governance freeze finalization without changing responsibilities or dependency directions. |

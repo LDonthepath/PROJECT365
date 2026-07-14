@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-010 |
 | Technical Design Name | LDS Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-010-LDSEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

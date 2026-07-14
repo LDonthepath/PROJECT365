@@ -6,13 +6,15 @@
 |------|------|
 | Issue ID | ISSUE-018 |
 | Title | Cluster Rotation Engine Implementation |
-| Status | Planned |
+| Status | Not Started |
 | Priority | Medium |
 | Owner | PROJECT365 Delivery |
 | Milestone | M7 Portfolio, Governance, and Presentation Implementation |
 | Sprint | Not scheduled |
 | Last Updated | 2026-07-14 |
 | Depends On | TD-018 Cluster Rotation Engine Technical Design |
+| Primary Technical Design | TD-018 |
+| Architectural Prerequisite | TD-000 (Provider Framework) |
 | Referenced By | AC-018, Implementation Prompt, Pull Request |
 
 ---
@@ -125,7 +127,7 @@ Do not include implementation code in this Issue Specification.
 - TD-018 Cluster Rotation Engine Technical Design.
 - BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status.
 - AC-018 acceptance criteria for this Issue Specification.
-- TD-000 Data Provider Framework only where referenced by TD-018 as an architectural prerequisite; TD-000 does not generate an Issue Specification or Acceptance Criteria document.
+- TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
 
 ---
 

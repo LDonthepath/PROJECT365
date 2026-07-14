@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-011 |
 | Technical Design Name | Capital Flow Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-011-CapitalFlowEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

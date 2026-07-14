@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-009 |
 | Technical Design Name | Regime Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-009-RegimeEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.
