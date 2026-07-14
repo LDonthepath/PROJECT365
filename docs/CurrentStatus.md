@@ -8,8 +8,10 @@
 - **Version:** 1.1
 - **Owner:** PROJECT365 Delivery
 - **Last Updated:** 2026-07-13
-- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md), [Backlog](./Backlog.md)
-- **Referenced By:** Delivery reviews, implementation planning, issue execution, acceptance review
+- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), 
+- **Referenced By:**
+[Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md), [Backlog](./Backlog.md)
+ Delivery reviews, implementation planning, issue execution, acceptance review
 
 ## 2. Purpose
 
