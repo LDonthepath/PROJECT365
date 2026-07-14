@@ -265,7 +265,9 @@ PROJECT365 follows these dependency rules:
 The approved data flow is:
 
 ```text
-Raw Crypto Market Data
+External Data Sources
+↓
+Data Providers
 ↓
 Data Service
 ↓
