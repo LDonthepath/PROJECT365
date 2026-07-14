@@ -5,7 +5,7 @@
 - **Status:** Draft
 - **Version:** 1.1
 - **Owner:** PROJECT365 Architecture
-- **Last Updated:** 2026-07-13
+- **Last Updated:** 2026-07-14
 - **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Glossary](./Glossary.md), [Product Map](./ProductMap.md), [Architecture Decision Records](./Decisions.md)
 - **Referenced By:** Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -91,6 +91,7 @@ Purpose: Provide trusted, immutable, and validated market data.
 
 Modules:
 
+- Provider Framework
 - Data Service
 - MarketData Contract
 - Health Layer
@@ -205,7 +206,8 @@ Rules:
 
 | Domain | Component | Responsibility |
 | --- | --- | --- |
-| Foundation | Data Service | Coordinate ingestion of global market data. |
+| Foundation | Provider Framework | Provide provider abstraction, normalization boundary, provider registry, and provider lifecycle governance. |
+| Foundation | Data Service | Orchestrate provider aggregation and produce MarketData; contains orchestration only. |
 | Foundation | MarketData Contract | Define the immutable market data structure and rules used as the Single Source of Truth. |
 | Foundation | Health Layer | Validate market data health and support snapshot readiness. |
 | Foundation | Snapshot Engine | Create immutable snapshots for reproducible historical analysis. |
@@ -238,7 +240,7 @@ Rules:
 
 Ownership follows domain responsibility boundaries:
 
-- Foundation owns trusted market data, validation readiness, snapshots, events, and storage.
+- Foundation owns provider framework governance, trusted market data, validation readiness, snapshots, events, and storage.
 - Market Intelligence owns market deltas, liquidity analysis, regime analysis, capital flow analysis, market state assessment, confidence, and overall market scoring.
 - Portfolio Intelligence owns exposure recommendations, portfolio intelligence, risk intelligence, and cluster rotation intelligence.
 - Governance owns decision logs, validation, model versioning, champion-challenger support, and rollback support.
@@ -257,6 +259,9 @@ PROJECT365 follows these dependency rules:
 - Governance supports explainability and auditability but never calculates scores.
 - Presentation contains no business logic.
 - Foundation is the Single Source of Truth.
+- Providers are never accessed outside the Data Service.
+- Health Layer depends only on MarketData.
+- Snapshot Engine depends only on Health Layer output.
 - Implementation must not add features that are not specified.
 - Architecture must not change without approval.
 
@@ -267,7 +272,7 @@ The approved data flow is:
 ```text
 External Data Sources
 ↓
-Data Providers
+Provider Framework
 ↓
 Data Service
 ↓
@@ -290,7 +295,7 @@ Presentation Domain
 User Decision Support
 ```
 
-MarketData is the immutable representation of market data from a single fetch. Snapshots are immutable representations of market state at specific reference times. Deltas are calculated from snapshots and are used by Market Intelligence. Portfolio Intelligence consumes market intelligence outputs rather than accessing Foundation directly.
+The Provider Framework defines the approved provider abstraction, normalization boundary, provider registry, and provider lifecycle. Data Service orchestrates provider aggregation through the Provider Framework and produces MarketData. MarketData is the immutable representation of market data from a single fetch. Health Layer depends only on MarketData. Snapshot Engine depends only on Health Layer output. Snapshots are immutable representations of market state at specific reference times. Deltas are calculated from snapshots and are used by Market Intelligence. Portfolio Intelligence consumes market intelligence outputs rather than accessing Foundation directly.
 
 ## 12. Event Flow
 
@@ -339,6 +344,7 @@ PROJECT365 cross-cutting concerns are:
 
 Approved extension points are the future modules already identified by the PRD and Product Map outside Foundation v0.1:
 
+- Provider Framework
 - Data Service
 - Event Bus
 - Storage Layer
@@ -400,7 +406,7 @@ Foundation v0.1 excludes:
 | Scope and domains | BRD §10; PRD §3; Product Map | Domain and module names are normalized to PRD and Product Map terminology. |
 | Architecture principles | BRD §13; PRD §8 | Preserves Regime First, Hard Gate Principle, Single Source of Truth, Separation of Concerns, Explainability, Auditability, and Modular Architecture. |
 | Architecture sequence | BRD §19 BAC-005; PRD §10 | Preserves Foundation → Market Intelligence → Portfolio Intelligence → Governance → Presentation. |
-| Dependency rules | BRD §13; PRD §8 | Preserves lower-layer dependency rules, Presentation business logic restriction, Governance scoring restriction, Foundation Single Source of Truth, and Portfolio Intelligence access restriction. |
+| Dependency rules | BRD §13; PRD §8 | Preserves lower-layer dependency rules, provider access restriction through Data Service, Health Layer dependency on MarketData, Snapshot Engine dependency on Health Layer output, Presentation business logic restriction, Governance scoring restriction, Foundation Single Source of Truth, and Portfolio Intelligence access restriction. |
 | Current scope | BRD §10; PRD §3 | Foundation v0.1 remains limited to MarketData Contract, Health Layer, and Snapshot Engine. |
 | Out of scope | BRD §11; PRD §16 | Preserves product positioning boundaries and Foundation v0.1 exclusions. |
 | Terminology | Glossary; Product Map; PRD | Uses official domain, module, layer, engine, service, contract, and framework terminology. |
@@ -422,3 +428,4 @@ Foundation v0.1 excludes:
 | --- | --- | --- |
 | 1.0 | 2026-07-13 | Initial architecture draft. |
 | 1.1 | 2026-07-13 | Normalized architecture to the approved template; derived content from the PRD and BRD; preserved approved architecture sequence and dependency rules; normalized terminology without introducing new design. |
+| 1.1 | 2026-07-14 | Formalized Provider Framework documentation, Foundation module listing, provider/data service responsibilities, dependency rules, data flow, and extension point without introducing implementation. |
