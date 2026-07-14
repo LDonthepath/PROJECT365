@@ -5,7 +5,7 @@
 | Field | Value |
 |------|------|
 | Status | Draft |
-| Version | 1.0 |
+| Version | 1.1 |
 | Owner | PROJECT365 Delivery |
 | Last Updated | 2026-07-14 |
 | Depends On | BRD, PRD, Architecture, Product Map, ADR, TD-005, ISSUE-005 |
@@ -15,147 +15,86 @@
 
 ## 2. Purpose
 
-Define measurable acceptance criteria for AC-005, validating ISSUE-005 Event Bus Implementation against TD-005 Event Bus.
+Define binary PASS/FAIL acceptance criteria for ISSUE-005 Event Bus Implementation against TD-005 Event Bus.
 
-This document translates approved Technical Design and Issue Specification requirements into measurable acceptance criteria.
-
-Do not redefine business requirements, product requirements, architecture, technical design, or implementation scope.
+Every criterion has an expected result, verification method, pass condition, and fail condition.
 
 ---
 
-## 3. Scope
-
-This Acceptance Criteria document validates:
-
-- The related module or issue: ISSUE-005 Event Bus Implementation.
-- Functional acceptance boundaries approved by TD-005 and ISSUE-005.
-- Non-functional acceptance boundaries approved by TD-005 and ISSUE-005.
-- Validation expectations for approved inputs, outputs, rejection behavior, boundary conditions, dependencies, and traceability.
-- Test expectations needed to verify conformance without prescribing implementation internals.
-
-Exclude anything not approved by the related Technical Design and Issue Specification.
-
----
-
-## 4. Dependencies
-
-Authoritative inputs:
-
-- BRD.
-- PRD.
-- Architecture.
-- Product Map.
-- Glossary.
-- ADR.
-- TD-005 Event Bus Technical Design.
-- ISSUE-005 Event Bus Implementation Issue Specification.
-
-No acceptance criterion may introduce unapproved product scope, architecture, module ownership, or implementation behavior.
-
----
-
-## 5. Related Technical Design
-
-Identify the related Technical Design.
+## 3. Related Documents
 
 | Field | Value |
 |------|------|
 | Technical Design ID | TD-005 |
 | Technical Design Name | Event Bus |
-| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-005-EventBus.md` |
-
-Acceptance criteria must remain fully traceable to this Technical Design.
-
----
-
-## 6. Related Issue Specification
-
-Identify the related Issue Specification.
-
-| Field | Value |
-|------|------|
 | Issue ID | ISSUE-005 |
 | Issue Name | Event Bus Implementation |
-| Issue Status | Planned |
 | Issue Specification Path | `../issues/ISSUE-005-EventBus.md` |
 
-Acceptance criteria must remain fully traceable to this Issue Specification.
+---
+
+## 4. Binary Acceptance Criteria
+
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-F-001 | Event Bus exposes or validates required contract field `eventId` exactly as specified by TD-005. | Inspect implementation and run contract test for `eventId`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-002 | Event Bus exposes or validates required contract field `eventType` exactly as specified by TD-005. | Inspect implementation and run contract test for `eventType`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-003 | Event Bus exposes or validates required contract field `timestamp` exactly as specified by TD-005. | Inspect implementation and run contract test for `timestamp`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-004 | Event Bus exposes or validates required contract field `version` exactly as specified by TD-005. | Inspect implementation and run contract test for `version`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-005 | Event Bus exposes or validates required contract field `publisher` exactly as specified by TD-005. | Inspect implementation and run contract test for `publisher`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-006 | Event Bus exposes or validates required contract field `payload` exactly as specified by TD-005. | Inspect implementation and run contract test for `payload`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-007 | Event Bus exposes or validates required contract field `correlationId` exactly as specified by TD-005. | Inspect implementation and run contract test for `correlationId`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-008 | Event Bus exposes or validates required contract field `metadata` exactly as specified by TD-005. | Inspect implementation and run contract test for `metadata`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-009 | Event Bus exposes or validates required contract field `subscriberId` exactly as specified by TD-005. | Inspect implementation and run contract test for `subscriberId`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-010 | Event Bus exposes or validates required contract field `active` exactly as specified by TD-005. | Inspect implementation and run contract test for `active`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-011 | Public interface `publish(event)` is available and returns only approved success or failure outputs. | Run unit test invoking `publish(event)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-012 | Public interface `subscribe(request)` is available and returns only approved success or failure outputs. | Run unit test invoking `subscribe(request)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-013 | Public interface `unsubscribe(request)` is available and returns only approved success or failure outputs. | Run unit test invoking `unsubscribe(request)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-014 | Public interface `getSubscribers(eventType)` is available and returns only approved success or failure outputs. | Run unit test invoking `getSubscribers(eventType)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-V-015 | event schema contains all required fields | Run validation test for: event schema contains all required fields | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-016 | eventType is in registry | Run validation test for: eventType is in registry | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-017 | publisher owns eventType | Run validation test for: publisher owns eventType | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-018 | metadata sourceModule equals publisher | Run validation test for: metadata sourceModule equals publisher | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-019 | subscriber is permitted for eventType | Run validation test for: subscriber is permitted for eventType | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-020 | duplicate eventId rejected | Run validation test for: duplicate eventId rejected | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-021 | major version compatibility enforced | Run validation test for: major version compatibility enforced | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-022 | payload contract redefinition rejected | Run validation test for: payload contract redefinition rejected | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-E-023 | Error condition `UNAPPROVED_EVENT_TYPE` is handled with the approved rejection behavior. | Run negative test for `UNAPPROVED_EVENT_TYPE`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-024 | Error condition `INVALID_EVENT_SCHEMA` is handled with the approved rejection behavior. | Run negative test for `INVALID_EVENT_SCHEMA`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-025 | Error condition `INVALID_METADATA` is handled with the approved rejection behavior. | Run negative test for `INVALID_METADATA`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-026 | Error condition `UNAUTHORIZED_PUBLISHER` is handled with the approved rejection behavior. | Run negative test for `UNAUTHORIZED_PUBLISHER`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-027 | Error condition `UNAUTHORIZED_SUBSCRIBER` is handled with the approved rejection behavior. | Run negative test for `UNAUTHORIZED_SUBSCRIBER`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-028 | Error condition `REVERSE_DEPENDENCY_SUBSCRIPTION` is handled with the approved rejection behavior. | Run negative test for `REVERSE_DEPENDENCY_SUBSCRIPTION`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-029 | Error condition `DUPLICATE_EVENT` is handled with the approved rejection behavior. | Run negative test for `DUPLICATE_EVENT`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-030 | Error condition `INCOMPATIBLE_EVENT_VERSION` is handled with the approved rejection behavior. | Run negative test for `INCOMPATIBLE_EVENT_VERSION`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-031 | Error condition `PAYLOAD_CONTRACT_REDEFINITION` is handled with the approved rejection behavior. | Run negative test for `PAYLOAD_CONTRACT_REDEFINITION`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-B-032 | duplicate subscription is idempotently accepted | Run boundary/edge test for: duplicate subscription is idempotently accepted | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-033 | duplicate event is rejected | Run boundary/edge test for: duplicate event is rejected | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-034 | same timestamp events ordered by eventId | Run boundary/edge test for: same timestamp events ordered by eventId | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-035 | cross-event-type ordering not guaranteed | Run boundary/edge test for: cross-event-type ordering not guaranteed | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-036 | rejected event not delivered | Run boundary/edge test for: rejected event not delivered | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
 
 ---
 
-## 7. Functional Acceptance Criteria
+## 5. Architecture Preservation Criteria
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-F-001 | The delivered work implements only the approved Event Bus scope defined by TD-005. | Related Technical Design; Related Issue Specification |
-| AC-F-002 | All approved public contracts, interfaces, lifecycle behavior, and component responsibilities from TD-005 are satisfied or explicitly marked not applicable by governance review. | Related Technical Design; Related Issue Specification |
-| AC-F-003 | Inputs, outputs, validation behavior, rejection behavior, and boundary conditions conform to TD-005 without adding unapproved fields, APIs, modules, or responsibilities. | Related Technical Design; Related Issue Specification |
-| AC-F-004 | The implementation preserves approved dependency direction and does not create direct dependencies forbidden by Architecture or TD-005. | Related Technical Design; Related Issue Specification |
-| AC-F-005 | The implementation does not duplicate ownership assigned to another PROJECT365 module or Technical Design. | Related Technical Design; Related Issue Specification |
-
-Functional acceptance criteria must not expand approved scope.
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-AP-001 | No architecture document is modified by implementation. | Review changed files. | No architecture/governance change appears in implementation PR. | Architecture or governance is changed without approval. |
+| AC-AP-002 | No dependency direction changes are introduced. | Review imports, module references, and tests. | Dependencies match TD-005 and Architecture. | Any reverse or unapproved dependency exists. |
+| AC-AP-003 | No responsibility from another module is implemented here. | Review implementation ownership. | Code remains limited to Event Bus. | Code duplicates another module responsibility. |
+| AC-AP-004 | Runtime flow remains the flow approved by TD-005. | Review call sequence tests. | Flow matches TD-005. | Flow adds unapproved step or bypass. |
 
 ---
 
-## 8. Non-Functional Acceptance Criteria
+## 6. Overall Acceptance Rule
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-NF-001 | The delivered work preserves the approved Single Source of Truth, Separation of Concerns, explainability, auditability, immutability, and hard-gate rules applicable to Event Bus. | Related Technical Design; Related Issue Specification |
-| AC-NF-002 | The delivered work is testable through deterministic checks that do not depend on unapproved implementation behavior. | Related Technical Design; Related Issue Specification |
-| AC-NF-003 | Error handling and invalid or boundary-condition behavior are verifiable against TD-005. | Related Technical Design; Related Issue Specification |
-| AC-NF-004 | The implementation remains maintainable by keeping Event Bus responsibilities isolated from unrelated modules. | Related Technical Design; Related Issue Specification |
-| AC-NF-005 | Review evidence demonstrates traceability from BRD, PRD, Architecture, Product Map, ADR, TD-005, ISSUE-005, and this document. | Related Technical Design; Related Issue Specification |
-
-Non-functional acceptance criteria must preserve approved performance, reliability, maintainability, testability, security, explainability, and auditability requirements where applicable.
+AC-005 passes only when every criterion in Sections 4 and 5 passes. Any single failed criterion makes AC-005 fail.
 
 ---
 
-## 9. Validation Rules
-
-Validation rules required for acceptance:
-
-- Required inputs must match the approved input boundaries in TD-005.
-- Required outputs must match the approved output boundaries in TD-005.
-- Rejection behavior must match the approved validation and error-handling rules in TD-005.
-- Boundary conditions must be verified without adding new requirements outside TD-005 and ISSUE-005.
-- Dependency direction checks must confirm compliance with Architecture and TD-005.
-- Traceability checks must confirm that all delivered behavior maps to TD-005, ISSUE-005, and this Acceptance Criteria document.
-
-Validation rules must be deterministic and auditable.
-
----
-
-## 10. Test Requirements
-
-Required test coverage for acceptance:
-
-- Unit test requirements: verify approved Event Bus behavior, boundaries, validation, and error handling from TD-005 where applicable.
-- Integration test requirements: verify only approved interactions and dependency direction described by TD-005 and ISSUE-005.
-- Negative test requirements: verify rejection or non-acceptance of invalid inputs, forbidden dependency paths, duplicate ownership, and scope expansion.
-- Regression test requirements: verify that approved behavior remains stable across changes.
-- Documentation verification requirements: verify that TD-005, ISSUE-005, and AC-005 references remain present and consistent.
-
-Tests must validate approved behavior without introducing implementation details outside the related Issue Specification.
-
----
-
-## 11. Out of Scope
-
-This Acceptance Criteria document must not include:
-
-- New business requirements.
-- New product requirements.
-- New architecture decisions.
-- New modules.
-- New technical design responsibilities.
-- Implementation behavior not approved by the related Issue Specification.
-- Acceptance requirements for TD-000 as a standalone implementation issue.
-
----
-
-## 12. Traceability
+## 7. Traceability
 
 | Acceptance Area | Source |
 |-----------------|--------|
@@ -166,25 +105,22 @@ This Acceptance Criteria document must not include:
 | Technical design | TD-005 Event Bus |
 | Implementation scope | ISSUE-005 Event Bus Implementation |
 
-Every acceptance criterion must trace to an approved source.
+---
+
+## 8. Out of Scope
+
+- New business requirements.
+- New product requirements.
+- New architecture decisions.
+- New modules.
+- New technical design responsibilities.
+- Acceptance requirements not derived from TD-005 and ISSUE-005.
 
 ---
 
-## 13. References
-
-- BRD
-- PRD
-- Architecture
-- Product Map
-- Glossary
-- ADR
-- TD-005 Event Bus Technical Design: `../specs/TD-005-EventBus.md`
-- ISSUE-005 Event Bus Implementation Issue Specification: `../issues/ISSUE-005-EventBus.md`
-
----
-
-## 14. Change History
+## 9. Change History
 
 | Version | Date | Description |
 |---------|------|-------------|
-| 1.0 | 2026-07-14 | Initial Acceptance Criteria document for AC-005 mapped to ISSUE-005 and TD-005. |
+| 1.0 | 2026-07-14 | Initial Acceptance Criteria document. |
+| 1.1 | 2026-07-14 | Rewritten as binary measurable implementation acceptance criteria. |

@@ -5,7 +5,7 @@
 | Field | Value |
 |------|------|
 | Status | Draft |
-| Version | 1.0 |
+| Version | 1.1 |
 | Owner | PROJECT365 Delivery |
 | Last Updated | 2026-07-14 |
 | Depends On | BRD, PRD, Architecture, Product Map, ADR, TD-001, ISSUE-001 |
@@ -15,147 +15,93 @@
 
 ## 2. Purpose
 
-Define measurable acceptance criteria for AC-001, validating ISSUE-001 MarketData Implementation against TD-001 MarketData.
+Define binary PASS/FAIL acceptance criteria for ISSUE-001 MarketData Contract Implementation against TD-001 MarketData.
 
-This document translates approved Technical Design and Issue Specification requirements into measurable acceptance criteria.
-
-Do not redefine business requirements, product requirements, architecture, technical design, or implementation scope.
+Every criterion has an expected result, verification method, pass condition, and fail condition.
 
 ---
 
-## 3. Scope
-
-This Acceptance Criteria document validates:
-
-- The related module or issue: ISSUE-001 MarketData Implementation.
-- Functional acceptance boundaries approved by TD-001 and ISSUE-001.
-- Non-functional acceptance boundaries approved by TD-001 and ISSUE-001.
-- Validation expectations for approved inputs, outputs, rejection behavior, boundary conditions, dependencies, and traceability.
-- Test expectations needed to verify conformance without prescribing implementation internals.
-
-Exclude anything not approved by the related Technical Design and Issue Specification.
-
----
-
-## 4. Dependencies
-
-Authoritative inputs:
-
-- BRD.
-- PRD.
-- Architecture.
-- Product Map.
-- Glossary.
-- ADR.
-- TD-001 MarketData Technical Design.
-- ISSUE-001 MarketData Implementation Issue Specification.
-
-No acceptance criterion may introduce unapproved product scope, architecture, module ownership, or implementation behavior.
-
----
-
-## 5. Related Technical Design
-
-Identify the related Technical Design.
+## 3. Related Documents
 
 | Field | Value |
 |------|------|
 | Technical Design ID | TD-001 |
 | Technical Design Name | MarketData |
-| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-001-MarketData.md` |
-
-Acceptance criteria must remain fully traceable to this Technical Design.
-
----
-
-## 6. Related Issue Specification
-
-Identify the related Issue Specification.
-
-| Field | Value |
-|------|------|
 | Issue ID | ISSUE-001 |
-| Issue Name | MarketData Implementation |
-| Issue Status | In Progress |
+| Issue Name | MarketData Contract Implementation |
 | Issue Specification Path | `../issues/ISSUE-001-MarketData.md` |
 
-Acceptance criteria must remain fully traceable to this Issue Specification.
+---
+
+## 4. Binary Acceptance Criteria
+
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-F-001 | MarketData exposes or validates required contract field `id` exactly as specified by TD-001. | Inspect implementation and run contract test for `id`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-002 | MarketData exposes or validates required contract field `symbol` exactly as specified by TD-001. | Inspect implementation and run contract test for `symbol`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-003 | MarketData exposes or validates required contract field `name` exactly as specified by TD-001. | Inspect implementation and run contract test for `name`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-004 | MarketData exposes or validates required contract field `priceUsd` exactly as specified by TD-001. | Inspect implementation and run contract test for `priceUsd`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-005 | MarketData exposes or validates required contract field `change1h` exactly as specified by TD-001. | Inspect implementation and run contract test for `change1h`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-006 | MarketData exposes or validates required contract field `change24h` exactly as specified by TD-001. | Inspect implementation and run contract test for `change24h`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-007 | MarketData exposes or validates required contract field `volume24hUsd` exactly as specified by TD-001. | Inspect implementation and run contract test for `volume24hUsd`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-008 | MarketData exposes or validates required contract field `marketCapUsd` exactly as specified by TD-001. | Inspect implementation and run contract test for `marketCapUsd`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-009 | MarketData exposes or validates required contract field `totalMarketCapUsd` exactly as specified by TD-001. | Inspect implementation and run contract test for `totalMarketCapUsd`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-010 | MarketData exposes or validates required contract field `total3MarketCap` exactly as specified by TD-001. | Inspect implementation and run contract test for `total3MarketCap`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-011 | MarketData exposes or validates required contract field `btcDominance` exactly as specified by TD-001. | Inspect implementation and run contract test for `btcDominance`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-012 | MarketData exposes or validates required contract field `usdtDominance` exactly as specified by TD-001. | Inspect implementation and run contract test for `usdtDominance`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-013 | MarketData exposes or validates required contract field `usdcDominance` exactly as specified by TD-001. | Inspect implementation and run contract test for `usdcDominance`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-014 | MarketData exposes or validates required contract field `circulatingSupply` exactly as specified by TD-001. | Inspect implementation and run contract test for `circulatingSupply`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-015 | MarketData exposes or validates required contract field `ath` exactly as specified by TD-001. | Inspect implementation and run contract test for `ath`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-016 | MarketData exposes or validates required contract field `atl` exactly as specified by TD-001. | Inspect implementation and run contract test for `atl`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-017 | MarketData exposes or validates required contract field `fetchedAt` exactly as specified by TD-001. | Inspect implementation and run contract test for `fetchedAt`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-018 | MarketData exposes or validates required contract field `fetchSource` exactly as specified by TD-001. | Inspect implementation and run contract test for `fetchSource`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-019 | MarketData exposes or validates required contract field `contractVersion` exactly as specified by TD-001. | Inspect implementation and run contract test for `contractVersion`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-020 | Public interface `createMarketData(candidateFields)` is available and returns only approved success or failure outputs. | Run unit test invoking `createMarketData(candidateFields)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-021 | Public interface `serializeMarketData(marketData)` is available and returns only approved success or failure outputs. | Run unit test invoking `serializeMarketData(marketData)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-022 | Public interface `deserializeMarketData(serializedMarketData)` is available and returns only approved success or failure outputs. | Run unit test invoking `deserializeMarketData(serializedMarketData)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-V-023 | all 19 required fields are present | Run validation test for: all 19 required fields are present | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-024 | string fields are non-empty strings | Run validation test for: string fields are non-empty strings | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-025 | numeric fields are finite numbers | Run validation test for: numeric fields are finite numbers | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-026 | dominance fields are between 0 and 100 inclusive | Run validation test for: dominance fields are between 0 and 100 inclusive | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-027 | fetchedAt is a positive Unix epoch millisecond timestamp | Run validation test for: fetchedAt is a positive Unix epoch millisecond timestamp | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-028 | contractVersion is present | Run validation test for: contractVersion is present | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-029 | no optional fields are accepted | Run validation test for: no optional fields are accepted | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-030 | created objects are frozen | Run validation test for: created objects are frozen | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-E-031 | Error condition `missing required field` is handled with the approved rejection behavior. | Run negative test for `missing required field`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-032 | Error condition `invalid string field` is handled with the approved rejection behavior. | Run negative test for `invalid string field`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-033 | Error condition `invalid numeric field` is handled with the approved rejection behavior. | Run negative test for `invalid numeric field`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-034 | Error condition `invalid timestamp` is handled with the approved rejection behavior. | Run negative test for `invalid timestamp`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-035 | Error condition `unsupported extra field` is handled with the approved rejection behavior. | Run negative test for `unsupported extra field`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-036 | Error condition `mutation attempt after creation` is handled with the approved rejection behavior. | Run negative test for `mutation attempt after creation`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-B-037 | null candidate rejected | Run boundary/edge test for: null candidate rejected | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-038 | undefined candidate rejected | Run boundary/edge test for: undefined candidate rejected | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-039 | numeric string rejected | Run boundary/edge test for: numeric string rejected | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-040 | NaN and Infinity rejected | Run boundary/edge test for: NaN and Infinity rejected | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-041 | negative market cap rejected | Run boundary/edge test for: negative market cap rejected | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-042 | dominance below 0 or above 100 rejected | Run boundary/edge test for: dominance below 0 or above 100 rejected | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-043 | post-creation field addition rejected | Run boundary/edge test for: post-creation field addition rejected | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
 
 ---
 
-## 7. Functional Acceptance Criteria
+## 5. Architecture Preservation Criteria
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-F-001 | The delivered work implements only the approved MarketData scope defined by TD-001. | Related Technical Design; Related Issue Specification |
-| AC-F-002 | All approved public contracts, interfaces, lifecycle behavior, and component responsibilities from TD-001 are satisfied or explicitly marked not applicable by governance review. | Related Technical Design; Related Issue Specification |
-| AC-F-003 | Inputs, outputs, validation behavior, rejection behavior, and boundary conditions conform to TD-001 without adding unapproved fields, APIs, modules, or responsibilities. | Related Technical Design; Related Issue Specification |
-| AC-F-004 | The implementation preserves approved dependency direction and does not create direct dependencies forbidden by Architecture or TD-001. | Related Technical Design; Related Issue Specification |
-| AC-F-005 | The implementation does not duplicate ownership assigned to another PROJECT365 module or Technical Design. | Related Technical Design; Related Issue Specification |
-
-Functional acceptance criteria must not expand approved scope.
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-AP-001 | No architecture document is modified by implementation. | Review changed files. | No architecture/governance change appears in implementation PR. | Architecture or governance is changed without approval. |
+| AC-AP-002 | No dependency direction changes are introduced. | Review imports, module references, and tests. | Dependencies match TD-001 and Architecture. | Any reverse or unapproved dependency exists. |
+| AC-AP-003 | No responsibility from another module is implemented here. | Review implementation ownership. | Code remains limited to MarketData. | Code duplicates another module responsibility. |
+| AC-AP-004 | Runtime flow remains the flow approved by TD-001. | Review call sequence tests. | Flow matches TD-001. | Flow adds unapproved step or bypass. |
 
 ---
 
-## 8. Non-Functional Acceptance Criteria
+## 6. Overall Acceptance Rule
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-NF-001 | The delivered work preserves the approved Single Source of Truth, Separation of Concerns, explainability, auditability, immutability, and hard-gate rules applicable to MarketData. | Related Technical Design; Related Issue Specification |
-| AC-NF-002 | The delivered work is testable through deterministic checks that do not depend on unapproved implementation behavior. | Related Technical Design; Related Issue Specification |
-| AC-NF-003 | Error handling and invalid or boundary-condition behavior are verifiable against TD-001. | Related Technical Design; Related Issue Specification |
-| AC-NF-004 | The implementation remains maintainable by keeping MarketData responsibilities isolated from unrelated modules. | Related Technical Design; Related Issue Specification |
-| AC-NF-005 | Review evidence demonstrates traceability from BRD, PRD, Architecture, Product Map, ADR, TD-001, ISSUE-001, and this document. | Related Technical Design; Related Issue Specification |
-
-Non-functional acceptance criteria must preserve approved performance, reliability, maintainability, testability, security, explainability, and auditability requirements where applicable.
+AC-001 passes only when every criterion in Sections 4 and 5 passes. Any single failed criterion makes AC-001 fail.
 
 ---
 
-## 9. Validation Rules
-
-Validation rules required for acceptance:
-
-- Required inputs must match the approved input boundaries in TD-001.
-- Required outputs must match the approved output boundaries in TD-001.
-- Rejection behavior must match the approved validation and error-handling rules in TD-001.
-- Boundary conditions must be verified without adding new requirements outside TD-001 and ISSUE-001.
-- Dependency direction checks must confirm compliance with Architecture and TD-001.
-- Traceability checks must confirm that all delivered behavior maps to TD-001, ISSUE-001, and this Acceptance Criteria document.
-
-Validation rules must be deterministic and auditable.
-
----
-
-## 10. Test Requirements
-
-Required test coverage for acceptance:
-
-- Unit test requirements: verify approved MarketData behavior, boundaries, validation, and error handling from TD-001 where applicable.
-- Integration test requirements: verify only approved interactions and dependency direction described by TD-001 and ISSUE-001.
-- Negative test requirements: verify rejection or non-acceptance of invalid inputs, forbidden dependency paths, duplicate ownership, and scope expansion.
-- Regression test requirements: verify that approved behavior remains stable across changes.
-- Documentation verification requirements: verify that TD-001, ISSUE-001, and AC-001 references remain present and consistent.
-
-Tests must validate approved behavior without introducing implementation details outside the related Issue Specification.
-
----
-
-## 11. Out of Scope
-
-This Acceptance Criteria document must not include:
-
-- New business requirements.
-- New product requirements.
-- New architecture decisions.
-- New modules.
-- New technical design responsibilities.
-- Implementation behavior not approved by the related Issue Specification.
-- Acceptance requirements for TD-000 as a standalone implementation issue.
-
----
-
-## 12. Traceability
+## 7. Traceability
 
 | Acceptance Area | Source |
 |-----------------|--------|
@@ -164,27 +110,24 @@ This Acceptance Criteria document must not include:
 | Architecture rules | Architecture; ADR |
 | Product structure and terminology | Product Map; Glossary |
 | Technical design | TD-001 MarketData |
-| Implementation scope | ISSUE-001 MarketData Implementation |
-
-Every acceptance criterion must trace to an approved source.
+| Implementation scope | ISSUE-001 MarketData Contract Implementation |
 
 ---
 
-## 13. References
+## 8. Out of Scope
 
-- BRD
-- PRD
-- Architecture
-- Product Map
-- Glossary
-- ADR
-- TD-001 MarketData Technical Design: `../specs/TD-001-MarketData.md`
-- ISSUE-001 MarketData Implementation Issue Specification: `../issues/ISSUE-001-MarketData.md`
+- New business requirements.
+- New product requirements.
+- New architecture decisions.
+- New modules.
+- New technical design responsibilities.
+- Acceptance requirements not derived from TD-001 and ISSUE-001.
 
 ---
 
-## 14. Change History
+## 9. Change History
 
 | Version | Date | Description |
 |---------|------|-------------|
-| 1.0 | 2026-07-14 | Initial Acceptance Criteria document for AC-001 mapped to ISSUE-001 and TD-001. |
+| 1.0 | 2026-07-14 | Initial Acceptance Criteria document. |
+| 1.1 | 2026-07-14 | Rewritten as binary measurable implementation acceptance criteria. |

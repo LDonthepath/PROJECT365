@@ -6,26 +6,22 @@
 |------|------|
 | Issue ID | ISSUE-006 |
 | Title | Storage Layer Implementation |
-| Status | Not Started |
+| Status | Planned |
 | Priority | High |
 | Owner | PROJECT365 Delivery |
-| Milestone | M3 Data Pipeline |
-| Sprint | Not scheduled |
+| Milestone | Foundation Implementation |
+| Sprint | TBD |
 | Last Updated | 2026-07-14 |
-| Depends On | TD-006 Storage Layer Technical Design |
-| Primary Technical Design | TD-006 |
-| Architectural Prerequisite | TD-000 (Provider Framework) |
+| Depends On | TD-006 |
 | Referenced By | AC-006, Implementation Prompt, Pull Request |
 
 ---
 
 ## 2. Purpose
 
-Define the implementation governance scope for ISSUE-006 Storage Layer Implementation.
+Define the concrete implementation work for Storage Layer derived from exactly one Technical Design: TD-006.
 
-This document defines one implementation unit derived from TD-006 Storage Layer.
-
-It must not redefine business requirements, product requirements, architecture, or technical design.
+This issue does not change architecture, ownership, dependency direction, runtime flow, or module responsibility.
 
 ---
 
@@ -33,159 +29,162 @@ It must not redefine business requirements, product requirements, architecture, 
 
 Included:
 
-- Implement only the approved Storage Layer responsibilities described in TD-006.
-- Preserve the approved domain ownership, dependency direction, Single Source of Truth, Separation of Concerns, explainability, and auditability rules.
-- Implement only contracts, validation behavior, lifecycle behavior, error handling, and interfaces explicitly approved by TD-006.
-- Provide verification evidence required by AC-006.
+- Implement Storage Layer responsibility: persist and retrieve immutable Foundation objects.
+- Implement only the public interfaces listed in this issue.
+- Implement only the data contracts, validation rules, errors, and edge cases enumerated below.
+- Add deterministic tests that prove AC-006 pass/fail criteria.
 
 Excluded:
 
-- Changes to BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, Current Status, or Technical Designs.
-- New modules, new architecture decisions, new product requirements, or unapproved implementation scope.
-- Direct dependencies or ownership changes forbidden by the approved Architecture and TD-006.
+- Architecture changes.
+- New module responsibilities.
+- New dependency direction.
+- Source behavior outside TD-006.
+- Business logic not owned by Storage Layer.
 
 ---
 
-## 4. Background
+## 4. Traceability
 
-ISSUE-006 is part of the PROJECT365 Specification Driven Development workflow. It follows the approved governance chain from BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, Current Status, and TD-006.
+| Implementation Area | TD Requirement |
+|---|---|
+| Module responsibility | TD-006 Design Overview |
+| Public interfaces | TD-006 Public Interfaces |
+| Data contract | TD-006 Data Model |
+| Validation and rejection | TD-006 Error Handling |
+| Lifecycle | TD-006 Internal Flow and Implementation Specification where present |
+| Dependencies | TD-006 Dependencies |
 
-TD-006 defines the technical design for Storage Layer. This Issue Specification converts that approved design into one implementation-governance unit without duplicating or changing the Technical Design.
-
-Reference:
-
-- BRD
-- PRD
-- Architecture
-- Product Map
-- ADR
-- TD-006 Storage Layer
-
-Do not duplicate those documents.
+Every item below maps to TD-006 only.
 
 ---
 
-## 5. Traceability
+## 5. Implementation Breakdown
 
-| Source | Reference |
-|---------|-----------|
-| BRD | Business scope, constraints, and business acceptance expectations |
-| PRD | Functional requirements, non-functional requirements, business rules, and constraints |
-| Architecture | Domain boundaries, dependency rules, data flow, event flow, public contracts, and ownership model |
-| Product Map | Approved product domain, module hierarchy, capability mapping, and terminology |
-| ADR | Specification Driven Development, Single Source of Truth, Separation of Concerns, dependency rules, immutability, event-driven architecture, hard gates, and explainability decisions |
-| Technical Design | TD-006 Storage Layer: `../specs/TD-006-StorageLayer.md` |
+### Step-by-Step Tasks
 
-Every implementation task must be traceable.
+| ID | Task | TD Mapping | Status |
+|----|------|------------|--------|
+| TASK-001 | Build `save(request)` exactly as the public interface for Storage Layer. | TD-006 public interface | Planned |
+| TASK-002 | Build `load(request)` exactly as the public interface for Storage Layer. | TD-006 public interface | Planned |
+| TASK-003 | Build `exists(request)` exactly as the public interface for Storage Layer. | TD-006 public interface | Planned |
+| TASK-004 | Build `delete(request)` exactly as the public interface for Storage Layer. | TD-006 public interface | Planned |
+| TASK-005 | Build `find(request)` exactly as the public interface for Storage Layer. | TD-006 public interface | Planned |
+| TASK-006 | Build `findRange(request)` exactly as the public interface for Storage Layer. | TD-006 public interface | Planned |
+| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-006 Data Model | Planned |
+| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-006 Error Handling | Planned |
+| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-006 Error Handling | Planned |
+| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-006 boundaries and constraints | Planned |
+| TASK-014 | Add tests or checks for every AC-006 criterion. | AC-006 | Planned |
 
----
+### Public Interface Checklist
 
-## 6. Objective
+- [ ] `save(request)` exists and returns only approved outputs.
+- [ ] `load(request)` exists and returns only approved outputs.
+- [ ] `exists(request)` exists and returns only approved outputs.
+- [ ] `delete(request)` exists and returns only approved outputs.
+- [ ] `find(request)` exists and returns only approved outputs.
+- [ ] `findRange(request)` exists and returns only approved outputs.
 
-Deliver an implementation of Storage Layer that conforms to TD-006, preserves approved architecture boundaries, and satisfies AC-006 without introducing unapproved APIs, data fields, responsibilities, or dependencies.
+### Data Contract Checklist
 
----
+- `id`
+- `objectType`
+- `timestamp`
+- `payload`
+- `storedAt`
+- `archived`
+- `contractVersion`
+- `metadata`
 
-## 7. Functional Tasks
+### Validation Checklist
 
-| ID | Task | Status |
-|----|------|--------|
-| TASK-001 | Implement the approved Storage Layer responsibility exactly as defined in TD-006. | Planned |
-| TASK-002 | Preserve all Storage Layer boundaries, ownership rules, and dependency direction from TD-006. | Planned |
-| TASK-003 | Implement approved validation, error handling, lifecycle, and traceability behavior from TD-006. | Planned |
-| TASK-004 | Add tests or verification that demonstrate conformance to TD-006 and AC-006 without expanding scope. | Planned |
+- objectType is MarketData or Snapshot.
+- payload contract matches objectType.
+- object identity is present.
+- timestamp is positive.
+- range toTimestamp is greater than or equal to fromTimestamp.
+- page is greater than 0.
+- pageSize is between 1 and 500.
+- delete archives metadata without mutating payload.
 
----
+### Error Handling Checklist
 
-## 8. Technical Requirements
+- INVALID_REQUEST.
+- UNSUPPORTED_OBJECT_TYPE.
+- INVALID_OBJECT_CONTRACT.
+- MISSING_OBJECT_IDENTITY.
+- DUPLICATE_IDENTITY.
+- IDENTITY_CONFLICT.
+- NOT_FOUND.
+- IMMUTABILITY_VIOLATION.
+- INVALID_RANGE.
+- INVALID_PAGINATION.
+- RETRIEVAL_UNAVAILABLE.
 
-The implementation must conform to TD-006 and must not extend it.
+### Edge Cases
 
-Required governance constraints:
-
-- Contracts must match the public interfaces and data model approved in TD-006.
-- Validation behavior must match the validation, rejection, and boundary rules approved in TD-006.
-- Interfaces must preserve approved consumers, producers, and dependency direction from TD-006.
-- Lifecycle behavior must follow the approved internal flow and error handling from TD-006.
-- Performance, reliability, maintainability, testability, explainability, and auditability considerations must remain within the non-functional considerations approved in TD-006.
-
-Approved dependency references from the Technical Design include:
-
-- BRD.
-- PRD.
-- Architecture.
-- Product Map.
-- ADR.
-
-
-Do not include implementation code in this Issue Specification.
-
----
-
-## 9. Dependencies
-
-- TD-006 Storage Layer Technical Design.
-- BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status.
-- AC-006 acceptance criteria for this Issue Specification.
-- TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
-
----
-
-## 10. Risks
-
-| Risk | Mitigation |
-|------|------------|
-| Scope expansion beyond TD-006. | Reject work that is not traceable to TD-006 and AC-006. |
-| Dependency direction violation. | Verify dependency rules from Architecture and TD-006 before completion. |
-| Duplicate ownership with another module. | Keep responsibility limited to Storage Layer and defer other module behavior to its owning Technical Design. |
-| Acceptance ambiguity. | Use AC-006 as the measurable pass/fail authority for completion. |
+- idempotent save of identical payload succeeds.
+- same id with different payload conflicts.
+- load missing id returns NotFound.
+- empty range returns empty records.
+- archived records excluded by default.
+- equal timestamps ordered by id.
 
 ---
 
-## 11. Out of Scope
+## 6. Dependencies
 
-- Modifying authoritative governance documents or Technical Designs.
-- Implementing behavior owned by another TD or issue.
-- Creating new architecture, product requirements, modules, data fields, public APIs, or dependency paths.
-- Treating TD-000 as an implementation Issue or Acceptance Criteria artifact.
-- Bypassing the official governance chain.
+- TD-006 Technical Design: `../specs/TD-006-StorageLayer.md`.
+- AC-006 Acceptance Criteria.
+- BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status as upstream governance references.
 
 ---
 
-## 12. Deliverables
+## 7. Completion Evidence
 
-- Implementation artifact for the approved Storage Layer scope.
-- Tests or verification evidence required by AC-006.
-- Review evidence showing conformance to TD-006, this Issue Specification, and AC-006.
+Implementation review must provide:
 
----
-
-## 13. Completion Criteria
-
-ISSUE-006 is complete only when the implementation scope has been delivered, reviewed against TD-006, and accepted by AC-006.
-
-Do not duplicate Acceptance Criteria.
+- A checklist showing every public interface implemented.
+- A checklist showing every data contract field implemented or rejected as required.
+- Test evidence for every validation rule.
+- Test evidence for every error outcome.
+- Test evidence for every edge case.
+- Traceability evidence from TD-006 to ISSUE-006 to AC-006.
 
 ---
 
-## 14. References
+## 8. Definition of Done
+
+ISSUE-006 is done only when:
+
+- Every task in this issue is complete.
+- Every public interface checklist item is satisfied.
+- Every data contract checklist item is satisfied.
+- Every validation checklist item has a passing test or deterministic verification.
+- Every error handling checklist item has a passing negative test.
+- Every edge case has a passing test.
+- AC-006 reports PASS for every criterion.
+- No architecture, responsibility, dependency direction, or runtime flow change is introduced.
+
+---
+
+## 9. References
 
 - BRD
 - PRD
 - Architecture
 - Product Map
 - Glossary
-- Architecture Decision Records
-- TD-006 Storage Layer Technical Design: `../specs/TD-006-StorageLayer.md`
-- Roadmap
-- Backlog
-- Current Status
+- ADR
+- TD-006 Technical Design: `../specs/TD-006-StorageLayer.md`
 - AC-006: `../acceptance-criteria/AC-006-StorageLayer.md`
 
 ---
 
-## 15. Change History
+## 10. Change History
 
 | Version | Date | Description |
 |---------|------|-------------|
-| 1.0 | 2026-07-14 | Initial Issue Specification for ISSUE-006 derived from TD-006. |
+| 1.0 | 2026-07-14 | Initial Issue Specification. |
+| 1.1 | 2026-07-14 | Refined into implementation-ready specification with concrete tasks, checklists, edge cases, and Definition of Done. |

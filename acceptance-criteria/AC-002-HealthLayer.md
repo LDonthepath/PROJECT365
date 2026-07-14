@@ -5,7 +5,7 @@
 | Field | Value |
 |------|------|
 | Status | Draft |
-| Version | 1.0 |
+| Version | 1.1 |
 | Owner | PROJECT365 Delivery |
 | Last Updated | 2026-07-14 |
 | Depends On | BRD, PRD, Architecture, Product Map, ADR, TD-002, ISSUE-002 |
@@ -15,147 +15,74 @@
 
 ## 2. Purpose
 
-Define measurable acceptance criteria for AC-002, validating ISSUE-002 Health Layer Implementation against TD-002 Health Layer.
+Define binary PASS/FAIL acceptance criteria for ISSUE-002 Health Layer Implementation against TD-002 Health Layer.
 
-This document translates approved Technical Design and Issue Specification requirements into measurable acceptance criteria.
-
-Do not redefine business requirements, product requirements, architecture, technical design, or implementation scope.
+Every criterion has an expected result, verification method, pass condition, and fail condition.
 
 ---
 
-## 3. Scope
-
-This Acceptance Criteria document validates:
-
-- The related module or issue: ISSUE-002 Health Layer Implementation.
-- Functional acceptance boundaries approved by TD-002 and ISSUE-002.
-- Non-functional acceptance boundaries approved by TD-002 and ISSUE-002.
-- Validation expectations for approved inputs, outputs, rejection behavior, boundary conditions, dependencies, and traceability.
-- Test expectations needed to verify conformance without prescribing implementation internals.
-
-Exclude anything not approved by the related Technical Design and Issue Specification.
-
----
-
-## 4. Dependencies
-
-Authoritative inputs:
-
-- BRD.
-- PRD.
-- Architecture.
-- Product Map.
-- Glossary.
-- ADR.
-- TD-002 Health Layer Technical Design.
-- ISSUE-002 Health Layer Implementation Issue Specification.
-
-No acceptance criterion may introduce unapproved product scope, architecture, module ownership, or implementation behavior.
-
----
-
-## 5. Related Technical Design
-
-Identify the related Technical Design.
+## 3. Related Documents
 
 | Field | Value |
 |------|------|
 | Technical Design ID | TD-002 |
 | Technical Design Name | Health Layer |
-| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-002-HealthLayer.md` |
-
-Acceptance criteria must remain fully traceable to this Technical Design.
-
----
-
-## 6. Related Issue Specification
-
-Identify the related Issue Specification.
-
-| Field | Value |
-|------|------|
 | Issue ID | ISSUE-002 |
 | Issue Name | Health Layer Implementation |
-| Issue Status | Planned |
 | Issue Specification Path | `../issues/ISSUE-002-HealthLayer.md` |
 
-Acceptance criteria must remain fully traceable to this Issue Specification.
+---
+
+## 4. Binary Acceptance Criteria
+
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-F-001 | Health Layer exposes or validates required contract field `status` exactly as specified by TD-002. | Inspect implementation and run contract test for `status`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-002 | Health Layer exposes or validates required contract field `timestamp` exactly as specified by TD-002. | Inspect implementation and run contract test for `timestamp`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-003 | Health Layer exposes or validates required contract field `ageMs` exactly as specified by TD-002. | Inspect implementation and run contract test for `ageMs`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-004 | Health Layer exposes or validates required contract field `ageMinutes` exactly as specified by TD-002. | Inspect implementation and run contract test for `ageMinutes`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-005 | Health Layer exposes or validates required contract field `ttlMs` exactly as specified by TD-002. | Inspect implementation and run contract test for `ttlMs`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-006 | Health Layer exposes or validates required contract field `ttlMinutes` exactly as specified by TD-002. | Inspect implementation and run contract test for `ttlMinutes`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-007 | Health Layer exposes or validates required contract field `isFresh` exactly as specified by TD-002. | Inspect implementation and run contract test for `isFresh`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-008 | Health Layer exposes or validates required contract field `isStale` exactly as specified by TD-002. | Inspect implementation and run contract test for `isStale`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-009 | Health Layer exposes or validates required contract field `isInvalid` exactly as specified by TD-002. | Inspect implementation and run contract test for `isInvalid`. | Field is present for valid output or rejected when absent from required input. | Field is missing, renamed, optional when required, or accepted with invalid shape. |
+| AC-F-010 | Public interface `validate(marketData)` is available and returns only approved success or failure outputs. | Run unit test invoking `validate(marketData)`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-F-011 | Public interface `getStatus()` is available and returns only approved success or failure outputs. | Run unit test invoking `getStatus()`. | Call succeeds for valid input and returns approved schema. | Interface missing or returns unapproved schema. |
+| AC-V-012 | MarketData contract completeness is checked | Run validation test for: MarketData contract completeness is checked | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-013 | FRESH is returned when valid data age is within ttlMs | Run validation test for: FRESH is returned when valid data age is within ttlMs | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-014 | STALE is returned when valid data age exceeds ttlMs | Run validation test for: STALE is returned when valid data age exceeds ttlMs | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-015 | INVALID is returned when MarketData violates contract rules | Run validation test for: INVALID is returned when MarketData violates contract rules | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-016 | MarketData input is never mutated | Run validation test for: MarketData input is never mutated | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-V-017 | ttlMs defaults to 300000 | Run validation test for: ttlMs defaults to 300000 | Expected result occurs exactly. | Expected result does not occur or requires interpretation. |
+| AC-E-018 | Error condition `invalid MarketData returns INVALID status` is handled with the approved rejection behavior. | Run negative test for `invalid MarketData returns INVALID status`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-019 | Error condition `missing MarketData returns INVALID status` is handled with the approved rejection behavior. | Run negative test for `missing MarketData returns INVALID status`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-E-020 | Error condition `invalid fetchedAt returns INVALID status` is handled with the approved rejection behavior. | Run negative test for `invalid fetchedAt returns INVALID status`. | Approved error/rejection result is returned without side effects. | Invalid input is accepted, wrong error is returned, or side effect occurs. |
+| AC-B-021 | exactly ttlMs old is FRESH | Run boundary/edge test for: exactly ttlMs old is FRESH | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-022 | ttlMs plus 1 millisecond is STALE | Run boundary/edge test for: ttlMs plus 1 millisecond is STALE | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-023 | future fetchedAt is INVALID | Run boundary/edge test for: future fetchedAt is INVALID | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
+| AC-B-024 | missing required MarketData field is INVALID | Run boundary/edge test for: missing required MarketData field is INVALID | Observed behavior matches criterion exactly. | Observed behavior differs or is undefined. |
 
 ---
 
-## 7. Functional Acceptance Criteria
+## 5. Architecture Preservation Criteria
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-F-001 | The delivered work implements only the approved Health Layer scope defined by TD-002. | Related Technical Design; Related Issue Specification |
-| AC-F-002 | All approved public contracts, interfaces, lifecycle behavior, and component responsibilities from TD-002 are satisfied or explicitly marked not applicable by governance review. | Related Technical Design; Related Issue Specification |
-| AC-F-003 | Inputs, outputs, validation behavior, rejection behavior, and boundary conditions conform to TD-002 without adding unapproved fields, APIs, modules, or responsibilities. | Related Technical Design; Related Issue Specification |
-| AC-F-004 | The implementation preserves approved dependency direction and does not create direct dependencies forbidden by Architecture or TD-002. | Related Technical Design; Related Issue Specification |
-| AC-F-005 | The implementation does not duplicate ownership assigned to another PROJECT365 module or Technical Design. | Related Technical Design; Related Issue Specification |
-
-Functional acceptance criteria must not expand approved scope.
+| ID | Expected Result | Verification Method | Pass Condition | Fail Condition |
+|----|-----------------|---------------------|----------------|----------------|
+| AC-AP-001 | No architecture document is modified by implementation. | Review changed files. | No architecture/governance change appears in implementation PR. | Architecture or governance is changed without approval. |
+| AC-AP-002 | No dependency direction changes are introduced. | Review imports, module references, and tests. | Dependencies match TD-002 and Architecture. | Any reverse or unapproved dependency exists. |
+| AC-AP-003 | No responsibility from another module is implemented here. | Review implementation ownership. | Code remains limited to Health Layer. | Code duplicates another module responsibility. |
+| AC-AP-004 | Runtime flow remains the flow approved by TD-002. | Review call sequence tests. | Flow matches TD-002. | Flow adds unapproved step or bypass. |
 
 ---
 
-## 8. Non-Functional Acceptance Criteria
+## 6. Overall Acceptance Rule
 
-| ID | Acceptance Criterion | Source |
-|----|---------------------|--------|
-| AC-NF-001 | The delivered work preserves the approved Single Source of Truth, Separation of Concerns, explainability, auditability, immutability, and hard-gate rules applicable to Health Layer. | Related Technical Design; Related Issue Specification |
-| AC-NF-002 | The delivered work is testable through deterministic checks that do not depend on unapproved implementation behavior. | Related Technical Design; Related Issue Specification |
-| AC-NF-003 | Error handling and invalid or boundary-condition behavior are verifiable against TD-002. | Related Technical Design; Related Issue Specification |
-| AC-NF-004 | The implementation remains maintainable by keeping Health Layer responsibilities isolated from unrelated modules. | Related Technical Design; Related Issue Specification |
-| AC-NF-005 | Review evidence demonstrates traceability from BRD, PRD, Architecture, Product Map, ADR, TD-002, ISSUE-002, and this document. | Related Technical Design; Related Issue Specification |
-
-Non-functional acceptance criteria must preserve approved performance, reliability, maintainability, testability, security, explainability, and auditability requirements where applicable.
+AC-002 passes only when every criterion in Sections 4 and 5 passes. Any single failed criterion makes AC-002 fail.
 
 ---
 
-## 9. Validation Rules
-
-Validation rules required for acceptance:
-
-- Required inputs must match the approved input boundaries in TD-002.
-- Required outputs must match the approved output boundaries in TD-002.
-- Rejection behavior must match the approved validation and error-handling rules in TD-002.
-- Boundary conditions must be verified without adding new requirements outside TD-002 and ISSUE-002.
-- Dependency direction checks must confirm compliance with Architecture and TD-002.
-- Traceability checks must confirm that all delivered behavior maps to TD-002, ISSUE-002, and this Acceptance Criteria document.
-
-Validation rules must be deterministic and auditable.
-
----
-
-## 10. Test Requirements
-
-Required test coverage for acceptance:
-
-- Unit test requirements: verify approved Health Layer behavior, boundaries, validation, and error handling from TD-002 where applicable.
-- Integration test requirements: verify only approved interactions and dependency direction described by TD-002 and ISSUE-002.
-- Negative test requirements: verify rejection or non-acceptance of invalid inputs, forbidden dependency paths, duplicate ownership, and scope expansion.
-- Regression test requirements: verify that approved behavior remains stable across changes.
-- Documentation verification requirements: verify that TD-002, ISSUE-002, and AC-002 references remain present and consistent.
-
-Tests must validate approved behavior without introducing implementation details outside the related Issue Specification.
-
----
-
-## 11. Out of Scope
-
-This Acceptance Criteria document must not include:
-
-- New business requirements.
-- New product requirements.
-- New architecture decisions.
-- New modules.
-- New technical design responsibilities.
-- Implementation behavior not approved by the related Issue Specification.
-- Acceptance requirements for TD-000 as a standalone implementation issue.
-
----
-
-## 12. Traceability
+## 7. Traceability
 
 | Acceptance Area | Source |
 |-----------------|--------|
@@ -166,25 +93,22 @@ This Acceptance Criteria document must not include:
 | Technical design | TD-002 Health Layer |
 | Implementation scope | ISSUE-002 Health Layer Implementation |
 
-Every acceptance criterion must trace to an approved source.
+---
+
+## 8. Out of Scope
+
+- New business requirements.
+- New product requirements.
+- New architecture decisions.
+- New modules.
+- New technical design responsibilities.
+- Acceptance requirements not derived from TD-002 and ISSUE-002.
 
 ---
 
-## 13. References
-
-- BRD
-- PRD
-- Architecture
-- Product Map
-- Glossary
-- ADR
-- TD-002 Health Layer Technical Design: `../specs/TD-002-HealthLayer.md`
-- ISSUE-002 Health Layer Implementation Issue Specification: `../issues/ISSUE-002-HealthLayer.md`
-
----
-
-## 14. Change History
+## 9. Change History
 
 | Version | Date | Description |
 |---------|------|-------------|
-| 1.0 | 2026-07-14 | Initial Acceptance Criteria document for AC-002 mapped to ISSUE-002 and TD-002. |
+| 1.0 | 2026-07-14 | Initial Acceptance Criteria document. |
+| 1.1 | 2026-07-14 | Rewritten as binary measurable implementation acceptance criteria. |
