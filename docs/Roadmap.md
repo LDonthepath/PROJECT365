@@ -94,8 +94,8 @@ The Roadmap identifies milestone sequencing. The Backlog tracks delivery work ag
 | M3 | Data Pipeline | TD-004 Data Service; TD-005 Event Bus; TD-006 Storage Layer; ISSUE-004 Data Service; ISSUE-005 Event Bus; ISSUE-006 Storage Layer | PRD Product Roadmap |
 | M4 | Delta Layer | TD-007 Delta Engine; TD-008 Triad Liquidity Framework; TD-009 Regime Engine; ISSUE-007 Delta Engine; ISSUE-008 Triad Liquidity Framework; ISSUE-009 Regime Engine | PRD Product Roadmap |
 | M5 | Intelligence Layer | TD-010 LDS Engine; TD-011 Capital Flow Engine; TD-012 Market State Engine; TD-013 Confidence Engine; TD-014 OMS Engine; ISSUE-010 LDS Engine; ISSUE-011 Capital Flow Engine; ISSUE-012 Market State Engine; ISSUE-013 Confidence Engine; ISSUE-014 OMS Engine | PRD Product Roadmap |
-| M6 | Dashboard & API | TD-015 Exposure Engine; TD-016 Portfolio Engine; TD-017 Risk Engine; TD-018 Cluster Rotation Engine; TD-019 Decision Log; TD-020 Validation Framework; TD-021 Champion-Challenger Framework; TD-022 Model Versioning; TD-023 Rollback Framework; TD-024 Dashboard; TD-025 Inspector; TD-026 Explainability; TD-027 Historical Explorer; TD-028 Settings | PRD Product Roadmap |
-| M7 | Portfolio Layer | ISSUE-015 Exposure Engine through ISSUE-028 Settings | PRD Product Roadmap |
+| M6 | Portfolio, Governance, and Presentation | TD-015 Exposure Engine; TD-016 Portfolio Engine; TD-017 Risk Engine; TD-018 Cluster Rotation Engine; TD-019 Decision Log; TD-020 Validation Framework; TD-021 Champion-Challenger Framework; TD-022 Model Versioning; TD-023 Rollback Framework; TD-024 Dashboard; TD-025 Inspector; TD-026 Explainability; TD-027 Historical Explorer; TD-028 Settings | PRD Product Roadmap |
+| M7 | Portfolio, Governance, and Presentation Implementation | ISSUE-015 Exposure Engine through ISSUE-028 Settings | PRD Product Roadmap |
 
 ## 7. Approved Technical Design Sequence
 
@@ -157,7 +157,7 @@ Future releases are limited to the remaining approved milestones after the Curre
 - M3 Data Pipeline
 - M4 Delta Layer
 - M5 Intelligence Layer
-- M6 Dashboard & API
+- M6 Portfolio, Governance, and Presentation
 - M7 Portfolio Layer
 
 ## 12. Out of Scope

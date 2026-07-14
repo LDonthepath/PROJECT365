@@ -41,6 +41,7 @@ Purpose: Provide trusted, immutable, and validated market data.
 
 Modules:
 
+- Provider Framework
 - Data Service
 - MarketData Contract
 - Health Layer
@@ -256,13 +257,13 @@ The PRD roadmap is the authoritative product roadmap for PRD-level requirements.
 | Milestone | Name | Scope |
 | --- | --- | --- |
 | M0 | Product Blueprint | BRD; PRD; Architecture; Product Map; Feature Map; Roadmap; Glossary |
-| M1 | Foundation Specification | TD-001 MarketData Contract; TD-002 Health Layer; TD-003 Snapshot Engine |
+| M1 | Foundation Specification | TD-000 Provider Framework; TD-001 MarketData Contract; TD-002 Health Layer; TD-003 Snapshot Engine |
 | M2 | Foundation Implementation | ISSUE-001 MarketData Implementation; ISSUE-002 Health Layer Implementation; ISSUE-003 Snapshot Engine Implementation |
-| M3 | Data Pipeline | TD-004 Data Service; TD-005 CoinGecko Adapter; TD-006 Event Bus; ISSUE-004 Data Service; ISSUE-005 CoinGecko Adapter; ISSUE-006 Event Bus |
-| M4 | Delta Layer | TD-007 Delta Engine; TD-008 Anchor Lifecycle; TD-009 Snapshot Cache; ISSUE-007 Delta Engine; ISSUE-008 Anchor Lifecycle; ISSUE-009 Snapshot Cache |
-| M5 | Intelligence Layer | TD-010 Regime Engine; TD-011 LDS Engine; TD-012 Capital Flow Engine; TD-013 Market State Engine; TD-014 Confidence Engine; TD-015 OMS Engine; ISSUE-010 Regime Engine; ISSUE-011 LDS Engine; ISSUE-012 Capital Flow Engine; ISSUE-013 Market State Engine; ISSUE-014 Confidence Engine; ISSUE-015 OMS Engine |
-| M6 | Dashboard & API | TD-016 API Layer; TD-017 Dashboard Backend; TD-018 Dashboard Frontend; TD-019 Authentication; ISSUE-016 API Layer; ISSUE-017 Dashboard Backend; ISSUE-018 Dashboard Frontend; ISSUE-019 Authentication |
-| M7 | Portfolio Layer | TD-020 Cluster Rotation Engine; TD-021 Portfolio Engine; TD-022 Risk Engine; ISSUE-020 Cluster Rotation Engine; ISSUE-021 Portfolio Engine; ISSUE-022 Risk Engine |
+| M3 | Data Pipeline | TD-004 Data Service; TD-005 Event Bus; TD-006 Storage Layer; ISSUE-004 Data Service; ISSUE-005 Event Bus; ISSUE-006 Storage Layer |
+| M4 | Delta Layer | TD-007 Delta Engine; TD-008 Triad Liquidity Framework; TD-009 Regime Engine; ISSUE-007 Delta Engine; ISSUE-008 Triad Liquidity Framework; ISSUE-009 Regime Engine |
+| M5 | Intelligence Layer | TD-010 LDS Engine; TD-011 Capital Flow Engine; TD-012 Market State Engine; TD-013 Confidence Engine; TD-014 OMS Engine; ISSUE-010 LDS Engine; ISSUE-011 Capital Flow Engine; ISSUE-012 Market State Engine; ISSUE-013 Confidence Engine; ISSUE-014 OMS Engine |
+| M6 | Portfolio, Governance, and Presentation Technical Designs | TD-015 Exposure Engine; TD-016 Portfolio Engine; TD-017 Risk Engine; TD-018 Cluster Rotation Engine; TD-019 Decision Log; TD-020 Validation Framework; TD-021 Champion-Challenger Framework; TD-022 Model Versioning; TD-023 Rollback Framework; TD-024 Dashboard; TD-025 Inspector; TD-026 Explainability; TD-027 Historical Explorer; TD-028 Settings |
+| M7 | Portfolio, Governance, and Presentation Implementation | ISSUE-015 Exposure Engine through ISSUE-028 Settings |
 
 Current focus: M2 Foundation Implementation, ISSUE-001 MarketData Implementation.
 
@@ -306,6 +307,7 @@ Current focus: M2 Foundation Implementation, ISSUE-001 MarketData Implementation
 | --- | --- | --- |
 | 1.0 | 2026-07-13 | Initial PRD draft. |
 | 1.1 | 2026-07-13 | Normalized PRD against the BRD, Glossary, Architecture, Product Map, ADRs, and Backlog; removed duplicated and contradictory statements; separated business, functional, and non-functional requirements. |
+| 1.2 | 2026-07-14 | Synchronized the product roadmap to the approved TD-000 through TD-028 sequence and removed active deprecated delivery terms. |
 
 ---
 
@@ -318,41 +320,6 @@ Current focus: M2 Foundation Implementation, ISSUE-001 MarketData Implementation
 
 ---
 
-## Remaining Documentation Issues
+## Documentation Synchronization
 
-The inconsistencies below remain outside this PRD and require future documentation work. This PRD does not resolve them by changing product scope.
-
-| Document | Conflicting Section | Conflict |
-| --- | --- | --- |
-| [BRD](./BRD.md) | §17 Roadmap | Uses the Milestone 0 through Milestone 8 sequence: Product Blueprint, Foundation Edition, Delta Edition, Triad Edition, Regime Edition, Dashboard Edition, Intelligence Edition, Portfolio Edition, Advanced Edition. |
-| [Roadmap](./Roadmap.md) | Milestone 0 through Milestone 8 | Uses the same edition-based Milestone 0 through Milestone 8 sequence as BRD §17. |
-| [Backlog](./Backlog.md) | M0 through M7 | Uses a delivery-work sequence: Product Blueprint, Foundation Specification, Foundation Implementation, Data Pipeline, Delta Layer, Intelligence Layer, Dashboard & API, Portfolio Layer. |
-| [BRD](./BRD.md) | §17 Roadmap, Milestone 1 — Foundation Edition | Lists MarketData, Health Layer, and Snapshot Engine as milestone scope. |
-| [Roadmap](./Roadmap.md) | Milestone 1 — Foundation Edition | Lists MarketData, Health Layer, and Snapshot Engine as milestone scope. |
-| [Backlog](./Backlog.md) | M1 - Foundation Specification and M2 - Foundation Implementation | Splits Foundation work into separate specification and implementation milestones, unlike BRD §17 and Roadmap Milestone 1. |
-| [BRD](./BRD.md) | §17 Roadmap, Milestone 2 — Delta Edition | Lists Delta Engine and Anchor Service. |
-| [Roadmap](./Roadmap.md) | Milestone 2 — Delta Edition | Lists Delta Engine and Anchor Service. |
-| [Backlog](./Backlog.md) | M3 - Data Pipeline and M4 - Delta Layer | Inserts Data Pipeline before Delta Layer and lists Anchor Lifecycle and Snapshot Cache instead of Anchor Service. |
-| [BRD](./BRD.md) | §17 Roadmap, Milestone 3 — Triad Edition | Lists Triad Liquidity Framework as a standalone milestone. |
-| [Roadmap](./Roadmap.md) | Milestone 3 — Triad Edition | Lists Triad Liquidity Framework as a standalone milestone. |
-| [Backlog](./Backlog.md) | M5 - Intelligence Layer | Does not list a standalone Triad Liquidity Framework milestone. |
-| [BRD](./BRD.md) | §17 Roadmap, Milestone 4 — Regime Edition | Lists Regime Engine and Exposure Management. |
-| [Roadmap](./Roadmap.md) | Milestone 4 — Regime Edition | Lists Regime Engine and Exposure Management. |
-| [Backlog](./Backlog.md) | M5 - Intelligence Layer and M7 - Portfolio Layer | Places Regime Engine in Intelligence Layer and portfolio-related work in Portfolio Layer; does not use the term Exposure Management. |
-| [BRD](./BRD.md) | §17 Roadmap, Milestone 5 — Dashboard Edition | Lists Dashboard, Explainability, and Inspector. |
-| [Roadmap](./Roadmap.md) | Milestone 5 — Dashboard Edition | Lists Dashboard, Explainability, and Inspector. |
-| [Backlog](./Backlog.md) | M6 - Dashboard & API | Adds API Layer and Authentication delivery items that are not named as PRD product requirements. |
-| [BRD](./BRD.md) | §17 Roadmap, Milestone 7 — Portfolio Edition | Lists Exposure Recommendation, Decision Log, and Cluster Rotation. |
-| [Roadmap](./Roadmap.md) | Milestone 7 — Portfolio Edition | Lists Exposure Recommendation, Decision Log, and Cluster Rotation. |
-| [Backlog](./Backlog.md) | M7 - Portfolio Layer | Lists Cluster Rotation Engine, Portfolio Engine, and Risk Engine, but does not list Exposure Recommendation or Decision Log. |
-| [BRD](./BRD.md) | §17 Roadmap, Milestone 8 — Advanced Edition | Lists Governance, Champion-Challenger, and AI Meta. |
-| [Roadmap](./Roadmap.md) | Milestone 8 — Advanced Edition | Lists Governance, Champion-Challenger, and AI Meta. |
-| [Backlog](./Backlog.md) | M0 through M7 | Does not include an M8 Advanced Edition milestone. |
-| [Architecture](./Architecture.md) | Architecture Philosophy | Uses the term Modular Design. |
-| [BRD](./BRD.md) | §13 Business Constraints, Architecture Constraints | Uses the term Modular Architecture. |
-| [Architecture](./Architecture.md) | Layer 1 — Foundation, Components | Uses the component name Storage. |
-| [BRD](./BRD.md), [Product Map](./ProductMap.md), and this PRD | Foundation Domain modules | Use the module name Storage Layer. |
-| [Backlog](./Backlog.md) | M3 - Data Pipeline | Lists CoinGecko Adapter as delivery work. |
-| [BRD](./BRD.md), [Product Map](./ProductMap.md), and this PRD | Product domains and functional requirements | Do not define CoinGecko Adapter as a product requirement. |
-| [Backlog](./Backlog.md) | M4 - Delta Layer | Lists Snapshot Cache as delivery work. |
-| [BRD](./BRD.md), [Product Map](./ProductMap.md), and this PRD | Product domains and functional requirements | Do not define Snapshot Cache as a product requirement. |
+The PRD roadmap, Roadmap, Backlog, Current Status, Architecture, Product Map, Glossary, ADR, and TD-000 through TD-028 use the normalized TD sequence and approved Glossary terminology. Deprecated or delivery-only terms remain documented only in the Glossary for historical reference and must not define active product scope.

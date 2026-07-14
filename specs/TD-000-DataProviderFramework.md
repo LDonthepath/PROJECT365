@@ -301,10 +301,11 @@ Dependency rules:
 
 - External Sources may be accessed only through Provider Framework.
 - Provider Framework may provide contracts and provider infrastructure to Data Service.
-- Data Service depends on Provider Framework and MarketData Contract.
-- MarketData Contract is downstream of Data Service output.
+- Data Service depends on Provider Framework and the MarketData Contract definition.
+- MarketData records are downstream outputs of Data Service.
+- MarketData Contract has no runtime dependency on Data Service.
 - Health Layer depends on MarketData Contract only for provider-derived data.
-- Snapshot Engine depends on MarketData Contract and Health Status.
+- Snapshot Engine depends on Health Layer validation output and the validated MarketData reference carried by that output.
 - Health Layer must not access providers.
 - Snapshot Engine must not access providers.
 - Provider Framework must not contain business logic.
@@ -464,6 +465,15 @@ Implementation guidance:
 - Keep retry and rate limit behavior at the provider boundary and expose only standardized metadata or errors to Data Service.
 - Keep normalization at the boundary required to produce provider-agnostic Provider Results; MarketData creation remains Data Service responsibility.
 - Add new providers through registration and extension mechanisms that do not alter downstream consumers.
+
+Acceptance Criteria:
+
+- Provider Framework exposes provider abstraction, registration, metadata, result, error, and lifecycle contracts only.
+- Provider Framework does not create MarketData records.
+- Provider Framework does not evaluate Health Status.
+- Data Service remains the only approved consumer that orchestrates providers through the Provider Framework.
+- External provider access is rejected when attempted outside the Provider Framework and Data Service boundary.
+- Adding a provider requires no downstream dependency changes outside approved provider registration metadata.
 
 No source code, implementation algorithm, or issue-level task breakdown is defined by this Technical Design.
 

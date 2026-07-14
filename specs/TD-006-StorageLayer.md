@@ -321,7 +321,7 @@ Implementation guidance:
 - Keep contract definitions in TD-001 and TD-003.
 - Keep downstream consumers from mutating stored records.
 
-Acceptance criteria:
+Acceptance Criteria:
 
 - Storage Layer defines upstream Snapshot Engine and MarketData dependencies.
 - Storage Layer defines downstream consumers.

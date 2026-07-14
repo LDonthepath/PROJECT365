@@ -322,7 +322,7 @@ Implementation guidance:
 - Keep subscriptions constrained by dependency direction.
 - Keep payloads as references to approved contracts or immutable objects where applicable.
 
-Acceptance criteria:
+Acceptance Criteria:
 
 - Event Bus defines upstream Foundation event ownership.
 - Event Bus defines downstream domain consumers.

@@ -141,8 +141,9 @@ Historical Explorer defines or owns the Historical View contract and consumes up
 
 Consumed contracts:
 
-- Approved read-only historical records obtained through Storage read interfaces.
-- Governance Decision Records.
+- Approved historical records obtained through approved read-only query boundaries.
+- Approved Governance Outputs.
+- Presentation read-only context.
 
 Produced contract:
 
@@ -182,8 +183,9 @@ Publish Historical View to approved downstream consumers
 
 Inputs:
 
-- Approved read-only historical records obtained through Storage read interfaces.
-- Governance Decision Records.
+- Approved historical records obtained through approved read-only query boundaries.
+- Approved Governance Outputs.
+- Presentation read-only context.
 
 Outputs:
 
@@ -230,28 +232,25 @@ Expected behavior:
 
 ## 10. Internal Flow
 
-1. Receive upstream input from approved dependency: TD-026 Explainability.
+1. Receive approved Governance output and read-only Presentation context.
 2. Validate input completeness, version, source references, and dependency order.
 3. Reject invalid input without fabricating missing data.
 4. Execute only the approved Historical Explorer presentation responsibility.
 5. Preserve reasons and upstream references for explainability.
 6. Produce Historical View with validation status and audit metadata.
-7. Expose Historical View to downstream consumers: TD-028 Settings.
+7. Expose Historical View as a read-only Presentation output without making sibling Presentation modules depend on it for business logic.
 
 Approved dependency position:
 
 ```text
 TD-023 Rollback Framework
 ↓
-TD-024 Dashboard
-↓
-TD-025 Inspector
-↓
-TD-026 Explainability
-↓
-TD-027 Historical Explorer
-↓
-TD-028 Settings
+Presentation read-only context
+├── TD-024 Dashboard
+├── TD-025 Inspector
+├── TD-026 Explainability
+├── TD-027 Historical Explorer
+└── TD-028 Settings
 ```
 
 ---
@@ -334,13 +333,13 @@ Upstream dependencies:
 - Product Map.
 - Glossary.
 - ADR.
-- TD-026 Explainability.
-- Approved read-only historical records obtained through Storage read interfaces.
-- Governance Decision Records.
+- Approved historical records obtained through approved read-only query boundaries.
+- Approved Governance Outputs.
+- Presentation read-only context.
 
 Downstream consumers:
 
-- TD-028 Settings.
+- Presentation read-only context.
 
 ---
 
@@ -361,7 +360,7 @@ Downstream consumers:
 - Preserve Explainability.
 - Preserve Auditability.
 - Preserve approved dependency direction.
-- Presentation depends only on approved Governance outputs and approved upstream Presentation outputs.
+- Presentation modules are sibling experiences that depend only on approved Governance outputs and read-only Presentation context.
 - Presentation never performs business logic.
 - Presentation never calculates market intelligence.
 - Presentation never changes portfolio recommendations.

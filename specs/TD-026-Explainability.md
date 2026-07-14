@@ -139,7 +139,8 @@ Explainability defines or owns the Explainability View contract and consumes ups
 
 Consumed contracts:
 
-- Governance Decision Records.
+- Approved Governance Outputs.
+- Presentation read-only context.
 
 Produced contract:
 
@@ -179,7 +180,8 @@ Publish Explainability View to approved downstream consumers
 
 Inputs:
 
-- Governance Decision Records.
+- Approved Governance Outputs.
+- Presentation read-only context.
 
 Outputs:
 
@@ -226,28 +228,25 @@ Expected behavior:
 
 ## 10. Internal Flow
 
-1. Receive upstream input from approved dependency: TD-025 Inspector.
+1. Receive approved Governance output and read-only Presentation context.
 2. Validate input completeness, version, source references, and dependency order.
 3. Reject invalid input without fabricating missing data.
 4. Execute only the approved Explainability presentation responsibility.
 5. Preserve reasons and upstream references for explainability.
 6. Produce Explainability View with validation status and audit metadata.
-7. Expose Explainability View to downstream consumers: TD-027 Historical Explorer.
+7. Expose Explainability View as a read-only Presentation output without making sibling Presentation modules depend on it for business logic.
 
 Approved dependency position:
 
 ```text
 TD-023 Rollback Framework
 ↓
-TD-024 Dashboard
-↓
-TD-025 Inspector
-↓
-TD-026 Explainability
-↓
-TD-027 Historical Explorer
-↓
-TD-028 Settings
+Presentation read-only context
+├── TD-024 Dashboard
+├── TD-025 Inspector
+├── TD-026 Explainability
+├── TD-027 Historical Explorer
+└── TD-028 Settings
 ```
 
 ---
@@ -330,12 +329,12 @@ Upstream dependencies:
 - Product Map.
 - Glossary.
 - ADR.
-- TD-025 Inspector.
-- Governance Decision Records.
+- Approved Governance Outputs.
+- Presentation read-only context.
 
 Downstream consumers:
 
-- TD-027 Historical Explorer.
+- Presentation read-only context.
 
 ---
 
@@ -356,7 +355,7 @@ Downstream consumers:
 - Preserve Explainability.
 - Preserve Auditability.
 - Preserve approved dependency direction.
-- Presentation depends only on approved Governance outputs and approved upstream Presentation outputs.
+- Presentation modules are sibling experiences that depend only on approved Governance outputs and read-only Presentation context.
 - Presentation never performs business logic.
 - Presentation never calculates market intelligence.
 - Presentation never changes portfolio recommendations.

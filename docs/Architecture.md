@@ -259,11 +259,34 @@ PROJECT365 follows these dependency rules:
 - Governance supports explainability and auditability but never calculates scores.
 - Presentation contains no business logic.
 - Foundation is the Single Source of Truth.
-- Providers are never accessed outside the Data Service.
+- Providers are never accessed outside the Data Service through the Provider Framework.
 - Health Layer depends only on MarketData.
-- Snapshot Engine depends only on Health Layer output.
+- Snapshot Engine depends on Health Layer validation output and the validated MarketData reference carried by that output; it must not consume unvalidated MarketData.
 - Implementation must not add features that are not specified.
 - Architecture must not change without approval.
+
+
+The approved Foundation runtime dependency chain is:
+
+```text
+External Providers
+↓
+Provider Framework
+↓
+Data Service
+↓
+MarketData Contract
+↓
+Health Layer
+↓
+Snapshot Engine
+```
+
+TD numbering may document stable contracts before their producers, but runtime dependencies must follow the chain above. MarketData Contract is a contract dependency for Data Service and a produced immutable record from Data Service; the contract itself has no runtime dependency on Data Service.
+
+Event Bus and Storage Layer are constrained Foundation sidecar modules. They may publish approved immutable events or persist approved Foundation objects, but they must not invert dependency direction, calculate intelligence, or grant Portfolio Intelligence direct Foundation access.
+
+Presentation modules are sibling user-facing experiences. They may share approved read-only presentation context and consume approved Governance outputs, but they must not depend on another Presentation module's rendered view as a business or intelligence input.
 
 ## 11. Data Flow
 
@@ -295,7 +318,7 @@ Presentation Domain
 User Decision Support
 ```
 
-The Provider Framework defines the approved provider abstraction, normalization boundary, provider registry, and provider lifecycle. Data Service orchestrates provider aggregation through the Provider Framework and produces MarketData. MarketData is the immutable representation of market data from a single fetch. Health Layer depends only on MarketData. Snapshot Engine depends only on Health Layer output. Snapshots are immutable representations of market state at specific reference times. Deltas are calculated from snapshots and are used by Market Intelligence. Portfolio Intelligence consumes market intelligence outputs rather than accessing Foundation directly.
+The Provider Framework defines the approved provider abstraction, normalization boundary, provider registry, and provider lifecycle. Data Service orchestrates provider aggregation through the Provider Framework and produces MarketData. MarketData is the immutable representation of market data from a single fetch. Health Layer depends only on MarketData. Snapshot Engine depends on Health Layer validation output and the validated MarketData reference carried by that output. Snapshots are immutable representations of market state at specific reference times. Deltas are calculated from snapshots and are used by Market Intelligence. Portfolio Intelligence consumes market intelligence outputs rather than accessing Foundation directly.
 
 ## 12. Event Flow
 
@@ -406,7 +429,7 @@ Foundation v0.1 excludes:
 | Scope and domains | BRD §10; PRD §3; Product Map | Domain and module names are normalized to PRD and Product Map terminology. |
 | Architecture principles | BRD §13; PRD §8 | Preserves Regime First, Hard Gate Principle, Single Source of Truth, Separation of Concerns, Explainability, Auditability, and Modular Architecture. |
 | Architecture sequence | BRD §19 BAC-005; PRD §10 | Preserves Foundation → Market Intelligence → Portfolio Intelligence → Governance → Presentation. |
-| Dependency rules | BRD §13; PRD §8 | Preserves lower-layer dependency rules, provider access restriction through Data Service, Health Layer dependency on MarketData, Snapshot Engine dependency on Health Layer output, Presentation business logic restriction, Governance scoring restriction, Foundation Single Source of Truth, and Portfolio Intelligence access restriction. |
+| Dependency rules | BRD §13; PRD §8 | Preserves lower-layer dependency rules, provider access restriction through Data Service, Health Layer dependency on MarketData, Snapshot Engine dependency on Health Layer validation output plus validated MarketData reference, Presentation business logic restriction, Governance scoring restriction, Foundation Single Source of Truth, and Portfolio Intelligence access restriction. |
 | Current scope | BRD §10; PRD §3 | Foundation v0.1 remains limited to MarketData Contract, Health Layer, and Snapshot Engine. |
 | Out of scope | BRD §11; PRD §16 | Preserves product positioning boundaries and Foundation v0.1 exclusions. |
 | Terminology | Glossary; Product Map; PRD | Uses official domain, module, layer, engine, service, contract, and framework terminology. |
@@ -429,3 +452,4 @@ Foundation v0.1 excludes:
 | 1.0 | 2026-07-13 | Initial architecture draft. |
 | 1.1 | 2026-07-13 | Normalized architecture to the approved template; derived content from the PRD and BRD; preserved approved architecture sequence and dependency rules; normalized terminology without introducing new design. |
 | 1.1 | 2026-07-14 | Formalized Provider Framework documentation, Foundation module listing, provider/data service responsibilities, dependency rules, data flow, and extension point without introducing implementation. |
+| 1.2 | 2026-07-14 | Clarified Foundation runtime dependency chain, MarketData contract semantics, sidecar Foundation modules, and Presentation sibling boundaries. |

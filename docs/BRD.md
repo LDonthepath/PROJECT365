@@ -415,21 +415,24 @@ PROJECT365 roadmap:
 - Health Layer
 - Snapshot Engine
 
-### Milestone 2 — Delta Edition
+### Milestone 2 — Data Pipeline and Delta Edition
 
+- Provider Framework
+- Data Service
+- Event Bus
+- Storage Layer
 - Delta Engine
-- Anchor Service
 
 ### Milestone 3 — Triad Edition
 
 - Triad Liquidity Framework
 
-### Milestone 4 — Regime Edition
+### Milestone 4 — Regime and Portfolio Intelligence Edition
 
 - Regime Engine
-- Exposure Management
+- Exposure Engine
 
-### Milestone 5 — Dashboard Edition
+### Milestone 5 — Presentation Edition
 
 - Dashboard
 - Explainability
@@ -448,11 +451,10 @@ PROJECT365 roadmap:
 - Decision Log
 - Cluster Rotation
 
-### Milestone 8 — Advanced Edition
+### Milestone 8 — Advanced Governance Edition
 
 - Governance
 - Champion-Challenger
-- AI Meta
 
 ---
 
