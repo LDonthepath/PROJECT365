@@ -4,7 +4,7 @@
 
 - **Project:** PROJECT365
 - **Document Type:** Roadmap
-- **Status:** Draft
+- **Status:** Frozen
 - **Version:** 1.2
 - **Owner:** PROJECT365 Product
 - **Last Updated:** 2026-07-14
@@ -105,7 +105,15 @@ TD-000 Provider Framework; TD-001 MarketData; TD-002 Health Layer; TD-003 Snapsh
 
 This sequence preserves existing TD numbering and does not introduce new product scope, releases, modules, or architecture decisions.
 
-## 8. Deliverables
+TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
+
+## 8. Architecture Freeze Scope
+
+Architecture Freeze covers Governance, Documentation, Specifications, Technical Designs, Issue Specifications, and Acceptance Criteria. Architecture Freeze DOES NOT require implementation completion. Implementation belongs to later milestones.
+
+Current implementation status: Documentation Complete; Implementation Pending. Architecture Freeze may complete before implementation.
+
+## 9. Deliverables
 
 Roadmap deliverables are planning-level references to approved delivery artifacts. Detailed status, ownership, and task tracking belong in the Backlog.
 
@@ -120,7 +128,7 @@ Roadmap deliverables are planning-level references to approved delivery artifact
 | M6 | Portfolio Intelligence, Governance, and Presentation Technical Design documents referenced by the approved TD sequence. |
 | M7 | Portfolio Intelligence, Governance, and Presentation Issue Specifications generated from the approved TD sequence. |
 
-## 9. Dependencies
+## 10. Dependencies
 
 The Roadmap depends on:
 
@@ -132,7 +140,7 @@ The Roadmap depends on:
 - [Architecture Decision Records](./Decisions.md) for approved architecture decisions.
 - [Backlog](./Backlog.md) for delivery tracking only.
 
-## 10. Current Release
+## 11. Current Release
 
 Current focus: M2 Foundation Implementation, ISSUE-001 MarketData Implementation.
 
@@ -150,7 +158,7 @@ Foundation v0.1 excludes:
 - Portfolio Engine
 - AI Features
 
-## 11. Future Releases
+## 12. Future Releases
 
 Future releases are limited to the remaining approved milestones after the Current Release:
 
@@ -160,7 +168,7 @@ Future releases are limited to the remaining approved milestones after the Curre
 - M6 Portfolio, Governance, and Presentation
 - M7 Portfolio Layer
 
-## 12. Out of Scope
+## 13. Out of Scope
 
 This Roadmap does not define:
 
@@ -174,7 +182,7 @@ This Roadmap does not define:
 - Release dates.
 - Additional modules outside the approved Product Map and Architecture.
 
-## 13. Traceability
+## 14. Traceability
 
 | Roadmap Area | Source of Truth | Traceability Notes |
 | --- | --- | --- |
@@ -185,7 +193,7 @@ This Roadmap does not define:
 | Terminology | Glossary | Module and domain names use approved terms. |
 | Delivery tracking | Backlog | Backlog tracks implementation status and must remain aligned to this Roadmap. |
 
-## 14. References
+## 15. References
 
 - [BRD](./BRD.md)
 - [PRD](./PRD.md)
@@ -197,10 +205,11 @@ This Roadmap does not define:
 - [Backlog](./Backlog.md)
 - [Current Status](./CurrentStatus.md)
 
-## 15. Change History
+## 16. Change History
 
 | Version | Date | Description |
 | --- | --- | --- |
 | 1.0 | 2026-07-13 | Initial Roadmap created from PRD Product Roadmap. |
 | 1.1 | 2026-07-13 | Normalized Roadmap governance structure and traceability. |
 | 1.2 | 2026-07-14 | Synchronized Roadmap to approved TD-000 through TD-028 sequence without changing milestone strategy. |
+| 1.3 | 2026-07-14 | Finalized governance freeze scope, TD-000 prerequisite clarification, and implementation-pending traceability without changing architecture. |

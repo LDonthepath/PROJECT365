@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-026 |
 | Technical Design Name | Explainability |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-026-Explainability.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

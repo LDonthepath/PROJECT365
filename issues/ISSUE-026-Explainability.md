@@ -6,13 +6,15 @@
 |------|------|
 | Issue ID | ISSUE-026 |
 | Title | Explainability Implementation |
-| Status | Planned |
+| Status | Not Started |
 | Priority | Medium |
 | Owner | PROJECT365 Delivery |
 | Milestone | M7 Portfolio, Governance, and Presentation Implementation |
 | Sprint | Not scheduled |
 | Last Updated | 2026-07-14 |
 | Depends On | TD-026 Explainability Technical Design |
+| Primary Technical Design | TD-026 |
+| Architectural Prerequisite | TD-000 (Provider Framework) |
 | Referenced By | AC-026, Implementation Prompt, Pull Request |
 
 ---
@@ -125,7 +127,7 @@ Do not include implementation code in this Issue Specification.
 - TD-026 Explainability Technical Design.
 - BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status.
 - AC-026 acceptance criteria for this Issue Specification.
-- TD-000 Data Provider Framework only where referenced by TD-026 as an architectural prerequisite; TD-000 does not generate an Issue Specification or Acceptance Criteria document.
+- TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
 
 ---
 

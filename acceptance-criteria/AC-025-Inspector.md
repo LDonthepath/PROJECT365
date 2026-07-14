@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-025 |
 | Technical Design Name | Inspector |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-025-Inspector.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

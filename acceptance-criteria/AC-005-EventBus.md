@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-005 |
 | Technical Design Name | Event Bus |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-005-EventBus.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

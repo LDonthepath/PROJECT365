@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-017 |
 | Technical Design Name | Risk Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-017-RiskEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

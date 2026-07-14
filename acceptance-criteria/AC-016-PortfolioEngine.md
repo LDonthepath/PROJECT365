@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-016 |
 | Technical Design Name | Portfolio Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-016-PortfolioEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

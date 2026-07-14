@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-002 |
 | Technical Design Name | Health Layer |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-002-HealthLayer.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

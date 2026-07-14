@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-014 |
 | Technical Design Name | OMS Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-014-OMSEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

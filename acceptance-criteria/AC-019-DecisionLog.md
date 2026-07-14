@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-019 |
 | Technical Design Name | Decision Log |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-019-DecisionLog.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

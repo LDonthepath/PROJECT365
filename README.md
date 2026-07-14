@@ -47,9 +47,9 @@ Freeze
 | `docs/` | Authoritative governance documents, product documents, roadmap, backlog, and current status. |
 | `templates/` | Templates for Technical Designs, Issue Specifications, and Acceptance Criteria. |
 | `specs/` | Technical Design documents TD-000 through TD-028. |
-| `issues/` | Issue Specifications derived from approved Technical Designs. |
+| `issues/` | Issue Specifications ISSUE-001 through ISSUE-028 derived from approved Technical Designs. |
 | `prompts/` | Implementation, review, bugfix, and system prompts used by the documentation-first workflow. |
-| `backend/` | Implementation source and tests. Documentation-only governance work must not modify this directory unless implementation work is explicitly approved. |
+| `backend/` | Implementation source and tests. Implementation is pending and belongs to later milestones. Documentation-only governance work must not modify this directory unless implementation work is explicitly approved. |
 
 ## Development Workflow
 
@@ -73,7 +73,8 @@ PROJECT365 preserves Specification Driven Development:
 - Acceptance Criteria must be measurable and traceable.
 - Implementation must not expand scope beyond approved documentation.
 - Review must verify dependency direction, responsibility boundaries, and terminology.
-- Freeze occurs only after governance, implementation, and validation are aligned.
+- Architecture Freeze covers governance, documentation, specifications, Technical Designs, Issue Specifications, and Acceptance Criteria; it does not require implementation completion.
+- Implementation freeze occurs only after implementation and validation are aligned.
 
 ## Governance Links
 
@@ -99,6 +100,14 @@ PROJECT365 preserves Specification Driven Development:
 - [Review Prompt](./prompts/REVIEW_PROMPT.md)
 - [Freeze status](./docs/CurrentStatus.md)
 
+## Architecture Freeze Scope
+
+Architecture Freeze covers Governance, Documentation, Specifications, Technical Designs, Issue Specifications, and Acceptance Criteria. Architecture Freeze DOES NOT require implementation completion. Implementation belongs to later milestones.
+
+TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
+
+Current implementation status: Documentation Complete; Implementation Pending. Architecture Freeze may complete before implementation.
+
 ## Current Scope
 
 Current implementation scope remains Foundation v0.1 only:
@@ -107,4 +116,6 @@ Current implementation scope remains Foundation v0.1 only:
 - Health Layer
 - Snapshot Engine
 
-The complete documentation architecture tracks TD-000 through TD-028, but documentation readiness does not imply implementation completion.
+Documentation Complete. Architecture Frozen. Implementation Pending.
+
+The complete documentation architecture tracks TD-000 through TD-028; all Technical Designs are Frozen, all Issue Specifications are Completed, and all Acceptance Criteria are Completed. Architecture Freeze may complete before implementation.

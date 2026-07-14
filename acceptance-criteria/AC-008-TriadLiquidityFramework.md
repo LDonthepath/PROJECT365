@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-008 |
 | Technical Design Name | Triad Liquidity Framework |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-008-TriadLiquidityFramework.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-028 |
 | Technical Design Name | Settings |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-028-Settings.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-003 |
 | Technical Design Name | Snapshot Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-003-SnapshotEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

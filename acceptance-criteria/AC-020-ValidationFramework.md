@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-020 |
 | Technical Design Name | Validation Framework |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-020-ValidationFramework.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

@@ -6,13 +6,15 @@
 |------|------|
 | Issue ID | ISSUE-007 |
 | Title | Delta Engine Implementation |
-| Status | Planned |
+| Status | Not Started |
 | Priority | High |
 | Owner | PROJECT365 Delivery |
 | Milestone | M4 Delta Layer |
 | Sprint | Not scheduled |
 | Last Updated | 2026-07-14 |
 | Depends On | TD-007 Delta Engine Technical Design |
+| Primary Technical Design | TD-007 |
+| Architectural Prerequisite | TD-000 (Provider Framework) |
 | Referenced By | AC-007, Implementation Prompt, Pull Request |
 
 ---
@@ -125,7 +127,7 @@ Do not include implementation code in this Issue Specification.
 - TD-007 Delta Engine Technical Design.
 - BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status.
 - AC-007 acceptance criteria for this Issue Specification.
-- TD-000 Data Provider Framework only where referenced by TD-007 as an architectural prerequisite; TD-000 does not generate an Issue Specification or Acceptance Criteria document.
+- TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
 
 ---
 

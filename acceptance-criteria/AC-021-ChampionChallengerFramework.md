@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-021 |
 | Technical Design Name | Champion-Challenger Framework |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-021-ChampionChallengerFramework.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

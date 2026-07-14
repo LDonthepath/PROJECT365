@@ -62,7 +62,7 @@ Identify the related Technical Design.
 |------|------|
 | Technical Design ID | TD-007 |
 | Technical Design Name | Delta Engine |
-| Technical Design Status | Ready to Freeze |
+| Technical Design Status | Frozen |
 | Technical Design Path | `../specs/TD-007-DeltaEngine.md` |
 
 Acceptance criteria must remain fully traceable to this Technical Design.

@@ -6,13 +6,15 @@
 |------|------|
 | Issue ID | ISSUE-003 |
 | Title | Snapshot Engine Implementation |
-| Status | Planned |
+| Status | Not Started |
 | Priority | High |
 | Owner | PROJECT365 Delivery |
 | Milestone | M2 Foundation Implementation |
 | Sprint | Sprint 1 |
 | Last Updated | 2026-07-14 |
 | Depends On | TD-003 Snapshot Engine Technical Design |
+| Primary Technical Design | TD-003 |
+| Architectural Prerequisite | TD-000 (Provider Framework) |
 | Referenced By | AC-003, Implementation Prompt, Pull Request |
 
 ---
@@ -134,7 +136,7 @@ Do not include implementation code in this Issue Specification.
 - TD-003 Snapshot Engine Technical Design.
 - BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status.
 - AC-003 acceptance criteria for this Issue Specification.
-- TD-000 Data Provider Framework only where referenced by TD-003 as an architectural prerequisite; TD-000 does not generate an Issue Specification or Acceptance Criteria document.
+- TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
 
 ---
 
