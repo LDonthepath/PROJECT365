@@ -46,6 +46,7 @@ Excluded responsibilities:
 - Source code or implementation-specific design.
 - User interface implementation, frontend framework, API design, or rendering technology.
 - The module must not affect business logic.
+- Presentation never owns business configuration.
 
 ---
 
@@ -89,7 +90,7 @@ Every technical decision in this document is traceable to approved Presentation 
 
 ## 6. Design Overview
 
-Settings consumes Application Configuration and produces Updated User Preferences for approved downstream consumers.
+Settings consumes approved Presentation configuration inputs and produces Updated User Preferences for approved downstream consumers.
 
 Purpose:
 
@@ -107,8 +108,9 @@ Responsibilities:
 
 Boundaries:
 
-- Settings does not own upstream contract creation.
+- Settings does not own upstream contract creation or business configuration.
 - Settings does not bypass downstream module ownership.
+- Settings consumes only approved Presentation configuration inputs made available by existing governance and presentation flows.
 - Settings does not access Foundation directly except through approved downstream paths and approved consumed outputs.
 - Settings does not modify immutable upstream outputs or governance records.
 - Presentation never performs business logic.
@@ -117,6 +119,7 @@ Boundaries:
 - Presentation never modifies governance records.
 - Presentation only displays approved outputs.
 - The module must not affect business logic.
+- Presentation never owns business configuration.
 
 ---
 
@@ -124,7 +127,7 @@ Boundaries:
 
 | Component | Responsibility | Inputs | Outputs | Owner |
 |-----------|----------------|--------|---------|-------|
-| Input Boundary | Accept and validate declared upstream contracts. | Application Configuration. | Accepted input set or rejection reason | Settings |
+| Input Boundary | Accept and validate declared upstream contracts. | Approved Presentation configuration inputs. | Accepted input set or rejection reason | Settings |
 | Presentation Boundary | Apply the approved module responsibility without expanding product scope. | Accepted input set | Presentation context | Settings |
 | Read-Only Boundary | Preserve upstream records and prevent mutation or recalculation. | Presentation context | Read-only display context | Settings |
 | Explainability Boundary | Preserve reasons, source references, and dependency context. | Read-only display context | Explainability metadata | Settings |
@@ -135,11 +138,11 @@ Boundaries:
 
 ## 8. Data Model
 
-Settings defines or owns the Updated User Preferences contract and consumes upstream contracts without mutating them.
+Settings defines the Updated User Preferences presentation output contract and consumes upstream contracts without mutating them. Presentation consumes approved configuration but never owns business configuration.
 
 Consumed contracts:
 
-- Application Configuration.
+- Approved Presentation configuration inputs.
 
 Produced contract:
 
@@ -179,7 +182,7 @@ Publish Updated User Preferences to approved downstream consumers
 
 Inputs:
 
-- Application Configuration.
+- Approved Presentation configuration inputs.
 
 Outputs:
 
@@ -331,7 +334,7 @@ Upstream dependencies:
 - Glossary.
 - ADR.
 - TD-027 Historical Explorer.
-- Application Configuration.
+- Approved Presentation configuration inputs.
 
 Downstream consumers:
 
@@ -367,6 +370,7 @@ Downstream consumers:
 - Do not introduce implementation details.
 - Do not modify immutable upstream contracts.
 - The module must not affect business logic.
+- Presentation never owns business configuration.
 
 ---
 
@@ -391,6 +395,8 @@ Implementation work must be defined by future Issue Specifications and must conf
 Implementation guidance:
 
 - Use approved upstream contracts only.
+- Consume approved configuration without owning business configuration.
+- Keep user preference updates limited to Presentation settings behavior.
 - Preserve module boundaries.
 - Preserve output immutability after publication.
 - Preserve explainability and auditability metadata.
@@ -418,6 +424,7 @@ Acceptance Criteria:
 - Settings does not modify governance records.
 - Presentation only displays approved outputs.
 - The module must not affect business logic.
+- Presentation never owns business configuration.
 
 ---
 

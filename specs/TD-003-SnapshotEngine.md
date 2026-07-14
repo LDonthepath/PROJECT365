@@ -1,21 +1,35 @@
+# Technical Design
 
-# TD-003
-# Snapshot Engine
+## 1. Document Information
 
-Version: 1.0
-Status: Ready to Freeze
+| Field | Value |
+|------|------|
+| Status | Ready to Freeze |
+| Version | 1.0 |
+| Owner | PROJECT365 Architecture |
+| Last Updated | 2026-07-14 |
+| Depends On | BRD, PRD, Architecture, Product Map, ADR |
+| Referenced By | Issue Specification, Acceptance Criteria, Implementation Prompt |
 
 ---
 
-# 1. Purpose
+## 2. Purpose
+
+Define the Technical Design for TD-003 Snapshot Engine.
 
 Define the Snapshot Engine responsible for creating and managing immutable market snapshots.
 
 A Snapshot represents one market state at one specific reference time.
 
+This document translates approved product and architecture requirements into an implementable technical design without redefining business requirements, product behavior, architecture, user interface implementation, frontend framework, APIs, or implementation details.
+
 ---
 
-# 2. Goals
+## 3. Scope
+
+This Technical Design covers Snapshot Engine as a Foundation component.
+
+Goals:
 
 - Create immutable snapshots.
 - Preserve historical market states.
@@ -24,22 +38,56 @@ A Snapshot represents one market state at one specific reference time.
 - Provide anchor snapshots.
 - Become the foundation for Delta Engine.
 
----
-
-# 3. Non Goals
+Non Goals:
 
 This specification does not define:
 
-- Market analysis
-- Regime calculations
-- Portfolio decisions
-- Dashboard logic
-- Market predictions
-- Delta calculations
+- Market analysis.
+- Regime calculations.
+- Portfolio decisions.
+- Dashboard logic.
+- Market predictions.
+- Delta calculations.
 
 ---
 
-# 4. Responsibility
+## 4. Background
+
+PROJECT365 is approved as an Adaptive Crypto Market Intelligence Platform, Decision Support System, and Explainable Analytics Platform. The approved architecture places Snapshot Engine in the Foundation Domain to create immutable snapshots for reproducible historical analysis.
+
+Approved Foundation dependency chain:
+
+```text
+TD-000 Provider Framework
+↓
+TD-004 Data Service
+↓
+TD-001 MarketData
+↓
+TD-002 Health Layer
+↓
+TD-003 Snapshot Engine
+```
+
+Snapshot Engine preserves Single Source of Truth, Separation of Concerns, Explainability, Auditability, and approved dependency direction.
+
+---
+
+## 5. Requirements Traceability
+
+| Requirement | Source |
+|------------|--------|
+| BRD | Foundation Domain provides trusted, immutable, and validated market data. |
+| PRD | Foundation readiness includes immutable snapshots for reproducibility. |
+| Architecture | Snapshot Engine creates immutable snapshots for reproducible historical analysis. |
+| Product Map | Snapshot Engine is a Foundation module supporting snapshot capabilities. |
+| ADR | Single Source of Truth, Modular Architecture, Specification Driven Development, and Documentation-First Workflow. |
+
+Every technical decision in this document is traceable to approved Foundation responsibilities and dependency rules.
+
+---
+
+## 6. Design Overview
 
 Snapshot Engine has one responsibility:
 
@@ -53,29 +101,7 @@ Snapshot Engine does NOT:
 - fetch data;
 - modify snapshots.
 
----
-
-# 5. Inputs
-
-Input:
-
-- MarketData Contract
-- Health Status
-
----
-
-# 6. Consumers
-
-- Delta Engine
-- Regime Engine
-- LDS Engine
-- Capital Flow Engine
-- OMS Engine
-- Historical Explorer
-
----
-
-# 7. Snapshot Philosophy
+Snapshot Philosophy:
 
 A Snapshot is:
 
@@ -92,61 +118,9 @@ A Snapshot is NOT:
 - recommendation;
 - mutable state.
 
----
+Lifecycle:
 
-# 8. Snapshot Contract
-
-```typescript
-{
-  id: string,
-  timestamp: number,
-  marketData: MarketData,
-  healthStatus: HealthStatus,
-  metadata: SnapshotMetadata
-}
-```
-
----
-
-# 9. Snapshot Metadata
-
-```typescript
-{
-  version: string,
-  source: string,
-  type: SnapshotType
-}
-```
-
----
-
-# 10. Snapshot Types
-
-## Working
-Temporary snapshot.
-
-## Historical
-Stored historical snapshot.
-
-## Live
-Most recent market state.
-
-## Active
-Current snapshot used by the system.
-
-## Archived
-Old snapshot retained for history.
-
-## Invalid
-Snapshot with invalid state.
-
-## Expired
-Snapshot exceeding retention rules.
-
----
-
-# 11. Snapshot Lifecycle
-
+```text
 Acquire MarketData
 ↓
 Validate Health
@@ -162,10 +136,91 @@ Consume Snapshot
 Archive / Replace
 ↓
 Expire
+```
 
 ---
 
-# 12. Snapshot Invariants
+## 7. Component Responsibilities
+
+| Component | Responsibility | Inputs | Outputs | Owner |
+|-----------|----------------|--------|---------|-------|
+| Input Boundary | Accept MarketData Contract and Health Status. | MarketData Contract; Health Status | Accepted input set or rejection reason | Snapshot Engine |
+| Snapshot Creation Boundary | Create immutable Snapshot. | MarketData Contract; Health Status | Snapshot | Snapshot Engine |
+| Snapshot State Boundary | Manage Current, Previous, Historical, and Anchor Snapshots. | Snapshot | Snapshot references | Snapshot Engine |
+| Immutability Boundary | Prevent mutation of snapshot state. | Created Snapshot | Frozen Snapshot | Snapshot Engine |
+| Consumer Boundary | Provide snapshots to approved consumers. | Snapshot request | Snapshot | Snapshot Engine |
+
+Inputs:
+
+- MarketData Contract.
+- Health Status.
+
+Consumers:
+
+- Delta Engine.
+- Regime Engine.
+- LDS Engine.
+- Capital Flow Engine.
+- OMS Engine.
+- Historical Explorer.
+
+---
+
+## 8. Data Model
+
+Snapshot Contract:
+
+```typescript
+{
+  id: string,
+  timestamp: number,
+  marketData: MarketData,
+  healthStatus: HealthStatus,
+  metadata: SnapshotMetadata
+}
+```
+
+Snapshot Metadata:
+
+```typescript
+{
+  version: string,
+  source: string,
+  type: SnapshotType
+}
+```
+
+Snapshot Types:
+
+### Working
+
+Temporary snapshot.
+
+### Historical
+
+Stored historical snapshot.
+
+### Live
+
+Most recent market state.
+
+### Active
+
+Current snapshot used by the system.
+
+### Archived
+
+Old snapshot retained for history.
+
+### Invalid
+
+Snapshot with invalid state.
+
+### Expired
+
+Snapshot exceeding retention rules.
+
+Snapshot Invariants:
 
 A Snapshot must:
 
@@ -177,9 +232,7 @@ A Snapshot must:
 - be serializable;
 - be reproducible.
 
----
-
-# 13. Immutability Rules
+Immutability Rules:
 
 After creation:
 
@@ -193,9 +246,7 @@ Recommended implementation:
 Object.freeze()
 ```
 
----
-
-# 14. Snapshot Identity
+Snapshot Identity:
 
 Each snapshot must contain:
 
@@ -206,61 +257,51 @@ timestamp: number
 
 Identity must be unique.
 
----
-
-# 15. Snapshot Storage Responsibility
+Snapshot Storage Responsibility:
 
 Snapshot Engine owns:
 
-- Current Snapshot
-- Previous Snapshot
-- Historical Snapshots
-- Anchor Snapshots
+- Current Snapshot.
+- Previous Snapshot.
+- Historical Snapshots.
+- Anchor Snapshots.
 
 No other component may mutate snapshot state.
 
----
-
-# 16. Anchor Snapshots
+Anchor Snapshots:
 
 Supported anchors:
 
-- Monthly
-- Weekly
-- Daily
-- Asia
-- London
-- NewYork
-- London Kill Zone
-- NewYork Kill Zone
-- M5
-- M15
-- H1
-- H4
+- Monthly.
+- Weekly.
+- Daily.
+- Asia.
+- London.
+- NewYork.
+- London Kill Zone.
+- NewYork Kill Zone.
+- M5.
+- M15.
+- H1.
+- H4.
 
 Anchor snapshots are immutable.
 
----
+Snapshot Categories:
 
-# 17. Snapshot Categories
-
-## Closed Snapshot
+### Closed Snapshot
 
 Historical immutable snapshot.
 
----
-
-## Live Snapshot
+### Live Snapshot
 
 Current active market state.
 
----
-
-# 18. Delta Compatibility
+Delta Compatibility:
 
 The system supports two delta concepts:
 
-## Historical Delta
+### Historical Delta
 
 ```text
 Closed Snapshot
@@ -268,9 +309,7 @@ Closed Snapshot
 Closed Snapshot
 ```
 
----
-
-## Real-Time Delta
+### Real-Time Delta
 
 ```text
 Closed Snapshot
@@ -284,9 +323,9 @@ It only provides snapshots.
 
 ---
 
-# 19. Public API
+## 9. Public Interfaces
 
-## create()
+### create()
 
 ```typescript
 create(
@@ -301,9 +340,7 @@ Returns:
 Snapshot
 ```
 
----
-
-## getCurrent()
+### getCurrent()
 
 Returns:
 
@@ -311,9 +348,7 @@ Returns:
 Snapshot
 ```
 
----
-
-## getPrevious()
+### getPrevious()
 
 Returns:
 
@@ -321,9 +356,7 @@ Returns:
 Snapshot
 ```
 
----
-
-## getAnchor()
+### getAnchor()
 
 Returns:
 
@@ -331,20 +364,118 @@ Returns:
 Snapshot
 ```
 
+Expected behavior:
+
+- Create and return immutable snapshots.
+- Return current, previous, or anchor snapshots without mutation.
+- Preserve Snapshot Engine ownership of snapshot state.
+
 ---
 
-# 20. Dependencies
+## 10. Internal Flow
+
+1. Receive MarketData Contract and Health Status.
+2. Validate Health Status.
+3. Create Snapshot.
+4. Assign unique identity and timestamp.
+5. Attach Snapshot Metadata.
+6. Freeze Snapshot.
+7. Store or expose Snapshot according to approved ownership.
+8. Maintain Current, Previous, Historical, and Anchor Snapshot references.
+9. Provide snapshots to approved consumers.
+
+---
+
+## 11. Error Handling
+
+Failure scenarios:
+
+- Missing MarketData Contract.
+- Missing Health Status.
+- Invalid Health Status.
+- Missing required Snapshot fields.
+- Duplicate or invalid Snapshot identity.
+- Snapshot mutation attempt.
+
+Recovery strategy:
+
+- Reject invalid inputs.
+- Produce no fabricated Snapshot.
+- Preserve failure context for auditability.
+- Never mutate existing snapshots during failure handling.
+
+---
+
+## 12. Non-Functional Considerations
+
+Immutability:
+
+- Snapshots must be immutable after creation.
+
+Reliability:
+
+- Snapshot references must preserve reproducible market state.
+
+Maintainability:
+
+- Snapshot Engine remains independent from Delta Engine, Regime Engine, Portfolio Engine, Data Service, and Market Intelligence Engine.
+
+Testability:
+
+- Creation, immutability, serialization, unique identity, current snapshot, previous snapshot, anchor snapshots, and historical reproducibility must be verifiable.
+
+Explainability:
+
+- Snapshot metadata preserves source, version, and type context.
+
+Auditability:
+
+- Snapshots support reproducible historical analysis through immutable state.
+
+---
+
+## 13. Dependencies
+
+Upstream dependencies:
+
+- BRD.
+- PRD.
+- Architecture.
+- Product Map.
+- ADR.
+- TD-001 MarketData.
+- TD-002 Health Layer.
 
 Depends on:
 
-- MarketData Contract
-- Health Layer
+- MarketData Contract.
+- Health Layer.
 
 No additional dependencies allowed.
 
+Downstream consumers:
+
+- Delta Engine.
+- Regime Engine.
+- LDS Engine.
+- Capital Flow Engine.
+- OMS Engine.
+- Historical Explorer.
+
 ---
 
-# 21. AI Implementation Constraints
+## 14. Assumptions
+
+- MarketData and Health Status exist before Snapshot creation.
+- Snapshot identity can be generated without changing architecture.
+- Approved terminology from the Glossary is authoritative.
+- No implementation detail is required to define this Technical Design.
+
+---
+
+## 15. Constraints
+
+AI Implementation Constraints:
 
 - Immutable snapshots.
 - No business logic.
@@ -356,60 +487,52 @@ No additional dependencies allowed.
 
 ---
 
-# 22. Acceptance Criteria
+## 16. Out of Scope
 
-## AC-001
-Snapshot can be created.
+Snapshot Engine is not:
 
-## AC-002
-Snapshot is immutable.
+- Delta Engine.
+- Regime Engine.
+- Portfolio Engine.
+- Data Service.
+- Market Intelligence Engine.
 
-## AC-003
-Snapshot is serializable.
+This Technical Design excludes:
 
-## AC-004
-Snapshot identity is unique.
-
-## AC-005
-Current and Previous snapshots are maintained.
-
-## AC-006
-Anchor snapshots are supported.
-
-## AC-007
-Historical snapshots are reproducible.
-
-## AC-008
-Snapshot ownership is preserved.
+- Source code changes.
+- Implementation algorithm changes.
+- New product scope.
+- New architecture decisions.
+- New modules.
 
 ---
 
-# 23. Unit Tests
+## 17. Implementation Notes
 
-- create snapshot
-- verify immutability
-- verify serialization
-- verify unique identity
-- verify current snapshot
-- verify previous snapshot
-- verify anchor snapshots
-- verify historical reproducibility
+Implementation work must be defined by Issue Specifications and must conform to this Technical Design.
 
----
+Unit Tests:
 
-# 24. Future Extensions
+- create snapshot.
+- verify immutability.
+- verify serialization.
+- verify unique identity.
+- verify current snapshot.
+- verify previous snapshot.
+- verify anchor snapshots.
+- verify historical reproducibility.
+
+Future Extensions:
 
 Possible future additions:
 
-- snapshot compression
-- retention policies
-- snapshot indexing
-- snapshot export
-- snapshot replay
+- snapshot compression.
+- retention policies.
+- snapshot indexing.
+- snapshot export.
+- snapshot replay.
 
----
-
-# 25. Review Checklist
+Review Checklist:
 
 - [x] Scope is clear
 - [x] Responsibility is clear
@@ -421,18 +544,53 @@ Possible future additions:
 - [x] Acceptance criteria are complete
 - [x] AI implementation is unambiguous
 
+Acceptance Criteria:
+
+- AC-001: Snapshot can be created.
+- AC-002: Snapshot is immutable.
+- AC-003: Snapshot is serializable.
+- AC-004: Snapshot identity is unique.
+- AC-005: Current and Previous snapshots are maintained.
+- AC-006: Anchor snapshots are supported.
+- AC-007: Historical snapshots are reproducible.
+- AC-008: Snapshot ownership is preserved.
+
+Final Decision:
+
+Snapshot Engine is defined as Immutable Market State Manager.
+
 ---
 
-# Final Decision
+## 18. Traceability
 
-Snapshot Engine is defined as:
+| Item | Source |
+|------|--------|
+| BRD | Foundation Domain trusted, immutable, and validated market data. |
+| PRD | Foundation readiness and reproducible historical analysis. |
+| Architecture | Snapshot Engine responsibility and Foundation dependency rules. |
+| Product Map | Snapshot Engine module ownership and capability mapping. |
+| ADR | Single Source of Truth, Specification Driven Development, Modular Architecture. |
 
-Immutable Market State Manager.
+---
 
-Not:
+## 19. References
 
-- Delta Engine
-- Regime Engine
-- Portfolio Engine
-- Data Service
-- Market Intelligence Engine
+- BRD
+- PRD
+- Architecture
+- Product Map
+- Glossary
+- ADR
+- Roadmap
+- Backlog
+- TD-001 MarketData
+- TD-002 Health Layer
+- TD-003 Snapshot Engine
+
+---
+
+## 20. Change History
+
+| Version | Date | Description |
+|---------|------|-------------|
+| 1.0 | 2026-07-14 | Normalized TD-003 Snapshot Engine into current Technical Design Template structure while preserving existing interfaces and design decisions. |

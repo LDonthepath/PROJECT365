@@ -5,31 +5,29 @@
 - **Project:** PROJECT365
 - **Document Type:** Current Status
 - **Status:** Active
-- **Version:** 1.1
+- **Version:** 1.2
 - **Owner:** PROJECT365 Delivery
-- **Last Updated:** 2026-07-13
-- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), 
-- **Referenced By:**
-[Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md), [Backlog](./Backlog.md)
- Delivery reviews, implementation planning, issue execution, acceptance review
+- **Last Updated:** 2026-07-14
+- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md), [Backlog](./Backlog.md)
+- **Referenced By:** Delivery planning, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
 ## 2. Purpose
 
-This Current Status document reports the current PROJECT365 implementation state.
+This Current Status document reports the current implementation and documentation state of PROJECT365.
 
-It reflects delivery status from the authoritative [Backlog](./Backlog.md) and aligns that status with the approved [Roadmap](./Roadmap.md), [PRD](./PRD.md), and supporting governance documents. It does not define requirements, architecture, roadmap scope, product scope, modules, or terminology.
+Current Status does not define product requirements, architecture decisions, implementation scope, or module responsibilities. It reports status from the Backlog and Roadmap only.
 
 ## 3. Current Phase
 
-**Foundation v0.1 delivery.**
-
-The current phase matches the Backlog current phase and remains limited to the Current Release Scope: MarketData Contract, Health Layer, and Snapshot Engine.
+- **Current phase:** Foundation v0.1 delivery.
+- **Current release scope:** MarketData Contract, Health Layer, and Snapshot Engine.
+- **Current architecture freeze status:** Documentation synchronization complete for TD-000 through TD-028; architecture freeze review remains governed by approved documents.
 
 ## 4. Current Milestone
 
-**M2 Foundation Implementation.**
-
-M2 is the active milestone for Foundation v0.1 implementation tracking. M0 Product Blueprint and M1 Foundation Specification are Completed. M3 through M7 remain Planned future milestones from the Roadmap.
+- **Current milestone:** M2 Foundation Implementation.
+- **Current issue:** ISSUE-001 MarketData Implementation.
+- **Current issue status:** In Progress.
 
 ## 5. Current Sprint
 
@@ -39,15 +37,11 @@ M2 is the active milestone for Foundation v0.1 implementation tracking. M0 Produ
 | Sprint 1 | M2 | ISSUE-002 | Health Layer Implementation | Planned |
 | Sprint 1 | M2 | ISSUE-003 | Snapshot Engine Implementation | Planned |
 
-Sprint 1 is aligned to Foundation v0.1 and does not expand beyond MarketData Contract, Health Layer, and Snapshot Engine implementation tracking.
-
 ## 6. Current Progress
 
-- **Current phase:** Foundation v0.1 delivery.
-- **Current milestone:** M2 Foundation Implementation.
-- **Current issue:** ISSUE-001 MarketData Implementation.
-- **Current issue status:** In Progress.
 - **Foundation implementation progress:** ISSUE-001 is In Progress; ISSUE-002 and ISSUE-003 are Planned.
+- **Technical Design documentation progress:** TD-001 is Frozen; TD-000 and TD-002 through TD-028 are Ready to Freeze.
+- **Implementation completion:** No full implementation completion is claimed beyond the status tracked in the Backlog.
 - **Blocked items:** None.
 
 ## 7. Active Work Items
@@ -56,20 +50,39 @@ Sprint 1 is aligned to Foundation v0.1 and does not expand beyond MarketData Con
 | --- | --- | --- | --- | --- |
 | M2 | ISSUE-001 | MarketData Implementation | In Progress | Backlog Section 6; Roadmap M2 |
 
-## 8. Completed Work
+## 8. Technical Design Status
 
-| Milestone | Work Item | Name | Status | Source |
-| --- | --- | --- | --- | --- |
-| M0 | BRD | Business Requirements Document | Completed | Backlog Section 6; Roadmap M0 |
-| M0 | PRD | Product Requirements Document | Completed | Backlog Section 6; Roadmap M0 |
-| M0 | Architecture | Architecture | Completed | Backlog Section 6; Roadmap M0 |
-| M0 | Product Map | Product Map | Completed | Backlog Section 6; Roadmap M0 |
-| M0 | Feature Map | Feature Map | Completed | Backlog Section 6; Roadmap M0 |
-| M0 | Roadmap | Roadmap | Completed | Backlog Section 6; Roadmap M0 |
-| M0 | Glossary | Glossary | Completed | Backlog Section 6; Roadmap M0 |
-| M1 | TD-001 | MarketData Contract | Completed | Backlog Section 6; Roadmap M1 |
-| M1 | TD-002 | Health Layer | Completed | Backlog Section 6; Roadmap M1 |
-| M1 | TD-003 | Snapshot Engine | Completed | Backlog Section 6; Roadmap M1 |
+| Work Item | Name | Documentation Status | Source |
+| --- | --- | --- | --- |
+| TD-000 | Provider Framework Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-001 | MarketData Technical Design | Frozen | Backlog Section 6; Roadmap approved TD sequence |
+| TD-002 | Health Layer Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-003 | Snapshot Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-004 | Data Service Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-005 | Event Bus Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-006 | Storage Layer Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-007 | Delta Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-008 | Triad Liquidity Framework Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-009 | Regime Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-010 | LDS Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-011 | Capital Flow Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-012 | Market State Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-013 | Confidence Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-014 | OMS Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-015 | Exposure Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-016 | Portfolio Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-017 | Risk Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-018 | Cluster Rotation Engine Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-019 | Decision Log Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-020 | Validation Framework Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-021 | Champion-Challenger Framework Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-022 | Model Versioning Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-023 | Rollback Framework Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-024 | Dashboard Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-025 | Inspector Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-026 | Explainability Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-027 | Historical Explorer Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
+| TD-028 | Settings Technical Design | Ready to Freeze | Backlog Section 6; Roadmap approved TD sequence |
 
 ## 9. Planned Work
 
@@ -77,11 +90,10 @@ Sprint 1 is aligned to Foundation v0.1 and does not expand beyond MarketData Con
 | --- | --- | --- | --- | --- |
 | M2 | ISSUE-002 | Health Layer Implementation | Planned | Backlog Section 6; Roadmap M2 |
 | M2 | ISSUE-003 | Snapshot Engine Implementation | Planned | Backlog Section 6; Roadmap M2 |
-| M3 | TD-004 through ISSUE-006 | Data Pipeline | Planned | Backlog Section 6; Roadmap M3 |
-| M4 | TD-007 through ISSUE-009 | Delta Layer | Planned | Backlog Section 6; Roadmap M4 |
-| M5 | TD-010 through ISSUE-015 | Intelligence Layer | Planned | Backlog Section 6; Roadmap M5 |
-| M6 | TD-016 through ISSUE-019 | Dashboard & API | Planned | Backlog Section 6; Roadmap M6 |
-| M7 | TD-020 through ISSUE-022 | Portfolio Layer | Planned | Backlog Section 6; Roadmap M7 |
+| M3 | ISSUE-004 through ISSUE-006 | Data Pipeline Implementation | Planned | Backlog Section 6; Roadmap M3 |
+| M4 | ISSUE-007 through ISSUE-009 | Delta Layer Implementation | Planned | Backlog Section 6; Roadmap M4 |
+| M5 | ISSUE-010 through ISSUE-014 | Intelligence Layer Implementation | Planned | Backlog Section 6; Roadmap M5 |
+| M7 | ISSUE-015 through ISSUE-028 | Portfolio Layer Implementation | Planned | Backlog Section 6; Roadmap M7 |
 
 ## 10. Blockers
 
@@ -94,24 +106,22 @@ No work items are currently Blocked in the Backlog.
 1. Continue ISSUE-001 MarketData Implementation.
 2. Keep ISSUE-002 Health Layer Implementation in Planned status until it begins.
 3. Keep ISSUE-003 Snapshot Engine Implementation in Planned status until it begins.
-4. Update Current Status only after the Backlog changes or delivery status changes.
+4. Generate future Issue Specifications only from approved Technical Designs.
+5. Update Current Status only after the Backlog changes or delivery status changes.
 
 ## 12. Traceability
 
 | Current Status Area | Source of Truth | Traceability Notes |
 | --- | --- | --- |
-| Reporting authority | Backlog | Current Status reports implementation state from the Backlog. |
+| Reporting authority | Backlog | Current Status reports implementation and documentation state from the Backlog. |
 | Product requirements | BRD; PRD | Current Status does not define or modify requirements. |
 | Architecture | Architecture; Architecture Decision Records | Current Status does not define or modify architecture. |
-| Product structure and module names | Product Map; Glossary | Uses approved terms including Foundation v0.1, Current Release Scope, MarketData Contract, Health Layer, and Snapshot Engine. |
+| Product structure and module names | Product Map; Glossary | Uses approved terms including Provider Framework, Data Service, MarketData, Health Layer, Snapshot Engine, Delta Engine, OMS Engine, Exposure Engine, Portfolio Engine, Risk Engine, Governance Domain, and Presentation Domain. |
 | Release and milestone sequence | Roadmap | Uses the approved M0 through M7 milestone sequence. |
 | Current phase | Backlog Section 7 | Foundation v0.1 delivery. |
 | Current milestone | Backlog Section 7; Roadmap M2 | M2 Foundation Implementation. |
 | Current sprint | Backlog Section 9 | Sprint 1 contains ISSUE-001, ISSUE-002, and ISSUE-003. |
-| ISSUE-001 status | Backlog Section 6; Backlog Section 7 | In Progress. |
-| ISSUE-002 status | Backlog Section 6; Backlog Section 9 | Planned. |
-| ISSUE-003 status | Backlog Section 6; Backlog Section 9 | Planned. |
-| Blockers | Backlog Section 7 | None. |
+| Technical Design status | Backlog Section 6 | TD-000 through TD-028 are tracked as Frozen or Ready to Freeze. |
 | Future work | Backlog Section 10; Roadmap M3-M7 | Future milestones remain Planned and are not redefined here. |
 
 ## 13. References
@@ -125,14 +135,14 @@ No work items are currently Blocked in the Backlog.
 - [Architecture Decision Records](./Decisions.md)
 - [Roadmap](./Roadmap.md)
 - [Backlog](./Backlog.md)
-- [TD-001 MarketData](../specs/TD-001-MarketData.md)
-- [TD-002 Health Layer](../specs/TD-002-HealthLayer.md)
-- [TD-003 Snapshot Engine](../specs/TD-003-SnapshotEngine.md)
-- [ISSUE-001 MarketData](../issues/ISSUE-001-MarketData.md)
+- [Technical Design Template](../templates/TechnicalDesignTemplate.md)
+- [Issue Specification Template](../templates/IssueSpecificationTemplate.md)
+- [Acceptance Criteria Template](../templates/AcceptanceCriteriaTemplate.md)
 
 ## 14. Change History
 
-| Version | Date | Summary |
+| Version | Date | Description |
 | --- | --- | --- |
-| 1.0 | 2026-07-13 | Initial current status draft. |
-| 1.1 | 2026-07-13 | Normalized Current Status to the approved structure; aligned current phase, milestone, sprint, issue statuses, blockers, planned work, traceability, references, and change history with the Backlog and Roadmap. |
+| 1.0 | 2026-07-13 | Initial Current Status created from Backlog. |
+| 1.1 | 2026-07-13 | Normalized Current Status governance structure and traceability. |
+| 1.2 | 2026-07-14 | Synchronized Current Status to reflect TD-000 through TD-028 documentation statuses without claiming implementation completion. |
