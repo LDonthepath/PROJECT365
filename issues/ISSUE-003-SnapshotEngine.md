@@ -6,7 +6,7 @@
 |------|------|
 | Issue ID | ISSUE-003 |
 | Title | Snapshot Engine Implementation |
-| Status | Planned |
+| Status | Completed |
 | Priority | High |
 | Owner | PROJECT365 Delivery |
 | Milestone | Foundation Implementation |
@@ -65,24 +65,24 @@ Every item below maps to TD-003 only.
 
 | ID | Task | TD Mapping | Status |
 |----|------|------------|--------|
-| TASK-001 | Build `createSnapshot(marketData, healthStatus)` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Planned |
-| TASK-002 | Build `getCurrentSnapshot()` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Planned |
-| TASK-003 | Build `getPreviousSnapshot()` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Planned |
-| TASK-004 | Build `getHistoricalSnapshots()` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Planned |
-| TASK-005 | Build `getAnchorSnapshot(anchorType)` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Planned |
-| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-003 Data Model | Planned |
-| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-003 Error Handling | Planned |
-| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-003 Error Handling | Planned |
-| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-003 boundaries and constraints | Planned |
-| TASK-014 | Add tests or checks for every AC-003 criterion. | AC-003 | Planned |
+| TASK-001 | Build `createSnapshot(marketData, healthStatus)` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Completed |
+| TASK-002 | Build `getCurrentSnapshot()` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Completed |
+| TASK-003 | Build `getPreviousSnapshot()` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Completed |
+| TASK-004 | Build `getHistoricalSnapshots()` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Completed |
+| TASK-005 | Build `getAnchorSnapshot(anchorType)` exactly as the public interface for Snapshot Engine. | TD-003 public interface | Completed |
+| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-003 Data Model | Completed |
+| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-003 Error Handling | Completed |
+| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-003 Error Handling | Completed |
+| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-003 boundaries and constraints | Completed |
+| TASK-014 | Add tests or checks for every AC-003 criterion. | AC-003 | Completed |
 
 ### Public Interface Checklist
 
-- [ ] `createSnapshot(marketData, healthStatus)` exists and returns only approved outputs.
-- [ ] `getCurrentSnapshot()` exists and returns only approved outputs.
-- [ ] `getPreviousSnapshot()` exists and returns only approved outputs.
-- [ ] `getHistoricalSnapshots()` exists and returns only approved outputs.
-- [ ] `getAnchorSnapshot(anchorType)` exists and returns only approved outputs.
+- [x] `createSnapshot(marketData, healthStatus)` exists and returns only approved outputs.
+- [x] `getCurrentSnapshot()` exists and returns only approved outputs.
+- [x] `getPreviousSnapshot()` exists and returns only approved outputs.
+- [x] `getHistoricalSnapshots()` exists and returns only approved outputs.
+- [x] `getAnchorSnapshot(anchorType)` exists and returns only approved outputs.
 
 ### Data Contract Checklist
 
@@ -175,3 +175,4 @@ ISSUE-003 is done only when:
 |---------|------|-------------|
 | 1.0 | 2026-07-14 | Initial Issue Specification. |
 | 1.1 | 2026-07-14 | Refined into implementation-ready specification with concrete tasks, checklists, edge cases, and Definition of Done. |
+| 1.2 | 2026-07-15 | Marked ISSUE-003 Snapshot Engine implementation and acceptance evidence complete. |
