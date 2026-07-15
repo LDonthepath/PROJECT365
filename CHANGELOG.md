@@ -4,6 +4,8 @@
 
 ### Added
 
+- Implemented ISSUE-004 Data Service with Provider Framework orchestration, provider-result normalization, MarketData creation, approved failure contracts, timeout, retry, rate-limit, unsupported-provider, malformed-response, missing-field, invalid-field, and immutable output handling.
+- Added deterministic Data Service tests covering unit, contract, validation, error handling, edge, boundary, immutability, serialization, and deserialization scenarios.
 - Implemented ISSUE-003 Snapshot Engine with immutable snapshot creation, current, previous, historical, and anchor accessors, validation, and expiration marking.
 - Added deterministic Snapshot Engine tests covering unit, contract, validation, error handling, edge, boundary, immutability, serialization, and deserialization scenarios.
 - Implemented ISSUE-002 Health Layer with immutable health status evaluation, TTL status exposure, and MarketData contract validation.
@@ -13,6 +15,7 @@
 
 - Marked ISSUE-002 implementation tracking as completed in Current Status, Backlog, and ISSUE-002.
 - Marked ISSUE-003 implementation tracking as completed in Current Status, Backlog, and ISSUE-003.
+- Marked ISSUE-004 implementation tracking as completed in Current Status, Backlog, and ISSUE-004.
 
 ## 2026-07-14
 

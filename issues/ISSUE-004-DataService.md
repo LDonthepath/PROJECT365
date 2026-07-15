@@ -6,12 +6,12 @@
 |------|------|
 | Issue ID | ISSUE-004 |
 | Title | Data Service Implementation |
-| Status | Planned |
+| Status | Completed |
 | Priority | High |
 | Owner | PROJECT365 Delivery |
 | Milestone | Foundation Implementation |
 | Sprint | TBD |
-| Last Updated | 2026-07-14 |
+| Last Updated | 2026-07-15 |
 | Depends On | TD-004 |
 | Referenced By | AC-004, Implementation Prompt, Pull Request |
 
@@ -65,20 +65,20 @@ Every item below maps to TD-004 only.
 
 | ID | Task | TD Mapping | Status |
 |----|------|------------|--------|
-| TASK-001 | Build `produceMarketData(request)` exactly as the public interface for Data Service. | TD-004 public interface | Planned |
-| TASK-002 | Build `normalizeProviderResult(providerResult)` exactly as the public interface for Data Service. | TD-004 public interface | Planned |
-| TASK-003 | Build `mapToMarketData(normalizedValues)` exactly as the public interface for Data Service. | TD-004 public interface | Planned |
-| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-004 Data Model | Planned |
-| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-004 Error Handling | Planned |
-| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-004 Error Handling | Planned |
-| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-004 boundaries and constraints | Planned |
-| TASK-014 | Add tests or checks for every AC-004 criterion. | AC-004 | Planned |
+| TASK-001 | Build `produceMarketData(request)` exactly as the public interface for Data Service. | TD-004 public interface | Completed |
+| TASK-002 | Build `normalizeProviderResult(providerResult)` exactly as the public interface for Data Service. | TD-004 public interface | Completed |
+| TASK-003 | Build `mapToMarketData(normalizedValues)` exactly as the public interface for Data Service. | TD-004 public interface | Completed |
+| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-004 Data Model | Completed |
+| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-004 Error Handling | Completed |
+| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-004 Error Handling | Completed |
+| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-004 boundaries and constraints | Completed |
+| TASK-014 | Add tests or checks for every AC-004 criterion. | AC-004 | Completed |
 
 ### Public Interface Checklist
 
-- [ ] `produceMarketData(request)` exists and returns only approved outputs.
-- [ ] `normalizeProviderResult(providerResult)` exists and returns only approved outputs.
-- [ ] `mapToMarketData(normalizedValues)` exists and returns only approved outputs.
+- [x] `produceMarketData(request)` exists and returns only approved outputs.
+- [x] `normalizeProviderResult(providerResult)` exists and returns only approved outputs.
+- [x] `mapToMarketData(normalizedValues)` exists and returns only approved outputs.
 
 ### Data Contract Checklist
 
@@ -181,3 +181,4 @@ ISSUE-004 is done only when:
 |---------|------|-------------|
 | 1.0 | 2026-07-14 | Initial Issue Specification. |
 | 1.1 | 2026-07-14 | Refined into implementation-ready specification with concrete tasks, checklists, edge cases, and Definition of Done. |
+| 1.2 | 2026-07-15 | Marked ISSUE-004 implementation tasks, interface checklist, and completion evidence complete. |
