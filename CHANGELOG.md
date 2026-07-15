@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-15
+
+### Added
+
+- Implemented ISSUE-002 Health Layer with immutable health status evaluation, TTL status exposure, and MarketData contract validation.
+- Added deterministic Health Layer tests covering unit, contract, validation, error handling, edge, boundary, immutability, serialization, and deserialization scenarios.
+
+### Updated
+
+- Marked ISSUE-002 implementation tracking as completed in Current Status, Backlog, and ISSUE-002.
+
 ## 2026-07-14
 
 ### Added

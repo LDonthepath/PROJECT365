@@ -7,7 +7,7 @@
 - **Status:** Active
 - **Version:** 1.2
 - **Owner:** PROJECT365 Delivery
-- **Last Updated:** 2026-07-14
+- **Last Updated:** 2026-07-15
 - **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md)
 - **Referenced By:** Current Status, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -54,7 +54,7 @@ TD-000 is an architectural prerequisite and intentionally does not generate Issu
 | --- | --- | --- | --- |
 | M0 | Product Blueprint | Completed | Authoritative governance documents and templates are normalized and available for delivery reference. |
 | M1 | Foundation Specification | Completed | Foundation Technical Design documents TD-000 through TD-003 are available. |
-| M2 | Foundation Implementation | In Progress | Foundation v0.1 implementation has started with ISSUE-001 completed. |
+| M2 | Foundation Implementation | In Progress | Foundation v0.1 implementation has started with ISSUE-001 and ISSUE-002 completed. |
 | M3 | Data Pipeline | Planned | Future milestone from the Roadmap. |
 | M4 | Delta Layer | Planned | Future milestone from the Roadmap. |
 | M5 | Intelligence Layer | Planned | Future milestone from the Roadmap. |
@@ -117,7 +117,7 @@ Status values used in this Backlog:
 | Documentation | TD-027 | Historical Explorer Technical Design | Frozen | Roadmap approved TD sequence |
 | Documentation | TD-028 | Settings Technical Design | Frozen | Roadmap approved TD sequence |
 | Implementation | ISSUE-001 | MarketData Implementation | Completed | Roadmap M2; TD-001 |
-| Implementation | ISSUE-002 | Health Layer Implementation | Not Started | Roadmap M2; TD-002 |
+| Implementation | ISSUE-002 | Health Layer Implementation | Completed | Roadmap M2; TD-002 |
 | Implementation | ISSUE-003 | Snapshot Engine Implementation | Not Started | Roadmap M2; TD-003 |
 | Implementation | ISSUE-004 | Data Service Implementation | Not Started | Derived from TD-004 |
 | Implementation | ISSUE-005 | Event Bus Implementation | Not Started | Derived from TD-005 |
@@ -153,13 +153,13 @@ Status values used in this Backlog:
 - **Technical Designs:** Frozen.
 - **Issue Specifications:** Completed.
 - **Acceptance Criteria:** Completed.
-- **Implementation:** In Progress; ISSUE-001 completed.
+- **Implementation:** In Progress; ISSUE-001 and ISSUE-002 completed.
 - **Freeze:** Architecture Frozen.
 - **Blocked items:** None.
 
-Current implementation status: Foundation Implementation in progress; ISSUE-001 completed. Architecture Freeze remains frozen.
+Current implementation status: Foundation Implementation in progress; ISSUE-001 and ISSUE-002 completed. Architecture Freeze remains frozen.
 
-M0 Product Blueprint, M1 Foundation Specification, Issue Specifications, and Acceptance Criteria are Completed. M2 through M7 remain implementation milestones that have not started.
+M0 Product Blueprint, M1 Foundation Specification, Issue Specifications, and Acceptance Criteria are Completed. M2 is in progress; M3 through M7 remain implementation milestones that have not started.
 
 ## 8. Dependencies
 
@@ -180,8 +180,8 @@ M0 Product Blueprint, M1 Foundation Specification, Issue Specifications, and Acc
 
 | Sprint | Milestone | Work Item | Name | Status |
 | --- | --- | --- | --- | --- |
-| Sprint 1 | M2 | ISSUE-001 | MarketData Implementation | Not Started |
-| Sprint 1 | M2 | ISSUE-002 | Health Layer Implementation | Not Started |
+| Sprint 1 | M2 | ISSUE-001 | MarketData Implementation | Completed |
+| Sprint 1 | M2 | ISSUE-002 | Health Layer Implementation | Completed |
 | Sprint 1 | M2 | ISSUE-003 | Snapshot Engine Implementation | Not Started |
 
 Sprint 1 remains the next Foundation Implementation phase and does not expand beyond MarketData Contract, Health Layer, and Snapshot Engine implementation tracking.
