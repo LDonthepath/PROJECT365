@@ -8,15 +8,20 @@ Status: Draft
 
 ## Purpose
 
-This document maps provider capability coverage across PROJECT365 research artifacts. It answers which documented providers supply which business domains and which canonical capabilities, using only the existing provider and variable research documentation.
+This document maps documented provider coverage across high-level provider coverage domains in PROJECT365 research artifacts. It identifies which providers have documented coverage in each matrix domain and references canonical capabilities only through the supporting provider, variable, mapping, and derived-metric documentation.
 
 This document does NOT define:
 
 - formulas
 - thresholds
+- provider ranking
+- provider routing
 - provider priority logic
 - provider selection rules
-- implementation
+- fallback rules
+- conflict resolution
+- implementation behavior
+- runtime behavior
 
 This document is an architecture and governance reference only. It describes documented provider coverage and does not prescribe runtime behavior.
 
@@ -35,7 +40,7 @@ It must remain synchronized with:
 
 `DerivedMetricsCatalog.md` is also referenced where canonical capabilities support existing derived metric coverage.
 
-This document does not modify, redefine, rank, or extend any provider, raw variable, canonical variable, derived metric, formula, threshold, data quality rule, conflict-resolution policy, selection rule, or fallback rule.
+This document does not modify, redefine, rank, or extend any provider, raw variable, canonical variable, derived metric, formula, threshold, data quality rule, provider routing, provider priority logic, conflict-resolution policy, selection rule, fallback rule, implementation behavior, or runtime behavior.
 
 ---
 
@@ -44,13 +49,21 @@ This document does not modify, redefine, rank, or extend any provider, raw varia
 The following terms are documentation classifications only. They describe how coverage is represented in the existing research artifacts and do not create provider priority, provider selection, fallback, or implementation logic.
 
 - **Primary** — The provider is explicitly documented in `MasterProviderResearch.md` as a primary PROJECT365 role for a business area.
-- **Secondary** — The provider is documented as backup, fallback, cross-reference, overlap, or redundancy coverage for a business area.
+- **Secondary** — Documentation-only classification summarizing provider capabilities documented as backup, cross-reference, overlap, redundancy, or supplemental coverage across the existing research artifacts. It is not an official PROJECT365 provider role.
 - **Specialized** — The provider is documented as focused on a specific domain, subdomain, chain, venue, data namespace, or narrow capability.
 - **Optional** — The provider or capability is documented as available, partial, limited, backup, or supplemental, but not as core coverage for the domain.
 - **Research** — The provider, capability, variable, or tier is documented as research-stage, unverified, pilot-based, manually oriented, or requiring further validation.
-- **Planned** — The canonical capability is retained for future metric planning or roadmap use in the existing mapping documentation.
+- **Future Metric** — Documentation classification corresponding to the `Future Metric` terminology used in `VariableMappingMatrix.md`. It indicates canonical capabilities retained for future derived metrics or roadmap planning and does not introduce new implementation requirements.
 
 ---
+
+## Status Column Governance
+
+The matrix **Status** column records only the documented readiness or lifecycle classification found in the referenced provider and variable research artifacts. It is not a provider tier, provider priority, confidence score, provider ranking, routing instruction, fallback rule, or selection rule. Composite values such as `Research / Expansion` preserve documented provider lifecycle classifications from `MasterProviderResearch.md` together with documented roadmap classifications from `RawVariableCatalog.md`. These composite values are documentation-only labels and do not create ordering, precedence, provider ranking, provider routing, provider selection, fallback behavior, or implementation behavior.
+
+## Domain Normalization Governance
+
+ProviderCoverageMatrix groups coverage by high-level provider coverage domains. CanonicalVariableDictionary models canonical variable `Domain` and `Business Category` separately, while DerivedMetricsCatalog introduces business domains such as Liquidity and Staking for derived metric organization. Liquidity and Staking are represented in this matrix through their corresponding provider coverage domains, such as Global Market, DeFi, and On-Chain, rather than as separate matrix columns. This section is documentation-only and introduces no implementation logic.
 
 ## Provider Coverage Matrix
 
@@ -64,7 +77,7 @@ The following terms are documentation classifications only. They describe how co
 | Coinalyze | Not covered | Not covered | Not covered | Primary — funding rates, open interest, liquidations across exchanges | Not covered | Not covered | Not covered | Production Ready | Documented PROJECT365 role is Primary Derivatives Provider. |
 | BGeometrics | Primary — Bitcoin MVRV, SOPR, NUPL, HODL Waves, CDD, Reserve Risk, exchange flows | Secondary — M2, DXY, VIX, Treasury yields documented as bonus/overlap coverage | Secondary — stablecoin supply documented as bonus/overlap coverage | Secondary — Bitcoin derivatives, funding rate, open interest, options Greeks | Not covered | Not covered | Not covered | Production Ready | Documented PROJECT365 role is Primary On-Chain Provider; raw catalog also records macro and stablecoin overlap variables. |
 | Coin Metrics | Specialized — network activity and advanced on-chain research variables | Not covered | Not covered | Not covered | Not covered | Not covered | Not covered | Research / Expansion | Raw catalog documents Community-tier active addresses, supply, transaction count, plus advanced/unverified on-chain variables. |
-| Ethereum Beacon Node (self-host / free-tier Infura, Alchemy, QuickNode) | Specialized — Ethereum validator/staking capability | Not covered | Not covered | Not covered | Not covered | Not covered | Not covered | Expansion | Raw catalog documents ETH active validators. |
+| Beacon Node (self-host / free-tier Infura, Alchemy, QuickNode) | Specialized — Ethereum validator/staking capability | Not covered | Not covered | Not covered | Not covered | Not covered | Not covered | Expansion | Raw catalog documents ETH active validators. |
 | Etherscan | Specialized — Ethereum supply capability | Not covered | Not covered | Not covered | Not covered | Not covered | Not covered | Not Verified | Raw catalog documents ETH total supply. |
 | Bitquery | Specialized — Ethereum validator data and token transfers | Not covered | Not covered | Not covered | Not covered | Secondary — DEX volume | Not covered | Expansion / Research | Raw catalog documents GraphQL coverage for validator data, validator deposits, slashing, attestation, DEX volume, and token transfers. |
 | Binance Futures API | Not covered | Not covered | Not covered | Specialized — exchange-specific open interest and funding rate | Not covered | Not covered | Not covered | Expansion | Raw catalog documents free public derivatives endpoints for Binance. |
@@ -80,9 +93,9 @@ The following terms are documentation classifications only. They describe how co
 
 ### Domains With Multiple Providers
 
-- **On-Chain** — Covered across BGeometrics, Coin Metrics, GeckoTerminal, Bitquery, Ethereum Beacon Node access, Etherscan, Arkham Intelligence, and DeBank, with each provider covering different subdomains such as Bitcoin cycle indicators, network activity, DEX/token analytics, Ethereum validator/staking data, token transfers, wallet intelligence, and entity intelligence.
+- **On-Chain** — Covered across BGeometrics, Coin Metrics, GeckoTerminal, Bitquery, Beacon Node access, Etherscan, Arkham Intelligence, and DeBank, with each provider covering different subdomains such as Bitcoin cycle indicators, network activity, DEX/token analytics, Ethereum validator/staking data, token transfers, wallet intelligence, and entity intelligence.
 - **Macro** — Covered by FRED as the primary macro provider and BGeometrics as documented overlap for M2, DXY, VIX, and Treasury yield variables.
-- **Stablecoin** — Covered by DefiLlama as primary stablecoin supply and distribution coverage; CoinGecko, GeckoTerminal, CoinPaprika, and BGeometrics provide partial, visible, filtering-based, or overlap coverage as documented.
+- **Stablecoin** — Covered by DefiLlama for stablecoin circulating supply, peg type, per-chain distribution, and historical coverage; CoinGecko, GeckoTerminal, CoinPaprika, and BGeometrics provide partial, visible, filtering-based, or overlap coverage as documented.
 - **Derivatives** — Covered by Coinalyze, CoinGecko, BGeometrics, Binance Futures API, Bybit API, OKX API, and partially documented DefiLlama/CoinPaprika derivatives capabilities.
 - **Global Market** — Covered by CoinGecko, CoinPaprika, and CoinCap.
 - **DeFi** — Covered by DefiLlama, GeckoTerminal, CoinGecko, Bitquery, CoinPaprika, and DeBank in different scopes.
@@ -92,7 +105,7 @@ The following terms are documentation classifications only. They describe how co
 
 - **On-Chain** — BGeometrics is documented as Primary On-Chain Provider.
 - **Macro** — FRED is documented as Primary Macro Provider.
-- **Stablecoin** — DefiLlama is the only provider explicitly documented with primary stablecoin supply and distribution coverage.
+- **Stablecoin** — DefiLlama is documented with stablecoin circulating supply, peg type, per-chain distribution, and historical coverage.
 - **Derivatives** — Coinalyze is documented as Primary Derivatives Provider.
 - **Global Market** — CoinGecko is documented as Primary Market Data Provider.
 - **DeFi** — DefiLlama is documented as Primary DeFi Provider.
@@ -110,7 +123,7 @@ The following terms are documentation classifications only. They describe how co
 
 - **Primary macro source** — FRED is the only provider documented as the primary macro provider, although BGeometrics has overlap variables.
 - **Primary Bitcoin cycle indicator source** — BGeometrics is the only provider documented as primary for Bitcoin MVRV, SOPR, NUPL, HODL Waves, CDD, Puell Multiple, Reserve Risk, and exchange-flow variables in the raw catalog.
-- **Ethereum staking source categories** — Existing raw variables are split across Ethereum Beacon Node access, Etherscan, and Bitquery; individual raw variables such as ETH active validators and ETH total supply each have a single documented primary provider in the raw catalog.
+- **Ethereum staking source categories** — Existing raw variables are split across Beacon Node access, Etherscan, and Bitquery; individual raw variables such as ETH active validators and ETH total supply each have a single documented primary provider in the raw catalog.
 
 ---
 
