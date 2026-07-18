@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-18
+
+### Added
+
+- Implemented ISSUE-005 Event Bus with approved event registry, event and metadata validation, publisher ownership checks, subscriber registry lifecycle, publish, subscribe, unsubscribe, getSubscribers, dispatch, deterministic delivery ordering, duplicate-event rejection, and approved error contracts.
+- Added deterministic Event Bus tests covering AC-005 contract fields, public interfaces, validation rules, error outcomes, lifecycle behavior, edge cases, and dependency-direction rejection.
+
+### Updated
+
+- Marked ISSUE-005 implementation tracking as completed in Current Status, Backlog, and ISSUE-005.
+
 ## 2026-07-15
 
 ### Added

@@ -28,13 +28,13 @@ Architecture Freeze covers Governance, Documentation, Specifications, Technical 
 
 TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
 
-Current implementation status: Foundation v0.1 completed and Data Pipeline implementation started; ISSUE-001, ISSUE-002, ISSUE-003, and ISSUE-004 completed. Architecture Freeze remains frozen.
+Current implementation status: Foundation v0.1 completed and Data Pipeline implementation continued; ISSUE-001, ISSUE-002, ISSUE-003, ISSUE-004, and ISSUE-005 completed. Architecture Freeze remains frozen.
 
 ## 4. Current Milestone
 
 - **Current milestone:** M3 Data Pipeline.
 - **Next milestone:** M3 Data Pipeline continuation.
-- **Current issue:** ISSUE-004 Data Service Implementation completed.
+- **Current issue:** ISSUE-005 Event Bus Implementation completed.
 - **Current issue status:** Completed.
 
 ## 5. Current Sprint
@@ -45,6 +45,7 @@ Current implementation status: Foundation v0.1 completed and Data Pipeline imple
 | Sprint 1 | M2 | ISSUE-002 | Health Layer Implementation | Completed |
 | Sprint 1 | M2 | ISSUE-003 | Snapshot Engine Implementation | Completed |
 | Sprint 2 | M3 | ISSUE-004 | Data Service Implementation | Completed |
+| Sprint 2 | M3 | ISSUE-005 | Event Bus Implementation | Completed |
 
 Sprint 2 belongs to the Data Pipeline Implementation phase.
 
@@ -54,9 +55,9 @@ Sprint 2 belongs to the Data Pipeline Implementation phase.
 - **Technical Designs:** Frozen.
 - **Issue Specifications:** Completed.
 - **Acceptance Criteria:** Completed.
-- **Implementation:** Foundation v0.1 completed; Data Pipeline implementation started with ISSUE-004 completed.
+- **Implementation:** Foundation v0.1 completed; Data Pipeline implementation started with ISSUE-004 and ISSUE-005 completed.
 - **Documentation Complete:** TD-000 through TD-028, ISSUE-001 through ISSUE-028, and AC-001 through AC-028 exist.
-- **Implementation Progress:** ISSUE-001 MarketData, ISSUE-002 Health Layer, ISSUE-003 Snapshot Engine, and ISSUE-004 Data Service completed.
+- **Implementation Progress:** ISSUE-001 MarketData, ISSUE-002 Health Layer, ISSUE-003 Snapshot Engine, and ISSUE-004 Data Service and ISSUE-005 Event Bus completed.
 - **Blocked items:** None.
 
 ## 7. Active Work Items
@@ -67,6 +68,7 @@ Sprint 2 belongs to the Data Pipeline Implementation phase.
 | M2 | ISSUE-002 | Health Layer Implementation | Completed | Backlog Section 6; Roadmap M2; TD-002 |
 | M2 | ISSUE-003 | Snapshot Engine Implementation | Completed | Backlog Section 6; Roadmap M2; TD-003 |
 | M3 | ISSUE-004 | Data Service Implementation | Completed | Backlog Section 6; Roadmap M3; TD-004 |
+| M3 | ISSUE-005 | Event Bus Implementation | Completed | Backlog Section 6; Roadmap M3; TD-005 |
 
 ## 8. Technical Design Status
 
