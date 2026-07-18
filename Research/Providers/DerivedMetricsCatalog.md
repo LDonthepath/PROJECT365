@@ -27,7 +27,7 @@ It does NOT define HOW the metric is calculated.
 | DM-005 | MARKET_VOLUME_TO_SIZE_RATIO | Liquidity | Measures trading activity relative to asset market size. | ASSET_TRADING_VOLUME; ASSET_MARKET_CAP | Ratio | Draft | |
 | DM-006 | NETWORK_ACTIVITY_DENSITY | On-Chain | Measures network user activity relative to network supply. | ACTIVE_ADDRESSES; NETWORK_SUPPLY | Ratio | Draft | |
 | DM-007 | NETWORK_TRANSACTION_DENSITY | On-Chain | Measures transaction activity relative to network supply. | TRANSACTION_COUNT; NETWORK_SUPPLY | Ratio | Draft | |
-| DM-008 | ETH_STAKING_PARTICIPATION_RATIO | Staking | Measures Ethereum validator participation relative to total ETH supply. | ETH_ACTIVE_VALIDATORS; ETH_TOTAL_SUPPLY | Percentage | Draft | Canonical dictionary notes these variables are used together for Staking Ratio. |
+| DM-008 | ETH_STAKING_PARTICIPATION_RATIO | Staking | Measures Ethereum validator participation relative to total ETH supply. | ETH_ACTIVE_VALIDATORS; ETH_TOTAL_SUPPLY | Percentage | Draft | Supported by existing canonical variables and VariableMappingMatrix relationships. |
 | DM-009 | OPEN_INTEREST_FUNDING_RATIO | Derivatives | Measures open interest in relation to funding rate. | OPEN_INTEREST; FUNDING_RATE | Index | Draft | |
 | DM-010 | DEX_VOLUME_SHARE | DeFi | Measures decentralized exchange volume in relation to broader asset trading volume. | DEX_VOLUME; ASSET_TRADING_VOLUME | Ratio | Draft | |
 | DM-011 | TOKEN_TRANSFER_RATIO | On-Chain | Measures token transfer activity in relation to network transaction count. | TOKEN_TRANSFER; TRANSACTION_COUNT | Ratio | Draft | |
