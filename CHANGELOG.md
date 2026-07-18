@@ -4,12 +4,15 @@
 
 ### Added
 
+- Implemented ISSUE-006 Storage Layer with immutable MarketData and Snapshot persistence, retrieval by identity and criteria, range queries, archive behavior, deterministic pagination and ordering, idempotent saves, conflict rejection, and approved error contracts.
+- Added deterministic Storage Layer tests covering AC-006 contract fields, public interfaces, validation rules, error outcomes, edge cases, immutability, boundary conditions, and architecture-preservation behavior.
 - Implemented ISSUE-005 Event Bus with approved event registry, event and metadata validation, publisher ownership checks, subscriber registry lifecycle, publish, subscribe, unsubscribe, getSubscribers, dispatch, deterministic delivery ordering, duplicate-event rejection, and approved error contracts.
 - Added deterministic Event Bus tests covering AC-005 contract fields, public interfaces, validation rules, error outcomes, lifecycle behavior, edge cases, and dependency-direction rejection.
 
 ### Updated
 
 - Marked ISSUE-005 implementation tracking as completed in Current Status, Backlog, and ISSUE-005.
+- Marked ISSUE-006 implementation tracking as completed in Current Status, Backlog, and ISSUE-006.
 
 ## 2026-07-15
 
