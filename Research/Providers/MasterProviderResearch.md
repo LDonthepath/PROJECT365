@@ -588,7 +588,7 @@ Fills critical gap for Bitcoin on-chain indicators unavailable elsewhere at no c
 |------------|:------:|------|
 | Global Market Data | ❌ | Not provided |
 | Coin Market Data | ❌ | Bitcoin only; no multi-coin market data |
-| Stablecoin Data | ❌ | Not provided |
+| Stablecoin Data | ⚠️ | Stablecoin Supply documented as bonus/overlap in RawVariableCatalog; no native depeg/backing-ratio metrics verified |
 | DeFi Data | ❌ | Not provided |
 | Derivatives Data | ✅ | Bitcoin derivatives (funding rate, OI, options Greeks) |
 | On-Chain Data | ✅ | MVRV, SOPR, NUPL, HODL Waves, CDD, Reserve Risk, exchange flows |
