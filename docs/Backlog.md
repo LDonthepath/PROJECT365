@@ -5,9 +5,9 @@
 - **Project:** PROJECT365
 - **Document Type:** Backlog
 - **Status:** Active
-- **Version:** 1.5
+- **Version:** 1.6
 - **Owner:** PROJECT365 Delivery
-- **Last Updated:** 2026-07-15
+- **Last Updated:** 2026-07-18
 - **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md)
 - **Referenced By:** Current Status, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -55,7 +55,7 @@ TD-000 is an architectural prerequisite and intentionally does not generate Issu
 | M0 | Product Blueprint | Completed | Authoritative governance documents and templates are normalized and available for delivery reference. |
 | M1 | Foundation Specification | Completed | Foundation Technical Design documents TD-000 through TD-003 are available. |
 | M2 | Foundation Implementation | Completed | Foundation v0.1 implementation completed with ISSUE-001, ISSUE-002, and ISSUE-003 completed. |
-| M3 | Data Pipeline | In Progress | Data Pipeline implementation started with ISSUE-004 completed. |
+| M3 | Data Pipeline | In Progress | Data Pipeline implementation continued with ISSUE-004 and ISSUE-005 completed. |
 | M4 | Delta Layer | Planned | Future milestone from the Roadmap. |
 | M5 | Intelligence Layer | Planned | Future milestone from the Roadmap. |
 | M6 | Portfolio, Governance, and Presentation | Planned | Future milestone from the Roadmap. |
@@ -120,7 +120,7 @@ Status values used in this Backlog:
 | Implementation | ISSUE-002 | Health Layer Implementation | Completed | Roadmap M2; TD-002 |
 | Implementation | ISSUE-003 | Snapshot Engine Implementation | Completed | Roadmap M2; TD-003 |
 | Implementation | ISSUE-004 | Data Service Implementation | Completed | Derived from TD-004 |
-| Implementation | ISSUE-005 | Event Bus Implementation | Not Started | Derived from TD-005 |
+| Implementation | ISSUE-005 | Event Bus Implementation | Completed | Derived from TD-005 |
 | Implementation | ISSUE-006 | Storage Layer Implementation | Not Started | Derived from TD-006 |
 | Implementation | ISSUE-007 | Delta Engine Implementation | Not Started | Derived from TD-007 |
 | Implementation | ISSUE-008 | Triad Liquidity Framework Implementation | Not Started | Derived from TD-008 |
@@ -153,11 +153,11 @@ Status values used in this Backlog:
 - **Technical Designs:** Frozen.
 - **Issue Specifications:** Completed.
 - **Acceptance Criteria:** Completed.
-- **Implementation:** Foundation v0.1 completed; Data Pipeline implementation started with ISSUE-004 completed.
+- **Implementation:** Foundation v0.1 completed; Data Pipeline implementation continued with ISSUE-004 and ISSUE-005 completed.
 - **Freeze:** Architecture Frozen.
 - **Blocked items:** None.
 
-Current implementation status: Foundation v0.1 implementation completed; Data Pipeline implementation started with ISSUE-004 completed. Architecture Freeze remains frozen.
+Current implementation status: Foundation v0.1 implementation completed; Data Pipeline implementation continued with ISSUE-004 and ISSUE-005 completed. Architecture Freeze remains frozen.
 
 M0 Product Blueprint, M1 Foundation Specification, Issue Specifications, and Acceptance Criteria are Completed. M2 is completed; M3 through M7 remain implementation milestones that have not started.
 

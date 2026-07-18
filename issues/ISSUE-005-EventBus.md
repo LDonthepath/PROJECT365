@@ -6,12 +6,12 @@
 |------|------|
 | Issue ID | ISSUE-005 |
 | Title | Event Bus Implementation |
-| Status | Planned |
+| Status | Completed |
 | Priority | High |
 | Owner | PROJECT365 Delivery |
 | Milestone | Foundation Implementation |
 | Sprint | TBD |
-| Last Updated | 2026-07-14 |
+| Last Updated | 2026-07-18 |
 | Depends On | TD-005 |
 | Referenced By | AC-005, Implementation Prompt, Pull Request |
 
@@ -65,22 +65,22 @@ Every item below maps to TD-005 only.
 
 | ID | Task | TD Mapping | Status |
 |----|------|------------|--------|
-| TASK-001 | Build `publish(event)` exactly as the public interface for Event Bus. | TD-005 public interface | Planned |
-| TASK-002 | Build `subscribe(request)` exactly as the public interface for Event Bus. | TD-005 public interface | Planned |
-| TASK-003 | Build `unsubscribe(request)` exactly as the public interface for Event Bus. | TD-005 public interface | Planned |
-| TASK-004 | Build `getSubscribers(eventType)` exactly as the public interface for Event Bus. | TD-005 public interface | Planned |
-| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-005 Data Model | Planned |
-| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-005 Error Handling | Planned |
-| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-005 Error Handling | Planned |
-| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-005 boundaries and constraints | Planned |
-| TASK-014 | Add tests or checks for every AC-005 criterion. | AC-005 | Planned |
+| TASK-001 | Build `publish(event)` exactly as the public interface for Event Bus. | TD-005 public interface | Completed |
+| TASK-002 | Build `subscribe(request)` exactly as the public interface for Event Bus. | TD-005 public interface | Completed |
+| TASK-003 | Build `unsubscribe(request)` exactly as the public interface for Event Bus. | TD-005 public interface | Completed |
+| TASK-004 | Build `getSubscribers(eventType)` exactly as the public interface for Event Bus. | TD-005 public interface | Completed |
+| TASK-010 | Implement the data contract fields listed in the Data Contract Checklist. | TD-005 Data Model | Completed |
+| TASK-011 | Implement the validation sequence listed in the Validation Checklist. | TD-005 Error Handling | Completed |
+| TASK-012 | Implement the error outcomes listed in the Error Handling Checklist. | TD-005 Error Handling | Completed |
+| TASK-013 | Implement edge-case behavior listed in the Edge Cases section. | TD-005 boundaries and constraints | Completed |
+| TASK-014 | Add tests or checks for every AC-005 criterion. | AC-005 | Completed |
 
 ### Public Interface Checklist
 
-- [ ] `publish(event)` exists and returns only approved outputs.
-- [ ] `subscribe(request)` exists and returns only approved outputs.
-- [ ] `unsubscribe(request)` exists and returns only approved outputs.
-- [ ] `getSubscribers(eventType)` exists and returns only approved outputs.
+- [x] `publish(event)` exists and returns only approved outputs.
+- [x] `subscribe(request)` exists and returns only approved outputs.
+- [x] `unsubscribe(request)` exists and returns only approved outputs.
+- [x] `getSubscribers(eventType)` exists and returns only approved outputs.
 
 ### Data Contract Checklist
 
