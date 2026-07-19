@@ -1,197 +1,164 @@
-# Roadmap
+# Roadmap PROJECT365
 
 ## Tujuan
 
-Dokumen ini menjelaskan arah pengembangan PROJECT365 secara bertahap.
+Roadmap menjelaskan arah evolusi PROJECT365 secara bertahap.
 
-Roadmap bukan merupakan daftar fitur yang pasti akan dibangun, melainkan panduan evolusi platform berdasarkan prioritas bisnis dan kesiapan fondasi.
+Roadmap bukan merupakan daftar fitur maupun jadwal rilis yang bersifat tetap. Roadmap digunakan sebagai panduan agar seluruh proses pengembangan memiliki arah yang konsisten dan tidak kehilangan fokus terhadap visi PROJECT365.
 
-Urutan roadmap dapat berubah apabila terdapat kebutuhan bisnis, hasil research, atau perubahan prioritas.
+Roadmap dapat berkembang berdasarkan hasil penelitian, validasi pengguna, perubahan pasar, maupun perkembangan teknologi.
+
+---
+
+# Tahap 1 — Foundation
+
+Fokus utama pada tahap ini adalah membangun fondasi PROJECT365 sebelum pengembangan fitur bisnis dimulai.
+
+Target utama:
+
+- Menyusun dokumentasi SDLC secara lengkap.
+- Menyusun dokumentasi bisnis.
+- Menyusun dokumentasi arsitektur.
+- Menyusun spesifikasi teknis.
+- Membangun Provider Framework.
+- Menentukan standar kontrak data.
+- Menentukan standar coding.
+- Menentukan workflow development.
+- Menyiapkan CI/CD.
+- Menyiapkan testing framework.
+- Menyiapkan monitoring dasar.
+
+Output:
+
+PROJECT365 memiliki fondasi yang kuat, terdokumentasi, dan mudah dikembangkan.
+
+---
+
+# Tahap 2 — Data Platform
+
+Fokus utama adalah membangun platform pengumpulan, validasi, normalisasi, dan penyimpanan data.
+
+Target utama:
+
+- Integrasi market data provider.
+- Integrasi metadata provider.
+- Integrasi news provider.
+- Integrasi on-chain provider.
+- Integrasi macro economic provider.
+- Integrasi sentiment provider.
+- Normalisasi seluruh data.
+- Validasi kualitas data.
+- Caching.
+- Health monitoring provider.
+- Failover provider.
+
+Output:
+
+PROJECT365 mampu menyediakan data yang konsisten tanpa bergantung pada satu provider.
+
+---
+
+# Tahap 3 — Analysis Engine
+
+Fokus utama adalah membangun mesin analisis yang mampu mengolah berbagai jenis data menjadi informasi yang dapat digunakan.
+
+Target utama:
+
+- Technical analysis.
+- Fundamental analysis.
+- On-chain analysis.
+- Sentiment analysis.
+- Macro analysis.
+- Portfolio analysis.
+- Risk analysis.
+- Decision engine.
+- Scoring engine.
+
+Output:
+
+PROJECT365 mampu menghasilkan insight berdasarkan berbagai sumber data.
+
+---
+
+# Tahap 4 — Trading & Investment Intelligence
+
+Fokus utama adalah membantu pengguna mengambil keputusan trading maupun investasi dengan lebih terstruktur.
+
+Target utama:
+
+- Watchlist.
+- Portfolio tracking.
+- Trading journal.
+- Investment journal.
+- Alert.
+- Notification.
+- Signal explanation.
+- Decision support.
+- Opportunity discovery.
+- Risk monitoring.
+
+Output:
+
+PROJECT365 menjadi platform pendukung keputusan trading dan investasi.
+
+---
+
+# Tahap 5 — Automation
+
+Fokus utama adalah mengurangi pekerjaan manual melalui otomatisasi.
+
+Target utama:
+
+- Workflow automation.
+- Scheduled analysis.
+- Scheduled reporting.
+- Rule engine.
+- AI-assisted analysis.
+- Strategy execution support.
+- Automatic notification.
+- Automation pipeline.
+
+Output:
+
+Sebagian besar proses analisis dapat berjalan secara otomatis.
+
+---
+
+# Tahap 6 — Ecosystem
+
+Fokus utama adalah membangun ekosistem PROJECT365 agar dapat berkembang bersama komunitas maupun layanan lain.
+
+Target utama:
+
+- Public API.
+- Plugin system.
+- SDK.
+- Community extension.
+- Third-party integration.
+- Multi-platform client.
+- Open integration standard.
+
+Output:
+
+PROJECT365 menjadi platform analisis aset digital yang dapat diperluas tanpa bergantung pada satu vendor maupun satu aplikasi.
 
 ---
 
 # Prinsip Roadmap
 
-PROJECT365 dikembangkan secara bertahap.
+Roadmap PROJECT365 mengikuti prinsip-prinsip berikut:
 
-Setiap fase harus menghasilkan fondasi yang stabil sebelum melanjutkan ke fase berikutnya.
+- Foundation before Feature.
+- Documentation before Implementation.
+- Business before Technology.
+- Research before Architecture.
+- Architecture before Development.
+- Incremental Delivery.
+- Continuous Improvement.
+- Vendor Agnostic.
+- Maintainability First.
+- Scalability by Design.
+- Traceability Across SDLC.
+- AI-Assisted Development with Human Decision.
 
-Tidak ada fase yang boleh dilewati apabila fondasi fase sebelumnya belum memadai.
-
----
-
-# Phase 1
-## Foundation
-
-Tujuan utama:
-
-Membangun fondasi PROJECT365.
-
-Fokus utama:
-
-- SDLC Documentation
-- Business Documentation
-- Research Documentation
-- Architecture Documentation
-- Technical Specifications
-- Acceptance Criteria
-- Coding Standards
-- Provider Framework
-- Data Standardization
-- Development Workflow
-- Testing Foundation
-
-Output utama:
-
-PROJECT365 memiliki fondasi dokumentasi dan arsitektur yang lengkap.
-
----
-
-# Phase 2
-## Data Platform
-
-Tujuan utama:
-
-Membangun platform agregasi data.
-
-Fokus utama:
-
-- Integrasi Multi Provider
-- Data Collection
-- Data Validation
-- Data Normalization
-- Data Quality
-- Historical Data
-- Caching
-- Synchronization
-
-Output utama:
-
-PROJECT365 mampu menghasilkan data yang konsisten dari berbagai sumber.
-
----
-
-# Phase 3
-## Intelligence Engine
-
-Tujuan utama:
-
-Mengubah data menjadi informasi yang bernilai.
-
-Fokus utama:
-
-- Market Intelligence
-- Asset Intelligence
-- Trading Intelligence
-- Investment Intelligence
-- Portfolio Intelligence
-- News Intelligence
-- Sentiment Intelligence
-- On-chain Intelligence
-- ETF & Macro Intelligence
-
-Output utama:
-
-PROJECT365 mampu menghasilkan insight berdasarkan data yang telah dinormalisasi.
-
----
-
-# Phase 4
-## Decision Support
-
-Tujuan utama:
-
-Membantu pengguna mengambil keputusan.
-
-Fokus utama:
-
-- Scoring
-- Ranking
-- Risk Analysis
-- Opportunity Analysis
-- Decision Logic
-- Alert
-- Notification
-
-Output utama:
-
-PROJECT365 mampu memberikan analisis yang mudah dipahami pengguna.
-
----
-
-# Phase 5
-## User Experience
-
-Tujuan utama:
-
-Menyediakan pengalaman pengguna yang lengkap.
-
-Fokus utama:
-
-- Dashboard
-- Watchlist
-- Portfolio
-- Search
-- Reporting
-- Personalization
-- Mobile Experience
-
-Output utama:
-
-PROJECT365 menjadi platform yang nyaman digunakan sehari-hari.
-
----
-
-# Phase 6
-## AI Intelligence
-
-Tujuan utama:
-
-Memanfaatkan AI untuk meningkatkan kualitas analisis.
-
-Fokus utama:
-
-- AI Summary
-- AI Insight
-- AI Explanation
-- AI Research Assistant
-- AI Decision Assistant
-
-AI hanya berperan sebagai pendukung analisis dan tidak menggantikan keputusan pengguna.
-
----
-
-# Phase 7
-## Ecosystem
-
-Tujuan utama:
-
-Membangun ekosistem PROJECT365.
-
-Fokus utama:
-
-- Public API
-- Developer SDK
-- Plugin System
-- Community Integration
-- Third-party Integration
-
-Output utama:
-
-PROJECT365 dapat digunakan dan dikembangkan bersama oleh komunitas maupun mitra.
-
----
-
-# Roadmap Evolution
-
-Roadmap bersifat hidup.
-
-Setiap fase dapat diperluas, dipecah, atau disusun ulang berdasarkan:
-
-- Perubahan kebutuhan bisnis
-- Hasil research
-- Masukan pengguna
-- Kondisi pasar
-- Perkembangan teknologi
-
-Namun seluruh perubahan harus tetap mengikuti proses SDLC PROJECT365 agar konsisten dengan visi, misi, dan tujuan platform.
+Seluruh pengembangan PROJECT365 harus mengikuti roadmap ini secara bertahap. Setiap tahap menjadi fondasi bagi tahap berikutnya sehingga pertumbuhan sistem tetap stabil, terdokumentasi, dan mudah dipelihara dalam jangka panjang.
