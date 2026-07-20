@@ -89,4 +89,4 @@ Dalam menjalankan misi tersebut, PROJECT365 berpegang pada prinsip berikut.
 
 ## Pernyataan Misi
 
-Membangun platform analisis aset digital yang mengintegrasikan berbagai sumber data, menghasilkan analisis yang transparan dan dapat dijelaskan, serta membantu pengguna mengambil keputusan trading dan investasi yang lebih baik melalui pendekatan berbasis data, dokumentasi, dan pengembangan yang berkelanjutan.
+Membangun platform analisis aset digital yang mengintegrasikan berbagai sumber data, menghasilkan analisis yang transparan dan dapat dijelaskan, serta membantu pengguna melakukan analisis dan memahami kondisi aset digital sebagai dasar pengambilan keputusan melalui pendekatan berbasis data, dokumentasi, dan pengembangan yang berkelanjutan.
