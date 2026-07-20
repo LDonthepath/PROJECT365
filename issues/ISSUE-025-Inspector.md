@@ -127,7 +127,7 @@ Do not include implementation code in this Issue Specification.
 - TD-025 Inspector Technical Design.
 - BRD, PRD, Architecture, Product Map, Glossary, ADR, Roadmap, Backlog, and Current Status.
 - AC-025 acceptance criteria for this Issue Specification.
-- TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
+- TD-000 is the architectural foundation of PROJECT365. ISSUE-000 and AC-000 are intentionally retained as part of the official Specification Driven Development traceability for foundational architecture artifacts.
 
 ---
 

@@ -47,9 +47,9 @@ Freeze
 | `project365/`, `business/`, `research/`, `architecture/`, `specifications/`, `acceptance-criteria/`, `implementation/` | SDLC documentation structure for governance, business, research, architecture, specifications, acceptance criteria, and implementation documents. |
 | `templates/` | Templates for Technical Designs, Issue Specifications, and Acceptance Criteria. |
 | `specs/` | Legacy Technical Design documents TD-000 through TD-028. |
-| `issues/` | Issue Specifications ISSUE-001 through ISSUE-028 derived from approved Technical Designs. |
+| `issues/` | Issue Specifications ISSUE-000 through ISSUE-028 maintained for official Specification Driven Development traceability. |
 | `prompts/` | Implementation, review, bugfix, and system prompts used by the documentation-first workflow. |
-| `backend/` | Implementation source and tests. Implementation is pending and belongs to later milestones. Documentation-only governance work must not modify this directory unless implementation work is explicitly approved. |
+| `backend/` | Implementation source and tests for completed Foundation and Data Pipeline work. Documentation-only governance work must not modify this directory unless implementation work is explicitly approved. |
 
 ## Development Workflow
 
@@ -104,18 +104,18 @@ PROJECT365 preserves Specification Driven Development:
 
 Architecture Freeze covers Governance, Documentation, Specifications, Technical Designs, Issue Specifications, and Acceptance Criteria. Architecture Freeze DOES NOT require implementation completion. Implementation belongs to later milestones.
 
-TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
+TD-000 is the architectural foundation of PROJECT365. The repository includes ISSUE-000 and AC-000 to preserve complete Specification Driven Development traceability for foundational architecture artifacts. These artifacts are intentionally maintained as part of the repository's complete documentation lifecycle.
 
-Current implementation status: Documentation Complete; Implementation Pending. Architecture Freeze may complete before implementation.
+Current implementation status: Foundation v0.1 completed; Data Pipeline implementation continued through ISSUE-006. Architecture Freeze remains frozen.
 
 ## Current Scope
 
-Current implementation scope remains Foundation v0.1 only:
+Completed Foundation v0.1 scope:
 
 - MarketData Contract
 - Health Layer
 - Snapshot Engine
 
-Documentation Complete. Architecture Frozen. Implementation Pending.
+Documentation Complete. Architecture Frozen. Foundation v0.1 completed; Data Pipeline implementation continued through ISSUE-006.
 
-The complete documentation architecture tracks TD-000 through TD-028; all Technical Designs are Frozen, all Issue Specifications are Completed, and all Acceptance Criteria are Completed. Architecture Freeze may complete before implementation.
+The complete documentation architecture tracks TD-000 through TD-028; ISSUE-000 and AC-000 are retained for foundational traceability; ISSUE-001 through ISSUE-028 and AC-001 through AC-028 are completed governance artifacts. Architecture Freeze may complete before implementation.

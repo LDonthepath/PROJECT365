@@ -23,15 +23,15 @@ Product requirements come only from the [BRD](../business/brd.md) and [PRD](../b
 
 This Backlog covers delivery tracking for approved PROJECT365 milestones M0 through M7.
 
-Current Release Scope is Foundation v0.1 only:
+Completed Foundation v0.1 scope:
 
 - MarketData Contract
 - Health Layer
 - Snapshot Engine
 
-Current implementation tracking is pending and belongs to later milestones. The full TD-000 through TD-028 sequence is tracked as Frozen documentation and future implementation source material only.
+Current implementation tracking shows Foundation v0.1 completed and Data Pipeline implementation continued through ISSUE-006. The full TD-000 through TD-028 sequence remains tracked as Frozen documentation and future implementation source material where not yet implemented.
 
-TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
+TD-000 is the architectural foundation of PROJECT365. ISSUE-000 and AC-000 are intentionally retained as part of the official Specification Driven Development traceability for foundational architecture artifacts.
 
 ## 4. Backlog Principles
 
@@ -85,8 +85,8 @@ Status values used in this Backlog:
 | Template | TechnicalDesignTemplate | Technical Design Template | Completed | Roadmap M0; Templates |
 | Template | IssueSpecificationTemplate | Issue Specification Template | Completed | Roadmap M0; Templates |
 | Template | AcceptanceCriteriaTemplate | Acceptance Criteria Template | Completed | Roadmap M0; Templates |
-| Documentation | ISSUE-001 through ISSUE-028 | Issue Specifications | Completed | Derived from TD-001 through TD-028 |
-| Documentation | AC-001 through AC-028 | Acceptance Criteria | Completed | Derived from ISSUE-001 through ISSUE-028 |
+| Documentation | ISSUE-000 through ISSUE-028 | Issue Specifications | Retained / Completed | ISSUE-000 retained for TD-000 traceability; ISSUE-001 through ISSUE-028 derived from TD-001 through TD-028 |
+| Documentation | AC-000 through AC-028 | Acceptance Criteria | Retained / Completed | AC-000 retained for TD-000 / ISSUE-000 traceability; AC-001 through AC-028 derived from ISSUE-001 through ISSUE-028 |
 | Documentation | TD-000 | Provider Framework Technical Design | Frozen | Roadmap approved TD sequence |
 | Documentation | TD-001 | MarketData Technical Design | Frozen | Roadmap approved TD sequence |
 | Documentation | TD-002 | Health Layer Technical Design | Frozen | Roadmap approved TD sequence |
@@ -147,8 +147,8 @@ Status values used in this Backlog:
 
 ## 7. Current Progress
 
-- **Current phase:** Foundation Implementation.
-- **Next phase:** Continue Foundation Implementation.
+- **Current phase:** Data Pipeline Implementation.
+- **Next phase:** Continue Data Pipeline Implementation.
 - **Architecture Documentation:** Completed.
 - **Technical Designs:** Frozen.
 - **Issue Specifications:** Completed.
@@ -159,7 +159,7 @@ Status values used in this Backlog:
 
 Current implementation status: Foundation v0.1 implementation completed; Data Pipeline implementation continued with ISSUE-004, ISSUE-005, and ISSUE-006 completed. Architecture Freeze remains frozen.
 
-M0 Product Blueprint, M1 Foundation Specification, Issue Specifications, and Acceptance Criteria are Completed. M2 is completed; M3 through M7 remain implementation milestones that have not started.
+M0 Product Blueprint, M1 Foundation Specification, Issue Specifications, and Acceptance Criteria are Completed or intentionally retained for traceability. M2 is completed; M3 is in progress with ISSUE-004 through ISSUE-006 completed; M4 through M7 have not started.
 
 ## 8. Dependencies
 

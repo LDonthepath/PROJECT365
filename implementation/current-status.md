@@ -26,7 +26,7 @@ Current Status does not define product requirements, architecture decisions, imp
 
 Architecture Freeze covers Governance, Documentation, Specifications, Technical Designs, Issue Specifications, and Acceptance Criteria. Architecture Freeze DOES NOT require implementation completion. Implementation belongs to later milestones.
 
-TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
+TD-000 is the architectural foundation of PROJECT365. ISSUE-000 and AC-000 are intentionally retained as part of the official Specification Driven Development traceability for foundational architecture artifacts.
 
 Current implementation status: Foundation v0.1 completed and Data Pipeline implementation continued; ISSUE-001, ISSUE-002, ISSUE-003, ISSUE-004, ISSUE-005, and ISSUE-006 completed. Architecture Freeze remains frozen.
 
@@ -57,7 +57,7 @@ Sprint 2 belongs to the Data Pipeline Implementation phase.
 - **Issue Specifications:** Completed.
 - **Acceptance Criteria:** Completed.
 - **Implementation:** Foundation v0.1 completed; Data Pipeline implementation started with ISSUE-004, ISSUE-005, and ISSUE-006 completed.
-- **Documentation Complete:** TD-000 through TD-028, ISSUE-001 through ISSUE-028, and AC-001 through AC-028 exist.
+- **Documentation Complete:** TD-000 through TD-028 exist; ISSUE-000 and AC-000 are retained for foundational traceability; ISSUE-001 through ISSUE-028 and AC-001 through AC-028 exist as completed governance artifacts.
 - **Implementation Progress:** ISSUE-001 MarketData, ISSUE-002 Health Layer, ISSUE-003 Snapshot Engine, and ISSUE-004 Data Service, ISSUE-005 Event Bus, and ISSUE-006 Storage Layer completed.
 - **Blocked items:** None.
 
@@ -125,7 +125,7 @@ No work items are currently Blocked in the Backlog.
 ## 11. Next Actions
 
 1. Preserve Architecture Freeze governance status.
-2. Continue Foundation Implementation only for approved Foundation scope.
+2. Preserve completed Foundation Implementation scope.
 3. Preserve ISSUE-004 completed status after Data Service implementation.
 4. Preserve ISSUE-005 and ISSUE-006 completed statuses after Event Bus and Storage Layer implementation.
 5. Continue only with approved Data Pipeline work items when authorized.
@@ -141,13 +141,13 @@ No work items are currently Blocked in the Backlog.
 | Architecture Freeze scope | Roadmap; Backlog | Architecture Freeze covers governance, documentation, specifications, Technical Designs, Issue Specifications, and Acceptance Criteria only. |
 | Product structure and module names | Product Map; Glossary | Uses approved terms including Provider Framework, Data Service, MarketData, Health Layer, Snapshot Engine, Delta Engine, OMS Engine, Exposure Engine, Portfolio Engine, Risk Engine, Governance Domain, and Presentation Domain. |
 | Release and milestone sequence | Roadmap | Uses the approved M0 through M7 milestone sequence. |
-| Current phase | Backlog Section 7 | Foundation Implementation. |
-| Next phase | Backlog Section 7; Roadmap M2 | Foundation Implementation. |
+| Current phase | Backlog Section 7 | Data Pipeline Implementation. |
+| Next phase | Backlog Section 7; Roadmap M3 | Continue Data Pipeline Implementation. |
 | Technical Design status | Backlog Section 6 | TD-000 through TD-028 are Frozen. |
-| Issue Specification status | Backlog Section 6 | ISSUE-001 through ISSUE-028 are Completed as governance artifacts. |
-| Acceptance Criteria status | Backlog Section 6 | AC-001 through AC-028 are Completed as governance artifacts. |
-| Implementation status | Backlog Section 6 | Foundation v0.1 implementation is completed with ISSUE-001, ISSUE-002, and ISSUE-003 completed. |
-| TD-000 prerequisite status | Roadmap; Backlog; README | TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents. |
+| Issue Specification status | Backlog Section 6 | ISSUE-000 is retained for TD-000 traceability; ISSUE-001 through ISSUE-028 are Completed as governance artifacts. |
+| Acceptance Criteria status | Backlog Section 6 | AC-000 is retained for TD-000 / ISSUE-000 traceability; AC-001 through AC-028 are Completed as governance artifacts. |
+| Implementation status | Backlog Section 6 | Foundation v0.1 implementation is completed and Data Pipeline implementation continued through ISSUE-006. |
+| TD-000 traceability status | Roadmap; Backlog; README | TD-000 is the architectural foundation of PROJECT365. ISSUE-000 and AC-000 are intentionally retained as part of the official Specification Driven Development traceability for foundational architecture artifacts. |
 
 ## 13. References
 

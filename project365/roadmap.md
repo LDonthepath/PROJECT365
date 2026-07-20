@@ -105,13 +105,13 @@ TD-000 Provider Framework; TD-001 MarketData; TD-002 Health Layer; TD-003 Snapsh
 
 This sequence preserves existing TD numbering and does not introduce new product scope, releases, modules, or architecture decisions.
 
-TD-000 is an architectural prerequisite and intentionally does not generate Issue Specification or Acceptance Criteria documents.
+TD-000 is the architectural foundation of PROJECT365. ISSUE-000 and AC-000 are intentionally retained as part of the official Specification Driven Development traceability for foundational architecture artifacts.
 
 ## 8. Architecture Freeze Scope
 
 Architecture Freeze covers Governance, Documentation, Specifications, Technical Designs, Issue Specifications, and Acceptance Criteria. Architecture Freeze DOES NOT require implementation completion. Implementation belongs to later milestones.
 
-Current implementation status: Documentation Complete; Implementation Pending. Architecture Freeze may complete before implementation.
+Current implementation status: Foundation v0.1 completed; Data Pipeline implementation continued through ISSUE-006. Architecture Freeze remains frozen.
 
 ## 9. Deliverables
 
@@ -142,7 +142,7 @@ The Roadmap depends on:
 
 ## 11. Current Release
 
-Current focus: M2 Foundation Implementation, ISSUE-001 MarketData Implementation.
+Current focus: M3 Data Pipeline continuation after ISSUE-004, ISSUE-005, and ISSUE-006 completion.
 
 Foundation v0.1 remains limited to:
 
@@ -182,7 +182,22 @@ This Roadmap does not define:
 - Release dates.
 - Additional modules outside the approved Product Map and Architecture.
 
-## 14. Traceability
+## 14. Long-Term Roadmap Narrative
+
+This narrative preserves non-conflicting long-term phase context from the previous duplicate roadmap without changing the approved milestone sequence above.
+
+| Phase | Focus |
+| --- | --- |
+| Foundation | Build the documented SDLC foundation, business documentation, architecture documentation, technical specifications, provider framework, data contract standards, development workflow, testing framework, CI/CD readiness, and baseline monitoring. |
+| Data Platform | Build the data layer that collects, normalizes, stores, validates, and serves market data consistently. |
+| Analysis Engine | Build analysis components that transform data into indicators, signals, scores, market state, and explainable decision support. |
+| Trading & Investment Intelligence | Build portfolio-oriented intelligence, risk analysis, opportunity evaluation, and decision support without replacing user decisions. |
+| Automation | Introduce safe automation for data refresh, scheduled analysis, alerts, reporting, and workflow assistance while keeping execution decisions under user control. |
+| Ecosystem | Prepare PROJECT365 for extensibility through provider additions, integrations, plugins, API access, documentation portals, and community or internal contribution workflows. |
+
+Roadmap principles preserved from the previous duplicate roadmap: Foundation before Feature; Documentation before Implementation; Business before Technology; Research before Architecture; Architecture before Development; Incremental Delivery; Continuous Improvement; Vendor Agnostic; Maintainability First; Scalability by Design; Traceability Across SDLC; AI-Assisted Development with Human Decision.
+
+## 15. Traceability
 
 | Roadmap Area | Source of Truth | Traceability Notes |
 | --- | --- | --- |
@@ -193,7 +208,7 @@ This Roadmap does not define:
 | Terminology | Glossary | Module and domain names use approved terms. |
 | Delivery tracking | Backlog | Backlog tracks implementation status and must remain aligned to this Roadmap. |
 
-## 15. References
+## 16. References
 
 - [BRD](../business/brd.md)
 - [PRD](../business/prd.md)
@@ -205,7 +220,7 @@ This Roadmap does not define:
 - [Backlog](../implementation/backlog.md)
 - [Current Status](../implementation/current-status.md)
 
-## 16. Change History
+## 17. Change History
 
 | Version | Date | Description |
 | --- | --- | --- |
@@ -213,3 +228,4 @@ This Roadmap does not define:
 | 1.1 | 2026-07-13 | Normalized Roadmap governance structure and traceability. |
 | 1.2 | 2026-07-14 | Synchronized Roadmap to approved TD-000 through TD-028 sequence without changing milestone strategy. |
 | 1.3 | 2026-07-14 | Finalized governance freeze scope, TD-000 prerequisite clarification, and implementation-pending traceability without changing architecture. |
+| 1.4 | 2026-07-20 | Consolidated non-conflicting long-term roadmap narrative from the duplicate roadmap into this canonical roadmap and aligned TD-000 traceability with ISSUE-000 and AC-000. |

@@ -201,7 +201,27 @@ It defines one preferred name and one meaning for each approved term used across
 | SaaS | Software as a Service | Use only for architecture deployment readiness context. |
 | TD | Technical Design | Define on first use outside formal TD identifiers. |
 
-## 10. Traceability
+## 10. Localized Term Summaries
+
+These Indonesian summaries preserve concise terminology notes from the previous duplicate glossary without changing the authoritative definitions above.
+
+| Term | Localized Summary |
+| --- | --- |
+| Asset | Aset digital yang dianalisis PROJECT365, seperti cryptocurrency atau token. |
+| Provider | Sumber data eksternal yang menyediakan informasi untuk PROJECT365. |
+| Provider Framework | Framework yang mengatur lifecycle, kontrak, dan integrasi provider. |
+| Research | Dokumen hasil analisis sebelum keputusan bisnis atau teknis dibuat. |
+| Business Rule | Aturan bisnis yang harus dipenuhi sistem. |
+| Decision Logic | Logika pengambilan keputusan berdasarkan Business Rule. |
+| Threshold | Nilai batas yang menentukan perubahan keputusan. |
+| Formula | Rumus matematis yang digunakan dalam analisis. |
+| Signal | Hasil evaluasi dari Decision Logic. |
+| Indicator | Nilai teknikal atau fundamental yang menjadi input Formula. |
+| Confidence Score | Skor tingkat keyakinan terhadap hasil analisis. |
+| Acceptance Criteria | Kriteria yang harus dipenuhi sebelum fitur dianggap selesai. |
+| Documentation First | Pendekatan bahwa dokumentasi dibuat sebelum implementasi. |
+
+## 11. Traceability
 
 | Glossary Area | Source of Truth | Normalization Result |
 | --- | --- | --- |
@@ -218,7 +238,7 @@ It defines one preferred name and one meaning for each approved term used across
 | Out of scope terms | BRD §11; PRD Out of Scope; Architecture §16; Product Map §12 | Forbids trading bot, auto trading platform, price prediction system, financial advisor, trade execution, profit guarantee, and financial advice positioning. |
 | Delivery terminology boundaries | PRD Product Roadmap; Product Map module list | Marks delivery-only terms as non-authoritative for product module naming. |
 
-## 11. References
+## 12. References
 
 - [BRD](../business/brd.md)
 - [PRD](../business/prd.md)
@@ -229,10 +249,11 @@ It defines one preferred name and one meaning for each approved term used across
 - [Roadmap](./roadmap.md)
 - [Current Status](../implementation/current-status.md)
 
-## 12. Change History
+## 13. Change History
 
 | Version | Date | Summary |
 | --- | --- | --- |
 | 1.0 | 2026-07-13 | Initial glossary draft. |
 | 1.1 | 2026-07-13 | Normalized glossary to the required template; established one preferred term and one meaning per concept; added deprecated synonyms, forbidden terms, abbreviations, traceability, and references derived from the BRD, PRD, Architecture, and Product Map without introducing new concepts or changing approved architecture. |
 | 1.2 | 2026-07-14 | Added Provider Framework terminology, external provider data definitions, and clarified that CoinGecko Adapter is implementation terminology while Provider Framework is architecture terminology. |
+| 1.3 | 2026-07-20 | Consolidated localized term summaries from the duplicate glossary into this canonical glossary. |
