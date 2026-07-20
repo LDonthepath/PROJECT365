@@ -2,7 +2,13 @@
 
 Read:
 
-- docs/
+- project365/
+- business/
+- research/
+- architecture/
+- specifications/
+- acceptance-criteria/
+- implementation/
 - specs/
 - issues/
 

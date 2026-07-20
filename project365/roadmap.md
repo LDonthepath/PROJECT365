@@ -8,16 +8,16 @@
 - **Version:** 1.2
 - **Owner:** PROJECT365 Product
 - **Last Updated:** 2026-07-14
-- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md)
+- **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](../architecture/architecture.md), [Product Map](../architecture/product-map.md), [Glossary](../project365/glossary.md), [Architecture Decision Records](../architecture/decisions.md)
 - **Referenced By:** Backlog, Current Status, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
 ## 2. Purpose
 
 This Roadmap is the planning view for PROJECT365 delivery sequencing.
 
-The Roadmap aligns with the authoritative [PRD](./PRD.md) product roadmap, preserves the approved Foundation v0.1 scope, and references the [Backlog](./Backlog.md) for delivery tracking. It does not define product requirements, architecture decisions, or implementation details.
+The Roadmap aligns with the authoritative [PRD](../business/prd.md) product roadmap, preserves the approved Foundation v0.1 scope, and references the [Backlog](../implementation/backlog.md) for delivery tracking. It does not define product requirements, architecture decisions, or implementation details.
 
-Product requirements come only from the [BRD](./BRD.md) and [PRD](./PRD.md). Architecture decisions come only from the [Architecture Decision Records](./Decisions.md).
+Product requirements come only from the [BRD](../business/brd.md) and [PRD](../business/prd.md). Architecture decisions come only from the [Architecture Decision Records](../architecture/decisions.md).
 
 ## 3. Scope
 
@@ -132,13 +132,13 @@ Roadmap deliverables are planning-level references to approved delivery artifact
 
 The Roadmap depends on:
 
-- [BRD](./BRD.md) for business intent, business scope, constraints, business capabilities, and Business Acceptance Criteria.
-- [PRD](./PRD.md) for product requirements and the authoritative PRD-level milestone sequence.
-- [Architecture](./Architecture.md) for approved architecture sequence, responsibilities, and dependency rules.
-- [Product Map](./ProductMap.md) for approved domains, modules, ownership, capability mapping, and navigation structure.
-- [Glossary](./Glossary.md) for official terminology.
-- [Architecture Decision Records](./Decisions.md) for approved architecture decisions.
-- [Backlog](./Backlog.md) for delivery tracking only.
+- [BRD](../business/brd.md) for business intent, business scope, constraints, business capabilities, and Business Acceptance Criteria.
+- [PRD](../business/prd.md) for product requirements and the authoritative PRD-level milestone sequence.
+- [Architecture](../architecture/architecture.md) for approved architecture sequence, responsibilities, and dependency rules.
+- [Product Map](../architecture/product-map.md) for approved domains, modules, ownership, capability mapping, and navigation structure.
+- [Glossary](../project365/glossary.md) for official terminology.
+- [Architecture Decision Records](../architecture/decisions.md) for approved architecture decisions.
+- [Backlog](../implementation/backlog.md) for delivery tracking only.
 
 ## 11. Current Release
 
@@ -195,15 +195,15 @@ This Roadmap does not define:
 
 ## 15. References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Feature Map](./FeatureMap.md)
-- [Glossary](./Glossary.md)
-- [Architecture Decision Records](./Decisions.md)
-- [Backlog](./Backlog.md)
-- [Current Status](./CurrentStatus.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](../architecture/architecture.md)
+- [Product Map](../architecture/product-map.md)
+- [Feature Map](../business/feature-map.md)
+- [Glossary](../project365/glossary.md)
+- [Architecture Decision Records](../architecture/decisions.md)
+- [Backlog](../implementation/backlog.md)
+- [Current Status](../implementation/current-status.md)
 
 ## 16. Change History
 

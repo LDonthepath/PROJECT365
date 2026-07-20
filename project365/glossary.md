@@ -6,7 +6,7 @@
 - **Version:** 1.2
 - **Owner:** PROJECT365 Product
 - **Last Updated:** 2026-07-14
-- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md)
+- **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](../architecture/architecture.md), [Product Map](../architecture/product-map.md)
 - **Referenced By:** BRD, PRD, Architecture, Product Map, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
 ## 2. Purpose
@@ -190,14 +190,14 @@ It defines one preferred name and one meaning for each approved term used across
 | ADR | Architecture Decision Record | Use only for approved Architecture Decision Records. |
 | API | Application Programming Interface | Use only as a technical interface term, not as an approved product module unless a future approved document defines it. |
 | BAC | Business Acceptance Criteria | Define on first use outside the BRD. |
-| BRD | Business Requirements Document | Refers only to `docs/BRD.md`. |
+| BRD | Business Requirements Document | Refers only to `business/brd.md`. |
 | FR | Functional Requirement | Use only for PRD functional requirement identifiers. |
 | H1 | One-hour timeframe | Use only in approved anchor terminology such as H1 Anchor. |
 | LDS | Liquidity Divergence System | Use as LDS Engine for the approved module. |
 | M5 | Five-minute timeframe | Use only in approved anchor terminology such as M5 Anchor. |
 | NFR | Non-Functional Requirement | Use only for PRD non-functional requirement identifiers. |
 | OMS | Overall Market Score | Use as OMS Engine for the approved module. |
-| PRD | Product Requirements Document | Refers only to `docs/PRD.md`. |
+| PRD | Product Requirements Document | Refers only to `business/prd.md`. |
 | SaaS | Software as a Service | Use only for architecture deployment readiness context. |
 | TD | Technical Design | Define on first use outside formal TD identifiers. |
 
@@ -220,14 +220,14 @@ It defines one preferred name and one meaning for each approved term used across
 
 ## 11. References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Architecture Decision Records](./Decisions.md)
-- [Backlog](./Backlog.md)
-- [Roadmap](./Roadmap.md)
-- [Current Status](./CurrentStatus.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](../architecture/architecture.md)
+- [Product Map](../architecture/product-map.md)
+- [Architecture Decision Records](../architecture/decisions.md)
+- [Backlog](../implementation/backlog.md)
+- [Roadmap](./roadmap.md)
+- [Current Status](../implementation/current-status.md)
 
 ## 12. Change History
 

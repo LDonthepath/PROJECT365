@@ -8,10 +8,10 @@
 - **Version:** 1.1
 - **Owner:** PROJECT365 Product
 - **Last Updated:** 2026-07-13
-- **Depends On:** [BRD](./BRD.md), [Glossary](./Glossary.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Architecture Decision Records](./Decisions.md)
+- **Depends On:** [BRD](../business/brd.md), [Glossary](../project365/glossary.md), [Architecture](../architecture/architecture.md), [Product Map](../architecture/product-map.md), [Architecture Decision Records](../architecture/decisions.md)
 - **Referenced By:** Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
-This PRD translates the upstream business requirements in the [BRD](./BRD.md) into product requirements. The BRD remains the source of truth for business intent, scope, constraints, and acceptance criteria.
+This PRD translates the upstream business requirements in the [BRD](../business/brd.md) into product requirements. The BRD remains the source of truth for business intent, scope, constraints, and acceptance criteria.
 
 ---
 
@@ -33,7 +33,7 @@ The product purpose is to help users:
 
 PROJECT365 is a Market Intelligence Platform, Decision Support System, and Explainable Analytics Platform.
 
-PROJECT365 supports the following product domains from the [Product Map](./ProductMap.md):
+PROJECT365 supports the following product domains from the [Product Map](../architecture/product-map.md):
 
 ### Foundation Domain
 
@@ -200,7 +200,7 @@ Governance
 Presentation
 ```
 
-Architecture references in this PRD align with [Architecture](./Architecture.md), [Product Map](./ProductMap.md), and the BRD.
+Architecture references in this PRD align with [Architecture](../architecture/architecture.md), [Product Map](../architecture/product-map.md), and the BRD.
 
 ### Delivery Constraints
 
@@ -241,18 +241,18 @@ PROJECT365 is not:
 
 This PRD depends on:
 
-- [BRD](./BRD.md) for business intent, business scope, constraints, roadmap context, and acceptance criteria.
-- [Glossary](./Glossary.md) for official terminology.
-- [Architecture](./Architecture.md) for approved architecture sequence, layer responsibilities, and dependency rules.
-- [Product Map](./ProductMap.md) for domain and module organization.
-- [Architecture Decision Records](./Decisions.md) for approved project decisions.
-- [Backlog](./Backlog.md) for delivery tracking only. The Backlog must not define, redefine, expand, or override PRD requirements.
+- [BRD](../business/brd.md) for business intent, business scope, constraints, roadmap context, and acceptance criteria.
+- [Glossary](../project365/glossary.md) for official terminology.
+- [Architecture](../architecture/architecture.md) for approved architecture sequence, layer responsibilities, and dependency rules.
+- [Product Map](../architecture/product-map.md) for domain and module organization.
+- [Architecture Decision Records](../architecture/decisions.md) for approved project decisions.
+- [Backlog](../implementation/backlog.md) for delivery tracking only. The Backlog must not define, redefine, expand, or override PRD requirements.
 
 ---
 
 ## Product Roadmap
 
-The PRD roadmap is the authoritative product roadmap for PRD-level requirements. The [Backlog](./Backlog.md) may track delivery work against this roadmap, but it must not define, redefine, expand, or override PRD requirements.
+The PRD roadmap is the authoritative product roadmap for PRD-level requirements. The [Backlog](../implementation/backlog.md) may track delivery work against this roadmap, but it must not define, redefine, expand, or override PRD requirements.
 
 | Milestone | Name | Scope |
 | --- | --- | --- |
@@ -290,14 +290,14 @@ Current focus: M2 Foundation Implementation, ISSUE-001 MarketData Implementation
 
 ## References
 
-- [BRD](./BRD.md)
-- [Glossary](./Glossary.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Architecture Decision Records](./Decisions.md)
-- [Backlog](./Backlog.md)
-- [Roadmap](./Roadmap.md)
-- [Current Status](./CurrentStatus.md)
+- [BRD](../business/brd.md)
+- [Glossary](../project365/glossary.md)
+- [Architecture](../architecture/architecture.md)
+- [Product Map](../architecture/product-map.md)
+- [Architecture Decision Records](../architecture/decisions.md)
+- [Backlog](../implementation/backlog.md)
+- [Roadmap](../project365/roadmap.md)
+- [Current Status](../implementation/current-status.md)
 
 ---
 

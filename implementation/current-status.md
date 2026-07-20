@@ -8,7 +8,7 @@
 - **Version:** 1.6
 - **Owner:** PROJECT365 Delivery
 - **Last Updated:** 2026-07-18
-- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md), [Backlog](./Backlog.md)
+- **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](../architecture/architecture.md), [Product Map](../architecture/product-map.md), [Glossary](../project365/glossary.md), [Architecture Decision Records](../architecture/decisions.md), [Roadmap](../project365/roadmap.md), [Backlog](./backlog.md)
 - **Referenced By:** Delivery planning, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
 ## 2. Purpose
@@ -151,15 +151,15 @@ No work items are currently Blocked in the Backlog.
 
 ## 13. References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Feature Map](./FeatureMap.md)
-- [Glossary](./Glossary.md)
-- [Architecture Decision Records](./Decisions.md)
-- [Roadmap](./Roadmap.md)
-- [Backlog](./Backlog.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](../architecture/architecture.md)
+- [Product Map](../architecture/product-map.md)
+- [Feature Map](../business/feature-map.md)
+- [Glossary](../project365/glossary.md)
+- [Architecture Decision Records](../architecture/decisions.md)
+- [Roadmap](../project365/roadmap.md)
+- [Backlog](./backlog.md)
 - [Technical Design Template](../templates/TechnicalDesignTemplate.md)
 - [Issue Specification Template](../templates/IssueSpecificationTemplate.md)
 - [Acceptance Criteria Template](../templates/AcceptanceCriteriaTemplate.md)

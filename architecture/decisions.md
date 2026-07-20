@@ -5,14 +5,14 @@
 - Version: 1.0
 - Owner: PROJECT365 Architecture
 - Last Updated: 2026-07-13
-- Depends On: [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md)
+- Depends On: [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](./architecture.md), [Product Map](./product-map.md), [Glossary](../project365/glossary.md)
 - Referenced By: Architecture, PRD, Product Map, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
 ## 2. Purpose
 
 This document is the authoritative Architecture Decision Record registry for PROJECT365.
 
-It preserves approved architecture decisions derived from the [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), and [Glossary](./Glossary.md). It normalizes existing decisions into a consistent ADR format without introducing new architecture, changing approved scope, or redefining product terminology.
+It preserves approved architecture decisions derived from the [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](./architecture.md), [Product Map](./product-map.md), and [Glossary](../project365/glossary.md). It normalizes existing decisions into a consistent ADR format without introducing new architecture, changing approved scope, or redefining product terminology.
 
 ## 3. ADR Index
 
@@ -40,10 +40,10 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Glossary](../project365/glossary.md)
 
 ### ADR-002 — SaaS-Ready Architecture with Initial Personal Product Deployment
 
@@ -69,11 +69,11 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
 
 ### ADR-003 — Documentation-First Workflow
 
@@ -99,10 +99,10 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Glossary](../project365/glossary.md)
 
 ### ADR-004 — Single Source of Truth
 
@@ -128,11 +128,11 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
 
 ### ADR-005 — Separation of Concerns
 
@@ -158,11 +158,11 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
 
 ### ADR-006 — Layer Dependency Rules
 
@@ -190,11 +190,11 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
 
 ### ADR-007 — Immutable Foundation Objects
 
@@ -221,11 +221,11 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
 
 ### ADR-008 — Event-Driven Architecture
 
@@ -251,11 +251,11 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
 
 ### ADR-009 — Hard Gate Principle
 
@@ -281,10 +281,10 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Glossary](../project365/glossary.md)
 
 ### ADR-010 — Explainable Decision System
 
@@ -311,11 +311,11 @@ Consequences
 
 References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
 
 ## 4. Traceability
 
@@ -334,11 +334,11 @@ References
 
 ## 5. References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
 
 ## 6. Change History
 

@@ -12,14 +12,14 @@ This BRD defines why PROJECT365 exists from a business perspective. It is the up
 
 Reference documents:
 
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
-- [Architecture Decision Records](./Decisions.md)
-- [Backlog](./Backlog.md)
-- [Current Status](./CurrentStatus.md)
-- [Roadmap](./Roadmap.md)
+- [PRD](../business/prd.md)
+- [Architecture](../architecture/architecture.md)
+- [Product Map](../architecture/product-map.md)
+- [Glossary](../project365/glossary.md)
+- [Architecture Decision Records](../architecture/decisions.md)
+- [Backlog](../implementation/backlog.md)
+- [Current Status](../implementation/current-status.md)
+- [Roadmap](../project365/roadmap.md)
 
 ---
 
@@ -560,7 +560,7 @@ Every recommendation and decision-support output remains explainable and auditab
 
 ## 20. Glossary Reference
 
-PROJECT365 uses the official terminology defined in [Glossary](./Glossary.md).
+PROJECT365 uses the official terminology defined in [Glossary](../project365/glossary.md).
 
 Key BRD terms include:
 

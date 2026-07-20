@@ -6,12 +6,12 @@
 - **Version:** 1.2
 - **Owner:** PROJECT365 Product
 - **Last Updated:** 2026-07-14
-- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Glossary](./Glossary.md)
+- **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](../architecture/architecture.md), [Glossary](../project365/glossary.md)
 - **Referenced By:** PRD, Architecture, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
 ## 2. Purpose
 
-This Product Map defines the approved PROJECT365 product domains, modules, responsibilities, capability mapping, dependency rules, and navigation structure derived from the [BRD](./BRD.md), [PRD](./PRD.md), and [Architecture](./Architecture.md).
+This Product Map defines the approved PROJECT365 product domains, modules, responsibilities, capability mapping, dependency rules, and navigation structure derived from the [BRD](../business/brd.md), [PRD](../business/prd.md), and [Architecture](../architecture/architecture.md).
 
 PROJECT365 is an Adaptive Crypto Market Intelligence Platform that transforms raw crypto market data into explainable market intelligence and portfolio exposure recommendations. The Product Map preserves the approved regime-first, explainable, auditable, and modular product structure without introducing new domains or modules.
 
@@ -310,14 +310,14 @@ The Product Map must not introduce modules, domains, navigation areas, or capabi
 
 ## 14. References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Glossary](./Glossary.md)
-- [Architecture Decision Records](./Decisions.md)
-- [Backlog](./Backlog.md)
-- [Roadmap](./Roadmap.md)
-- [Current Status](./CurrentStatus.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](../architecture/architecture.md)
+- [Glossary](../project365/glossary.md)
+- [Architecture Decision Records](../architecture/decisions.md)
+- [Backlog](../implementation/backlog.md)
+- [Roadmap](../project365/roadmap.md)
+- [Current Status](../implementation/current-status.md)
 
 ## 15. Change History
 
