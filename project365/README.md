@@ -52,7 +52,7 @@ Non-Goals.md
 
 Menjelaskan hal-hal yang secara sadar tidak menjadi tujuan PROJECT365.
 
-Roadmap.md
+roadmap.md
 
 Menjelaskan arah evolusi PROJECT365 dalam jangka panjang.
 
@@ -64,7 +64,7 @@ Principles.md
 
 Menjelaskan prinsip-prinsip yang menjadi pedoman seluruh proses pengembangan.
 
-Glossary.md
+glossary.md
 
 Menjelaskan istilah-istilah resmi yang digunakan di seluruh dokumentasi PROJECT365.
 
