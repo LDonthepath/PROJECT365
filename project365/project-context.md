@@ -8,7 +8,7 @@
 - **Version:** 1.0
 - **Owner:** PROJECT365 Governance
 - **Last Updated:** 2026-07-13
-- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md), [Backlog](./Backlog.md), [Current Status](./CurrentStatus.md)
+- **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](../architecture/architecture.md), [Product Map](../architecture/product-map.md), [Glossary](./glossary.md), [Architecture Decision Records](../architecture/decisions.md), [Roadmap](./roadmap.md), [Backlog](../implementation/backlog.md), [Current Status](../implementation/current-status.md)
 - **Referenced By:** Project onboarding, documentation reviews, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
 ## 2. Purpose
@@ -31,7 +31,7 @@ This document provides orientation only. Readers must use the authoritative sour
 
 PROJECT365 preserves a regime-first, explainable, auditable, and modular approach to crypto market intelligence.
 
-The long-term vision and business intent are governed by the [BRD](./BRD.md). Product interpretation and product requirements are governed by the [PRD](./PRD.md). This document summarizes the orientation context without replacing or duplicating either source.
+The long-term vision and business intent are governed by the [BRD](../business/brd.md). Product interpretation and product requirements are governed by the [PRD](../business/prd.md). This document summarizes the orientation context without replacing or duplicating either source.
 
 ## 5. Development Methodology
 
@@ -77,16 +77,16 @@ PROJECT365 uses the following authoritative documentation hierarchy:
 
 | Authority Area | Authoritative Document |
 | --- | --- |
-| Permanent project orientation | [Project Context](./ProjectContext.md) |
-| Business intent, business scope, and business constraints | [BRD](./BRD.md) |
-| Product requirements and product scope | [PRD](./PRD.md) |
-| Approved architecture and architecture rules | [Architecture](./Architecture.md) |
-| Product domains, modules, and product structure | [Product Map](./ProductMap.md) |
-| Approved terminology | [Glossary](./Glossary.md) |
-| Architecture decisions | [Architecture Decision Records](./Decisions.md) |
-| Delivery sequencing and milestone planning | [Roadmap](./Roadmap.md) |
-| Delivery work tracking | [Backlog](./Backlog.md) |
-| Delivery status reporting | [Current Status](./CurrentStatus.md) |
+| Permanent project orientation | [Project Context](./project-context.md) |
+| Business intent, business scope, and business constraints | [BRD](../business/brd.md) |
+| Product requirements and product scope | [PRD](../business/prd.md) |
+| Approved architecture and architecture rules | [Architecture](../architecture/architecture.md) |
+| Product domains, modules, and product structure | [Product Map](../architecture/product-map.md) |
+| Approved terminology | [Glossary](./glossary.md) |
+| Architecture decisions | [Architecture Decision Records](../architecture/decisions.md) |
+| Delivery sequencing and milestone planning | [Roadmap](./roadmap.md) |
+| Delivery work tracking | [Backlog](../implementation/backlog.md) |
+| Delivery status reporting | [Current Status](../implementation/current-status.md) |
 
 Hierarchy rules:
 
@@ -102,7 +102,7 @@ Hierarchy rules:
 
 ## 7. Architecture Overview
 
-PROJECT365 architecture context is governed by the [Architecture](./Architecture.md) and related [Architecture Decision Records](./Decisions.md).
+PROJECT365 architecture context is governed by the [Architecture](../architecture/architecture.md) and related [Architecture Decision Records](../architecture/decisions.md).
 
 At the orientation level, PROJECT365 uses a modular architecture aligned to approved domains and governed by regime-first, Single Source of Truth, Separation of Concerns, explainability, and auditability principles. This document does not define architecture, architecture rules, module responsibilities, dependency rules, data flow, event flow, or implementation design.
 
@@ -110,11 +110,11 @@ Readers must consult the Architecture, Product Map, Glossary, and Architecture D
 
 ## 8. Current Release Context
 
-The Current Release Scope term is defined by the [Glossary](./Glossary.md) and governed by the [PRD](./PRD.md), [Architecture](./Architecture.md), and [Product Map](./ProductMap.md).
+The Current Release Scope term is defined by the [Glossary](./glossary.md) and governed by the [PRD](../business/prd.md), [Architecture](../architecture/architecture.md), and [Product Map](../architecture/product-map.md).
 
 Foundation v0.1 is the preserved release context for this project orientation document. Foundation v0.1 is limited to the approved Foundation release scope described in the authoritative documents.
 
-This section provides release orientation only. Implementation status, sprint status, issue status, and progress reporting belong only in the [Backlog](./Backlog.md) and [Current Status](./CurrentStatus.md).
+This section provides release orientation only. Implementation status, sprint status, issue status, and progress reporting belong only in the [Backlog](../implementation/backlog.md) and [Current Status](../implementation/current-status.md).
 
 ## 9. Governance Principles
 
@@ -193,15 +193,15 @@ The following are out of scope for this document:
 
 ## 13. References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Glossary](./Glossary.md)
-- [Architecture Decision Records](./Decisions.md)
-- [Roadmap](./Roadmap.md)
-- [Backlog](./Backlog.md)
-- [Current Status](./CurrentStatus.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](../architecture/architecture.md)
+- [Product Map](../architecture/product-map.md)
+- [Glossary](./glossary.md)
+- [Architecture Decision Records](../architecture/decisions.md)
+- [Roadmap](./roadmap.md)
+- [Backlog](../implementation/backlog.md)
+- [Current Status](../implementation/current-status.md)
 
 ## 14. Change History
 

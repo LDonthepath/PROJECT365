@@ -8,16 +8,16 @@
 - **Version:** 1.6
 - **Owner:** PROJECT365 Delivery
 - **Last Updated:** 2026-07-18
-- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Architecture](./Architecture.md), [Product Map](./ProductMap.md), [Glossary](./Glossary.md), [Architecture Decision Records](./Decisions.md), [Roadmap](./Roadmap.md)
+- **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](../architecture/architecture.md), [Product Map](../architecture/product-map.md), [Glossary](../project365/glossary.md), [Architecture Decision Records](../architecture/decisions.md), [Roadmap](../project365/roadmap.md)
 - **Referenced By:** Current Status, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
 ## 2. Purpose
 
 This Backlog is the authoritative implementation tracker for PROJECT365 delivery work.
 
-The Backlog tracks implementation work against the approved milestone sequence from the [Roadmap](./Roadmap.md). It does not define business requirements, product requirements, architecture decisions, release planning, domains, modules, or terminology.
+The Backlog tracks implementation work against the approved milestone sequence from the [Roadmap](../project365/roadmap.md). It does not define business requirements, product requirements, architecture decisions, release planning, domains, modules, or terminology.
 
-Product requirements come only from the [BRD](./BRD.md) and [PRD](./PRD.md). Architecture decisions come only from the [Architecture Decision Records](./Decisions.md). Release planning comes only from the [Roadmap](./Roadmap.md).
+Product requirements come only from the [BRD](../business/brd.md) and [PRD](../business/prd.md). Architecture decisions come only from the [Architecture Decision Records](../architecture/decisions.md). Release planning comes only from the [Roadmap](../project365/roadmap.md).
 
 ## 3. Scope
 
@@ -221,15 +221,15 @@ This Backlog does not define:
 
 ## 13. References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Architecture](./Architecture.md)
-- [Product Map](./ProductMap.md)
-- [Feature Map](./FeatureMap.md)
-- [Glossary](./Glossary.md)
-- [Architecture Decision Records](./Decisions.md)
-- [Roadmap](./Roadmap.md)
-- [Current Status](./CurrentStatus.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](../architecture/architecture.md)
+- [Product Map](../architecture/product-map.md)
+- [Feature Map](../business/feature-map.md)
+- [Glossary](../project365/glossary.md)
+- [Architecture Decision Records](../architecture/decisions.md)
+- [Roadmap](../project365/roadmap.md)
+- [Current Status](./current-status.md)
 - [Technical Design Template](../templates/TechnicalDesignTemplate.md)
 - [Issue Specification Template](../templates/IssueSpecificationTemplate.md)
 - [Acceptance Criteria Template](../templates/AcceptanceCriteriaTemplate.md)

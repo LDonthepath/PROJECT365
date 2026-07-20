@@ -44,18 +44,18 @@ Freeze
 
 | Path | Purpose |
 |------|---------|
-| `docs/` | Authoritative governance documents, product documents, roadmap, backlog, and current status. |
+| `project365/`, `business/`, `research/`, `architecture/`, `specifications/`, `acceptance-criteria/`, `implementation/` | SDLC documentation structure for governance, business, research, architecture, specifications, acceptance criteria, and implementation documents. |
 | `templates/` | Templates for Technical Designs, Issue Specifications, and Acceptance Criteria. |
-| `specs/` | Technical Design documents TD-000 through TD-028. |
+| `specs/` | Legacy Technical Design documents TD-000 through TD-028. |
 | `issues/` | Issue Specifications ISSUE-001 through ISSUE-028 derived from approved Technical Designs. |
 | `prompts/` | Implementation, review, bugfix, and system prompts used by the documentation-first workflow. |
 | `backend/` | Implementation source and tests. Implementation is pending and belongs to later milestones. Documentation-only governance work must not modify this directory unless implementation work is explicitly approved. |
 
 ## Development Workflow
 
-1. Confirm the current scope in [Current Status](./docs/CurrentStatus.md).
-2. Confirm approved work in [Backlog](./docs/Backlog.md).
-3. Trace requirements through [BRD](./docs/BRD.md), [PRD](./docs/PRD.md), [Architecture](./docs/Architecture.md), [Product Map](./docs/ProductMap.md), [Glossary](./docs/Glossary.md), and [ADR](./docs/Decisions.md).
+1. Confirm the current scope in [Current Status](./implementation/current-status.md).
+2. Confirm approved work in [Backlog](./implementation/backlog.md).
+3. Trace requirements through [BRD](./business/brd.md), [PRD](./business/prd.md), [Architecture](./architecture/architecture.md), [Product Map](./architecture/product-map.md), [Glossary](./project365/glossary.md), and [ADR](./architecture/decisions.md).
 4. Use the related Technical Design from [specs](./specs/).
 5. Generate or update an Issue Specification only from approved Technical Design content.
 6. Generate Acceptance Criteria only from the related Technical Design and Issue Specification.
@@ -78,16 +78,16 @@ PROJECT365 preserves Specification Driven Development:
 
 ## Governance Links
 
-- [Project Context](./docs/ProjectContext.md)
-- [BRD](./docs/BRD.md)
-- [PRD](./docs/PRD.md)
-- [Architecture](./docs/Architecture.md)
-- [Product Map](./docs/ProductMap.md)
-- [Glossary](./docs/Glossary.md)
-- [ADR](./docs/Decisions.md)
-- [Roadmap](./docs/Roadmap.md)
-- [Backlog](./docs/Backlog.md)
-- [Current Status](./docs/CurrentStatus.md)
+- [Project Context](./project365/project-context.md)
+- [BRD](./business/brd.md)
+- [PRD](./business/prd.md)
+- [Architecture](./architecture/architecture.md)
+- [Product Map](./architecture/product-map.md)
+- [Glossary](./project365/glossary.md)
+- [ADR](./architecture/decisions.md)
+- [Roadmap](./project365/roadmap.md)
+- [Backlog](./implementation/backlog.md)
+- [Current Status](./implementation/current-status.md)
 
 ## Delivery Artifacts
 
@@ -98,7 +98,7 @@ PROJECT365 preserves Specification Driven Development:
 - [Issue Specification Template](./templates/IssueSpecificationTemplate.md)
 - [Implementation Prompt](./prompts/IMPLEMENTATION_PROMPT.md)
 - [Review Prompt](./prompts/REVIEW_PROMPT.md)
-- [Freeze status](./docs/CurrentStatus.md)
+- [Freeze status](./implementation/current-status.md)
 
 ## Architecture Freeze Scope
 

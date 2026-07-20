@@ -6,12 +6,12 @@
 - **Version:** 1.1
 - **Owner:** PROJECT365 Architecture
 - **Last Updated:** 2026-07-14
-- **Depends On:** [BRD](./BRD.md), [PRD](./PRD.md), [Glossary](./Glossary.md), [Product Map](./ProductMap.md), [Architecture Decision Records](./Decisions.md)
+- **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Glossary](../project365/glossary.md), [Product Map](./product-map.md), [Architecture Decision Records](./decisions.md)
 - **Referenced By:** Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
 ## 2. Purpose
 
-This architecture document defines the approved PROJECT365 architecture derived from the [PRD](./PRD.md) and upstream [BRD](./BRD.md).
+This architecture document defines the approved PROJECT365 architecture derived from the [PRD](../business/prd.md) and upstream [BRD](../business/brd.md).
 
 PROJECT365 is an Adaptive Crypto Market Intelligence Platform that transforms raw crypto market data into explainable market intelligence and portfolio exposure recommendations. The architecture preserves the approved regime-first, explainable, auditable, and modular approach without introducing new design.
 
@@ -500,14 +500,14 @@ This appendix documents dependency order only and does not change architecture r
 
 ## 19. References
 
-- [BRD](./BRD.md)
-- [PRD](./PRD.md)
-- [Glossary](./Glossary.md)
-- [Product Map](./ProductMap.md)
-- [Architecture Decision Records](./Decisions.md)
-- [Backlog](./Backlog.md)
-- [Roadmap](./Roadmap.md)
-- [Current Status](./CurrentStatus.md)
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Glossary](../project365/glossary.md)
+- [Product Map](./product-map.md)
+- [Architecture Decision Records](./decisions.md)
+- [Backlog](../implementation/backlog.md)
+- [Roadmap](../project365/roadmap.md)
+- [Current Status](../implementation/current-status.md)
 
 ## 20. Change History
 
