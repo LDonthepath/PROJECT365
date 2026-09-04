@@ -90,10 +90,10 @@ Deliver an implementation of Dashboard that conforms to TD-024, preserves approv
 
 | ID | Task | Status |
 |----|------|--------|
-| TASK-001 | Implement the approved Dashboard responsibility exactly as defined in TD-024. | Planned |
-| TASK-002 | Preserve all Dashboard boundaries, ownership rules, and dependency direction from TD-024. | Planned |
-| TASK-003 | Implement approved validation, error handling, lifecycle, and traceability behavior from TD-024. | Planned |
-| TASK-004 | Add tests or verification that demonstrate conformance to TD-024 and AC-024 without expanding scope. | Planned |
+| TASK-001 | Implement the approved Dashboard responsibility exactly as defined in TD-024. | Completed |
+| TASK-002 | Preserve all Dashboard boundaries, ownership rules, and dependency direction from TD-024. | Completed |
+| TASK-003 | Implement approved validation, error handling, lifecycle, and traceability behavior from TD-024. | Completed |
+| TASK-004 | Add tests or verification that demonstrate conformance to TD-024 and AC-024 without expanding scope. | Completed |
 
 ---
 
@@ -189,3 +189,4 @@ Do not duplicate Acceptance Criteria.
 | Version | Date | Description |
 |---------|------|-------------|
 | 1.0 | 2026-07-14 | Initial Issue Specification for ISSUE-024 derived from TD-024. |
+| 1.1 | 2026-09-04 | Marked implementation tasks complete after Dashboard delivery and verification. |
