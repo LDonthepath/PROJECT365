@@ -29,9 +29,23 @@ const ENDPOINT_RESOLVERS = Object.freeze({
 
 const NORMALIZERS = Object.freeze({
   'market-data': (raw) => {
-    const item = Array.isArray(raw) ? raw[0] : raw;
+    const item = Array.isArray(raw && raw.asset) ? raw.asset[0] : raw && raw.asset;
+    const global = raw && raw.global && raw.global.data;
     if (!item || typeof item.id !== 'string' || typeof item.current_price !== 'number') return null;
-    return Object.freeze({ id: item.id, symbol: item.symbol, name: item.name, priceUsd: item.current_price, change1h: item.price_change_percentage_1h_in_currency ?? null, change24h: item.price_change_percentage_24h ?? item.price_change_percentage_24h_in_currency ?? null, volume24hUsd: item.total_volume ?? null, marketCapUsd: item.market_cap ?? null, circulatingSupply: item.circulating_supply ?? null, ath: item.ath ?? null, atl: item.atl ?? null, lastUpdated: item.last_updated ?? null });
+    const totalMarketCapUsd = global && global.total_market_cap && global.total_market_cap.usd;
+    const percentages = global && global.market_cap_percentage;
+    if (!percentages || !Number.isFinite(totalMarketCapUsd) || !Number.isFinite(percentages.btc) || !Number.isFinite(percentages.eth) || !Number.isFinite(percentages.usdt) || !Number.isFinite(percentages.usdc)) return null;
+    if ([percentages.btc, percentages.eth, percentages.usdt, percentages.usdc].some((value) => value < 0 || value > 100) || percentages.btc + percentages.eth > 100) return null;
+    // TOTAL3 is the market cap excluding BTC and ETH.  Stablecoin dominance is
+    // retained independently and must never be included in this calculation.
+    const total3MarketCap = totalMarketCapUsd * (1 - ((percentages.btc + percentages.eth) / 100));
+    return Object.freeze({
+      providerId: PROVIDER_ID,
+      providerTimestamp: Date.parse(item.last_updated) || Date.now(),
+      asset: { id: item.id, symbol: item.symbol, name: item.name },
+      market: { priceUsd: item.current_price, change1h: item.price_change_percentage_1h_in_currency ?? 0, change24h: item.price_change_percentage_24h ?? item.price_change_percentage_24h_in_currency ?? 0, volume24hUsd: item.total_volume, marketCapUsd: item.market_cap, totalMarketCapUsd, total3MarketCap, btcDominance: percentages.btc, usdtDominance: percentages.usdt, usdcDominance: percentages.usdc, ath: item.ath, atl: item.atl },
+      supply: { circulatingSupply: item.circulating_supply },
+    });
   },
   'token-metadata': (raw) => raw && typeof raw.id === 'string' ? Object.freeze({ id: raw.id, symbol: raw.symbol, name: raw.name, assetPlatformId: raw.asset_platform_id || null, contractAddress: raw.contract_address || null, categories: Array.isArray(raw.categories) ? raw.categories.slice() : [] }) : null,
   'contract-metadata': (raw) => raw && typeof raw.id === 'string' ? Object.freeze({ id: raw.id, symbol: raw.symbol, name: raw.name, assetPlatformId: raw.asset_platform_id || null, contractAddress: raw.contract_address || null, categories: Array.isArray(raw.categories) ? raw.categories.slice() : [] }) : null,
@@ -83,7 +97,11 @@ class CoinGeckoProvider extends BaseProvider {
     const maxAttempts = request.maxAttempts || this.maxAttempts;
     const warnings = [];
     for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
-      const raw = await this.httpJson(path, request, attempt);
+      let raw = await this.httpJson(path, request, attempt);
+      if (!isProviderError(raw) && request.capability === 'market-data') {
+        const global = await this.httpJson('/global', request, attempt);
+        raw = isProviderError(global) ? global : { asset: raw, global };
+      }
       if (!isProviderError(raw)) {
         this.state = 'normalizing';
         const normalized = this.normalize(raw, { ...context, capability: request.capability });

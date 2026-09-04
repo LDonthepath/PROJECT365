@@ -105,19 +105,20 @@ function isProviderSupported(providerFramework, providerId) {
   return false;
 }
 
-function fetchFromProviderFramework(providerFramework, providerId, assetId, requestedAt) {
-  if (typeof providerFramework.fetchMarketData === 'function') return providerFramework.fetchMarketData({ providerId, assetId, requestedAt });
+function fetchFromProviderFramework(providerFramework, providerId, assetId, requestedAt, timeoutMs, maxRetries, requestId) {
+  if (typeof providerFramework.fetchMarketData === 'function') return providerFramework.fetchMarketData({ providerId, assetId, requestedAt, timeoutMs, maxRetries, requestId });
   const provider = typeof providerFramework.getProvider === 'function' ? providerFramework.getProvider(providerId) : providerFramework.providers[providerId];
   return provider.fetchMarketData({ providerId, assetId, requestedAt });
 }
 
 function withTimeout(promise, timeoutMs) {
-  return Promise.race([
-    Promise.resolve(promise),
-    new Promise((resolve) => {
-      setTimeout(() => resolve({ ok: false, errorCode: ERROR_CODES.PROVIDER_TIMEOUT, errorMessage: 'Provider attempt timed out.' }), timeoutMs);
-    }),
-  ]);
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => resolve({ ok: false, errorCode: ERROR_CODES.PROVIDER_TIMEOUT, errorMessage: 'Provider attempt timed out.' }), timeoutMs);
+    Promise.resolve(promise).then(
+      (result) => { clearTimeout(timer); resolve(result); },
+      (error) => { clearTimeout(timer); reject(error); },
+    );
+  });
 }
 
 function providerFailureFromResult(providerResult, request, attempts, retryable) {
@@ -206,7 +207,7 @@ async function produceMarketData(request) {
     attempts += 1;
     let providerResult;
     try {
-      providerResult = await withTimeout(fetchFromProviderFramework(request.providerFramework, request.providerId, request.assetId, request.requestedAt), timeoutMs);
+      providerResult = await withTimeout(fetchFromProviderFramework(request.providerFramework, request.providerId, request.assetId, request.requestedAt, timeoutMs, maxRetries, request.requestId), timeoutMs);
     } catch (error) {
       providerResult = { ok: false, errorCode: ERROR_CODES.PROVIDER_UNAVAILABLE, errorMessage: error.message || 'Provider Framework provider is unavailable.' };
     }

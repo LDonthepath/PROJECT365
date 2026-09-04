@@ -98,6 +98,17 @@ class ProviderRegistry {
   resolve(providerId) { return withRegistryOperation(this, () => this.entries.get(providerId) || providerError({ code: ERROR_CODES.NOT_REGISTERED, providerId })); }
   create(providerId, options = {}, context = {}) { return withRegistryOperation(this, () => { const entry = this.entries.get(providerId) || providerError({ code: ERROR_CODES.NOT_REGISTERED, providerId }); if (isProviderError(entry)) return entry; const provider = entry.factory.create({ ...entry.definition, options }, context); if (isProviderError(provider)) return provider; if (!provider || provider.id !== providerId || !provider.name || !provider.version || !hasMethods(provider, ['validate','fetch','normalize','health','capabilities','supports','dispose'])) return providerError({ code: ERROR_CODES.CONTRACT_INVALID, providerId }); this.instances.add(provider); return provider; }); }
   validate(providerId) { return withRegistryOperation(this, () => this.entries.has(providerId) ? Object.freeze({ status: 'valid', providerId, contractVersion: CONTRACT_VERSION }) : providerError({ code: ERROR_CODES.NOT_REGISTERED, providerId })); }
+  hasProvider(providerId) { return this.state !== 'disposed' && this.entries.has(providerId); }
+  async fetchMarketData(request = {}) {
+    if (!this.hasProvider(request.providerId)) return { ok: false, errorCode: ERROR_CODES.SOURCE_UNAVAILABLE, errorMessage: 'Provider is not registered.', providerId: request.providerId };
+    const provider = this.create(request.providerId);
+    if (isProviderError(provider)) return { ok: false, errorCode: provider.code, errorMessage: provider.message, providerId: request.providerId };
+    const valid = provider.validate();
+    if (isProviderError(valid)) return { ok: false, errorCode: valid.code, errorMessage: valid.message, providerId: request.providerId };
+    const result = await provider.fetch({ capability: 'market-data', coinId: request.assetId, requestId: request.requestId, timeoutMs: request.timeoutMs, maxAttempts: request.maxRetries === undefined ? undefined : request.maxRetries + 1 });
+    if (isProviderError(result)) return { ok: false, errorCode: result.code, errorMessage: result.message, providerId: request.providerId };
+    return result.payload.normalized;
+  }
   capabilities(providerId, context = {}) { return withRegistryOperation(this, () => { const entry = this.entries.get(providerId) || providerError({ code: ERROR_CODES.NOT_REGISTERED, providerId }); return isProviderError(entry) ? entry : entry.factory.capabilities(context); }); }
   health(providerId, context = {}) { return withRegistryOperation(this, () => { const entry = this.entries.get(providerId) || providerError({ code: ERROR_CODES.NOT_REGISTERED, providerId }); if (isProviderError(entry)) return entry; const provider = entry.factory.create({ ...entry.definition, options: {} }, context); if (isProviderError(provider)) return provider; this.instances.add(provider); return provider.health(context); }); }
   supports(providerId, capability) { return withRegistryOperation(this, () => { const entry = this.entries.get(providerId) || providerError({ code: ERROR_CODES.NOT_REGISTERED, providerId }); if (isProviderError(entry)) return entry; const caps = entry.factory.capabilities(); return isProviderError(caps) ? caps : caps.some((cap) => cap.name === (typeof capability === 'string' ? capability : capability.name)); }); }
