@@ -64,7 +64,11 @@ function assertHealthStatus(healthStatus) {
 }
 
 function generateSnapshotIdentity(timestamp) {
-  return `snapshot-${timestamp}`;
+  const base = `snapshot-${timestamp}`;
+  let id = base;
+  let collision = 1;
+  while (snapshotIds.has(id)) id = `${base}-${collision++}`;
+  return id;
 }
 
 function assertUniqueIdentity(id) {
@@ -84,12 +88,19 @@ function createFrozenSnapshot({ id, timestamp, type, marketData, healthStatus })
     id,
     timestamp,
     type,
-    marketData,
-    healthStatus,
+    marketData: deepFreeze(clone(marketData)),
+    healthStatus: deepFreeze(clone(healthStatus)),
     contractVersion: CONTRACT_VERSION,
   };
 
   return Object.freeze(snapshot);
+}
+
+function clone(value) { return JSON.parse(JSON.stringify(value)); }
+function deepFreeze(value) {
+  if (!isPlainObject(value) && !Array.isArray(value)) return value;
+  for (const key of Object.keys(value)) deepFreeze(value[key]);
+  return Object.freeze(value);
 }
 
 function storeSnapshot(snapshot) {

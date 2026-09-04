@@ -130,13 +130,14 @@ test('createSnapshot rejects missing MarketData, missing HealthStatus, and INVAL
   assert.deepEqual(getHistoricalSnapshots(), []);
 });
 
-test('createSnapshot rejects duplicate snapshot identity and non-positive snapshot timestamp without changing existing state', () => {
+test('createSnapshot disambiguates same-millisecond identities and rejects non-positive timestamps without changing existing state', () => {
   const { marketData, healthStatus } = createValidInputs();
   const first = withFixedNow(SNAPSHOT_TIMESTAMP, () => createSnapshot(marketData, healthStatus));
 
-  expectSnapshotError(() => withFixedNow(SNAPSHOT_TIMESTAMP, () => createSnapshot(marketData, healthStatus)), 'DUPLICATE_SNAPSHOT_ID');
-  assert.equal(getCurrentSnapshot(), first);
-  assert.deepEqual(getHistoricalSnapshots(), [first]);
+  const second = withFixedNow(SNAPSHOT_TIMESTAMP, () => createSnapshot(marketData, healthStatus));
+  assert.equal(second.id, `snapshot-${SNAPSHOT_TIMESTAMP}-1`);
+  assert.equal(getCurrentSnapshot(), second);
+  assert.deepEqual(getHistoricalSnapshots(), [first, second]);
 
   resetSnapshotEngineForTest();
   expectSnapshotError(() => withFixedNow(0, () => createSnapshot(marketData, healthStatus)), 'INVALID_SNAPSHOT_TIMESTAMP');
@@ -155,6 +156,8 @@ test('snapshot mutation attempts are rejected and stored payload references are 
   }, TypeError);
   assert.equal(snapshot.type, 'Live');
   assert.equal(Object.prototype.hasOwnProperty.call(snapshot, 'source'), false);
+  assert.throws(() => { snapshot.marketData.priceUsd = 1; }, TypeError);
+  assert.equal(snapshot.marketData.priceUsd, marketData.priceUsd);
 });
 
 test('first snapshot has no previous snapshot and second snapshot deterministically moves first current to previous', () => {
@@ -180,8 +183,8 @@ test('expired snapshot is marked Expired without mutating payload', () => {
   const expired = withFixedNow(SNAPSHOT_TIMESTAMP + 1, () => expireSnapshot(snapshot));
 
   assert.equal(expired.type, 'Expired');
-  assert.equal(expired.marketData, snapshot.marketData);
-  assert.equal(expired.healthStatus, snapshot.healthStatus);
+  assert.deepEqual(expired.marketData, snapshot.marketData);
+  assert.deepEqual(expired.healthStatus, snapshot.healthStatus);
   assert.equal(snapshot.type, 'Live');
   assert.equal(Object.isFrozen(expired), true);
 });

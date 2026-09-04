@@ -37,7 +37,7 @@ Unsupported capabilities such as `news`, `derivatives`, `on-chain`, `ETF`, `sent
 
 CoinGecko response objects never cross the provider boundary as raw objects. `normalize()` delegates to `NORMALIZERS`, a capability-to-normalizer map, and each normalizer maps provider-specific fields into PROJECT365 provider-boundary payloads:
 
-- `market-data` maps price, volume, market cap, supply, ATH/ATL, and short-window changes.
+- `market-data` combines the asset market response with CoinGecko's `/global` response to map price, volume, market cap, supply, ATH/ATL, dominance, and short-window changes. `total3MarketCap` is derived as total market cap excluding BTC and ETH only; USDT dominance remains an independent metric.
 - `token-metadata` maps token identity, symbol, name, platform, contract address, and categories.
 - `contract-metadata` maps contract-derived token identity and metadata.
 
@@ -50,4 +50,3 @@ The resulting `ProviderResult.payload` uses `format: 'normalized'` and omits `ra
 - `healthy` when CoinGecko responds successfully.
 - `degraded` when rate limited or partially unavailable.
 - `unavailable` when the endpoint cannot be reached.
-

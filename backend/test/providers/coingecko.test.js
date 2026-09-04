@@ -6,6 +6,8 @@ const { ProviderRegistry, BaseProviderFactory, ERROR_CODES } = require('../../sr
 const { CoinGeckoFactory, CoinGeckoProvider, definition, PROVIDER_ID, ENDPOINT_RESOLVERS, NORMALIZERS } = require('../../../providers/coingecko');
 
 function response(body, status = 200, headers = {}) { return { ok: status >= 200 && status < 300, status, headers: { get: (k) => headers[k.toLowerCase()] || null }, json: async () => body }; }
+function globalResponse(usdt = 5) { return { data: { total_market_cap: { usd: 100 }, market_cap_percentage: { btc: 50, eth: 20, usdt, usdc: 3 } } }; }
+function marketResponse() { return [{ id: 'bitcoin', symbol: 'btc', name: 'Bitcoin', current_price: 65000, price_change_percentage_24h: 2, total_volume: 10, market_cap: 20, circulating_supply: 19, ath: 73000, atl: 67.81, last_updated: '2024-03-09T16:00:00.000Z' }]; }
 
 test('CoinGeckoFactory registers through ProviderRegistry and exposes approved capabilities', () => {
   const registry = new ProviderRegistry();
@@ -40,7 +42,7 @@ test('ProviderRegistry lifecycle starts empty, uses ready outside operations, an
 
 test('CoinGeckoProvider lifecycle follows created, ready, normalizing, ready, disposed', async () => {
   const states = [];
-  const provider = new CoinGeckoProvider({ fetchImpl: async () => response([{ id: 'bitcoin', symbol: 'btc', name: 'Bitcoin', current_price: 65000 }]) });
+  const provider = new CoinGeckoProvider({ fetchImpl: async (url) => response(url.endsWith('/global') ? globalResponse() : marketResponse()) });
   assert.equal(provider.state, 'created');
   provider.validate();
   assert.equal(provider.state, 'ready');
@@ -57,21 +59,32 @@ test('CoinGecko endpoint and normalizer dispatchers are capability maps', () => 
   assert.equal(ENDPOINT_RESOLVERS['market-data']({ coinId: 'bitcoin' }).startsWith('/coins/markets'), true);
   assert.equal(ENDPOINT_RESOLVERS['token-metadata']({ coinId: 'bitcoin' }), '/coins/bitcoin');
   assert.equal(ENDPOINT_RESOLVERS['contract-metadata']({ assetPlatformId: 'ethereum', contractAddress: '0xabc' }), '/coins/ethereum/contract/0xabc');
-  assert.equal(NORMALIZERS['market-data']([{ id: 'bitcoin', current_price: 1 }]).priceUsd, 1);
+  assert.equal(NORMALIZERS['market-data']({ asset: marketResponse(), global: globalResponse() }).market.priceUsd, 65000);
   assert.equal(NORMALIZERS['token-metadata']({ id: 'bitcoin', symbol: 'btc', name: 'Bitcoin' }).name, 'Bitcoin');
 });
 
 test('CoinGeckoProvider validate, fetch, normalize, health, and dispose succeed with normalized boundary payloads', async () => {
-  const provider = new CoinGeckoProvider({ fetchImpl: async (url) => url.endsWith('/ping') ? response({ gecko_says: 'ok' }) : response([{ id: 'bitcoin', symbol: 'btc', name: 'Bitcoin', current_price: 65000, price_change_percentage_24h: 2, total_volume: 10, market_cap: 20 }]) });
+  const provider = new CoinGeckoProvider({ fetchImpl: async (url) => url.endsWith('/ping') ? response({ gecko_says: 'ok' }) : response(url.endsWith('/global') ? globalResponse() : marketResponse()) });
   assert.equal(provider.validate().status, 'valid');
   assert.equal(provider.supports('market-data'), true);
   const fetched = await provider.fetch({ capability: 'market-data', coinId: 'bitcoin', requestId: 'r1' });
   assert.equal(fetched.status, 'success');
-  assert.equal(fetched.payload.normalized.id, 'bitcoin');
+  assert.equal(fetched.payload.normalized.asset.id, 'bitcoin');
   assert.equal(Object.prototype.hasOwnProperty.call(fetched.payload, 'raw'), false);
   const health = await provider.health();
   assert.equal(health.status, 'healthy');
   assert.equal(provider.dispose().status, 'disposed');
+});
+
+test('TOTAL3 excludes only BTC and ETH dominance, never USDT dominance', () => {
+  const fivePercentUsdt = NORMALIZERS['market-data']({ asset: marketResponse(), global: globalResponse(5) });
+  const tenPercentUsdt = NORMALIZERS['market-data']({ asset: marketResponse(), global: globalResponse(10) });
+  assert.equal(fivePercentUsdt.market.totalMarketCapUsd, 100);
+  assert.ok(Math.abs(fivePercentUsdt.market.total3MarketCap - 30) < 1e-9);
+  assert.ok(Math.abs(tenPercentUsdt.market.total3MarketCap - 30) < 1e-9);
+  assert.equal(fivePercentUsdt.market.usdtDominance, 5);
+  assert.equal(tenPercentUsdt.market.usdtDominance, 10);
+  assert.equal(NORMALIZERS['market-data']({ asset: marketResponse(), global: { data: { total_market_cap: { usd: 100 }, market_cap_percentage: { btc: 101, eth: 20, usdt: 5, usdc: 3 } } } }), null);
 });
 
 test('CoinGeckoProvider returns deterministic ProviderError for unsupported, malformed, timeout, rate limit, and retry exhaustion', async () => {
