@@ -162,11 +162,11 @@ test('default timeout and default retry count are applied to timeout failures', 
   assert.equal(DEFAULT_TIMEOUT_MS, 10000);
 });
 
-test('timeout behavior uses per-request timeout and retries until budget exhausted', async () => {
+test('provider timeout failures use the per-request retry budget without a second DataService timeout authority', async () => {
   const result = await produceMarketData(request({
     timeoutMs: 1,
     maxRetries: 2,
-    providerFramework: framework(() => new Promise(() => {})),
+    providerFramework: framework(() => ({ ok: false, errorCode: 'PROVIDER_TIMEOUT' })),
   }));
   assertFailure(result, ERROR_CODES.PROVIDER_TIMEOUT);
   assert.equal(result.attempts, 3);

@@ -23,6 +23,7 @@ const RETRYABLE_PROVIDER_ERRORS = Object.freeze([
 const PROVIDER_ERROR_MAP = Object.freeze({
   UNAVAILABLE: ERROR_CODES.PROVIDER_UNAVAILABLE,
   PROVIDER_UNAVAILABLE: ERROR_CODES.PROVIDER_UNAVAILABLE,
+  PROVIDER_SOURCE_UNAVAILABLE: ERROR_CODES.PROVIDER_UNAVAILABLE,
   TIMEOUT: ERROR_CODES.PROVIDER_TIMEOUT,
   PROVIDER_TIMEOUT: ERROR_CODES.PROVIDER_TIMEOUT,
   RATE_LIMITED: ERROR_CODES.PROVIDER_RATE_LIMITED,
@@ -111,16 +112,6 @@ function fetchFromProviderFramework(providerFramework, providerId, assetId, requ
   return provider.fetchMarketData({ providerId, assetId, requestedAt });
 }
 
-function withTimeout(promise, timeoutMs) {
-  return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => resolve({ ok: false, errorCode: ERROR_CODES.PROVIDER_TIMEOUT, errorMessage: 'Provider attempt timed out.' }), timeoutMs);
-    Promise.resolve(promise).then(
-      (result) => { clearTimeout(timer); resolve(result); },
-      (error) => { clearTimeout(timer); reject(error); },
-    );
-  });
-}
-
 function providerFailureFromResult(providerResult, request, attempts, retryable) {
   const sourceCode = providerResult && (providerResult.errorCode || providerResult.category || providerResult.errorCategory);
   const errorCode = PROVIDER_ERROR_MAP[sourceCode] || ERROR_CODES.PROVIDER_MALFORMED_RESPONSE;
@@ -207,7 +198,9 @@ async function produceMarketData(request) {
     attempts += 1;
     let providerResult;
     try {
-      providerResult = await withTimeout(fetchFromProviderFramework(request.providerFramework, request.providerId, request.assetId, request.requestedAt, timeoutMs, maxRetries, request.requestId), timeoutMs);
+      // Providers own request cancellation. DataService owns the logical retry
+      // budget and invokes one provider attempt per loop iteration.
+      providerResult = await fetchFromProviderFramework(request.providerFramework, request.providerId, request.assetId, request.requestedAt, timeoutMs, maxRetries, request.requestId);
     } catch (error) {
       providerResult = { ok: false, errorCode: ERROR_CODES.PROVIDER_UNAVAILABLE, errorMessage: error.message || 'Provider Framework provider is unavailable.' };
     }

@@ -105,8 +105,10 @@ class ProviderRegistry {
     if (isProviderError(provider)) return { ok: false, errorCode: provider.code, errorMessage: provider.message, providerId: request.providerId };
     const valid = provider.validate();
     if (isProviderError(valid)) return { ok: false, errorCode: valid.code, errorMessage: valid.message, providerId: request.providerId };
-    const result = await provider.fetch({ capability: 'market-data', coinId: request.assetId, requestId: request.requestId, timeoutMs: request.timeoutMs, maxAttempts: request.maxRetries === undefined ? undefined : request.maxRetries + 1 });
-    if (isProviderError(result)) return { ok: false, errorCode: result.code, errorMessage: result.message, providerId: request.providerId };
+    // DataService owns logical retries. Restrict this boundary to one provider
+    // attempt so a DataService retry budget cannot be multiplied downstream.
+    const result = await provider.fetch({ capability: 'market-data', coinId: request.assetId, requestId: request.requestId, timeoutMs: request.timeoutMs, maxAttempts: 1 });
+    if (isProviderError(result)) return { ok: false, errorCode: result.code === ERROR_CODES.RETRY_EXHAUSTED ? result.details.cause : result.code, errorMessage: result.message, providerId: request.providerId };
     return result.payload.normalized;
   }
   capabilities(providerId, context = {}) { return withRegistryOperation(this, () => { const entry = this.entries.get(providerId) || providerError({ code: ERROR_CODES.NOT_REGISTERED, providerId }); return isProviderError(entry) ? entry : entry.factory.capabilities(context); }); }
