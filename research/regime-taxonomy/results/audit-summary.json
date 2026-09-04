@@ -1,0 +1,143 @@
+{
+  "input": "research/providers/market_snapshots_clean-2.csv",
+  "sha256": "fcc077c762a04879fcc06cc0cf393dabdf82633dff52358f73206f3640246488",
+  "generated_at": "2026-09-04T17:43:02.057Z",
+  "rows": 7906,
+  "columns": [
+    {
+      "name": "id",
+      "type": "number"
+    },
+    {
+      "name": "ts_source",
+      "type": "timestamp/string"
+    },
+    {
+      "name": "ts_captured",
+      "type": "timestamp/string"
+    },
+    {
+      "name": "btc_dominance_pct",
+      "type": "number"
+    },
+    {
+      "name": "usdt_dominance_pct",
+      "type": "number"
+    },
+    {
+      "name": "eth_dominance_pct",
+      "type": "number"
+    },
+    {
+      "name": "total_market_cap_usd",
+      "type": "number"
+    },
+    {
+      "name": "total3_usd",
+      "type": "number"
+    },
+    {
+      "name": "btc_market_cap_usd",
+      "type": "number"
+    },
+    {
+      "name": "fetch_status",
+      "type": "string"
+    },
+    {
+      "name": "usdc_dominance_pct",
+      "type": "number"
+    },
+    {
+      "name": "stablecoin_dominance_pct",
+      "type": "number"
+    }
+  ],
+  "timestamp": {
+    "field": "ts_source",
+    "min": "2026-07-06T05:10:46.000Z",
+    "max": "2026-08-30T09:50:52.000Z",
+    "ordered": true,
+    "duplicate_timestamps": 0,
+    "duplicate_rows": 0,
+    "interval_seconds": {
+      "n": 7905,
+      "min": 2,
+      "max": 18021,
+      "mean": 603.2645161290322,
+      "median": 601,
+      "sd": 197.00850015429432,
+      "p1": 600,
+      "p5": 600,
+      "p25": 600,
+      "p50": 601,
+      "p75": 601,
+      "p95": 601,
+      "p99": 602
+    },
+    "abnormal_gap_definition": "> 2 * median interval",
+    "abnormal_gap_count": 1
+  },
+  "missingness": {
+    "id": {
+      "count": 0,
+      "sequences": []
+    },
+    "btc_dominance_pct": {
+      "count": 0,
+      "sequences": []
+    },
+    "usdt_dominance_pct": {
+      "count": 0,
+      "sequences": []
+    },
+    "eth_dominance_pct": {
+      "count": 0,
+      "sequences": []
+    },
+    "total_market_cap_usd": {
+      "count": 0,
+      "sequences": []
+    },
+    "total3_usd": {
+      "count": 0,
+      "sequences": []
+    },
+    "btc_market_cap_usd": {
+      "count": 0,
+      "sequences": []
+    },
+    "usdc_dominance_pct": {
+      "count": 563,
+      "sequences": [
+        {
+          "rows": 563,
+          "start": "2026-07-06T05:10:46.000Z",
+          "end": "2026-07-10T07:57:33.000Z"
+        }
+      ]
+    },
+    "stablecoin_dominance_pct": {
+      "count": 563,
+      "sequences": [
+        {
+          "rows": 563,
+          "start": "2026-07-06T05:10:46.000Z",
+          "end": "2026-07-10T07:57:33.000Z"
+        }
+      ]
+    }
+  },
+  "primary_variables": [
+    "btc_market_cap_usd",
+    "total3_usd",
+    "btc_dominance_pct",
+    "eth_dominance_pct",
+    "usdt_dominance_pct"
+  ],
+  "liquidity_related_proxies": [
+    "usdt_dominance_pct",
+    "usdc_dominance_pct",
+    "stablecoin_dominance_pct"
+  ]
+}

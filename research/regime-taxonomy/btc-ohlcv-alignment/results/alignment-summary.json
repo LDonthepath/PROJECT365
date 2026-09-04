@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-09-04T18:08:02.551Z",
+  "scan_directory": "research/providers",
+  "empiris_baseline": {
+    "filename": "market_snapshots_clean-2.csv",
+    "sha256": "fcc077c762a04879fcc06cc0cf393dabdf82633dff52358f73206f3640246488",
+    "bytes": 1666687,
+    "rows": 7906,
+    "first_ts_source": "2026-07-06T05:10:46.000Z",
+    "last_ts_source": "2026-08-30T09:50:52.000Z",
+    "duplicate_timestamps": 0,
+    "interval_seconds": {
+      "n": 7905,
+      "min": 2,
+      "max": 18021,
+      "mean": 603.2645161290322,
+      "median": 601,
+      "sd": 197.00850015429432,
+      "p1": 600,
+      "p5": 600,
+      "p50": 601,
+      "p95": 601,
+      "p99": 602
+    },
+    "relevant_fields": [
+      "ts_source",
+      "btc_dominance_pct",
+      "usdt_dominance_pct",
+      "eth_dominance_pct",
+      "total_market_cap_usd",
+      "total3_usd",
+      "btc_market_cap_usd",
+      "stablecoin_dominance_pct",
+      "usdc_dominance_pct"
+    ],
+    "missingness": {
+      "btc_dominance_pct": 0,
+      "usdt_dominance_pct": 0,
+      "eth_dominance_pct": 0,
+      "total_market_cap_usd": 0,
+      "total3_usd": 0,
+      "btc_market_cap_usd": 0,
+      "stablecoin_dominance_pct": 563,
+      "usdc_dominance_pct": 563
+    }
+  },
+  "ohlcv_candidates": [],
+  "verdict": {
+    "btc_ohlcv_data": "unusable",
+    "temporal_alignment": "failed",
+    "causality": "unverified",
+    "fixed_horizon_btc_return": "not ready",
+    "btc_market_cap_proxy": "inconclusive",
+    "five_state_taxonomy": "insufficient evidence"
+  }
+}
