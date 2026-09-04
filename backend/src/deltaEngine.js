@@ -14,12 +14,16 @@ const DELTA_FIELDS = Object.freeze([
   'totalMarketCapUsd',
   'total3MarketCap',
   'btcDominance',
+  'ethDominance',
   'usdtDominance',
   'usdcDominance',
   'circulatingSupply',
   'ath',
   'atl',
 ]);
+// ATH, ATL, and circulating supply remain generic scalar deltas for contract
+// compatibility. Their regime interpretation is intentionally deferred to a
+// downstream consumer; this engine does not imply that they are price returns.
 
 const ERROR_CODES = Object.freeze({
   INVALID_REQUEST: 'INVALID_REQUEST',
@@ -31,6 +35,7 @@ const ERROR_CODES = Object.freeze({
   UNAUTHORIZED_CONSUMER: 'UNAUTHORIZED_CONSUMER',
   DELTA_UNAVAILABLE: 'DELTA_UNAVAILABLE',
 });
+const DOMINANCE_FIELDS = Object.freeze(['btcDominance', 'ethDominance', 'usdtDominance', 'usdcDominance']);
 
 function isPlainObject(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -75,6 +80,7 @@ function validateSnapshot(snapshot, role, referenceTime, maxSnapshotAgeMs) {
     return { code: ERROR_CODES.MALFORMED_SNAPSHOT, message: `${role} snapshot contract is malformed.` };
   }
   for (const field of DELTA_FIELDS) {
+    if (field === 'change1h' && snapshot.marketData[field] === null) continue;
     if (typeof snapshot.marketData[field] !== 'number' || !Number.isFinite(snapshot.marketData[field])) {
       return { code: ERROR_CODES.MALFORMED_SNAPSHOT, message: `${role} snapshot MarketData field is malformed: ${field}.` };
     }
@@ -86,13 +92,15 @@ function validateSnapshot(snapshot, role, referenceTime, maxSnapshotAgeMs) {
 function calculateFieldDelta(current, previous, field) {
   const currentValue = current.marketData[field];
   const previousValue = previous.marketData[field];
-  return Object.freeze({
+  const delta = {
     field,
     currentValue,
     previousValue,
-    absoluteDelta: currentValue - previousValue,
-    percentDelta: previousValue === 0 ? null : ((currentValue - previousValue) / previousValue) * 100,
-  });
+    absoluteDelta: currentValue === null || previousValue === null ? null : currentValue - previousValue,
+    percentDelta: currentValue === null || previousValue === null || previousValue === 0 ? null : ((currentValue - previousValue) / previousValue) * 100,
+  };
+  if (DOMINANCE_FIELDS.includes(field)) delta.deltaUnit = 'percentage-points';
+  return Object.freeze(delta);
 }
 
 function createDeltaEngine(options = {}) {
@@ -126,7 +134,7 @@ function createDeltaEngine(options = {}) {
       assessment: { snapshotWindowMs: request.currentSnapshot.timestamp - request.previousSnapshot.timestamp, fieldDeltas },
       explainability: {
         summary: 'Delta Contract compares numeric MarketData values across two immutable Snapshot records.',
-        rationale: 'Absolute and percentage deltas are calculated from previous and current Snapshot MarketData values only.',
+        rationale: 'Absolute and percentage deltas are calculated from previous and current Snapshot MarketData values only. Dominance absoluteDelta values and deltaUnit are percentage points; percentDelta remains the relative percentage change for backward compatibility.',
         sourceSnapshotIds: [request.previousSnapshot.id, request.currentSnapshot.id],
       },
       audit: { requestId: request.requestId, producedBy: 'Delta Engine', approvedConsumer: APPROVED_CONSUMERS[0], traceable: true },

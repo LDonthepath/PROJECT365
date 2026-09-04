@@ -36,6 +36,7 @@ function validCandidate(overrides = {}) {
     totalMarketCapUsd: 2500000000000,
     total3MarketCap: 800000000000,
     btcDominance: 52.5,
+    ethDominance: 17.5,
     usdtDominance: 4.2,
     usdcDominance: 1.8,
     circulatingSupply: 19700000,
@@ -158,6 +159,8 @@ test('snapshot mutation attempts are rejected and stored payload references are 
   assert.equal(Object.prototype.hasOwnProperty.call(snapshot, 'source'), false);
   assert.throws(() => { snapshot.marketData.priceUsd = 1; }, TypeError);
   assert.equal(snapshot.marketData.priceUsd, marketData.priceUsd);
+  assert.throws(() => { snapshot.marketData.ethDominance = 1; }, TypeError);
+  assert.equal(snapshot.marketData.ethDominance, marketData.ethDominance);
 });
 
 test('first snapshot has no previous snapshot and second snapshot deterministically moves first current to previous', () => {

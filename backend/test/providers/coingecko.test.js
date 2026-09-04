@@ -83,8 +83,17 @@ test('TOTAL3 excludes only BTC and ETH dominance, never USDT dominance', () => {
   assert.ok(Math.abs(fivePercentUsdt.market.total3MarketCap - 30) < 1e-9);
   assert.ok(Math.abs(tenPercentUsdt.market.total3MarketCap - 30) < 1e-9);
   assert.equal(fivePercentUsdt.market.usdtDominance, 5);
+  assert.equal(fivePercentUsdt.market.ethDominance, 20);
   assert.equal(tenPercentUsdt.market.usdtDominance, 10);
   assert.equal(NORMALIZERS['market-data']({ asset: marketResponse(), global: { data: { total_market_cap: { usd: 100 }, market_cap_percentage: { btc: 101, eth: 20, usdt: 5, usdc: 3 } } } }), null);
+});
+
+test('CoinGecko normalization preserves actual and unknown 1h changes distinctly', () => {
+  const zero = marketResponse();
+  zero[0].price_change_percentage_1h_in_currency = 0;
+  const missing = marketResponse();
+  assert.equal(NORMALIZERS['market-data']({ asset: zero, global: globalResponse() }).market.change1h, 0);
+  assert.equal(NORMALIZERS['market-data']({ asset: missing, global: globalResponse() }).market.change1h, null);
 });
 
 test('CoinGeckoProvider returns deterministic ProviderError for unsupported, malformed, timeout, rate limit, and retry exhaustion', async () => {

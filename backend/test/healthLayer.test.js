@@ -21,6 +21,7 @@ function validCandidate(overrides = {}) {
     totalMarketCapUsd: 2500000000000,
     total3MarketCap: 800000000000,
     btcDominance: 52.5,
+    ethDominance: 17.5,
     usdtDominance: 4.2,
     usdcDominance: 1.8,
     circulatingSupply: 19700000,

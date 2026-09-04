@@ -25,11 +25,13 @@ test('real CoinGecko provider crosses registry, DataService, Health, Snapshot, S
   const firstResult = await produceMarketData({ requestId: 'first', providerId: PROVIDER_ID, assetId: 'bitcoin', requestedAt: 1710000000000, providerFramework: registry, maxRetries: 0 });
   assert.equal(firstResult.ok, true);
   assert.equal(firstResult.marketData.fetchSource, PROVIDER_ID);
+  assert.equal(firstResult.marketData.ethDominance, 20);
   assert.ok(Math.abs(firstResult.marketData.total3MarketCap - 30) < 1e-9);
   const firstHealth = validate(firstResult.marketData);
   assert.equal(firstHealth.isInvalid, false);
   const first = withNow(1710000000100, () => snapshots.createSnapshot(firstResult.marketData, firstHealth));
   assert.equal(Object.isFrozen(first.marketData), true);
+  assert.equal(first.marketData.ethDominance, 20);
   assert.throws(() => { first.marketData.priceUsd = 999; }, TypeError);
 
   const storage = createStorageLayer();

@@ -8,7 +8,7 @@ function marketData(overrides = {}) {
   return Object.freeze({
     id: 'market-1', symbol: 'BTC', name: 'Bitcoin', priceUsd: 100, change1h: 1, change24h: 2,
     volume24hUsd: 1000, marketCapUsd: 2000, totalMarketCapUsd: 3000, total3MarketCap: 2500,
-    btcDominance: 50, usdtDominance: 5, usdcDominance: 4, circulatingSupply: 19,
+    btcDominance: 50, ethDominance: 20, usdtDominance: 5, usdcDominance: 4, circulatingSupply: 19,
     ath: 120, atl: 10, fetchedAt: 1710000000000, fetchSource: 'test', contractVersion: '1.0',
     ...overrides,
   });
@@ -65,11 +65,24 @@ test('evaluate produces an immutable, explainable Delta Contract from two Snapsh
   const volumeDelta = result.assessment.fieldDeltas.find((delta) => delta.field === 'volume24hUsd');
   assert.equal(volumeDelta.absoluteDelta, -100);
   assert.equal(volumeDelta.percentDelta, -10);
+  const btcDominanceDelta = result.assessment.fieldDeltas.find((delta) => delta.field === 'btcDominance');
+  assert.equal(btcDominanceDelta.deltaUnit, 'percentage-points');
   assert.deepEqual(result.explainability.sourceSnapshotIds, ['snapshot-1', 'snapshot-2']);
   assert.equal(result.audit.producedBy, 'Delta Engine');
   assert.equal(result.audit.traceable, true);
   assert.equal(Object.isFrozen(result), true);
   assert.equal(Object.isFrozen(result.assessment.fieldDeltas[0]), true);
+});
+
+test('dominance deltas explicitly use percentage points while retaining relative percentDelta', () => {
+  const result = createDeltaEngine().evaluate(request({
+    previousSnapshot: snapshot({ id: 'prev-dominance', timestamp: 1710000000000, marketDataOverrides: { btcDominance: 52 } }),
+    currentSnapshot: snapshot({ id: 'curr-dominance', timestamp: 1710000000001, marketDataOverrides: { btcDominance: 52.8 } }),
+  }));
+  const delta = result.assessment.fieldDeltas.find((field) => field.field === 'btcDominance');
+  assert.ok(Math.abs(delta.absoluteDelta - 0.8) < 1e-12);
+  assert.equal(delta.deltaUnit, 'percentage-points');
+  assert.ok(Math.abs(delta.percentDelta - ((0.8 / 52) * 100)) < 1e-12);
 });
 
 test('getDeltaContract only serves the approved downstream Triad Liquidity Framework consumer', () => {
