@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-04
+
+### Updated
+
+- Reconciled Data Service with the ProviderRegistry, ProviderFactory, BaseProvider, and ProviderResult contracts; Data Service now consumes one normalized ProviderResult handoff and propagates the provider timeout request instead of racing an uncancelled duplicate request.
+- Extended CoinGecko's provider-boundary normalization with global market data required by the canonical MarketData contract, retaining CoinGecko attribution and rejecting incomplete provider output.
+- Deep-froze Snapshot nested values and made same-millisecond snapshot identities collision-free.
+- Added a deterministic Foundation integration test using the real CoinGecko provider implementation with an injected HTTP transport across Provider Framework, Data Service, MarketData, Health, Snapshot, Storage, and Delta.
+
 ## 2026-07-18
 
 ### Added

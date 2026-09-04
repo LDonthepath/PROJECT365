@@ -130,13 +130,13 @@ test('createSnapshot rejects missing MarketData, missing HealthStatus, and INVAL
   assert.deepEqual(getHistoricalSnapshots(), []);
 });
 
-test('createSnapshot rejects duplicate snapshot identity and non-positive snapshot timestamp without changing existing state', () => {
+test('createSnapshot guarantees unique identities for snapshots created in the same millisecond and rejects non-positive timestamps', () => {
   const { marketData, healthStatus } = createValidInputs();
   const first = withFixedNow(SNAPSHOT_TIMESTAMP, () => createSnapshot(marketData, healthStatus));
 
-  expectSnapshotError(() => withFixedNow(SNAPSHOT_TIMESTAMP, () => createSnapshot(marketData, healthStatus)), 'DUPLICATE_SNAPSHOT_ID');
-  assert.equal(getCurrentSnapshot(), first);
-  assert.deepEqual(getHistoricalSnapshots(), [first]);
+  const second = withFixedNow(SNAPSHOT_TIMESTAMP, () => createSnapshot(marketData, healthStatus));
+  assert.notEqual(first.id, second.id);
+  assert.equal(getCurrentSnapshot(), second);
 
   resetSnapshotEngineForTest();
   expectSnapshotError(() => withFixedNow(0, () => createSnapshot(marketData, healthStatus)), 'INVALID_SNAPSHOT_TIMESTAMP');
@@ -155,6 +155,15 @@ test('snapshot mutation attempts are rejected and stored payload references are 
   }, TypeError);
   assert.equal(snapshot.type, 'Live');
   assert.equal(Object.prototype.hasOwnProperty.call(snapshot, 'source'), false);
+});
+
+test('snapshot deep-freezes nested HealthStatus values', () => {
+  const { marketData, healthStatus } = createValidInputs();
+  const nestedHealth = { ...healthStatus, details: { provider: { name: 'CoinGecko' } } };
+  const snapshot = withFixedNow(SNAPSHOT_TIMESTAMP, () => createSnapshot(marketData, nestedHealth));
+  assert.equal(Object.isFrozen(snapshot.healthStatus.details), true);
+  assert.throws(() => { snapshot.healthStatus.details.provider.name = 'other'; }, TypeError);
+  assert.equal(snapshot.healthStatus.details.provider.name, 'CoinGecko');
 });
 
 test('first snapshot has no previous snapshot and second snapshot deterministically moves first current to previous', () => {

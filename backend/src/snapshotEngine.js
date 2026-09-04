@@ -64,7 +64,11 @@ function assertHealthStatus(healthStatus) {
 }
 
 function generateSnapshotIdentity(timestamp) {
-  return `snapshot-${timestamp}`;
+  const base = `snapshot-${timestamp}`;
+  if (!snapshotIds.has(base)) return base;
+  let sequence = 1;
+  while (snapshotIds.has(`${base}-${sequence}`)) sequence += 1;
+  return `${base}-${sequence}`;
 }
 
 function assertUniqueIdentity(id) {
@@ -79,6 +83,12 @@ function assertPositiveTimestamp(timestamp) {
   }
 }
 
+function deepFreeze(value) {
+  if (!isPlainObject(value) && !Array.isArray(value)) return value;
+  for (const key of Object.keys(value)) deepFreeze(value[key]);
+  return Object.freeze(value);
+}
+
 function createFrozenSnapshot({ id, timestamp, type, marketData, healthStatus }) {
   const snapshot = {
     id,
@@ -89,7 +99,7 @@ function createFrozenSnapshot({ id, timestamp, type, marketData, healthStatus })
     contractVersion: CONTRACT_VERSION,
   };
 
-  return Object.freeze(snapshot);
+  return deepFreeze(snapshot);
 }
 
 function storeSnapshot(snapshot) {
@@ -110,8 +120,6 @@ function createSnapshot(marketData, healthStatus) {
   const timestamp = Date.now();
   assertPositiveTimestamp(timestamp);
   const id = generateSnapshotIdentity(timestamp);
-  assertUniqueIdentity(id);
-
   const snapshot = createFrozenSnapshot({
     id,
     timestamp,

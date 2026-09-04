@@ -29,9 +29,13 @@ const ENDPOINT_RESOLVERS = Object.freeze({
 
 const NORMALIZERS = Object.freeze({
   'market-data': (raw) => {
-    const item = Array.isArray(raw) ? raw[0] : raw;
-    if (!item || typeof item.id !== 'string' || typeof item.current_price !== 'number') return null;
-    return Object.freeze({ id: item.id, symbol: item.symbol, name: item.name, priceUsd: item.current_price, change1h: item.price_change_percentage_1h_in_currency ?? null, change24h: item.price_change_percentage_24h ?? item.price_change_percentage_24h_in_currency ?? null, volume24hUsd: item.total_volume ?? null, marketCapUsd: item.market_cap ?? null, circulatingSupply: item.circulating_supply ?? null, ath: item.ath ?? null, atl: item.atl ?? null, lastUpdated: item.last_updated ?? null });
+    const item = Array.isArray(raw.market) ? raw.market[0] : raw.market;
+    const global = raw.global && raw.global.data;
+    const totalMarketCapUsd = global && global.total_market_cap && global.total_market_cap.usd;
+    const percentages = global && global.market_cap_percentage;
+    if (!item || !global || typeof item.id !== 'string' || !Number.isFinite(item.current_price) || !Number.isFinite(totalMarketCapUsd) || !percentages || !Number.isFinite(percentages.btc) || !Number.isFinite(percentages.eth) || !Number.isFinite(percentages.usdt) || !Number.isFinite(percentages.usdc)) return null;
+    const total3MarketCap = totalMarketCapUsd * (1 - ((percentages.btc + percentages.eth + percentages.usdt) / 100));
+    return Object.freeze({ asset: Object.freeze({ id: item.id, symbol: item.symbol, name: item.name }), market: Object.freeze({ priceUsd: item.current_price, change1h: item.price_change_percentage_1h_in_currency, change24h: item.price_change_percentage_24h ?? item.price_change_percentage_24h_in_currency, volume24hUsd: item.total_volume, marketCapUsd: item.market_cap, totalMarketCapUsd, total3MarketCap, btcDominance: percentages.btc, usdtDominance: percentages.usdt, usdcDominance: percentages.usdc, ath: item.ath, atl: item.atl }), supply: Object.freeze({ circulatingSupply: item.circulating_supply }) });
   },
   'token-metadata': (raw) => raw && typeof raw.id === 'string' ? Object.freeze({ id: raw.id, symbol: raw.symbol, name: raw.name, assetPlatformId: raw.asset_platform_id || null, contractAddress: raw.contract_address || null, categories: Array.isArray(raw.categories) ? raw.categories.slice() : [] }) : null,
   'contract-metadata': (raw) => raw && typeof raw.id === 'string' ? Object.freeze({ id: raw.id, symbol: raw.symbol, name: raw.name, assetPlatformId: raw.asset_platform_id || null, contractAddress: raw.contract_address || null, categories: Array.isArray(raw.categories) ? raw.categories.slice() : [] }) : null,
@@ -83,13 +87,14 @@ class CoinGeckoProvider extends BaseProvider {
     const maxAttempts = request.maxAttempts || this.maxAttempts;
     const warnings = [];
     for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
-      const raw = await this.httpJson(path, request, attempt);
+      const market = await this.httpJson(path, request, attempt);
+      const raw = isProviderError(market) ? market : (request.capability === 'market-data' ? await this.httpJson('/global', request, attempt) : market);
       if (!isProviderError(raw)) {
         this.state = 'normalizing';
-        const normalized = this.normalize(raw, { ...context, capability: request.capability });
+        const normalized = this.normalize(request.capability === 'market-data' ? { market, global: raw } : raw, { ...context, capability: request.capability });
         this.state = 'ready';
         if (isProviderError(normalized)) return normalized;
-        return providerResult({ providerId: this.id, providerName: this.name, providerVersion: this.version, capability: request.capability, requestId: request.requestId, payload: { format: 'normalized', normalized }, attribution: { source: 'CoinGecko', endpoint: path }, metadata: { attempts: attempt, warnings } });
+        return providerResult({ providerId: this.id, providerName: this.name, providerVersion: this.version, capability: request.capability, requestId: request.requestId, fetchedAt: Date.now(), payload: { format: 'normalized', normalized }, attribution: { source: 'CoinGecko', endpoint: path }, metadata: { attempts: attempt, warnings } });
       }
       if (!raw.retryable || attempt === maxAttempts) return attempt === maxAttempts && raw.retryable ? providerError({ ...raw, code: ERROR_CODES.RETRY_EXHAUSTED, maxAttempts, details: { cause: raw.code } }) : raw;
       warnings.push(raw.code);
