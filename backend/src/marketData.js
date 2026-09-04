@@ -14,6 +14,7 @@ const REQUIRED_FIELDS = Object.freeze([
   'totalMarketCapUsd',
   'total3MarketCap',
   'btcDominance',
+  'ethDominance',
   'usdtDominance',
   'usdcDominance',
   'circulatingSupply',
@@ -25,7 +26,8 @@ const REQUIRED_FIELDS = Object.freeze([
 ]);
 
 const STRING_FIELDS = Object.freeze(['id', 'symbol', 'name', 'fetchSource', 'contractVersion']);
-const NUMERIC_FIELDS = Object.freeze(REQUIRED_FIELDS.filter((field) => !STRING_FIELDS.includes(field)));
+const NULLABLE_NUMERIC_FIELDS = Object.freeze(['change1h']);
+const NUMERIC_FIELDS = Object.freeze(REQUIRED_FIELDS.filter((field) => !STRING_FIELDS.includes(field) && !NULLABLE_NUMERIC_FIELDS.includes(field)));
 const NON_NEGATIVE_FIELDS = Object.freeze([
   'priceUsd',
   'volume24hUsd',
@@ -36,7 +38,7 @@ const NON_NEGATIVE_FIELDS = Object.freeze([
   'ath',
   'atl',
 ]);
-const DOMINANCE_FIELDS = Object.freeze(['btcDominance', 'usdtDominance', 'usdcDominance']);
+const DOMINANCE_FIELDS = Object.freeze(['btcDominance', 'ethDominance', 'usdtDominance', 'usdcDominance']);
 
 class MarketDataValidationError extends Error {
   constructor(message, code, field) {
@@ -73,6 +75,12 @@ function validateNumericFields(candidateFields) {
       throw new MarketDataValidationError(`Invalid numeric MarketData field: ${field}.`, 'INVALID_NUMERIC_FIELD', field);
     }
   }
+
+  for (const field of NULLABLE_NUMERIC_FIELDS) {
+    if (candidateFields[field] !== null && (typeof candidateFields[field] !== 'number' || !Number.isFinite(candidateFields[field]))) {
+      throw new MarketDataValidationError(`Invalid nullable numeric MarketData field: ${field}.`, 'INVALID_NUMERIC_FIELD', field);
+    }
+  }
 }
 
 function validateBusinessRules(candidateFields) {
@@ -86,6 +94,14 @@ function validateBusinessRules(candidateFields) {
     if (candidateFields[field] < 0 || candidateFields[field] > 100) {
       throw new MarketDataValidationError(`Dominance field must be between 0 and 100 inclusive: ${field}.`, 'INVALID_DOMINANCE_FIELD', field);
     }
+  }
+
+  if (candidateFields.total3MarketCap > candidateFields.totalMarketCapUsd) {
+    throw new MarketDataValidationError('TOTAL3 market cap must not exceed total market cap.', 'INVALID_TOTAL3_MARKET_CAP', 'total3MarketCap');
+  }
+
+  if (candidateFields.btcDominance + candidateFields.ethDominance > 100) {
+    throw new MarketDataValidationError('BTC and ETH dominance combined must not exceed 100 percent.', 'INVALID_DOMINANCE_COMBINATION', 'ethDominance');
   }
 
   if (candidateFields.fetchedAt <= 0) {

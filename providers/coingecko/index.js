@@ -43,7 +43,7 @@ const NORMALIZERS = Object.freeze({
       providerId: PROVIDER_ID,
       providerTimestamp: Date.parse(item.last_updated) || Date.now(),
       asset: { id: item.id, symbol: item.symbol, name: item.name },
-      market: { priceUsd: item.current_price, change1h: item.price_change_percentage_1h_in_currency ?? 0, change24h: item.price_change_percentage_24h ?? item.price_change_percentage_24h_in_currency ?? 0, volume24hUsd: item.total_volume, marketCapUsd: item.market_cap, totalMarketCapUsd, total3MarketCap, btcDominance: percentages.btc, usdtDominance: percentages.usdt, usdcDominance: percentages.usdc, ath: item.ath, atl: item.atl },
+      market: { priceUsd: item.current_price, change1h: item.price_change_percentage_1h_in_currency ?? null, change24h: item.price_change_percentage_24h ?? item.price_change_percentage_24h_in_currency ?? 0, volume24hUsd: item.total_volume, marketCapUsd: item.market_cap, totalMarketCapUsd, total3MarketCap, btcDominance: percentages.btc, ethDominance: percentages.eth, usdtDominance: percentages.usdt, usdcDominance: percentages.usdc, ath: item.ath, atl: item.atl },
       supply: { circulatingSupply: item.circulating_supply },
     });
   },

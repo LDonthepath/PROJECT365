@@ -41,6 +41,7 @@ const MARKET_FIELD_PATHS = Object.freeze({
   totalMarketCapUsd: Object.freeze(['market', 'totalMarketCapUsd']),
   total3MarketCap: Object.freeze(['market', 'total3MarketCap']),
   btcDominance: Object.freeze(['market', 'btcDominance']),
+  ethDominance: Object.freeze(['market', 'ethDominance']),
   usdtDominance: Object.freeze(['market', 'usdtDominance']),
   usdcDominance: Object.freeze(['market', 'usdcDominance']),
   circulatingSupply: Object.freeze(['supply', 'circulatingSupply']),
@@ -55,7 +56,7 @@ const STRING_PROVIDER_FIELDS = Object.freeze({
 const NON_NEGATIVE_MARKET_FIELDS = Object.freeze([
   'priceUsd', 'volume24hUsd', 'marketCapUsd', 'totalMarketCapUsd', 'total3MarketCap', 'circulatingSupply', 'ath', 'atl',
 ]);
-const DOMINANCE_FIELDS = Object.freeze(['btcDominance', 'usdtDominance', 'usdcDominance']);
+const DOMINANCE_FIELDS = Object.freeze(['btcDominance', 'ethDominance', 'usdtDominance', 'usdcDominance']);
 
 function isPlainObject(value) {
   return value !== null && value !== undefined && typeof value === 'object' && !Array.isArray(value);
@@ -150,6 +151,7 @@ function normalizeProviderResult(providerResult) {
   if (fetchedAt === undefined) missingFields.push('fetchedAt');
   if (missingFields.length > 0) return failure(ERROR_CODES.MISSING_MARKETDATA_FIELD, 'ProviderResult is missing required MarketData fields.', { providerId, missingFields });
   for (const field of Object.keys(MARKET_FIELD_PATHS)) {
+    if (field === 'change1h' && normalized[field] === null) continue;
     if (typeof normalized[field] !== 'number' || !Number.isFinite(normalized[field])) {
       return failure(ERROR_CODES.INVALID_MARKETDATA_FIELD, `Invalid MarketData field after normalization: ${field}.`, { providerId });
     }
@@ -159,6 +161,12 @@ function normalizeProviderResult(providerResult) {
   }
   for (const field of DOMINANCE_FIELDS) {
     if (normalized[field] < 0 || normalized[field] > 100) return failure(ERROR_CODES.INVALID_MARKETDATA_FIELD, `Dominance field must be between 0 and 100 inclusive: ${field}.`, { providerId });
+  }
+  if (normalized.total3MarketCap > normalized.totalMarketCapUsd) {
+    return failure(ERROR_CODES.INVALID_MARKETDATA_FIELD, 'TOTAL3 market cap must not exceed total market cap.', { providerId });
+  }
+  if (normalized.btcDominance + normalized.ethDominance > 100) {
+    return failure(ERROR_CODES.INVALID_MARKETDATA_FIELD, 'BTC and ETH dominance combined must not exceed 100 percent.', { providerId });
   }
   if (typeof normalized.fetchedAt !== 'number' || !Number.isFinite(normalized.fetchedAt) || normalized.fetchedAt <= 0) {
     return failure(ERROR_CODES.INVALID_MARKETDATA_FIELD, 'fetchedAt must be a positive Unix epoch millisecond timestamp.', { providerId });

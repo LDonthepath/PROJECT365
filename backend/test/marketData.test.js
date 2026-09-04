@@ -24,6 +24,7 @@ function validCandidate(overrides = {}) {
     totalMarketCapUsd: 2500000000000,
     total3MarketCap: 800000000000,
     btcDominance: 52.5,
+    ethDominance: 17.5,
     usdtDominance: 4.2,
     usdcDominance: 1.8,
     circulatingSupply: 19700000,
@@ -48,7 +49,7 @@ function expectMarketDataError(fn, code, field) {
   );
 }
 
-test('createMarketData returns a frozen object with exactly the 19 approved fields', () => {
+test('createMarketData returns a frozen object with exactly the approved fields', () => {
   const marketData = createMarketData(validCandidate());
   assert.deepEqual(Object.keys(marketData), REQUIRED_FIELDS);
   assert.equal(Object.isFrozen(marketData), true);
@@ -77,7 +78,7 @@ test('createMarketData rejects invalid string fields', () => {
 });
 
 test('createMarketData rejects numeric strings, NaN, and Infinity for numeric fields', () => {
-  const numericFields = REQUIRED_FIELDS.filter((field) => !['id', 'symbol', 'name', 'fetchSource', 'contractVersion'].includes(field));
+  const numericFields = REQUIRED_FIELDS.filter((field) => !['id', 'symbol', 'name', 'fetchSource', 'contractVersion', 'change1h'].includes(field));
   for (const field of numericFields) {
     expectMarketDataError(() => createMarketData(validCandidate({ [field]: '1' })), 'INVALID_NUMERIC_FIELD', field);
     expectMarketDataError(() => createMarketData(validCandidate({ [field]: Number.NaN })), 'INVALID_NUMERIC_FIELD', field);
@@ -92,12 +93,22 @@ test('createMarketData applies non-negative business validation for approved fie
 });
 
 test('createMarketData rejects dominance below 0 or above 100 and accepts inclusive bounds', () => {
-  for (const field of ['btcDominance', 'usdtDominance', 'usdcDominance']) {
+  for (const field of ['btcDominance', 'ethDominance', 'usdtDominance', 'usdcDominance']) {
     expectMarketDataError(() => createMarketData(validCandidate({ [field]: -0.1 })), 'INVALID_DOMINANCE_FIELD', field);
     expectMarketDataError(() => createMarketData(validCandidate({ [field]: 100.1 })), 'INVALID_DOMINANCE_FIELD', field);
-    assert.equal(createMarketData(validCandidate({ [field]: 0 }))[field], 0);
-    assert.equal(createMarketData(validCandidate({ [field]: 100 }))[field], 100);
+    const bounds = field === 'btcDominance' ? { ethDominance: 0 } : field === 'ethDominance' ? { btcDominance: 0 } : {};
+    assert.equal(createMarketData(validCandidate({ ...bounds, [field]: 0 }))[field], 0);
+    assert.equal(createMarketData(validCandidate({ ...bounds, [field]: 100 }))[field], 100);
   }
+});
+
+test('createMarketData preserves a nullable unknown change1h and distinguishes it from zero', () => {
+  assert.equal(createMarketData(validCandidate({ change1h: 0 })).change1h, 0);
+  assert.equal(createMarketData(validCandidate({ change1h: null })).change1h, null);
+});
+
+test('createMarketData rejects TOTAL3 above total market cap deterministically', () => {
+  expectMarketDataError(() => createMarketData(validCandidate({ total3MarketCap: 2500000000001 })), 'INVALID_TOTAL3_MARKET_CAP', 'total3MarketCap');
 });
 
 test('createMarketData rejects invalid fetchedAt timestamps', () => {

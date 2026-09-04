@@ -26,6 +26,7 @@ function providerResult(overrides = {}) {
       totalMarketCapUsd: 2500000000000,
       total3MarketCap: 800000000000,
       btcDominance: 52.5,
+      ethDominance: 17.5,
       usdtDominance: 4.2,
       usdcDominance: 1.8,
       ath: 73000,
@@ -89,17 +90,28 @@ test('produceMarketData exposes approved success contract and immutable MarketDa
   assert.equal(deserializeMarketData(serializeMarketData(result.marketData)).symbol, 'BTC');
 });
 
-test('normalizeProviderResult trims strings, uppercases symbol, maps all 19 TD-001 fields, and rejects numeric strings', () => {
+test('normalizeProviderResult trims strings, uppercases symbol, maps all MarketData fields, and rejects numeric strings', () => {
   const normalized = normalizeProviderResult(providerResult());
   const marketData = mapToMarketData(normalized);
   assert.deepEqual(Object.keys(marketData), [
     'id', 'symbol', 'name', 'priceUsd', 'change1h', 'change24h', 'volume24hUsd', 'marketCapUsd', 'totalMarketCapUsd',
-    'total3MarketCap', 'btcDominance', 'usdtDominance', 'usdcDominance', 'circulatingSupply', 'ath', 'atl', 'fetchedAt',
+    'total3MarketCap', 'btcDominance', 'ethDominance', 'usdtDominance', 'usdcDominance', 'circulatingSupply', 'ath', 'atl', 'fetchedAt',
     'fetchSource', 'contractVersion',
   ]);
   assert.equal(marketData.id, 'bitcoin');
   assert.equal(marketData.symbol, 'BTC');
   assertFailure(normalizeProviderResult(providerResult({ market: { priceUsd: '65000' } })), ERROR_CODES.INVALID_MARKETDATA_FIELD);
+});
+
+test('normalizeProviderResult preserves zero and unknown 1h changes without conflation', () => {
+  assert.equal(normalizeProviderResult(providerResult({ market: { change1h: 0 } })).change1h, 0);
+  assert.equal(normalizeProviderResult(providerResult({ market: { change1h: null } })).change1h, null);
+});
+
+test('normalizeProviderResult rejects TOTAL3 above total market cap', () => {
+  const result = normalizeProviderResult(providerResult({ market: { total3MarketCap: 2500000000001 } }));
+  assertFailure(result, ERROR_CODES.INVALID_MARKETDATA_FIELD);
+  assert.match(result.errorMessage, /TOTAL3 market cap/);
 });
 
 test('produceMarketData validates required DataServiceRequest fields and optional timeoutMs and maxRetries', async () => {
