@@ -1,0 +1,405 @@
+{
+  "market_snapshots_clean-2.csv": {
+    "path": "research/providers/market_snapshots_clean-2.csv",
+    "sha256": "fcc077c762a04879fcc06cc0cf393dabdf82633dff52358f73206f3640246488",
+    "bytes": 1666687,
+    "row_count": 7906,
+    "column_count": 12,
+    "columns": [
+      "id",
+      "ts_source",
+      "ts_captured",
+      "btc_dominance_pct",
+      "usdt_dominance_pct",
+      "eth_dominance_pct",
+      "total_market_cap_usd",
+      "total3_usd",
+      "btc_market_cap_usd",
+      "fetch_status",
+      "usdc_dominance_pct",
+      "stablecoin_dominance_pct"
+    ],
+    "first_timestamp": "2026-07-06T05:10:46+00:00",
+    "last_timestamp": "2026-08-30T09:50:52+00:00",
+    "timezone": "UTC (explicit +00:00)",
+    "timestamp_convention": "OHLCV datetime interpreted as candle close/end; Empiris ts_source provider source-observation time",
+    "timeframe": "irregular snapshots",
+    "duplicate_timestamps": 0,
+    "duplicate_rows": 0,
+    "monotonic_non_decreasing": true,
+    "missing_values": {
+      "btc_dominance_pct": 0,
+      "usdt_dominance_pct": 0,
+      "eth_dominance_pct": 0,
+      "total_market_cap_usd": 0,
+      "total3_usd": 0,
+      "btc_market_cap_usd": 0,
+      "usdc_dominance_pct": 563,
+      "stablecoin_dominance_pct": 563
+    },
+    "invalid_numeric_values": {
+      "btc_dominance_pct": 0,
+      "usdt_dominance_pct": 0,
+      "eth_dominance_pct": 0,
+      "total_market_cap_usd": 0,
+      "total3_usd": 0,
+      "btc_market_cap_usd": 0,
+      "usdc_dominance_pct": 0,
+      "stablecoin_dominance_pct": 0
+    },
+    "interval_seconds": {
+      "n": 7905,
+      "mean": 603.2645161290322,
+      "median": 601.0,
+      "sd": 197.00850015431257,
+      "min": 2.0,
+      "max": 18021.0,
+      "p01": 600.0,
+      "p05": 600.0,
+      "p25": 600.0,
+      "p75": 601.0,
+      "p95": 601.0,
+      "p99": 602.0
+    },
+    "interval_distribution_counts": {
+      "601.0": 5075,
+      "600.0": 2519,
+      "602.0": 234,
+      "603.0": 30,
+      "604.0": 16,
+      "605.0": 5,
+      "1202.0": 4,
+      "1201.0": 3,
+      "611.0": 2,
+      "613.0": 2,
+      "608.0": 2,
+      "18021.0": 1,
+      "631.0": 1,
+      "630.0": 1,
+      "607.0": 1,
+      "606.0": 1,
+      "609.0": 1,
+      "632.0": 1,
+      "293.0": 1,
+      "155.0": 1
+    },
+    "missing_candle_gaps": 8,
+    "suspicious_timestamp_anomalies": 0,
+    "ohlc": {}
+  },
+  "5m.csv": {
+    "path": "research/providers/5m.csv",
+    "sha256": "18d3002338a981d1237113f8f10c5b0fcbb3b599f8852f3a4be649e51dc1d95f",
+    "bytes": 9833509,
+    "row_count": 115205,
+    "column_count": 7,
+    "columns": [
+      "datetime",
+      "timestamp",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "first_timestamp": "2025-07-12T16:55:00+00:00",
+    "last_timestamp": "2026-08-16T17:15:00+00:00",
+    "timezone": "UTC (explicit +00:00)",
+    "timestamp_convention": "OHLCV datetime interpreted as candle close/end; Empiris ts_source provider source-observation time",
+    "timeframe": "5m",
+    "duplicate_timestamps": 0,
+    "duplicate_rows": 0,
+    "monotonic_non_decreasing": true,
+    "missing_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "invalid_numeric_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "interval_seconds": {
+      "n": 115204,
+      "mean": 300.0,
+      "median": 300.0,
+      "sd": 0.0,
+      "min": 300.0,
+      "max": 300.0,
+      "p01": 300.0,
+      "p05": 300.0,
+      "p25": 300.0,
+      "p75": 300.0,
+      "p95": 300.0,
+      "p99": 300.0
+    },
+    "interval_distribution_counts": {
+      "300.0": 115204
+    },
+    "missing_candle_gaps": 0,
+    "suspicious_timestamp_anomalies": 0,
+    "ohlc": {
+      "invariant_violations": 0,
+      "nonpositive_price_or_volume_rows": 0
+    }
+  },
+  "15m.csv": {
+    "path": "research/providers/15m.csv",
+    "sha256": "3cec45422133806d32c1c470215f005a7d47fd64f4b9af712357510ca55cbf2d",
+    "bytes": 3296638,
+    "row_count": 38402,
+    "column_count": 7,
+    "columns": [
+      "datetime",
+      "timestamp",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "first_timestamp": "2025-07-12T17:00:00+00:00",
+    "last_timestamp": "2026-08-16T17:15:00+00:00",
+    "timezone": "UTC (explicit +00:00)",
+    "timestamp_convention": "OHLCV datetime interpreted as candle close/end; Empiris ts_source provider source-observation time",
+    "timeframe": "15m",
+    "duplicate_timestamps": 0,
+    "duplicate_rows": 0,
+    "monotonic_non_decreasing": true,
+    "missing_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "invalid_numeric_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "interval_seconds": {
+      "n": 38401,
+      "mean": 900.0,
+      "median": 900.0,
+      "sd": 0.0,
+      "min": 900.0,
+      "max": 900.0,
+      "p01": 900.0,
+      "p05": 900.0,
+      "p25": 900.0,
+      "p75": 900.0,
+      "p95": 900.0,
+      "p99": 900.0
+    },
+    "interval_distribution_counts": {
+      "900.0": 38401
+    },
+    "missing_candle_gaps": 0,
+    "suspicious_timestamp_anomalies": 0,
+    "ohlc": {
+      "invariant_violations": 0,
+      "nonpositive_price_or_volume_rows": 0
+    }
+  },
+  "1h.csv": {
+    "path": "research/providers/1h.csv",
+    "sha256": "7541b48b34e14adff7d94bbd0616c859bbf1b70396daf2641c743d70977ab812",
+    "bytes": 829511,
+    "row_count": 9601,
+    "column_count": 7,
+    "columns": [
+      "datetime",
+      "timestamp",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "first_timestamp": "2025-07-12T17:00:00+00:00",
+    "last_timestamp": "2026-08-16T17:00:00+00:00",
+    "timezone": "UTC (explicit +00:00)",
+    "timestamp_convention": "OHLCV datetime interpreted as candle close/end; Empiris ts_source provider source-observation time",
+    "timeframe": "1h",
+    "duplicate_timestamps": 0,
+    "duplicate_rows": 0,
+    "monotonic_non_decreasing": true,
+    "missing_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "invalid_numeric_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "interval_seconds": {
+      "n": 9600,
+      "mean": 3600.0,
+      "median": 3600.0,
+      "sd": 0.0,
+      "min": 3600.0,
+      "max": 3600.0,
+      "p01": 3600.0,
+      "p05": 3600.0,
+      "p25": 3600.0,
+      "p75": 3600.0,
+      "p95": 3600.0,
+      "p99": 3600.0
+    },
+    "interval_distribution_counts": {
+      "3600.0": 9600
+    },
+    "missing_candle_gaps": 0,
+    "suspicious_timestamp_anomalies": 0,
+    "ohlc": {
+      "invariant_violations": 0,
+      "nonpositive_price_or_volume_rows": 0
+    }
+  },
+  "4h.csv": {
+    "path": "research/providers/4h.csv",
+    "sha256": "df2cf5f0e87718edc6871148cf0f72f93f724574acb2bfb70e199b628c5f5503",
+    "bytes": 209058,
+    "row_count": 2400,
+    "column_count": 7,
+    "columns": [
+      "datetime",
+      "timestamp",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "first_timestamp": "2025-07-12T20:00:00+00:00",
+    "last_timestamp": "2026-08-16T16:00:00+00:00",
+    "timezone": "UTC (explicit +00:00)",
+    "timestamp_convention": "OHLCV datetime interpreted as candle close/end; Empiris ts_source provider source-observation time",
+    "timeframe": "4h",
+    "duplicate_timestamps": 0,
+    "duplicate_rows": 0,
+    "monotonic_non_decreasing": true,
+    "missing_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "invalid_numeric_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "interval_seconds": {
+      "n": 2399,
+      "mean": 14400.0,
+      "median": 14400.0,
+      "sd": 0.0,
+      "min": 14400.0,
+      "max": 14400.0,
+      "p01": 14400.0,
+      "p05": 14400.0,
+      "p25": 14400.0,
+      "p75": 14400.0,
+      "p95": 14400.0,
+      "p99": 14400.0
+    },
+    "interval_distribution_counts": {
+      "14400.0": 2399
+    },
+    "missing_candle_gaps": 0,
+    "suspicious_timestamp_anomalies": 0,
+    "ohlc": {
+      "invariant_violations": 0,
+      "nonpositive_price_or_volume_rows": 0
+    }
+  },
+  "1d.csv": {
+    "path": "research/providers/1d.csv",
+    "sha256": "6fd01c1782109bc78181964c1a3d5cbb5d59ce4f13231993e430c0f8cace0fca",
+    "bytes": 35187,
+    "row_count": 400,
+    "column_count": 7,
+    "columns": [
+      "datetime",
+      "timestamp",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "first_timestamp": "2025-07-13T00:00:00+00:00",
+    "last_timestamp": "2026-08-16T00:00:00+00:00",
+    "timezone": "UTC (explicit +00:00)",
+    "timestamp_convention": "OHLCV datetime interpreted as candle close/end; Empiris ts_source provider source-observation time",
+    "timeframe": "1d",
+    "duplicate_timestamps": 0,
+    "duplicate_rows": 0,
+    "monotonic_non_decreasing": true,
+    "missing_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "invalid_numeric_values": {
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    },
+    "interval_seconds": {
+      "n": 399,
+      "mean": 86400.0,
+      "median": 86400.0,
+      "sd": 0.0,
+      "min": 86400.0,
+      "max": 86400.0,
+      "p01": 86400.0,
+      "p05": 86400.0,
+      "p25": 86400.0,
+      "p75": 86400.0,
+      "p95": 86400.0,
+      "p99": 86400.0
+    },
+    "interval_distribution_counts": {
+      "86400.0": 399
+    },
+    "missing_candle_gaps": 0,
+    "suspicious_timestamp_anomalies": 0,
+    "ohlc": {
+      "invariant_violations": 0,
+      "nonpositive_price_or_volume_rows": 0
+    }
+  }
+}
