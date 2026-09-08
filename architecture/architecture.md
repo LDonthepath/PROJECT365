@@ -3,9 +3,9 @@
 ## 1. Document Information
 
 - **Status:** Draft
-- **Version:** 1.1
+- **Version:** 1.4
 - **Owner:** PROJECT365 Architecture
-- **Last Updated:** 2026-07-14
+- **Last Updated:** 2026-09-08
 - **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Glossary](../project365/glossary.md), [Product Map](./product-map.md), [Architecture Decision Records](./decisions.md)
 - **Referenced By:** Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -98,6 +98,8 @@ Modules:
 - Snapshot Engine
 - Event Bus
 - Storage Layer
+
+Foundation Domain's trusted data scope extends beyond global market data to include on-chain, macroeconomic, and derivatives market data domains, as approved in BRD v1.1 Section 10. Each additional data domain is specified through its own Technical Design.
 
 ### Market Intelligence Domain
 
@@ -208,7 +210,7 @@ Rules:
 | --- | --- | --- |
 | Foundation | Provider Framework | Provide provider abstraction, normalization boundary, provider registry, and provider lifecycle governance. |
 | Foundation | Data Service | Orchestrate provider aggregation and produce MarketData; contains orchestration only. |
-| Foundation | MarketData Contract | Define the immutable market data structure and rules used as the Single Source of Truth. |
+| Foundation | MarketData Contract | Define the immutable global market data structure and rules. MarketData Contract is one of Foundation's approved data contracts under Foundation's Single Source of Truth ownership. |
 | Foundation | Health Layer | Validate market data health and support snapshot readiness. |
 | Foundation | Snapshot Engine | Create immutable snapshots for reproducible historical analysis. |
 | Foundation | Event Bus | Publish approved domain events between components. |
@@ -349,6 +351,8 @@ Approved contracts include:
 - Domain events published through the Event Bus.
 - Decision-support outputs that remain explainable and auditable.
 
+Additional Foundation-level data contracts covering on-chain, macroeconomic, and derivatives domains may be added under BRD v1.1 Section 10, each requiring its own Technical Design following the same rigor as MarketData Contract.
+
 Current Foundation v0.1 contract scope is limited to the MarketData Contract, Health Layer, and Snapshot Engine.
 
 ## 14. Cross-Cutting Concerns
@@ -394,6 +398,8 @@ Approved extension points are the future modules already identified by the PRD a
 - Historical Explorer
 - Settings
 
+Foundation data contracts beyond MarketData Contract (on-chain, macroeconomic, derivatives), each requiring a dedicated Technical Design before implementation, per BRD v1.1.
+
 Extension points must not introduce unapproved scope or change the approved architecture sequence.
 
 ## 16. Out of Scope
@@ -437,6 +443,8 @@ Foundation v0.1 excludes:
 ## 18. Authoritative Dependency Chain Appendix
 
 This is the authoritative dependency chain.
+
+This chain currently reflects MarketData Contract as the sole Foundation data input. Additional Foundation data contracts approved under BRD v1.1 (on-chain, macroeconomic, derivatives) will define their own dependency relationship to Market Intelligence Domain engines within their respective Technical Design documents. This appendix will be revised to reflect confirmed additional Foundation contract dependencies once those Technical Designs are frozen — this is intentionally left unresolved here rather than assumed.
 
 ```text
 External Providers
@@ -518,3 +526,4 @@ This appendix documents dependency order only and does not change architecture r
 | 1.1 | 2026-07-14 | Formalized Provider Framework documentation, Foundation module listing, provider/data service responsibilities, dependency rules, data flow, and extension point without introducing implementation. |
 | 1.2 | 2026-07-14 | Clarified Foundation runtime dependency chain, MarketData contract semantics, sidecar Foundation modules, and Presentation sibling boundaries. |
 | 1.3 | 2026-07-14 | Added authoritative full dependency chain appendix for governance freeze finalization without changing responsibilities or dependency directions. |
+| 1.4 | 2026-09-08 | Extended Foundation Domain scope description, Public Contracts, and Extension Points to reflect BRD v1.1's approved on-chain, macroeconomic, and derivatives data domains. Clarified MarketData Contract as one of Foundation's approved data contracts rather than implying it is the only one. Added an explicit note to Section 18's dependency chain appendix stating that it currently reflects MarketData Contract only and that additional Foundation contract dependencies remain unresolved pending their own Technical Designs, rather than assuming a structure. This amendment reconciles ADR-011 (Architecture Freeze Amendment Process and Foundation Data Contract Extensibility) with the now-amended BRD and closes the gap where ADR-011 was written before Section 18 was reviewed against it. Fixed header version, which had been showing 1.1 while Change History already listed 1.2 and 1.3. |
