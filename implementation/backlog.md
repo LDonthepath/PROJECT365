@@ -154,10 +154,10 @@ Status values used in this Backlog:
 - **Issue Specifications:** Completed.
 - **Acceptance Criteria:** Completed.
 - **Implementation:** Foundation v0.1 completed; Data Pipeline implementation completed through ISSUE-006; Delta Layer implementation started with ISSUE-007 completed; Dashboard implementation completed.
-- **Freeze:** Architecture Frozen.
+- **Freeze:** Frozen — Amendment ADR-011 In Progress.
 - **Blocked items:** None.
 
-Current implementation status: Foundation v0.1 implementation completed; Data Pipeline implementation completed through ISSUE-006; Delta Layer implementation started with ISSUE-007 completed; Dashboard, Inspector, and Explainability implementation completed. Architecture Freeze remains frozen.
+Current implementation status: Foundation v0.1 implementation completed; Data Pipeline implementation completed through ISSUE-006; Delta Layer implementation started with ISSUE-007 completed; Dashboard, Inspector, and Explainability implementation completed. Architecture Freeze status: Frozen — Amendment ADR-011 In Progress.
 
 M0 Product Blueprint, M1 Foundation Specification, Issue Specifications, and Acceptance Criteria are Completed or intentionally retained for traceability. M2 and M3 are completed; M4 is in progress with ISSUE-007 completed; M5 has not started; M7 is in progress with ISSUE-024, ISSUE-025, and ISSUE-026 completed.
 

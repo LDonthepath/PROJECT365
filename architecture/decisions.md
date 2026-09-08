@@ -2,9 +2,9 @@
 
 ## 1. Document Information
 - Status: Active
-- Version: 1.0
+- Version: 1.2
 - Owner: PROJECT365 Architecture
-- Last Updated: 2026-07-13
+- Last Updated: 2026-09-08
 - Depends On: [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](./architecture.md), [Product Map](./product-map.md), [Glossary](../project365/glossary.md)
 - Referenced By: Architecture, PRD, Product Map, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -317,6 +317,48 @@ References
 - [Product Map](./product-map.md)
 - [Glossary](../project365/glossary.md)
 
+### ADR-011 — Architecture Freeze Amendment Process and Foundation Data Contract Extensibility
+
+Status:
+- Accepted
+
+Context
+
+Architecture Freeze was declared covering Governance, Documentation, Specifications, Technical Designs, Issue Specifications, and Acceptance Criteria. No document in the repository defines a process for amending a frozen artifact once Architecture Freeze is declared.
+
+Separately, provider research (research/providers/MasterProviderResearch.md, ProviderMapping.md, ProviderCoverageMatrix.md) identifies 17 providers mapped across 45 raw variables spanning global market data, on-chain metrics, macroeconomic indicators, and derivatives data. TD-001 MarketData Contract, the only Foundation-level data contract currently specified, is scoped exclusively to global market data fields. TD-001's own Future Extensions section and review checklist ("No future technical debt identified") do not identify or anticipate on-chain, macroeconomic, or derivatives domains. No other Foundation-level data contract exists or is planned in any frozen document. 16 of the 17 researched providers therefore have no defined path into the system as currently specified.
+
+Decision
+
+1. Architecture Freeze may be amended through a new ADR that explicitly names the frozen artifact being changed, the reason for the change, and the owner who approved it. This ADR itself is the first application of that process.
+2. Foundation shall support multiple sibling data contracts, not only MarketData Contract. TD-001 MarketData Contract remains scoped to global market data and is not expanded to absorb other domains. New Foundation-level data contracts (for example an on-chain metrics contract, a macroeconomic indicator contract, and a derivatives metrics contract) shall be specified as separate Technical Design documents, each following the same rigor, review, and freeze process TD-001 followed.
+3. TD-000 Data Provider Framework requires no change under this decision. Its acceptance criteria were already written to be provider-agnostic and were not the source of this gap.
+
+Rationale
+
+ADR-005 Separation of Concerns already requires each domain and module to keep one clear responsibility. Expanding MarketData Contract to hold on-chain, macroeconomic, or derivatives fields would violate that responsibility boundary. Specifying sibling contracts preserves TD-001's existing scope and test coverage while giving the remaining provider domains a defined, equally rigorous path into Foundation.
+
+Consequences
+
+- Architecture Freeze status changes from "Frozen" to "Frozen — Amendment ADR-011 In Progress" until the new Foundation contract Technical Designs are authored and frozen.
+- current-status.md, backlog.md, roadmap.md, and README.md must be updated to reflect this amended freeze status consistently.
+- ADR-007 Immutable Foundation Objects currently names "MarketData and snapshots" specifically; it should be revisited to confirm immutability applies to all Foundation-level data contracts, not only MarketData, once new contracts are specified.
+- M5 Intelligence Layer engines (TD-008 through TD-013) may plan against multiple Foundation contracts rather than assuming MarketData is the only input source.
+- No existing frozen Technical Design other than this amendment's direct scope is reopened by this decision.
+
+References
+
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
+- [TD-000 Data Provider Framework](../specs/TD-000-DataProviderFramework.md)
+- [TD-001 MarketData](../specs/TD-001-MarketData.md)
+- research/providers/MasterProviderResearch.md
+- research/providers/ProviderMapping.md
+- research/providers/ProviderCoverageMatrix.md
+
 ## 4. Traceability
 
 | ADR | Decision | Source Documents |
@@ -331,6 +373,7 @@ References
 | ADR-008 | Event-Driven Architecture | BRD; PRD; Architecture; Product Map; Glossary |
 | ADR-009 | Hard Gate Principle | BRD; PRD; Architecture; Glossary |
 | ADR-010 | Explainable Decision System | BRD; PRD; Architecture; Product Map; Glossary |
+| ADR-011 | Architecture Freeze Amendment Process and Foundation Data Contract Extensibility | BRD; PRD; Architecture; Product Map; Glossary; TD-000; TD-001; Provider Research |
 
 ## 5. References
 
@@ -346,3 +389,4 @@ References
 | --- | --- | --- |
 | 1.0 | 2026-07-13 | Normalized existing architecture decisions into the approved ADR template; preserved approved decisions; added rationale, consequences, dependencies, affected documents, related ADRs, traceability, references, and change history. |
 | 1.1 | 2026-07-13 | Expanded registry to ten ADRs; simplified ADR fields; removed Dependencies and Affected Documents from ADR entries; simplified traceability to a concise registry table. |
+| 1.2 | 2026-09-08 | Added ADR-011 establishing the Architecture Freeze amendment process and deciding that Foundation shall support multiple sibling data contracts rather than expanding TD-001 MarketData Contract to cover on-chain, macroeconomic, and derivatives domains. |

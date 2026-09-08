@@ -111,7 +111,7 @@ TD-000 is the architectural foundation of PROJECT365. ISSUE-000 and AC-000 are i
 
 Architecture Freeze covers Governance, Documentation, Specifications, Technical Designs, Issue Specifications, and Acceptance Criteria. Architecture Freeze DOES NOT require implementation completion. Implementation belongs to later milestones.
 
-Current implementation status: Foundation v0.1 completed; Data Pipeline implementation continued through ISSUE-006. Architecture Freeze remains frozen.
+Current implementation status: Foundation v0.1 completed; Data Pipeline implementation completed through ISSUE-006; Delta Layer implementation started with ISSUE-007 completed; Dashboard, Inspector, and Explainability implementation completed. Architecture Freeze status: Frozen — Amendment ADR-011 In Progress.
 
 ## 9. Deliverables
 

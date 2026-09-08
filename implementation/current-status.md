@@ -22,13 +22,13 @@ Current Status does not define product requirements, architecture decisions, imp
 - **Current Phase:** Portfolio, Governance, and Presentation Implementation.
 - **Next Phase:** Continue Portfolio, Governance, and Presentation Implementation.
 - **Current release scope:** Portfolio, Governance, and Presentation implementation after Dashboard completion.
-- **Current architecture freeze status:** Architecture Frozen.
+- **Current architecture freeze status:** Frozen — Amendment ADR-011 In Progress.
 
 Architecture Freeze covers Governance, Documentation, Specifications, Technical Designs, Issue Specifications, and Acceptance Criteria. Architecture Freeze DOES NOT require implementation completion. Implementation belongs to later milestones.
 
 TD-000 is the architectural foundation of PROJECT365. ISSUE-000 and AC-000 are intentionally retained as part of the official Specification Driven Development traceability for foundational architecture artifacts.
 
-Current implementation status: Foundation v0.1 completed, Data Pipeline implementation completed through ISSUE-006, Delta Layer implementation started with ISSUE-007 completed, and Dashboard, Inspector, and Explainability implementation completed. Architecture Freeze remains frozen.
+Current implementation status: Foundation v0.1 completed, Data Pipeline implementation completed through ISSUE-006, Delta Layer implementation started with ISSUE-007 completed, and Dashboard, Inspector, and Explainability implementation completed. Architecture Freeze status: Frozen — Amendment ADR-011 In Progress. See [ADR-011](../architecture/decisions.md) for scope.
 
 ## 4. Current Milestone
 

@@ -106,7 +106,7 @@ Architecture Freeze covers Governance, Documentation, Specifications, Technical 
 
 TD-000 is the architectural foundation of PROJECT365. The repository includes ISSUE-000 and AC-000 to preserve complete Specification Driven Development traceability for foundational architecture artifacts. These artifacts are intentionally maintained as part of the repository's complete documentation lifecycle.
 
-Current implementation status: Foundation v0.1 completed; Data Pipeline implementation continued through ISSUE-006. Architecture Freeze remains frozen.
+Current implementation status: Foundation v0.1 completed; Data Pipeline implementation completed through ISSUE-006; Delta Layer implementation started with ISSUE-007 completed; Dashboard, Inspector, and Explainability implementation completed. Architecture Freeze status: Frozen — Amendment ADR-011 In Progress.
 
 ## Current Scope
 
@@ -116,6 +116,6 @@ Completed Foundation v0.1 scope:
 - Health Layer
 - Snapshot Engine
 
-Documentation Complete. Architecture Frozen. Foundation v0.1 completed; Data Pipeline implementation continued through ISSUE-006.
+Documentation Complete. Frozen — Amendment ADR-011 In Progress. Foundation v0.1 completed; Data Pipeline implementation completed through ISSUE-006; Delta Layer implementation started with ISSUE-007 completed; Dashboard, Inspector, and Explainability implementation completed.
 
 The complete documentation architecture tracks TD-000 through TD-028; ISSUE-000 and AC-000 are retained for foundational traceability; ISSUE-001 through ISSUE-028 and AC-001 through AC-028 are completed governance artifacts. Architecture Freeze may complete before implementation.
