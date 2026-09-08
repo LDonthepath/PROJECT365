@@ -4,9 +4,9 @@
 
 **Project:** PROJECT365
 **Document Type:** Business Requirements Document (BRD)
-**Version:** 1.0
+**Version:** 1.1
 **Status:** Active
-**Last Updated:** 2026-07-13
+**Last Updated:** 2026-09-08
 
 This BRD defines why PROJECT365 exists from a business perspective. It is the upstream business reference for the PRD, Technical Design documents, Issue Specifications, Acceptance Criteria, and implementation prompts.
 
@@ -179,6 +179,8 @@ Modules:
 - Event Bus
 - Storage Layer
 
+Foundation Domain's trusted data scope extends beyond global market data to include on-chain, macroeconomic, and derivatives market data domains, as identified through approved provider research. Each additional data domain requires its own Technical Design and follows the same specification, review, and freeze process as MarketData Contract.
+
 ### Market Intelligence Domain
 
 Understand global market conditions.
@@ -280,6 +282,7 @@ PROJECT365 requires the following business capabilities:
 8. Support explainability and auditability.
 9. Preserve historical market states for reproducible analysis.
 10. Present market intelligence in a decision-focused way.
+11. Ingest on-chain, macroeconomic, and derivatives market data.
 
 ---
 
@@ -361,7 +364,7 @@ The BRD assumes:
 
 - Users need a structured methodology for understanding crypto market conditions.
 - Explainability and auditability improve decision quality and user trust.
-- MarketData is the Single Source of Truth for downstream systems.
+- Foundation is the Single Source of Truth for trusted data for downstream systems.
 - Immutable snapshots support reproducible historical analysis.
 - Specification Driven Development reduces hallucination and large refactors.
 - Documentation-first workflow preserves project context and supports long-term AI collaboration.
@@ -392,6 +395,10 @@ If components violate layer responsibilities, the system may lose modularity and
 ### User Trust Risk
 
 If users interpret PROJECT365 as financial advice, a trading bot, or a profit guarantee, expectations will conflict with the product positioning.
+
+### Provider Dependency Risk
+
+If Foundation depends on providers with inconsistent rate limits, data freshness, or availability across multiple data domains, downstream intelligence may become unreliable or inconsistently timed.
 
 ---
 
@@ -556,6 +563,10 @@ Foundation v0.1 remains limited to MarketData Contract, Health Layer, and Snapsh
 
 Every recommendation and decision-support output remains explainable and auditable.
 
+### BAC-009
+
+Additional Foundation data domains beyond MarketData Contract must each be traceable to an approved BRD Business Scope update and follow the same Technical Design, Issue, Implementation, Review, and Freeze process.
+
 ---
 
 ## 20. Glossary Reference
@@ -591,3 +602,12 @@ Key BRD terms include:
 - Technical Design (TD)
 - Issue
 - Freeze
+
+---
+
+## 21. Change History
+
+| Version | Date | Summary |
+| --- | --- | --- |
+| 1.0 | 2026-07-13 | Initial BRD. |
+| 1.1 | 2026-09-08 | Extended Foundation Domain business scope to include on-chain, macroeconomic, and derivatives data domains, based on approved provider research; added Business Capability 11; corrected Section 15 Single Source of Truth assumption to align with ADR-004 domain-level wording; added Provider Dependency Risk; added BAC-009 requiring future Foundation data domains to trace to an approved BRD update. BAC-007 and the Milestone Roadmap in Section 17 were intentionally left unchanged as historical record of the completed Foundation v0.1 scope. |
