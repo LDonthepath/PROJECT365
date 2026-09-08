@@ -3,9 +3,9 @@
 ## 1. Document Information
 
 - **Status:** Draft
-- **Version:** 1.2
+- **Version:** 1.3
 - **Owner:** PROJECT365 Product
-- **Last Updated:** 2026-07-14
+- **Last Updated:** 2026-09-08
 - **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](../architecture/architecture.md), [Glossary](../project365/glossary.md)
 - **Referenced By:** PRD, Architecture, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -56,6 +56,8 @@ Modules:
 - Snapshot Engine
 - Event Bus
 - Storage Layer
+
+Foundation Domain's trusted data scope extends beyond global market data to include on-chain, macroeconomic, and derivatives market data domains, as approved in BRD v1.1 Section 10 and Architecture v1.4.
 
 ### Market Intelligence Domain
 
@@ -188,7 +190,7 @@ PROJECT365 follows these approved dependency rules:
 - Governance supports explainability and auditability but never calculates scores.
 - Presentation contains no business logic.
 - Provider Framework is infrastructure in the Foundation Domain and must not be represented as a product capability.
-- External data sources and adapters, including CoinGecko, DefiLlama, Alternative.me, and Mempool, are not modules; they are future Provider Framework implementations.
+- External data sources and adapters — for global market, on-chain, macroeconomic, and derivatives domains, as identified through approved provider research — are not modules; they are future Provider Framework implementations.
 - Foundation is the Single Source of Truth.
 - Implementation must not add features that are not specified.
 - Architecture must not change without approval.
@@ -273,6 +275,8 @@ Future expansion is limited to the approved modules outside Foundation v0.1 that
 - Historical Explorer
 - Settings
 
+Foundation data contracts beyond MarketData Contract (on-chain, macroeconomic, derivatives), per BRD v1.1 and Architecture v1.4.
+
 Future expansion must preserve the approved domain hierarchy, module ownership, capability mapping, dependency direction, and terminology. CoinGecko, DefiLlama, Alternative.me, and Mempool may be considered future Provider Framework implementations, but they must not be added to the Product Map as modules.
 
 ## 12. Out of Scope
@@ -306,7 +310,7 @@ The Product Map must not introduce modules, domains, navigation areas, or capabi
 | Dependency rules | BRD §13; PRD Business Rules; Architecture §10 | Preserves lower-layer dependency direction, Foundation Single Source of Truth, Portfolio Intelligence access restriction, Governance scoring restriction, and Presentation business logic restriction. |
 | Current release scope | BRD §10; PRD Scope; Architecture §3 | Preserves Foundation v0.1 scope: MarketData Contract, Health Layer, and Snapshot Engine. |
 | Out of scope | BRD §11; PRD Out of Scope; Architecture §16 | Preserves product boundaries and Foundation v0.1 exclusions. |
-| Terminology | Glossary; BRD; PRD; Architecture | Uses approved domain, module, layer, engine, service, contract, provider, and framework terminology; treats CoinGecko, DefiLlama, Alternative.me, and Mempool as future Provider implementations rather than modules. |
+| Terminology | Glossary; BRD; PRD; Architecture | Uses approved domain, module, layer, engine, service, contract, provider, and framework terminology; treats external data sources across global market, on-chain, macroeconomic, and derivatives domains (including CoinGecko, DefiLlama, Alternative.me, and Mempool) as future Provider implementations rather than modules. |
 
 ## 14. References
 
@@ -326,3 +330,4 @@ The Product Map must not introduce modules, domains, navigation areas, or capabi
 | 1.0 | 2026-07-13 | Initial Product Map draft. |
 | 1.1 | 2026-07-13 | Normalized Product Map to the approved template; aligned domains, modules, responsibilities, capability mapping, dependency rules, navigation, current scope, and terminology with the BRD, PRD, and Architecture without introducing new domains or modules. |
 | 1.2 | 2026-07-14 | Added Provider Framework to the Foundation Domain, clarified it as infrastructure rather than a product capability, and identified CoinGecko, DefiLlama, Alternative.me, and Mempool as future Provider implementations rather than modules. |
+| 1.3 | 2026-09-08 | Extended Foundation Domain scope description and Future Expansion to reference BRD v1.1's approved on-chain, macroeconomic, and derivatives data domains and Architecture v1.4. Generalized the provider example sentence in Dependency Rules and the Terminology traceability row to cover all four approved data domains rather than global market data only, without hardcoding a new provider list pending resolution of inconsistencies found across the provider research documents. |
