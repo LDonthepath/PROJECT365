@@ -5,9 +5,9 @@
 - **Project:** PROJECT365
 - **Document Type:** Product Requirements Document (PRD)
 - **Status:** Draft
-- **Version:** 1.1
+- **Version:** 1.3
 - **Owner:** PROJECT365 Product
-- **Last Updated:** 2026-07-13
+- **Last Updated:** 2026-09-08
 - **Depends On:** [BRD](../business/brd.md), [Glossary](../project365/glossary.md), [Architecture](../architecture/architecture.md), [Product Map](../architecture/product-map.md), [Architecture Decision Records](../architecture/decisions.md)
 - **Referenced By:** Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -48,6 +48,8 @@ Modules:
 - Snapshot Engine
 - Event Bus
 - Storage Layer
+
+Foundation Domain's trusted data scope extends beyond global market data to include on-chain, macroeconomic, and derivatives market data domains, as identified through approved provider research, per BRD §10.
 
 ### Market Intelligence Domain
 
@@ -145,6 +147,7 @@ The functional requirements below are traceable to BRD business capabilities and
 | FR-008 | The product shall support explainability and auditability. | BRD §12 Business Capabilities; BRD §19 BAC-008 |
 | FR-009 | The product shall preserve historical market states for reproducible analysis. | BRD §12 Business Capabilities |
 | FR-010 | The product shall present market intelligence in a decision-focused way. | BRD §12 Business Capabilities |
+| FR-011 | The product shall ingest on-chain, macroeconomic, and derivatives market data. | BRD §12 Business Capability 11 |
 
 ---
 
@@ -265,7 +268,7 @@ The PRD roadmap is the authoritative product roadmap for PRD-level requirements.
 | M6 | Portfolio, Governance, and Presentation Technical Designs | TD-015 Exposure Engine; TD-016 Portfolio Engine; TD-017 Risk Engine; TD-018 Cluster Rotation Engine; TD-019 Decision Log; TD-020 Validation Framework; TD-021 Champion-Challenger Framework; TD-022 Model Versioning; TD-023 Rollback Framework; TD-024 Dashboard; TD-025 Inspector; TD-026 Explainability; TD-027 Historical Explorer; TD-028 Settings |
 | M7 | Portfolio, Governance, and Presentation Implementation | ISSUE-015 Exposure Engine through ISSUE-028 Settings |
 
-Current focus: M2 Foundation Implementation, ISSUE-001 MarketData Implementation.
+Current focus: M7 Portfolio, Governance, and Presentation Implementation, ISSUE-026 Explainability Implementation completed. See [Current Status](../implementation/current-status.md) for live tracking.
 
 ---
 
@@ -308,6 +311,7 @@ Current focus: M2 Foundation Implementation, ISSUE-001 MarketData Implementation
 | 1.0 | 2026-07-13 | Initial PRD draft. |
 | 1.1 | 2026-07-13 | Normalized PRD against the BRD, Glossary, Architecture, Product Map, ADRs, and Backlog; removed duplicated and contradictory statements; separated business, functional, and non-functional requirements. |
 | 1.2 | 2026-07-14 | Synchronized the product roadmap to the approved TD-000 through TD-028 sequence and removed active deprecated delivery terms. |
+| 1.3 | 2026-09-08 | Extended Foundation Domain scope description and added FR-011 to trace BRD §12 Business Capability 11 (on-chain, macroeconomic, and derivatives ingestion), per BRD v1.1. Corrected header version to match existing Change History (was showing 1.1 while Change History already listed 1.2). Synchronized stale "Current focus" roadmap line, previously still referencing M2/ISSUE-001, to reflect actual current status. |
 
 ---
 
