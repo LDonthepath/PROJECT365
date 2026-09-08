@@ -6,7 +6,7 @@
 |------|------|
 | Issue ID | ISSUE-026 |
 | Title | Explainability Implementation |
-| Status | Not Started |
+| Status | Completed |
 | Priority | Medium |
 | Owner | PROJECT365 Delivery |
 | Milestone | M7 Portfolio, Governance, and Presentation Implementation |
