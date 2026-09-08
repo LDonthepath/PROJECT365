@@ -3,9 +3,9 @@
 ## 1. Document Information
 
 - **Status:** Active
-- **Version:** 1.2
+- **Version:** 1.4
 - **Owner:** PROJECT365 Product
-- **Last Updated:** 2026-07-14
+- **Last Updated:** 2026-09-08
 - **Depends On:** [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](../architecture/architecture.md), [Product Map](../architecture/product-map.md)
 - **Referenced By:** BRD, PRD, Architecture, Product Map, Technical Design documents, Issue Specifications, Acceptance Criteria, Implementation Prompts
 
@@ -51,6 +51,9 @@ It defines one preferred name and one meaning for each approved term used across
 | Exposure Recommendation | An explainable recommendation about portfolio exposure produced by Portfolio Intelligence and governed for explainability and auditability. | Exposure Management, allocation signal |
 | Current Release Scope | The approved current scope: Foundation v0.1, limited to MarketData Contract, Health Layer, and Snapshot Engine. | Current focus, current implementation scope |
 | Foundation v0.1 | The current Foundation release scope containing MarketData Contract, Health Layer, and Snapshot Engine. | Foundation Edition when referring to current scope |
+| On-Chain Data | Blockchain-derived market data, such as holder behavior and network activity metrics, approved as a Foundation data domain in BRD v1.1. | Blockchain data, chain data |
+| Macroeconomic Data | Macroeconomic indicator data, such as interest rates and money supply, approved as a Foundation data domain in BRD v1.1. | Macro data, economic data |
+| Derivatives Data | Derivatives market data, such as funding rates and open interest, approved as a Foundation data domain in BRD v1.1. | Derivatives market data, futures data |
 
 ## 5. Architecture Terms
 
@@ -229,7 +232,7 @@ These Indonesian summaries preserve concise terminology notes from the previous 
 | Product domains | BRD §10; PRD Scope; Architecture §6; Product Map §4 | Uses Foundation Domain, Market Intelligence Domain, Portfolio Intelligence Domain, Governance Domain, and Presentation Domain. |
 | Approved architecture sequence | BRD §14 and §19; PRD Constraints; Architecture §5; Product Map §8 | Preserves Foundation → Market Intelligence → Portfolio Intelligence → Governance → Presentation. |
 | Architecture principles | BRD §13; PRD Business Rules; Architecture §4 | Uses Regime First, Hard Gate Principle, Single Source of Truth, Separation of Concerns, Explainability, Auditability, and Modular Architecture. |
-| Foundation modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Data Service, MarketData Contract, Health Layer, Snapshot Engine, Event Bus, and Storage Layer. |
+| Foundation modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Data Service, MarketData Contract, Health Layer, Snapshot Engine, Event Bus, and Storage Layer. Foundation's trusted data scope also covers On-Chain Data, Macroeconomic Data, and Derivatives Data domains per BRD v1.1. |
 | Market Intelligence modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Delta Engine, Triad Liquidity Framework, Regime Engine, LDS Engine, Capital Flow Engine, Market State Engine, Confidence Engine, and OMS Engine. |
 | Portfolio Intelligence modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Exposure Engine, Portfolio Engine, Risk Engine, and Cluster Rotation Engine. |
 | Governance modules | BRD §10; PRD Scope; Architecture §6 and §8; Product Map §4 and §6 | Uses Decision Log, Validation Framework, Champion-Challenger, Model Versioning, and Rollback Framework. |
@@ -257,3 +260,4 @@ These Indonesian summaries preserve concise terminology notes from the previous 
 | 1.1 | 2026-07-13 | Normalized glossary to the required template; established one preferred term and one meaning per concept; added deprecated synonyms, forbidden terms, abbreviations, traceability, and references derived from the BRD, PRD, Architecture, and Product Map without introducing new concepts or changing approved architecture. |
 | 1.2 | 2026-07-14 | Added Provider Framework terminology, external provider data definitions, and clarified that CoinGecko Adapter is implementation terminology while Provider Framework is architecture terminology. |
 | 1.3 | 2026-07-20 | Consolidated localized term summaries from the duplicate glossary into this canonical glossary. |
+| 1.4 | 2026-09-08 | Added On-Chain Data, Macroeconomic Data, and Derivatives Data as approved Core Terms per BRD v1.1's Foundation Domain scope extension. Updated Foundation modules traceability row to note these domains. Fixed header version, which had been showing 1.2 while Change History already listed 1.3. |
