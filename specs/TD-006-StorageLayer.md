@@ -5,9 +5,9 @@
 | Field | Value |
 |------|------|
 | Status | Frozen |
-| Version | 1.0 |
+| Version | 1.1 |
 | Owner | PROJECT365 Architecture |
-| Last Updated | 2026-07-14 |
+| Last Updated | 2026-09-08 |
 | Depends On | BRD, PRD, Architecture, Product Map, ADR |
 | Referenced By | Issue Specification, Acceptance Criteria, Implementation Prompt |
 
@@ -317,6 +317,10 @@ This Technical Design does not cover:
 
 This section increases implementation precision for the existing Storage Layer design without changing responsibilities, dependency direction, runtime flow, or ownership.
 
+### Persistence Backend
+
+Storage Layer's persistence backend uses the better-sqlite3 driver, per ADR-012. This driver executes synchronously, preserving the Callable Public Interface below without requiring async/await. Any future persistence backend change must preserve this synchronous interface or trigger a revisit of ADR-012 before implementation.
+
 ### Stored Object Contract
 
 | Field | Type | Required | Rule |
@@ -533,3 +537,4 @@ No source code, implementation algorithm, storage technology, transport technolo
 | Version | Date | Description |
 |---------|------|-------------|
 | 1.0 | 2026-07-14 | Initial TD-006 Storage Layer Technical Design |
+| 1.1 | 2026-09-08 | Added Persistence Backend subsection to Implementation Specification, recording the better-sqlite3 driver choice per ADR-012. No change to responsibilities, dependency direction, runtime flow, or the Callable Public Interface. |

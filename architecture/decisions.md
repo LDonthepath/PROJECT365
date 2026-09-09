@@ -2,7 +2,7 @@
 
 ## 1. Document Information
 - Status: Active
-- Version: 1.2
+- Version: 1.3
 - Owner: PROJECT365 Architecture
 - Last Updated: 2026-09-08
 - Depends On: [BRD](../business/brd.md), [PRD](../business/prd.md), [Architecture](./architecture.md), [Product Map](./product-map.md), [Glossary](../project365/glossary.md)
@@ -359,6 +359,41 @@ References
 - research/providers/ProviderMapping.md
 - research/providers/ProviderCoverageMatrix.md
 
+### ADR-012 — Synchronous Storage Layer Execution Model
+
+Status:
+- Accepted
+
+Context
+
+Storage Layer's implemented public interface (save, load, exists, delete, find, findRange) is fully synchronous: no method returns a Promise or uses async/await. Delta Engine and all planned Market Intelligence Domain engines (TD-008 through TD-013) call Storage Layer following this same synchronous convention. Data Service is the only Foundation component using async/await, and only at the Provider Framework network boundary, not for storage.
+
+A database driver decision was needed for Storage Layer's persistence backend. Available SQLite drivers differ: some (for example better-sqlite3) execute synchronously, while others (for example the sqlite3 package, or any networked database driver such as Postgres) require asynchronous, Promise-based or callback-based execution due to network or thread-boundary I/O.
+
+Decision
+
+Storage Layer's persistence backend must use a synchronous execution model. The initial implementation shall use the better-sqlite3 driver. Any future persistence backend change must preserve Storage Layer's synchronous public interface, or else this ADR must be revisited before the change is made.
+
+Rationale
+
+Changing Storage Layer's interface to asynchronous would require every consumer to change as well, including Delta Engine and all six planned Market Intelligence Domain engines, since they call Storage Layer directly using the existing synchronous convention. Selecting a synchronous-capable driver now avoids that cascading change while still allowing durable, file-based persistence.
+
+Consequences
+
+- A future move to a networked database (for example PostgreSQL or TimescaleDB) is not a transparent backend swap. It requires converting Storage Layer's public interface to asynchronous and updating every consumer that calls it, and must go through this ADR's revisit process before implementation.
+- Provider Framework and Data Service's existing async/await usage at the network boundary is unaffected by this decision.
+- TD-006 Storage Layer's Implementation Specification records the specific driver choice.
+
+References
+
+- [BRD](../business/brd.md)
+- [PRD](../business/prd.md)
+- [Architecture](./architecture.md)
+- [Product Map](./product-map.md)
+- [Glossary](../project365/glossary.md)
+- [TD-006 Storage Layer](../specs/TD-006-StorageLayer.md)
+- [TD-007 Delta Engine](../specs/TD-007-DeltaEngine.md)
+
 ## 4. Traceability
 
 | ADR | Decision | Source Documents |
@@ -374,6 +409,7 @@ References
 | ADR-009 | Hard Gate Principle | BRD; PRD; Architecture; Glossary |
 | ADR-010 | Explainable Decision System | BRD; PRD; Architecture; Product Map; Glossary |
 | ADR-011 | Architecture Freeze Amendment Process and Foundation Data Contract Extensibility | BRD; PRD; Architecture; Product Map; Glossary; TD-000; TD-001; Provider Research |
+| ADR-012 | Synchronous Storage Layer Execution Model | BRD; PRD; Architecture; Product Map; Glossary; TD-006; TD-007 |
 
 ## 5. References
 
@@ -390,3 +426,4 @@ References
 | 1.0 | 2026-07-13 | Normalized existing architecture decisions into the approved ADR template; preserved approved decisions; added rationale, consequences, dependencies, affected documents, related ADRs, traceability, references, and change history. |
 | 1.1 | 2026-07-13 | Expanded registry to ten ADRs; simplified ADR fields; removed Dependencies and Affected Documents from ADR entries; simplified traceability to a concise registry table. |
 | 1.2 | 2026-09-08 | Added ADR-011 establishing the Architecture Freeze amendment process and deciding that Foundation shall support multiple sibling data contracts rather than expanding TD-001 MarketData Contract to cover on-chain, macroeconomic, and derivatives domains. |
+| 1.3 | 2026-09-08 | Added ADR-012 deciding that Storage Layer's persistence backend must use a synchronous execution model (better-sqlite3), to avoid a cascading async refactor across Delta Engine and all planned Market Intelligence Domain engines. |
