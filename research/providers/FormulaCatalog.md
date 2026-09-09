@@ -7,11 +7,11 @@
 | Field | Value |
 |------|------|
 | Status | Active |
-| Version | 1.1 |
+| Version | 1.2 |
 | Owner | PROJECT365 Delivery |
 | Last Updated | 2026-09-08 |
-| Depends On | TD-007 Delta Engine |
-| Referenced By | Not yet wired into traceability chain — no existing document currently links to this file. Recommended follow-up: add this file to TD-007's "Referenced By" and to TD-008 Triad Liquidity Framework's "Depends On" once Triad formulas are added here. |
+| Depends On | TD-007 Delta Engine, TD-008 Triad Liquidity Framework |
+| Referenced By | Not yet wired into traceability chain — no existing document currently links to this file. Recommended follow-up: add this file to TD-007's and TD-008's "Referenced By" sections. |
 
 ---
 
@@ -68,7 +68,43 @@ For the four dominance fields (`btcDominance`, `ethDominance`, `usdtDominance`, 
 
 ## 4. Triad Liquidity Framework (TD-008)
 
-Not yet documented. Design was discussed in a prior working session but has not been formalized here. Populate before implementation begins, per project Documentation First principle.
+Source: user-provided architecture design (screenshot), not yet implemented in code. Formula names and weights below are transcribed from that design, not derived from an existing implementation. Contract shape (input/output naming) is inferred to match TD-008's approved Data Model ("Delta Contract" in, "Liquidity Assessment" out) and TD-010's approved consumption of the same output.
+
+### 4.1 Scope Boundary
+
+Per TD-008's Data Model, Triad Liquidity Framework consumes the Delta Contract (TD-007) and produces a Liquidity Assessment. It does not itself compute composite liquidity or divergence scores; those are owned downstream (LDS Engine, Capital Flow Engine) per TD-010 and TD-011. This section covers Triad Liquidity Framework's own transformation only: raw delta to normalized Z-Score.
+
+### 4.2 The Triad
+
+Three MarketData-derived fields, all already present in the Delta Contract (see Section 3.3):
+
+- BTC.D (`btcDominance`) — Bitcoin Dominance, percentage of total market cap.
+- TOTAL3 (`total3MarketCap`) — altcoin market cap excluding BTC and ETH.
+- USDT.D (`usdtDominance`) — Tether/stablecoin dominance, percentage of total market cap.
+
+### 4.3 Z-Score Normalization
+
+```
+z(ΔX) = (ΔX − mean(ΔX, window=60)) / max(stddev(ΔX, window=60), 0.0001)
+```
+
+Applied independently to `ΔbtcDominance`, `Δtotal3MarketCap`, and `ΔusdtDominance` (the `absoluteDelta` values from Delta Contract, per Section 3.1). Window size of 60 (periods, not yet specified whether snapshot-count or time-based) and the 0.0001 minimum standard deviation floor (guards division by near-zero variance) are taken from the source design as given; neither has been independently justified or verified in this document.
+
+### 4.4 Output — Liquidity Assessment
+
+```
+{ btcDominanceZ, total3Z, usdtDominanceZ }
+```
+
+Three Z-scores, consumed downstream by Regime Engine (TD-009) and LDS Engine (TD-010).
+
+### 4.5 Explicitly Deferred to Downstream Engines
+
+The following formulas appear in the source design but belong to other TDs per the verified TD-008 through TD-013 dependency chain, not to Triad Liquidity Framework itself:
+
+- `LDS = z(-ΔBTC.D) + z(ΔTOTAL3) + z(ΔUSDT.D)` — belongs to TD-010 LDS Engine, not yet formalized in this document.
+- `FlowCore = (-ΔBTC.D × 0.3) + (ΔTOTAL3 × 0.4) + (ΔUSDT.D × 0.3)`, Volume Amplifier, Liquidity Flow — belong to TD-011 Capital Flow Engine, not yet formalized in this document.
+- Regime Engine's 5-state classification (RISK_OFF, RISK_ON, BTC_DOMINANT, ALT_ROTATION_EARLY, NEUTRAL) — belongs to TD-009, not yet formalized in this document.
 
 ## 5. Regime Engine (TD-009)
 
@@ -98,3 +134,4 @@ Not yet documented. No design exists yet, in this document or otherwise.
 | --- | --- | --- |
 | 1.0 | 2026-07-14 | Placeholder created, marked under development. |
 | 1.1 | 2026-09-08 | Populated Delta Engine formula section retroactively from `backend/src/deltaEngine.js`. Sections 4-9 added as explicit placeholders for remaining M5 engines, pending formalization. |
+| 1.2 | 2026-09-08 | Populated Triad Liquidity Framework section from a user-provided architecture design (screenshot), not yet implemented in code. Documented BTC.D/TOTAL3/USDT.D as the Triad, the Z-Score normalization formula (window=60, min stddev=0.0001), and the Liquidity Assessment output shape. Explicitly deferred LDS, FlowCore, and Regime Engine formulas found in the same source design to their owning TDs (TD-009, TD-010, TD-011) per the verified TD-008 through TD-013 dependency chain, rather than absorbing them into this section. |
